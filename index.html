@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ND Labs</title>
-    <meta name="description" content="Các dự án và liên kết của ND Labs.">
 
-    <link rel="icon" href="https://ndsite.web.app/assets/images/logo.png">
+    <meta
+        name="description"
+        content="Các dự án, sản phẩm và công cụ của ND Labs."
+    >
 
-    <!-- Google Font: Play -->
+    <link
+        rel="icon"
+        href="https://ndsite.web.app/assets/images/logo.png"
+    >
+
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
     <link
         href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
         rel="stylesheet"
@@ -26,11 +38,8 @@
 
         :root {
             --blue: #0075f1;
-            --blue-light: #eaf5ff;
-            --blue-lighter: #f5faff;
             --text: #12304a;
             --muted: #668096;
-            --border: rgba(0, 117, 241, 0.12);
         }
 
         html {
@@ -39,6 +48,7 @@
 
         body {
             min-height: 100vh;
+
             font-family: "Play", sans-serif;
             color: var(--text);
 
@@ -50,7 +60,7 @@
                 ),
                 radial-gradient(
                     circle at 90% 20%,
-                    rgba(100, 190, 255, 0.14),
+                    rgba(90, 190, 255, 0.14),
                     transparent 30%
                 ),
                 linear-gradient(
@@ -68,70 +78,113 @@
             text-decoration: none;
         }
 
-        .page {
-            width: min(1100px, calc(100% - 32px));
-            margin: 0 auto;
-            padding: 36px 0 50px;
+        button,
+        input,
+        textarea {
+            font-family: inherit;
         }
 
-        /* Header */
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            width: min(1100px, calc(100% - 28px));
+            margin: 0 auto;
+
+            padding: 35px 0 50px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
         .header {
             display: flex;
             flex-direction: column;
             align-items: center;
+
             text-align: center;
-            margin-bottom: 36px;
+
+            margin-bottom: 35px;
         }
 
         .logo {
             width: 86px;
             height: 86px;
+
             object-fit: contain;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 10px 20px rgba(0, 117, 241, 0.16));
+
+            margin-bottom: 14px;
+
+            filter:
+                drop-shadow(
+                    0 10px 20px rgba(0, 117, 241, 0.15)
+                );
         }
 
         .brand {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
             color: var(--blue);
+
+            font-size:
+                clamp(2rem, 5vw, 3rem);
+
+            line-height: 1;
+
+            font-weight: 700;
             letter-spacing: -1px;
         }
 
         .subtitle {
-            margin-top: 8px;
             max-width: 650px;
+
+            margin-top: 10px;
+
+            color: var(--muted);
+
             font-size: 1.05rem;
             line-height: 1.6;
-            color: var(--muted);
         }
 
-        /* Links */
+        /* =========================
+           LINKS
+        ========================= */
+
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 17px;
         }
 
         .link-card {
             position: relative;
+
             display: flex;
             align-items: center;
-            gap: 17px;
 
-            min-height: 115px;
-            padding: 20px;
+            gap: 16px;
 
-            border: 1px solid var(--border);
-            border-radius: 22px;
+            min-height: 116px;
 
-            background: var(--card-color, rgba(255, 255, 255, 0.82));
+            padding: 19px;
+
+            border-radius: 21px;
+
+            border: 1px solid
+                rgba(0, 117, 241, 0.11);
+
+            background:
+                var(
+                    --card-color,
+                    #ffffff
+                );
+
             box-shadow:
-                0 8px 30px rgba(0, 80, 150, 0.07),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
-
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+                0 8px 28px
+                rgba(0, 70, 130, 0.07);
 
             transition:
                 transform 0.2s ease,
@@ -141,15 +194,22 @@
 
         .link-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(0, 117, 241, 0.25);
+
+            border-color:
+                rgba(0, 117, 241, 0.23);
+
             box-shadow:
-                0 14px 35px rgba(0, 80, 150, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+                0 15px 35px
+                rgba(0, 70, 130, 0.12);
         }
 
         .link-card:active {
             transform: scale(0.985);
         }
+
+        /* =========================
+           IMAGE
+        ========================= */
 
         .card-image {
             flex: 0 0 auto;
@@ -157,33 +217,56 @@
             width: 65px;
             height: 65px;
 
-            border-radius: 17px;
             object-fit: cover;
 
+            border-radius: 17px;
+
             background: #edf7ff;
-            border: 1px solid rgba(0, 117, 241, 0.08);
+
+            border: 1px solid
+                rgba(0, 117, 241, 0.08);
         }
 
+        /* =========================
+           ICON
+        ========================= */
+
         .card-icon {
+            flex: 0 0 auto;
+
             display: flex;
             align-items: center;
             justify-content: center;
 
-            flex: 0 0 auto;
             width: 65px;
             height: 65px;
 
             border-radius: 17px;
-            background: linear-gradient(
-                135deg,
-                #e4f3ff,
-                #cceaff
-            );
 
-            color: var(--blue);
-            font-size: 1.6rem;
+            background:
+                var(
+                    --icon-color,
+                    #0075f1
+                );
+
+            color:
+                var(
+                    --icon-text-color,
+                    #ffffff
+                );
+
+            font-size: 1.25rem;
+
             font-weight: 700;
+
+            box-shadow:
+                0 5px 14px
+                rgba(0, 80, 160, 0.12);
         }
+
+        /* =========================
+           CONTENT
+        ========================= */
 
         .card-content {
             min-width: 0;
@@ -191,23 +274,43 @@
         }
 
         .card-title {
-            font-size: 1.25rem;
+            color:
+                var(
+                    --title-color,
+                    #12304a
+                );
+
+            font-size: 1.22rem;
+
             font-weight: 700;
-            color: var(--card-text, var(--text));
+
             line-height: 1.25;
         }
 
         .card-description {
             margin-top: 6px;
-            font-size: 0.95rem;
+
+            color:
+                var(
+                    --description-color,
+                    #668096
+                );
+
+            font-size: 0.94rem;
+
             line-height: 1.45;
-            color: var(--card-muted, var(--muted));
 
             display: -webkit-box;
+
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
+
             overflow: hidden;
         }
+
+        /* =========================
+           ARROW
+        ========================= */
 
         .arrow {
             flex: 0 0 auto;
@@ -220,34 +323,64 @@
             height: 38px;
 
             border-radius: 50%;
-            background: rgba(0, 117, 241, 0.08);
-            color: var(--blue);
 
-            font-size: 1.25rem;
+            background:
+                color-mix(
+                    in srgb,
+                    var(--icon-color, #0075f1)
+                    10%,
+                    transparent
+                );
+
+            color:
+                var(
+                    --icon-color,
+                    #0075f1
+                );
+
+            font-size: 1.35rem;
 
             transition:
                 background 0.2s ease,
+                color 0.2s ease,
                 transform 0.2s ease;
         }
 
         .link-card:hover .arrow {
-            background: var(--blue);
+            background:
+                var(
+                    --icon-color,
+                    #0075f1
+                );
+
             color: white;
+
             transform: translateX(3px);
         }
 
-        /* Empty state */
+        /* =========================
+           EMPTY
+        ========================= */
+
         .empty {
+            grid-column: 1 / -1;
+
             padding: 45px 20px;
+
             text-align: center;
 
             border-radius: 22px;
-            border: 1px dashed rgba(0, 117, 241, 0.25);
-            background: rgba(255, 255, 255, 0.65);
+
+            border: 1px dashed
+                rgba(0, 117, 241, 0.25);
+
+            background:
+                rgba(255, 255, 255, 0.65);
         }
 
         .empty h2 {
             color: var(--blue);
+
             margin-bottom: 8px;
         }
 
@@ -255,11 +388,17 @@
             color: var(--muted);
         }
 
-        /* Footer */
+        /* =========================
+           FOOTER
+        ========================= */
+
         footer {
             margin-top: 40px;
+
             text-align: center;
-            color: #7890a3;
+
+            color: #8197aa;
+
             font-size: 0.9rem;
         }
 
@@ -267,21 +406,33 @@
             color: var(--blue);
         }
 
-        /* Mobile */
-        @media (max-width: 700px) {
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 720px) {
+
             .page {
-                width: min(100% - 20px, 600px);
+                width:
+                    min(
+                        100% - 18px,
+                        600px
+                    );
+
                 padding-top: 25px;
             }
 
             .links-grid {
                 grid-template-columns: 1fr;
+
                 gap: 13px;
             }
 
             .link-card {
                 min-height: 100px;
+
                 padding: 15px;
+
                 border-radius: 18px;
             }
 
@@ -289,15 +440,16 @@
             .card-icon {
                 width: 55px;
                 height: 55px;
+
                 border-radius: 14px;
             }
 
             .card-title {
-                font-size: 1.12rem;
+                font-size: 1.1rem;
             }
 
             .card-description {
-                font-size: 0.9rem;
+                font-size: 0.89rem;
             }
 
             .arrow {
@@ -305,129 +457,354 @@
                 height: 34px;
             }
         }
+
+        @media (max-width: 390px) {
+
+            .link-card {
+                gap: 10px;
+            }
+
+            .card-image,
+            .card-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .card-title {
+                font-size: 1rem;
+            }
+
+            .card-description {
+                font-size: 0.84rem;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <main class="page">
+<main class="page">
 
-        <header class="header">
-            <img
-                class="logo"
-                src="https://ndsite.web.app/assets/images/logo.png"
-                alt="ND Labs"
-            >
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-            <h1 class="brand">ND Labs</h1>
+    <header class="header">
 
-            <p class="subtitle">
-                Khám phá các dự án, công cụ và sản phẩm được phát triển bởi ND Labs.
-            </p>
-        </header>
+        <img
+            class="logo"
+            src="https://ndsite.web.app/assets/images/logo.png"
+            alt="ND Labs"
+        >
 
-        <section
-            id="linksContainer"
-            class="links-grid"
-            aria-label="Các liên kết"
-        ></section>
+        <h1 class="brand">
+            ND Labs
+        </h1>
 
-        <footer>
-            © <span id="year"></span> <strong>ND Labs</strong>
-        </footer>
+        <p class="subtitle">
+            Khám phá các dự án, công cụ và sản phẩm
+            được phát triển bởi ND Labs.
+        </p>
 
-    </main>
+    </header>
 
-    <!-- Dữ liệu các link -->
-    <script src="links.js"></script>
 
-    <script>
-        const container = document.getElementById("linksContainer");
+    <!-- =========================
+         LINKS
+    ========================== -->
 
-        function escapeHTML(value) {
-            if (value === undefined || value === null) return "";
+    <section
+        id="linksContainer"
+        class="links-grid"
+        aria-label="Các liên kết"
+    ></section>
 
-            return String(value)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+        © <span id="year"></span>
+        <strong>ND Labs</strong>
+    </footer>
+
+</main>
+
+
+<!-- DATA -->
+
+<script src="links.js"></script>
+
+
+<script>
+
+    const container =
+        document.getElementById(
+            "linksContainer"
+        );
+
+
+    /* =========================
+       ESCAPE HTML
+    ========================= */
+
+    function escapeHTML(value) {
+
+        if (
+            value === undefined ||
+            value === null
+        ) {
+            return "";
         }
 
-        function renderLinks() {
-            if (!Array.isArray(ndLinks) || ndLinks.length === 0) {
-                container.innerHTML = `
-                    <div class="empty" style="grid-column: 1 / -1;">
-                        <h2>Chưa có liên kết</h2>
-                        <p>Hãy thêm dữ liệu vào file <strong>links.js</strong>.</p>
-                    </div>
-                `;
-                return;
-            }
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
 
-            container.innerHTML = ndLinks.map((item) => {
-                const title = escapeHTML(item.title || "Không có tiêu đề");
-                const description = escapeHTML(item.description || "");
-                const url = escapeHTML(item.url || "#");
-                const color = escapeHTML(item.color || "#ffffff");
+    }
 
-                let media = "";
 
-                if (item.image) {
-                    media = `
-                        <img
-                            class="card-image"
-                            src="${escapeHTML(item.image)}"
-                            alt="${title}"
-                            loading="lazy"
-                            onerror="this.style.display='none'"
-                        >
-                    `;
-                } else {
-                    media = `
-                        <div class="card-icon">
-                            ${escapeHTML(item.icon || "ND")}
-                        </div>
-                    `;
-                }
+    /* =========================
+       RENDER
+    ========================= */
 
-                return `
-                    <a
-                        class="link-card"
-                        href="${url}"
-                        style="
-                            --card-color: ${color};
-                            --card-text: ${escapeHTML(item.textColor || "")};
-                            --card-muted: ${escapeHTML(item.mutedColor || "")};
-                        "
-                        ${item.newTab !== false ? 'target="_blank" rel="noopener noreferrer"' : ""}
-                    >
-                        ${media}
+    function renderLinks() {
 
-                        <div class="card-content">
-                            <div class="card-title">
-                                ${title}
+        if (
+            !Array.isArray(ndLinks) ||
+            ndLinks.length === 0
+        ) {
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    <h2>
+                        Chưa có liên kết
+                    </h2>
+
+                    <p>
+                        Hãy thêm dữ liệu vào
+                        <strong>links.js</strong>.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        container.innerHTML =
+            ndLinks.map(
+                item => {
+
+                    const title =
+                        escapeHTML(
+                            item.title ||
+                            "Không có tiêu đề"
+                        );
+
+                    const description =
+                        escapeHTML(
+                            item.description ||
+                            ""
+                        );
+
+                    const url =
+                        escapeHTML(
+                            item.url ||
+                            "#"
+                        );
+
+
+                    const cardColor =
+                        escapeHTML(
+                            item.color ||
+                            "#ffffff"
+                        );
+
+                    const titleColor =
+                        escapeHTML(
+                            item.textColor ||
+                            "#12304a"
+                        );
+
+                    const descriptionColor =
+                        escapeHTML(
+                            item.mutedColor ||
+                            "#668096"
+                        );
+
+                    const iconColor =
+                        escapeHTML(
+                            item.iconColor ||
+                            "#0075f1"
+                        );
+
+                    const iconTextColor =
+                        escapeHTML(
+                            item.iconTextColor ||
+                            "#ffffff"
+                        );
+
+
+                    /* =====================
+                       MEDIA
+                    ===================== */
+
+                    let media;
+
+
+                    if (item.image) {
+
+                        media = `
+
+                            <img
+                                class="card-image"
+                                src="${escapeHTML(
+                                    item.image
+                                )}"
+                                alt="${title}"
+                                loading="lazy"
+                                onerror="
+                                    this.style.display='none';
+                                    this.nextElementSibling.style.display='flex';
+                                "
+                            >
+
+                            <div
+                                class="card-icon"
+                                style="
+                                    --icon-color:${iconColor};
+                                    --icon-text-color:${iconTextColor};
+                                    display:none;
+                                "
+                            >
+                                ${escapeHTML(
+                                    item.icon ||
+                                    "ND"
+                                )}
                             </div>
 
-                            ${
-                                description
-                                    ? `<div class="card-description">${description}</div>`
-                                    : ""
-                            }
-                        </div>
+                        `;
 
-                        <div class="arrow">›</div>
-                    </a>
-                `;
-            }).join("");
-        }
+                    } else {
 
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
+                        media = `
 
-        renderLinks();
-    </script>
+                            <div
+                                class="card-icon"
+                                style="
+                                    --icon-color:${iconColor};
+                                    --icon-text-color:${iconTextColor};
+                                "
+                            >
+                                ${escapeHTML(
+                                    item.icon ||
+                                    "ND"
+                                )}
+                            </div>
+
+                        `;
+
+                    }
+
+
+                    /* =====================
+                       TARGET
+                    ===================== */
+
+                    const target =
+                        item.newTab === false
+                            ? ""
+                            : `
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              `;
+
+
+                    return `
+
+                        <a
+                            class="link-card"
+
+                            href="${url}"
+
+                            style="
+                                --card-color:${cardColor};
+                                --title-color:${titleColor};
+                                --description-color:${descriptionColor};
+                                --icon-color:${iconColor};
+                            "
+
+                            ${target}
+                        >
+
+                            ${media}
+
+
+                            <div class="card-content">
+
+                                <div class="card-title">
+                                    ${title}
+                                </div>
+
+
+                                ${
+                                    description
+                                        ? `
+                                            <div
+                                                class="
+                                                    card-description
+                                                "
+                                            >
+                                                ${description}
+                                            </div>
+                                          `
+                                        : ""
+                                }
+
+                            </div>
+
+
+                            <div class="arrow">
+                                ›
+                            </div>
+
+                        </a>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+    }
+
+
+    /* =========================
+       YEAR
+    ========================= */
+
+    document.getElementById(
+        "year"
+    ).textContent =
+        new Date().getFullYear();
+
+
+    /* =========================
+       START
+    ========================= */
+
+    renderLinks();
+
+</script>
 
 </body>
 </html>
