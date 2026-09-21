@@ -47,7 +47,7 @@ const ndLinks = [
         title: "GitHub",
         description: "Kho mã nguồn và các dự án của ND Labs.",
         url: "https://github.com/nd-site",
-        image: "https://www.flaticon.com/free-icon/github-logo_25231",
+        icon: "GH",
         color: "#eef7ff",
         textColor: "#12304a",
         mutedColor: "#668096",
