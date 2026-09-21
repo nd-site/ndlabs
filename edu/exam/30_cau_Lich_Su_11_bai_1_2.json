@@ -1,0 +1,425 @@
+{
+  "title": "Kiểm tra kiến thức bài 1, 2 - Lịch Sử",
+  "questions": [
+    {
+      "type": "multiple",
+      "question": "Cách mạng tư sản là cuộc cách mạng do giai cấp nào lãnh đạo nhằm mục tiêu lật đổ chế độ phong kiến?",
+      "options": [
+        "Giai cấp công nhân",
+        "Giai cấp tư sản",
+        "Giai cấp nông dân",
+        "Tầng lớp trí thức"
+      ],
+      "correct": 1,
+      "explanation": "Cách mạng tư sản là cuộc cách mạng do giai cấp tư sản (hoặc liên minh tư sản và quý tộc mới) lãnh đạo nhằm lật đổ chế độ phong kiến, mở đường cho chủ nghĩa tư bản phát triển."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về đặc điểm của cách mạng tư sản, hãy xác định tính đúng/sai của các nhận định sau:",
+      "options": [
+        "Mục tiêu chính là lật đổ chế độ phong kiến hoặc thực dân.",
+        "Giai cấp lãnh đạo luôn là giai cấp nông dân.",
+        "Kết quả là thiết lập nền thống trị của giai cấp tư sản.",
+        "Cách mạng tư sản chỉ diễn ra ở khu vực châu Á."
+      ],
+      "correctAnswers": [
+        true,
+        false,
+        true,
+        false
+      ],
+      "explanation": "Cách mạng tư sản do giai cấp tư sản lãnh đạo, mục tiêu là lật đổ phong kiến/thực dân để thiết lập quyền lực tư sản, diễn ra chủ yếu ở châu Âu và Bắc Mỹ trước khi lan rộng."
+    },
+    {
+      "type": "multiple",
+      "question": "Trong các cuộc cách mạng tư sản thời cận đại, cuộc cách mạng nào được coi là 'cuộc cách mạng tư sản đầu tiên trên thế giới'?",
+      "options": [
+        "Cách mạng Anh",
+        "Cách mạng Hà Lan",
+        "Cách mạng Pháp",
+        "Cách mạng Mỹ"
+      ],
+      "correct": 1,
+      "explanation": "Cách mạng Hà Lan (thế kỷ XVI) được coi là cuộc cách mạng tư sản đầu tiên trên thế giới, lật đổ ách thống trị của thực dân Tây Ban Nha."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về tiền đề kinh tế của các cuộc cách mạng tư sản, hãy xác định tính đúng/sai:",
+      "options": [
+        "Quan hệ sản xuất tư bản chủ nghĩa đã hình thành trong lòng chế độ phong kiến.",
+        "Kinh tế phong kiến phát triển mạnh mẽ, không có dấu hiệu khủng hoảng.",
+        "Giai cấp tư sản có tiềm lực kinh tế nhưng không có quyền lực chính trị.",
+        "Sự phát triển của công thương nghiệp làm mâu thuẫn xã hội gay gắt hơn."
+      ],
+      "correctAnswers": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "explanation": "Tiền đề kinh tế là sự ra đời của quan hệ sản xuất tư bản chủ nghĩa, mâu thuẫn với chế độ phong kiến lạc hậu, tạo tiền đề cho cách mạng."
+    },
+    {
+      "type": "multiple",
+      "question": "Động lực chính của các cuộc cách mạng tư sản là gì?",
+      "options": [
+        "Chỉ có giai cấp tư sản",
+        "Quý tộc mới",
+        "Quần chúng nhân dân",
+        "Lực lượng quân đội"
+      ],
+      "correct": 2,
+      "explanation": "Quần chúng nhân dân (nông dân, bình dân thành thị) là lực lượng đông đảo, đóng vai trò quyết định trong việc lật đổ chế độ cũ."
+    },
+    {
+      "type": "multiple",
+      "question": "Cuộc Cách mạng tư sản đầu tiên trên thế giới diễn ra ở đâu?",
+      "options": [
+        "Anh",
+        "Pháp",
+        "Nê-đéc-lan",
+        "Mỹ"
+      ],
+      "correct": 2,
+      "explanation": "Cách mạng Nê-đéc-lan (thế kỷ XVI) được coi là cuộc cách mạng tư sản đầu tiên trên thế giới, lật đổ ách thống trị của thực dân Tây Ban Nha."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về nguyên nhân sâu xa dẫn đến các cuộc cách mạng tư sản, các nhận định sau đúng hay sai?",
+      "options": [
+        "Sự phát triển của kinh tế tư bản chủ nghĩa mâu thuẫn với chế độ phong kiến.",
+        "Giai cấp tư sản và quý tộc mới không có quyền lợi về chính trị.",
+        "Sự khủng hoảng của chế độ phong kiến diễn ra trầm trọng.",
+        "Tư tưởng Dân chủ tư sản chưa xuất hiện."
+      ],
+      "correctAnswers": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "explanation": "Nguyên nhân sâu xa là mâu thuẫn giữa lực lượng sản xuất mới (TBCN) với quan hệ sản xuất cũ (phong kiến). Tư tưởng Dân chủ tư sản (như Khai sáng) đã xuất hiện và là tiền đề tư tưởng quan trọng."
+    },
+    {
+      "type": "multiple",
+      "question": "Đâu là mục tiêu chung của các cuộc cách mạng tư sản thời cận đại?",
+      "options": [
+        "Xóa bỏ hoàn toàn chế độ tư hữu.",
+        "Thiết lập nền chuyên chính vô sản.",
+        "Mở đường cho chủ nghĩa tư bản phát triển.",
+        "Duy trì quyền lực của tầng lớp quý tộc."
+      ],
+      "correct": 2,
+      "explanation": "Mục tiêu chung của các cuộc cách mạng tư sản là lật đổ chế độ phong kiến (hoặc ách thống trị thực dân), thiết lập nền thống trị của giai cấp tư sản, mở đường cho CNTB phát triển."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về kết quả của các cuộc cách mạng tư sản, các nhận định sau đúng hay sai?",
+      "options": [
+        "Đều thiết lập được nền cộng hòa dân chủ.",
+        "Đều xóa bỏ được chế độ phong kiến hoặc ách thống trị thực dân.",
+        "Đều giải quyết triệt để vấn đề ruộng đất cho nông dân.",
+        "Đều tạo điều kiện cho sự phát triển của kinh tế tư bản chủ nghĩa."
+      ],
+      "correctAnswers": [
+        false,
+        true,
+        false,
+        true
+      ],
+      "explanation": "Không phải cuộc cách mạng nào cũng thiết lập nền cộng hòa (ví dụ Anh là quân chủ lập hiến). Vấn đề ruộng đất thường không được giải quyết triệt để cho nông dân."
+    },
+    {
+      "type": "multiple",
+      "question": "Trong các cuộc cách mạng tư sản, giai cấp nào đóng vai trò lãnh đạo?",
+      "options": [
+        "Giai cấp công nhân.",
+        "Giai cấp tư sản và tầng lớp quý tộc mới.",
+        "Giai cấp nông dân.",
+        "Tầng lớp trí thức nghèo."
+      ],
+      "correct": 1,
+      "explanation": "Giai cấp tư sản và tầng lớp quý tộc mới là lực lượng lãnh đạo các cuộc cách mạng tư sản thời cận đại."
+    },
+    {
+      "type": "multiple",
+      "question": "Cuộc Cách mạng tư sản đầu tiên trên thế giới diễn ra ở đâu?",
+      "options": [
+        "Anh",
+        "Pháp",
+        "Nê-đéc-lan",
+        "Mỹ"
+      ],
+      "correct": 2,
+      "explanation": "Cách mạng Nê-đéc-lan (thế kỷ XVI) được coi là cuộc cách mạng tư sản đầu tiên trên thế giới, lật đổ ách thống trị của thực dân Tây Ban Nha."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về nguyên nhân sâu xa dẫn đến các cuộc cách mạng tư sản, các nhận định sau đây đúng hay sai?",
+      "options": [
+        "Sự phát triển của kinh tế tư bản chủ nghĩa mâu thuẫn với chế độ phong kiến.",
+        "Giai cấp tư sản và quý tộc mới không có quyền lực chính trị.",
+        "Sự khủng hoảng trầm trọng của chế độ phong kiến.",
+        "Sự tác động của tư tưởng Khai sáng là nguyên nhân duy nhất."
+      ],
+      "correctAnswers": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "explanation": "Tư tưởng Khai sáng là yếu tố thúc đẩy, không phải nguyên nhân duy nhất. Các nguyên nhân còn lại đều là yếu tố cốt lõi dẫn đến cách mạng."
+    },
+    {
+      "type": "multiple",
+      "question": "Đâu là đặc điểm chung về giai cấp lãnh đạo trong các cuộc cách mạng tư sản thời cận đại?",
+      "options": [
+        "Giai cấp công nhân",
+        "Giai cấp tư sản và quý tộc mới",
+        "Tầng lớp trí thức",
+        "Nông dân và thợ thủ công"
+      ],
+      "correct": 1,
+      "explanation": "Giai cấp tư sản và quý tộc mới là lực lượng lãnh đạo chính trong các cuộc cách mạng tư sản thời cận đại vì họ đại diện cho phương thức sản xuất mới."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về kết quả của các cuộc cách mạng tư sản, các nhận định sau đây đúng hay sai?",
+      "options": [
+        "Lật đổ chế độ phong kiến hoặc ách thống trị của thực dân.",
+        "Thiết lập nền thống trị của giai cấp tư sản.",
+        "Mở đường cho chủ nghĩa tư bản phát triển.",
+        "Giải quyết triệt để mọi mâu thuẫn trong xã hội."
+      ],
+      "correctAnswers": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "explanation": "Các cuộc cách mạng tư sản thường không giải quyết triệt để mâu thuẫn xã hội, đặc biệt là vấn đề ruộng đất cho nông dân."
+    },
+    {
+      "type": "multiple",
+      "question": "Sự kiện nào đánh dấu sự bùng nổ của Cách mạng tư sản Pháp năm 1789?",
+      "options": [
+        "Vua Lu-i XVI triệu tập Hội nghị ba đẳng cấp.",
+        "Chiếm ngục Ba-xti (14/7/1789).",
+        "Thông qua Tuyên ngôn Nhân quyền và Dân quyền.",
+        "Thiết lập nền cộng hòa."
+      ],
+      "correct": 1,
+      "explanation": "Việc quần chúng nhân dân Pa-ri tấn công và chiếm ngục Ba-xti ngày 14/7/1789 là sự kiện mở đầu cho Cách mạng tư sản Pháp."
+    },
+    {
+      "type": "multiple",
+      "question": "Trong Cách mạng tư sản Anh, sự kiện nào đánh dấu sự xác lập của chế độ quân chủ lập hiến?",
+      "options": [
+        "Vua Sác-lơ I bị xử tử.",
+        "Nền cộng hòa được thiết lập.",
+        "Cuộc đảo chính năm 1688 (Cách mạng vinh quang).",
+        "Nội chiến bùng nổ."
+      ],
+      "correct": 2,
+      "explanation": "Cách mạng vinh quang năm 1688 đã đưa liên minh tư sản - quý tộc mới lên nắm quyền, xác lập chế độ quân chủ lập hiến tại Anh."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về ý nghĩa của các cuộc cách mạng tư sản, các nhận định sau đây đúng hay sai?",
+      "options": [
+        "Thúc đẩy sự phát triển của lực lượng sản xuất.",
+        "Tạo tiền đề cho sự ra đời của chủ nghĩa tư bản.",
+        "Chỉ có ý nghĩa trong phạm vi quốc gia.",
+        "Có ảnh hưởng sâu rộng đến phong trào giải phóng dân tộc trên thế giới."
+      ],
+      "correctAnswers": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "explanation": "Các cuộc cách mạng tư sản có ý nghĩa quốc tế to lớn, không chỉ giới hạn trong phạm vi quốc gia."
+    },
+    {
+      "type": "multiple",
+      "question": "Tuyên ngôn Độc lập của nước Mỹ (1776) đã khẳng định điều gì?",
+      "options": [
+        "Quyền bình đẳng và quyền tự do của con người.",
+        "Sự thống trị của thực dân Anh là hợp pháp.",
+        "Chế độ nô lệ là cần thiết.",
+        "Sự cần thiết của chế độ quân chủ."
+      ],
+      "correct": 0,
+      "explanation": "Tuyên ngôn Độc lập của Mỹ khẳng định mọi người sinh ra đều có quyền bình đẳng, quyền sống, quyền tự do và quyền mưu cầu hạnh phúc."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về đặc điểm của Cách mạng tư sản Pháp, các nhận định sau đây đúng hay sai?",
+      "options": [
+        "Là cuộc cách mạng triệt để nhất thời cận đại.",
+        "Chỉ diễn ra trong phạm vi nước Pháp.",
+        "Có sự tham gia đông đảo của quần chúng nhân dân.",
+        "Không có sự tham gia của giai cấp tư sản."
+      ],
+      "correctAnswers": [
+        true,
+        false,
+        true,
+        false
+      ],
+      "explanation": "Cách mạng Pháp là cuộc cách mạng triệt để nhất vì quần chúng nhân dân đóng vai trò quyết định và tư sản là giai cấp lãnh đạo."
+    },
+    {
+      "type": "multiple",
+      "question": "Động lực chính của các cuộc cách mạng tư sản là gì?",
+      "options": [
+        "Giai cấp tư sản.",
+        "Quý tộc mới.",
+        "Quần chúng nhân dân (nông dân, bình dân thành thị).",
+        "Tầng lớp trí thức."
+      ],
+      "correct": 2,
+      "explanation": "Mặc dù tư sản lãnh đạo, nhưng quần chúng nhân dân mới là lực lượng đông đảo, quyết định thắng lợi của các cuộc cách mạng."
+    },
+    {
+      "type": "multiple",
+      "question": "Cuộc Cách mạng tư sản Anh (thế kỷ XVII) đã dẫn đến sự xác lập của thể chế chính trị nào?",
+      "options": [
+        "Quân chủ chuyên chế",
+        "Cộng hòa đại nghị",
+        "Quân chủ lập hiến",
+        "Dân chủ tư sản"
+      ],
+      "correct": 2,
+      "explanation": "Sau Cách mạng tư sản Anh, quyền lực của nhà vua bị hạn chế bởi Quốc hội, xác lập thể chế Quân chủ lập hiến."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về nguyên nhân sâu xa của các cuộc cách mạng tư sản, nhận định nào sau đây là đúng/sai?",
+      "options": [
+        "Mâu thuẫn giữa lực lượng sản xuất tư bản chủ nghĩa với quan hệ sản xuất phong kiến.",
+        "Sự phát triển mạnh mẽ của kinh tế hàng hóa - tiền tệ.",
+        "Giai cấp tư sản đã nắm được chính quyền từ trước khi cách mạng nổ ra.",
+        "Sự khủng hoảng trầm trọng của chế độ phong kiến trên tất cả các lĩnh vực."
+      ],
+      "correctAnswers": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "explanation": "Giai cấp tư sản chỉ nắm được chính quyền sau khi cách mạng thành công, không phải trước đó."
+    },
+    {
+      "type": "multiple",
+      "question": "Tuyên ngôn Độc lập của nước Mỹ (1776) chịu ảnh hưởng sâu sắc bởi tư tưởng của trào lưu nào?",
+      "options": [
+        "Chủ nghĩa xã hội không tưởng",
+        "Triết học Ánh sáng",
+        "Chủ nghĩa trọng thương",
+        "Chủ nghĩa duy vật biện chứng"
+      ],
+      "correct": 1,
+      "explanation": "Tuyên ngôn Độc lập Mỹ chịu ảnh hưởng mạnh mẽ từ tư tưởng của các nhà triết học Ánh sáng như Locke, Montesquieu về quyền con người."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về kết quả và ý nghĩa của các cuộc cách mạng tư sản, nhận định nào sau đây là đúng/sai?",
+      "options": [
+        "Lật đổ chế độ phong kiến hoặc ách thống trị của thực dân.",
+        "Mở đường cho chủ nghĩa tư bản phát triển.",
+        "Giải quyết triệt để vấn đề ruộng đất cho nông dân.",
+        "Thiết lập nền thống trị của giai cấp tư sản và quý tộc mới."
+      ],
+      "correctAnswers": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "explanation": "Các cuộc cách mạng tư sản thường không giải quyết triệt để vấn đề ruộng đất cho nông dân mà chủ yếu phục vụ lợi ích giai cấp tư sản."
+    },
+    {
+      "type": "multiple",
+      "question": "Sự kiện nào được coi là 'phát súng' mở đầu cho Cách mạng tư sản Pháp năm 1789?",
+      "options": [
+        "Hội nghị các đẳng cấp",
+        "Tấn công pháo đài Bastille",
+        "Thông qua Tuyên ngôn Nhân quyền và Dân quyền",
+        "Vua Louis XVI bị xử tử"
+      ],
+      "correct": 1,
+      "explanation": "Ngày 14/7/1789, nhân dân Paris tấn công pháo đài Bastille, đánh dấu sự bùng nổ của Cách mạng tư sản Pháp."
+    },
+    {
+      "type": "multiple",
+      "question": "Cuộc Cách mạng tư sản Anh (thế kỉ XVII) đã đưa nước Anh phát triển theo con đường nào?",
+      "options": [
+        "Chế độ quân chủ chuyên chế",
+        "Chế độ quân chủ lập hiến",
+        "Chế độ cộng hòa tư sản",
+        "Chế độ phong kiến tập quyền"
+      ],
+      "correct": 1,
+      "explanation": "Cách mạng tư sản Anh thắng lợi đã lật đổ chế độ phong kiến, thiết lập chế độ quân chủ lập hiến, mở đường cho chủ nghĩa tư bản phát triển."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về nguyên nhân bùng nổ các cuộc cách mạng tư sản, hãy xác định tính đúng/sai của các nhận định sau:",
+      "options": [
+        "Mâu thuẫn giữa lực lượng sản xuất tư bản chủ nghĩa với quan hệ sản xuất phong kiến là nguyên nhân sâu xa.",
+        "Sự phát triển của kinh tế tư bản chủ nghĩa không gây ảnh hưởng đến địa vị chính trị của giai cấp tư sản.",
+        "Tư tưởng Dân chủ tư sản là ngọn cờ tư tưởng dẫn đường cho các cuộc cách mạng.",
+        "Sự khủng hoảng của chế độ phong kiến là điều kiện cần để cách mạng bùng nổ."
+      ],
+      "correctAnswers": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "explanation": "Sự phát triển kinh tế tư bản chủ nghĩa làm giai cấp tư sản ngày càng lớn mạnh, mâu thuẫn gay gắt với chế độ phong kiến, từ đó đòi hỏi quyền lực chính trị."
+    },
+    {
+      "type": "multiple",
+      "question": "Tuyên ngôn Độc lập của nước Mỹ (1776) đã khẳng định quyền nào của con người?",
+      "options": [
+        "Quyền được làm chủ đất nước",
+        "Quyền sống, quyền tự do và quyền mưu cầu hạnh phúc",
+        "Quyền bình đẳng trước pháp luật",
+        "Quyền sở hữu tư nhân về tài sản"
+      ],
+      "correct": 1,
+      "explanation": "Tuyên ngôn Độc lập năm 1776 của Mỹ đã ghi rõ: 'Tất cả mọi người sinh ra đều có quyền bình đẳng... quyền sống, quyền tự do và quyền mưu cầu hạnh phúc'."
+    },
+    {
+      "type": "multiple",
+      "question": "Sự kiện nào được coi là 'mở đầu' cho cuộc Cách mạng tư sản Pháp năm 1789?",
+      "options": [
+        "Hội nghị các đẳng cấp được triệu tập",
+        "Tuyên ngôn Nhân quyền và Dân quyền được thông qua",
+        "Cuộc tấn công chiếm ngục Ba-xti (14/7/1789)",
+        "Vua Lu-i XVI bị xử tử"
+      ],
+      "correct": 2,
+      "explanation": "Ngày 14/7/1789, quần chúng nhân dân tấn công ngục Ba-xti, biểu tượng của chế độ phong kiến Pháp, đánh dấu sự bùng nổ của cách mạng."
+    },
+    {
+      "type": "truefalse",
+      "question": "Về kết quả và ý nghĩa của các cuộc cách mạng tư sản, hãy xác định tính đúng/sai:",
+      "options": [
+        "Các cuộc cách mạng tư sản đều xóa bỏ hoàn toàn chế độ phong kiến trên phạm vi toàn thế giới.",
+        "Cách mạng tư sản tạo điều kiện cho sự phát triển của kinh tế hàng hóa và chủ nghĩa tư bản.",
+        "Giai cấp tư sản và quý tộc mới là lực lượng lãnh đạo chủ chốt trong các cuộc cách mạng này.",
+        "Sau cách mạng, quyền lực chính trị thuộc về tay nhân dân lao động."
+      ],
+      "correctAnswers": [
+        false,
+        true,
+        true,
+        false
+      ],
+      "explanation": "Cách mạng tư sản xóa bỏ phong kiến ở từng quốc gia cụ thể, quyền lực chính trị sau cách mạng thuộc về giai cấp tư sản và quý tộc mới."
+    }
+  ]
+}
