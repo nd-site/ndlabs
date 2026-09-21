@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Công Cụ Chuyển Đổi Ảnh & Văn Bản</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Play', sans-serif;
+            background: linear-gradient(
+                135deg,
+                #e0f2fe 0%,
+                #bae6fd 100%
+            );
+            color: #1e293b;
+            min-height: 100vh;
+            padding: 30px 15px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0284c7;
+            margin-bottom: 25px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+
+            box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.15);
+            border: 1px solid #e0f2fe;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: #0369a1;
+            margin-bottom: 15px;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-input-wrapper {
+            margin-bottom: 12px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+
+            border: 1px dashed #38bdf8;
+            border-radius: 8px;
+
+            background: #f0f9ff;
+            cursor: pointer;
+
+            font-family: 'Play', sans-serif;
+        }
+
+        textarea {
+            width: 100%;
+            height: 90px;
+            padding: 10px;
+
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+
+            resize: vertical;
+
+            font-family: monospace;
+            font-size: 12px;
+
+            background: #f8fafc;
+            margin-top: 10px;
+        }
+
+        textarea:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #0284c7;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+        }
+
+        .btn {
+            background-color: #0284c7;
+            color: #ffffff;
+
+            border: none;
+            padding: 10px 20px;
+
+            font-size: 14px;
+            font-family: 'Play', sans-serif;
+            font-weight: 700;
+
+            border-radius: 8px;
+            cursor: pointer;
+
+            transition: all 0.2s ease;
+            margin-top: 12px;
+        }
+
+        .btn:hover {
+            background-color: #0369a1;
+            transform: translateY(-1px);
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 12px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        label {
+            font-size: 13px;
+            color: #0369a1;
+        }
+
+        input[type="number"] {
+            padding: 8px 12px;
+
+            border: 1px solid #bae6fd;
+            border-radius: 6px;
+
+            font-family: 'Play', sans-serif;
+        }
+
+        .preview-area {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        img#outputImage {
+            max-width: 100%;
+            border-radius: 8px;
+
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Công Cụ Chuyển Đổi Ảnh & Văn Bản</h1>
+
+        <!-- Chuyển ảnh sang Base64 -->
+        <div class="card">
+
+            <h2>1. Chuyển Ảnh Sang Văn Bản (.txt)</h2>
+
+            <div class="file-input-wrapper">
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/*"
+                >
+            </div>
+
+            <textarea
+                id="base64Output"
+                placeholder="Mã văn bản (Base64) sẽ xuất hiện ở đây..."
+                readonly
+            ></textarea>
+
+            <button
+                class="btn"
+                onclick="downloadTxt()"
+            >
+                Lưu Thành File TXT
+            </button>
+
+        </div>
+
+        <!-- Chuyển Base64 sang ảnh -->
+        <div class="card">
+
+            <h2>2. Chuyển Văn Bản Sang Ảnh</h2>
+
+            <div class="file-input-wrapper">
+
+                <label>Chọn file TXT:</label>
+
+                <input
+                    type="file"
+                    id="txtFileInput"
+                    accept=".txt"
+                >
+
+            </div>
+
+            <label>Hoặc dán mã Base64 vào đây:</label>
+
+            <textarea
+                id="base64Input"
+                placeholder="Dán mã văn bản Base64 tại đây..."
+            ></textarea>
+
+            <div class="controls-grid">
+
+                <div class="input-group">
+
+                    <label>Chiều rộng (px):</label>
+
+                    <input
+                        type="number"
+                        id="imgWidth"
+                        placeholder="Giữ nguyên gốc"
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Chiều cao (px):</label>
+
+                    <input
+                        type="number"
+                        id="imgHeight"
+                        placeholder="Giữ nguyên gốc"
+                    >
+
+                </div>
+
+            </div>
+
+            <button
+                class="btn"
+                onclick="renderImage()"
+            >
+                Chuyển Thành Ảnh
+            </button>
+
+            <div class="preview-area">
+
+                <canvas
+                    id="canvas"
+                    style="display: none;"
+                ></canvas>
+
+                <img
+                    id="outputImage"
+                    alt="Ảnh kết quả"
+                >
+
+                <div
+                    id="imageResultControls"
+                    style="display: none;"
+                >
+
+                    <button
+                        class="btn"
+                        onclick="downloadImage()"
+                    >
+                        Tải Ảnh Về
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================
+        // CHUYỂN ẢNH SANG BASE64
+        // ============================================
+
+        function imageToBase64(file, callback) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                callback(e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        document
+            .getElementById('imageInput')
+            .addEventListener('change', function (e) {
+
+                const file = e.target.files[0];
+
+                if (file) {
+                    imageToBase64(file, function (base64Str) {
+
+                        document.getElementById('base64Output').value =
+                            base64Str;
+
+                    });
+                }
+            });
+
+
+        // ============================================
+        // TẢI BASE64 THÀNH FILE TXT
+        // ============================================
+
+        function downloadTxt() {
+
+            const text =
+                document.getElementById('base64Output').value;
+
+            if (!text) {
+                alert('Vui lòng chọn ảnh trước!');
+                return;
+            }
+
+            const blob = new Blob(
+                [text],
+                {
+                    type: 'text/plain'
+                }
+            );
+
+            const a = document.createElement('a');
+
+            a.href = URL.createObjectURL(blob);
+            a.download = 'hinhanh_machoah.txt';
+
+            a.click();
+
+            URL.revokeObjectURL(a.href);
+        }
+
+
+        // ============================================
+        // ĐỌC FILE TXT
+        // ============================================
+
+        document
+            .getElementById('txtFileInput')
+            .addEventListener('change', function (e) {
+
+                const file = e.target.files[0];
+
+                if (file) {
+
+                    const reader = new FileReader();
+
+                    reader.onload = function (evt) {
+
+                        document.getElementById('base64Input').value =
+                            evt.target.result;
+
+                    };
+
+                    reader.readAsText(file);
+                }
+            });
+
+
+        // ============================================
+        // CHUYỂN BASE64 SANG ẢNH
+        // ============================================
+
+        function renderImage() {
+
+            const base64Str =
+                document.getElementById('base64Input').value.trim();
+
+            if (!base64Str) {
+                alert(
+                    'Vui lòng nhập văn bản mã hóa hoặc tải file txt lên!'
+                );
+                return;
+            }
+
+            const img = new Image();
+
+            img.onload = function () {
+
+                const canvas =
+                    document.getElementById('canvas');
+
+                const ctx =
+                    canvas.getContext('2d');
+
+                const width =
+                    parseInt(
+                        document.getElementById('imgWidth').value
+                    ) || img.width;
+
+                const height =
+                    parseInt(
+                        document.getElementById('imgHeight').value
+                    ) || img.height;
+
+                canvas.width = width;
+                canvas.height = height;
+
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
+                const resizedDataUrl =
+                    canvas.toDataURL('image/png');
+
+                const outputImg =
+                    document.getElementById('outputImage');
+
+                outputImg.src = resizedDataUrl;
+
+                document
+                    .getElementById('imageResultControls')
+                    .style.display = 'block';
+            };
+
+            img.onerror = function () {
+                alert(
+                    'Mã Base64 không hợp lệ hoặc không phải dữ liệu ảnh!'
+                );
+            };
+
+            img.src = base64Str;
+        }
+
+
+        // ============================================
+        // TẢI ẢNH KẾT QUẢ
+        // ============================================
+
+        function downloadImage() {
+
+            const outputImg =
+                document.getElementById('outputImage');
+
+            if (!outputImg.src) {
+                return;
+            }
+
+            const a =
+                document.createElement('a');
+
+            a.href = outputImg.src;
+            a.download = 'ketqua_hinhanh.png';
+
+            a.click();
+        }
+    </script>
+
+</body>
+
+</html>
