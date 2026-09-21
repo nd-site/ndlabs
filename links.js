@@ -125,5 +125,20 @@ const ndLinks = [
         iconTextColor: "#FFFFFF",
         
         newTab: true
+    },
+
+    {
+        title: "EduND - Làm bài kiểm tra (V2)",
+        description: "Trang làm bài kiểm tra bằng cách tải lên file đề.",
+        url: "/ndlabs/edu/v2",
+        image: "https://ndsite.web.app/assets/images/logo.png",
+        
+        color: "#EEF7ED",
+        textColor: "#0075F1",
+        mutedColor: "#668096",
+        iconColor: "#0075F1",
+        iconTextColor: "#FFFFFF",
+        
+        newTab: true
     }
 ];
