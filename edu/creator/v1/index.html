@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>EduND Creator - Soạn thảo đề</title>
+<style>
+:root{--blue:#0075f1;--blue2:#eaf4ff;--bg:#f2f8ff;--card:#fff;--text:#172033;--muted:#64748b;--border:#dbe5f0;--green:#16a34a;--red:#dc2626;--shadow:0 14px 40px rgba(30,90,150,.10)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);background:linear-gradient(135deg,#edf7ff,#fff 55%,#edf5ff)}
+body{padding:18px}button,input,textarea,select{font:inherit}button{cursor:pointer}
+.app{max-width:1350px;margin:auto}.card{background:#fff;border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow)}
+.top{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:16px}.brand{display:flex;align-items:center;gap:11px}.logo{width:44px;height:44px;border-radius:13px;object-fit:contain}.brand h1{margin:0;font-size:21px}.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--border);background:#fff;border-radius:11px;padding:10px 14px;min-height:42px;font-weight:700}.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.btn.danger{color:var(--red);background:#fff1f2;border-color:#fecaca}.btn.green{color:#15803d;background:#f0fdf4;border-color:#bbf7d0}
+.layout{display:grid;grid-template-columns:340px minmax(0,1fr);gap:16px;align-items:start}.left{position:sticky;top:15px}.panel{padding:18px;margin-bottom:16px}.panel h2{font-size:16px;margin:0 0 14px}.field{margin-bottom:12px}.field label{display:block;font-size:12px;font-weight:800;color:#475569;margin-bottom:5px}.field input,.field textarea,.field select{width:100%;border:1px solid var(--border);border-radius:10px;padding:10px 11px;outline:none;background:#fff}.field textarea{min-height:78px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #0075f11a}
+.matrix{width:100%;border-collapse:collapse;font-size:13px}.matrix th,.matrix td{border:1px solid var(--border);padding:8px;text-align:left}.matrix th{background:#f8fafc}.matrix input{width:80px;padding:7px;border:1px solid var(--border);border-radius:8px}.total{margin-top:10px;padding:10px;border-radius:10px;background:var(--blue2);display:flex;justify-content:space-between;font-weight:800;color:var(--blue)}
+.content{min-width:0}.content-head{padding:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.content-head h2{margin:0;font-size:19px}.stats{display:flex;gap:7px;flex-wrap:wrap}.pill{padding:6px 10px;border-radius:999px;background:#f1f5f9;font-size:12px;font-weight:800}
+.q-card{padding:18px;margin-bottom:14px;border-left:4px solid var(--blue)}.q-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.q-title{font-weight:900}.q-actions{display:flex;gap:6px;flex-wrap:wrap}.mini{border:1px solid var(--border);background:#fff;border-radius:8px;padding:7px 9px;font-size:12px;font-weight:700}.mini.red{color:var(--red)}.q-type{display:inline-block;margin-bottom:10px;padding:5px 8px;border-radius:7px;background:var(--blue2);color:var(--blue);font-size:12px;font-weight:800}
+.q-card textarea,.q-card input,.q-card select{width:100%;border:1px solid var(--border);border-radius:10px;padding:10px;outline:none}.q-card textarea{min-height:82px;resize:vertical}.options{display:grid;gap:8px;margin-top:10px}.opt{display:grid;grid-template-columns:36px minmax(0,1fr) 100px;gap:8px;align-items:center}.letter{height:38px;border-radius:9px;background:#f1f5f9;display:grid;place-items:center;font-weight:900}.answer-select{width:100%!important}.tf-row{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:8px;align-items:center;margin:8px 0}.row-label{font-size:12px;font-weight:800;color:#64748b}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hint{font-size:12px;color:var(--muted);margin-top:6px}.addbar{padding:16px;text-align:center;margin-bottom:30px}.preview{padding:20px}.preview h3{margin:0 0 8px}.preview-box{background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:15px;max-height:480px;overflow:auto}.preview-q{padding:13px 0;border-bottom:1px solid var(--border)}.preview-q:last-child{border-bottom:0}.modal{position:fixed;inset:0;background:rgba(15,23,42,.48);display:flex;align-items:center;justify-content:center;padding:18px;z-index:50}.modal.hidden{display:none}.modal-box{width:min(900px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:20px;padding:20px}.modal-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.modal-head h2{margin:0}.code{white-space:pre;overflow:auto;background:#0f172a;color:#e2e8f0;border-radius:12px;padding:16px;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;max-height:60vh}.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#fff;border:1px solid var(--border);box-shadow:0 12px 30px rgba(0,0,0,.14);padding:11px 16px;border-radius:11px;font-weight:800;z-index:100}.hidden{display:none!important}
+@media(max-width:950px){.layout{grid-template-columns:1fr}.left{position:static}.top{align-items:flex-start;flex-direction:column}.toolbar{width:100%}}
+@media(max-width:600px){body{padding:9px}.panel,.q-card,.content-head{padding:14px}.two{grid-template-columns:1fr}.opt{grid-template-columns:30px minmax(0,1fr)}.opt .answer-select{grid-column:1/-1}.tf-row{grid-template-columns:1fr}.toolbar .btn{flex:1}.brand p{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="card top">
+  <div class="brand">
+    <img class="logo" src="/logo.png" alt="ND Labs">
+    <div><h1>EduND Creator</h1><p>Soạn thảo đề kiểm tra & tạo dữ liệu EduND</p></div>
+  </div>
+  <div class="toolbar">
+    <button class="btn" id="newBtn">＋ Đề mới</button>
+    <label class="btn">📂 Mở JS/JSON<input id="fileInput" type="file" accept=".js,.json" hidden></label>
+    <button class="btn" id="previewBtn">👁 Xem trước</button>
+    <button class="btn green" id="exportJsBtn">⬇ data.js</button>
+    <button class="btn green" id="exportJsonBtn">⬇ JSON</button>
+  </div>
+</header>
+
+<div class="layout">
+<aside class="left">
+  <section class="card panel">
+    <h2>📄 Thông tin đề</h2>
+    <div class="field"><label>Tiêu đề</label><input id="title"></div>
+    <div class="two">
+      <div class="field"><label>Môn</label><input id="subject"></div>
+      <div class="field"><label>Lớp</label><input id="grade"></div>
+    </div>
+    <div class="field"><label>Năm học / ngày</label><input id="date"></div>
+    <div class="two">
+      <div class="field"><label>Tên bài kiểm tra</label><input id="examName"></div>
+      <div class="field"><label>Lần / bản</label><input id="attempt"></div>
+    </div>
+  </section>
+
+  <section class="card panel">
+    <h2>🎯 Ma trận kiểm tra</h2>
+    <div class="field"><label>Thời gian (phút)</label><input id="duration" type="number" min="0"></div>
+    <table class="matrix">
+      <thead><tr><th>Dạng câu</th><th>Số câu</th><th>Điểm/câu</th></tr></thead>
+      <tbody>
+        <tr><td>Trắc nghiệm</td><td><input id="multipleCount" type="number" min="0"></td><td><input id="multiplePoint" type="number" min="0" step="0.01"></td></tr>
+        <tr><td>Đúng / Sai</td><td><input id="tfCount" type="number" min="0"></td><td><input id="tfPoint" type="number" min="0" step="0.01"></td></tr>
+        <tr><td>Trả lời ngắn</td><td><input id="shortCount" type="number" min="0"></td><td><input id="shortPoint" type="number" min="0" step="0.01"></td></tr>
+      </tbody>
+    </table>
+    <div class="total"><span>Tổng câu / điểm</span><span id="matrixTotal">0 / 0</span></div>
+    <div class="hint">Chế độ Học/Luyện tập dùng toàn bộ câu hỏi. Chế độ Kiểm tra lấy số câu theo bảng này.</div>
+  </section>
+
+  <section class="card panel">
+    <h2>⚖️ Chấm Đúng / Sai</h2>
+    <div class="two">
+      <div class="field"><label>1 ý đúng</label><input id="ps1" type="number" step="0.01"></div>
+      <div class="field"><label>2 ý đúng</label><input id="ps2" type="number" step="0.01"></div>
+      <div class="field"><label>3 ý đúng</label><input id="ps3" type="number" step="0.01"></div>
+      <div class="field"><label>4 ý đúng</label><input id="ps4" type="number" step="0.01"></div>
+    </div>
+  </section>
+</aside>
+
+<main class="content">
+  <section class="card content-head">
+    <div><h2>📚 Danh sách câu hỏi</h2><div class="hint">Mỗi câu được lưu trực tiếp vào cấu trúc <code>questions[]</code>.</div></div>
+    <div class="stats"><span class="pill" id="sMultiple">TN: 0</span><span class="pill" id="sTF">Đ/S: 0</span><span class="pill" id="sShort">TLN: 0</span></div>
+  </section>
+  <div id="questions"></div>
+  <section class="card addbar">
+    <button class="btn primary" id="addMultiple">＋ Trắc nghiệm</button>
+    <button class="btn primary" id="addTF">＋ Đúng / Sai</button>
+    <button class="btn primary" id="addShort">＋ Trả lời ngắn</button>
+  </section>
+</main>
+</div>
+</div>
+
+<div id="previewModal" class="modal hidden">
+  <div class="modal-box">
+    <div class="modal-head"><h2>👁 Xem trước đề</h2><button class="btn" id="closePreview">Đóng</button></div>
+    <div id="previewContent"></div>
+  </div>
+</div>
+
+<div id="codeModal" class="modal hidden">
+  <div class="modal-box">
+    <div class="modal-head"><h2 id="codeTitle">Dữ liệu xuất</h2><button class="btn" id="closeCode">Đóng</button></div>
+    <pre id="codeOutput" class="code"></pre>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script>
+(() => {
+"use strict";
+const $=id=>document.getElementById(id);
+let data=createEmpty();
+let dirty=false;
+
+function createEmpty(){
+  return {
+    title:"Đề kiểm tra mới",
+    config:{
+      testDuration:2700,
+      examLayout:{
+        multiple:{count:0,pointsPerQ:.25},
+        truefalse:{count:0,pointsPerQ:1,partialScoring:[.1,.25,.5,1]},
+        short:{count:0,pointsPerQ:.5}
+      }
+    },
+    questions:[],
+    examInfo:{subject:"",grade:"",date:"",examName:"",attempt:"Bản 1"}
+  };
+}
+function clone(o){return JSON.parse(JSON.stringify(o))}
+function toast(msg){const e=$("toast");e.textContent=msg;e.classList.remove("hidden");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.add("hidden"),2300)}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+
+function parseFile(text,ext){
+  if(ext==="json") return JSON.parse(text);
+  const m=text.match(/window\.quizData\s*=\s*([\s\S]*?)(?:;\s*)?(?:$|window\.)/);
+  if(m){
+    const raw=m[1].trim().replace(/;\s*$/,"");
+    try{return JSON.parse(raw)}catch(e){}
+    try{return new Function("return ("+raw+");")()}catch(e){}
+  }
+  try{return JSON.parse(text)}catch(e){}
+  throw new Error("Không đọc được dữ liệu file.");
+}
+function normalize(d){
+  const x=clone(d||{});
+  x.config=x.config||{}; x.config.examLayout=x.config.examLayout||{};
+  const defaults=createEmpty().config.examLayout;
+  ["multiple","truefalse","short"].forEach(t=>{
+    x.config.examLayout[t]=Object.assign({},defaults[t],x.config.examLayout[t]||{});
+  });
+  x.config.examLayout.truefalse.partialScoring=(x.config.examLayout.truefalse.partialScoring||[.1,.25,.5,1]).slice(0,4);
+  while(x.config.examLayout.truefalse.partialScoring.length<4)x.config.examLayout.truefalse.partialScoring.push(0);
+  x.questions=Array.isArray(x.questions)?x.questions:[];
+  x.examInfo=Object.assign({},createEmpty().examInfo,x.examInfo||{});
+  return x;
+}
+function syncForm(){
+  $("title").value=data.title||"";
+  $("subject").value=data.examInfo.subject||"";$("grade").value=data.examInfo.grade||"";
+  $("date").value=data.examInfo.date||"";$("examName").value=data.examInfo.examName||"";$("attempt").value=data.examInfo.attempt||"";
+  $("duration").value=Math.round(Number(data.config.testDuration||0)/60);
+  const l=data.config.examLayout;
+  $("multipleCount").value=l.multiple.count;$("multiplePoint").value=l.multiple.pointsPerQ;
+  $("tfCount").value=l.truefalse.count;$("tfPoint").value=l.truefalse.pointsPerQ;
+  $("shortCount").value=l.short.count;$("shortPoint").value=l.short.pointsPerQ;
+  const p=l.truefalse.partialScoring;["ps1","ps2","ps3","ps4"].forEach((id,i)=>$(id).value=p[i]);
+  renderQuestions();updateStats();updateMatrix();
+}
+function bindForms(){
+  $("title").addEventListener("input",()=>{data.title=$("title").value;dirty=true});
+  ["subject","grade","date","examName","attempt"].forEach(id=>$(id).addEventListener("input",()=>{data.examInfo[{subject:"subject",grade:"grade",date:"date",examName:"examName",attempt:"attempt"}[id]]=$(id).value;dirty=true}));
+  $("duration").addEventListener("input",()=>{data.config.testDuration=Math.max(0,Number($("duration").value||0)*60);dirty=true});
+  [["multipleCount","multiple","count"],["multiplePoint","multiple","pointsPerQ"],["tfCount","truefalse","count"],["tfPoint","truefalse","pointsPerQ"],["shortCount","short","count"],["shortPoint","short","pointsPerQ"]].forEach(([id,t,k])=>$(id).addEventListener("input",()=>{data.config.examLayout[t][k]=Math.max(0,Number($(id).value||0));dirty=true;updateMatrix()}));
+  ["ps1","ps2","ps3","ps4"].forEach((id,i)=>$(id).addEventListener("input",()=>{data.config.examLayout.truefalse.partialScoring[i]=Math.max(0,Number($(id).value||0));dirty=true}));
+}
+function updateMatrix(){
+  const l=data.config.examLayout;
+  const total=Number(l.multiple.count)+Number(l.truefalse.count)+Number(l.short.count);
+  const pts=Number(l.multiple.count)*Number(l.multiple.pointsPerQ)+Number(l.truefalse.count)*Number(l.truefalse.pointsPerQ)+Number(l.short.count)*Number(l.short.pointsPerQ);
+  $("matrixTotal").textContent=`${total} / ${pts.toLocaleString("vi-VN",{maximumFractionDigits:2})}`;
+}
+function typeLabel(t){return t==="multiple"?"Trắc nghiệm":t==="truefalse"?"Đúng / Sai":"Trả lời ngắn"}
+
+function renderQuestions(){
+  const root=$("questions");root.innerHTML="";
+  data.questions.forEach((q,i)=>root.appendChild(questionCard(q,i)));
+}
+function questionCard(q,i){
+  const card=document.createElement("section");card.className="card q-card";
+  const head=document.createElement("div");head.className="q-head";
+  head.innerHTML=`<div><div class="q-title">Câu ${i+1}</div><span class="q-type">${typeLabel(q.type)}</span></div>`;
+  const acts=document.createElement("div");acts.className="q-actions";
+  [["↑","up"],["↓","down"],["⧉","dup"],["🗑","del"]].forEach(([txt,act])=>{
+    const b=document.createElement("button");b.type="button";b.className="mini"+(act==="del"?" red":"");b.textContent=txt;
+    b.addEventListener("click",()=>questionAction(act,i));acts.appendChild(b);
+  });head.appendChild(acts);card.appendChild(head);
+
+  const type=document.createElement("select");type.innerHTML=`<option value="multiple">Trắc nghiệm</option><option value="truefalse">Đúng / Sai</option><option value="short">Trả lời ngắn</option>`;type.value=q.type;
+  type.addEventListener("change",()=>{q=convertQuestion(q,type.value);data.questions[i]=q;dirty=true;renderQuestions();updateStats()});
+  const typeField=document.createElement("div");typeField.className="field";typeField.innerHTML="<label>Dạng câu hỏi</label>";typeField.appendChild(type);card.appendChild(typeField);
+
+  const qt=document.createElement("textarea");qt.placeholder="Nhập nội dung câu hỏi...";qt.value=q.question||"";qt.addEventListener("input",()=>{q.question=qt.value;dirty=true});card.appendChild(qt);
+
+  if(q.type==="multiple") renderMultiple(card,q);
+  if(q.type==="truefalse") renderTF(card,q);
+  if(q.type==="short") renderShort(card,q);
+
+  const ex=document.createElement("textarea");ex.style.marginTop="10px";ex.placeholder="Giải thích đáp án (không bắt buộc)...";ex.value=q.explanation||"";ex.addEventListener("input",()=>{q.explanation=ex.value;dirty=true});card.appendChild(ex);
+  return card;
+}
+function renderMultiple(card,q){
+  const wrap=document.createElement("div");wrap.className="options";
+  q.options=Array.isArray(q.options)?q.options:["","","",""];
+  while(q.options.length<4)q.options.push("");
+  q.options=q.options.slice(0,4);
+  q.options.forEach((v,j)=>{
+    const row=document.createElement("div");row.className="opt";
+    const letter=document.createElement("div");letter.className="letter";letter.textContent=String.fromCharCode(65+j);
+    const input=document.createElement("input");input.value=v;input.placeholder=`Đáp án ${String.fromCharCode(65+j)}`;input.addEventListener("input",()=>{q.options[j]=input.value;dirty=true});
+    row.append(letter,input);
+    if(j===0){
+      const select=document.createElement("select");select.className="answer-select";
+      for(let k=0;k<4;k++){const o=document.createElement("option");o.value=k;o.textContent=`Đáp án đúng: ${String.fromCharCode(65+k)}`;select.appendChild(o)}
+      select.value=Number.isInteger(q.correct)?q.correct:0;select.addEventListener("change",()=>{q.correct=Number(select.value);dirty=true});
+      row.appendChild(select);
+    }else row.appendChild(document.createElement("div"));
+    wrap.appendChild(row);
+  });
+  card.appendChild(wrap);
+}
+function renderTF(card,q){
+  q.options=Array.isArray(q.options)?q.options:["","","",""];while(q.options.length<4)q.options.push("");q.options=q.options.slice(0,4);
+  q.correct=Array.isArray(q.correct)?q.correct:[true,false,true,false];while(q.correct.length<4)q.correct.push(false);q.correct=q.correct.slice(0,4);
+  q.correctAnswers=[...q.correct];
+  const wrap=document.createElement("div");
+  q.options.forEach((v,j)=>{
+    const row=document.createElement("div");row.className="tf-row";
+    const input=document.createElement("input");input.value=v;input.placeholder=`Ý ${j+1}`;input.addEventListener("input",()=>{q.options[j]=input.value;dirty=true});
+    const select=document.createElement("select");select.innerHTML="<option value=\"true\">Đúng</option><option value=\"false\">Sai</option>";select.value=String(q.correct[j]);select.addEventListener("change",()=>{q.correct[j]=select.value==="true";q.correctAnswers=[...q.correct];dirty=true});
+    row.append(input,select);wrap.appendChild(row);
+  });card.appendChild(wrap);
+}
+function renderShort(card,q){
+  const label=document.createElement("div");label.className="field";label.style.marginTop="10px";label.innerHTML="<label>Đáp án đúng</label>";
+  const input=document.createElement("input");input.value=Array.isArray(q.correct)?q.correct.join(" / "):(q.correct||"");input.placeholder="Nhập đáp án...";input.addEventListener("input",()=>{q.correct=input.value;dirty=true});label.appendChild(input);card.appendChild(label);
+}
+function convertQuestion(q,type){
+  if(type==="multiple")return {type,question:q.question||"",options:["","","",""],correct:0,explanation:q.explanation||""};
+  if(type==="truefalse")return {type,question:q.question||"",options:["","","",""],correct:[true,false,true,false],correctAnswers:[true,false,true,false],explanation:q.explanation||""};
+  return {type,question:q.question||"",correct:"",explanation:q.explanation||""};
+}
+function questionAction(act,i){
+  if(act==="del"){if(!confirm(`Xóa câu ${i+1}?`))return;data.questions.splice(i,1)}
+  if(act==="up"&&i>0)[data.questions[i-1],data.questions[i]]=[data.questions[i],data.questions[i-1]];
+  if(act==="down"&&i<data.questions.length-1)[data.questions[i+1],data.questions[i]]=[data.questions[i],data.questions[i+1]];
+  if(act==="dup"){data.questions.splice(i+1,0,clone(data.questions[i]));}
+  dirty=true;renderQuestions();updateStats();
+}
+function add(type){
+  data.questions.push(type==="multiple"?convertQuestion({},type):type==="truefalse"?convertQuestion({},type):convertQuestion({},type));
+  dirty=true;renderQuestions();updateStats();
+  setTimeout(()=>document.querySelectorAll(".q-card")[data.questions.length-1]?.scrollIntoView({behavior:"smooth",block:"center"}),30);
+}
+function updateStats(){
+  const c={multiple:0,truefalse:0,short:0};data.questions.forEach(q=>c[q.type]=(c[q.type]||0)+1);
+  $("sMultiple").textContent=`TN: ${c.multiple}`;$("sTF").textContent=`Đ/S: ${c.truefalse}`;$("sShort").textContent=`TLN: ${c.short}`;
+}
+function prepareExport(){
+  const x=clone(data);
+  x.config.examLayout.truefalse.partialScoring=x.config.examLayout.truefalse.partialScoring.slice(0,4);
+  x.questions.forEach(q=>{if(q.type==="truefalse")q.correctAnswers=[...q.correct]});
+  return x;
+}
+function jsText(){return "window.quizData = "+JSON.stringify(prepareExport(),null,4)+";\n"}
+function download(name,text,type){
+  const blob=new Blob([text],{type});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+$("exportJsBtn").addEventListener("click",()=>{download("data.js",jsText(),"application/javascript");dirty=false;toast("Đã xuất data.js")});
+$("exportJsonBtn").addEventListener("click",()=>{download("data.json",JSON.stringify(prepareExport(),null,4),"application/json");dirty=false;toast("Đã xuất JSON")});
+$("newBtn").addEventListener("click",()=>{if(dirty&&!confirm("Bạn có thay đổi chưa xuất. Tạo đề mới?"))return;data=createEmpty();dirty=false;syncForm();toast("Đã tạo đề mới")});
+$("fileInput").addEventListener("change",async e=>{
+  const f=e.target.files[0];if(!f)return;
+  try{data=normalize(parseFile(await f.text(),f.name.toLowerCase().endsWith(".json")?"json":"js"));dirty=false;syncForm();toast("Đã tải đề để chỉnh sửa")}catch(err){toast(err.message||"Không thể đọc file")}
+  e.target.value="";
+});
+$("addMultiple").addEventListener("click",()=>add("multiple"));$("addTF").addEventListener("click",()=>add("truefalse"));$("addShort").addEventListener("click",()=>add("short"));
+
+$("previewBtn").addEventListener("click",()=>{
+  const p=$("previewContent");p.innerHTML="";
+  const title=document.createElement("h3");title.textContent=data.title||"Đề kiểm tra";p.appendChild(title);
+  const meta=document.createElement("div");meta.className="hint";meta.textContent=[data.examInfo.subject,data.examInfo.grade,data.examInfo.date].filter(Boolean).join(" • ");p.appendChild(meta);
+  data.questions.forEach((q,i)=>{
+    const box=document.createElement("div");box.className="preview-q";
+    const h=document.createElement("b");h.textContent=`Câu ${i+1}. `;box.appendChild(h);
+    const t=document.createElement("span");t.textContent=q.question||"";box.appendChild(t);
+    if(q.type==="multiple")(q.options||[]).forEach((o,j)=>{const d=document.createElement("div");d.textContent=`${String.fromCharCode(65+j)}. ${o}`;d.style.marginTop="5px";box.appendChild(d)});
+    if(q.type==="truefalse")(q.options||[]).forEach((o,j)=>{const d=document.createElement("div");d.textContent=`${j+1}. ${o}`;d.style.marginTop="5px";box.appendChild(d)});
+    if(q.type==="short"){const d=document.createElement("div");d.textContent="Trả lời ngắn: __________";d.style.marginTop="8px";box.appendChild(d)}
+    p.appendChild(box);
+  });
+  $("previewModal").classList.remove("hidden");
+});
+$("closePreview").addEventListener("click",()=>$("previewModal").classList.add("hidden"));
+$("closeCode").addEventListener("click",()=>$("codeModal").classList.add("hidden"));
+
+bindForms();syncForm();
+})();
+</script>
+</body>
+</html>
