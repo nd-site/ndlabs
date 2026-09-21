@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ND Labs - Color Builder</title>
+
+    <link
+        rel="icon"
+        href="https://ndsite.web.app/assets/images/logo.png"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --blue: #0075f1;
+            --text: #12304a;
+            --muted: #668096;
+            --border: rgba(0,117,241,.12);
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: "Play", sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(0,117,241,.13),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(90,190,255,.14),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f7fcff,
+                    #eef8ff,
+                    #f8fcff
+                );
+
+            background-attachment: fixed;
+        }
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .page {
+            width:
+                min(
+                    1180px,
+                    calc(100% - 28px)
+                );
+
+            margin: auto;
+
+            padding:
+                30px 0 55px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 72px;
+            height: 72px;
+
+            object-fit: contain;
+
+            margin-bottom: 12px;
+
+            filter:
+                drop-shadow(
+                    0 8px 18px
+                    rgba(0,117,241,.15)
+                );
+        }
+
+        .header h1 {
+            color: var(--blue);
+
+            font-size:
+                clamp(2rem, 5vw, 2.8rem);
+        }
+
+        .header p {
+            max-width: 700px;
+
+            margin:
+                8px auto 0;
+
+            color: var(--muted);
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           BUILDER
+        ========================= */
+
+        .builder {
+            display: grid;
+
+            grid-template-columns:
+                350px
+                minmax(0, 1fr);
+
+            gap: 22px;
+
+            padding: 22px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 25px;
+
+            background:
+                rgba(255,255,255,.8);
+
+            box-shadow:
+                0 15px 45px
+                rgba(0,70,130,.08);
+
+            backdrop-filter:
+                blur(14px);
+        }
+
+
+        /* =========================
+           CONTROLS
+        ========================= */
+
+        .controls {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+        .control-title {
+            margin-bottom: 3px;
+
+            font-size: 1.2rem;
+
+            font-weight: 700;
+        }
+
+        .control {
+            padding: 13px;
+
+            border-radius: 15px;
+
+            background:
+                #f6fbff;
+
+            border:
+                1px solid
+                rgba(0,117,241,.08);
+        }
+
+        .control-label {
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap: 10px;
+
+            margin-bottom: 8px;
+
+            color: var(--muted);
+
+            font-size: .9rem;
+        }
+
+        .control-label strong {
+            color: var(--text);
+        }
+
+        .color-row {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+        }
+
+        .color-picker {
+            flex:
+                0 0 auto;
+
+            width: 48px;
+            height: 42px;
+
+            padding: 3px;
+
+            border:
+                1px solid
+                rgba(0,117,241,.15);
+
+            border-radius: 10px;
+
+            background: white;
+
+            cursor: pointer;
+        }
+
+        .hex-input {
+            width: 100%;
+
+            height: 42px;
+
+            padding: 0 11px;
+
+            border:
+                1px solid
+                rgba(0,117,241,.13);
+
+            border-radius: 10px;
+
+            outline: none;
+
+            background: white;
+
+            color: var(--text);
+
+            font-size: .95rem;
+
+            text-transform: uppercase;
+        }
+
+        .hex-input:focus {
+            border-color:
+                var(--blue);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(0,117,241,.07);
+        }
+
+
+        /* =========================
+           TEXT INPUT
+        ========================= */
+
+        .text-input {
+            width: 100%;
+
+            height: 42px;
+
+            padding: 0 11px;
+
+            border:
+                1px solid
+                rgba(0,117,241,.13);
+
+            border-radius: 10px;
+
+            outline: none;
+
+            background: white;
+
+            color: var(--text);
+
+            font-size: .95rem;
+        }
+
+        .text-input:focus {
+            border-color:
+                var(--blue);
+        }
+
+
+        /* =========================
+           PREVIEW
+        ========================= */
+
+        .preview {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+
+            min-width: 0;
+        }
+
+        .preview-title {
+            font-size: 1.2rem;
+
+            font-weight: 700;
+        }
+
+        .preview-subtitle {
+            color: var(--muted);
+
+            font-size: .9rem;
+        }
+
+        .preview-stage {
+            min-height: 320px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    45deg,
+                    #f1f6fa 25%,
+                    #ffffff 25%,
+                    #ffffff 50%,
+                    #f1f6fa 50%,
+                    #f1f6fa 75%,
+                    #ffffff 75%
+                );
+
+            background-size: 24px 24px;
+
+            border:
+                1px solid
+                rgba(0,117,241,.08);
+        }
+
+        .link-card {
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            width:
+                min(620px, 100%);
+
+            min-height: 125px;
+
+            padding: 20px;
+
+            border-radius: 21px;
+
+            background:
+                var(--card-bg);
+
+            border:
+                1px solid
+                rgba(0,117,241,.11);
+
+            box-shadow:
+                0 12px 35px
+                rgba(0,60,120,.11);
+        }
+
+        .icon {
+            flex: 0 0 auto;
+
+            width: 62px;
+            height: 62px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                var(--icon-color);
+
+            color:
+                var(--icon-text-color);
+
+            font-size: 1.15rem;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 5px 14px
+                rgba(0,80,160,.12);
+        }
+
+        .card-content {
+            min-width: 0;
+
+            flex: 1;
+        }
+
+        .card-title {
+            color:
+                var(--title-color);
+
+            font-size: 1.25rem;
+
+            font-weight: 700;
+
+            line-height: 1.25;
+        }
+
+        .card-description {
+            margin-top: 6px;
+
+            color:
+                var(--description-color);
+
+            font-size: .95rem;
+
+            line-height: 1.45;
+        }
+
+        .arrow {
+            flex: 0 0 auto;
+
+            color:
+                var(--icon-color);
+
+            font-size: 1.8rem;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           EXPORT
+        ========================= */
+
+        .export {
+            margin-top: 22px;
+        }
+
+        .export-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap: 10px;
+
+            margin-bottom: 10px;
+        }
+
+        .export-header h2 {
+            font-size: 1.2rem;
+        }
+
+        .copy-button {
+            min-height: 40px;
+
+            padding:
+                0 15px;
+
+            border: 0;
+
+            border-radius: 10px;
+
+            background:
+                var(--blue);
+
+            color: white;
+
+            font-weight: 700;
+        }
+
+        .copy-button:hover {
+            background:
+                #0067d5;
+        }
+
+        .code-box {
+            width: 100%;
+
+            min-height: 320px;
+
+            padding: 17px;
+
+            resize: vertical;
+
+            border:
+                1px solid
+                rgba(0,117,241,.12);
+
+            border-radius: 15px;
+
+            outline: none;
+
+            background:
+                #10202d;
+
+            color:
+                #dff1ff;
+
+            font-family:
+                Consolas,
+                Monaco,
+                monospace;
+
+            font-size: .88rem;
+
+            line-height: 1.55;
+        }
+
+
+        /* =========================
+           LIBRARY
+        ========================= */
+
+        .section {
+            margin-top: 32px;
+        }
+
+        .section h2 {
+            margin-bottom: 14px;
+
+            font-size: 1.3rem;
+        }
+
+        .color-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fill,
+                    minmax(145px, 1fr)
+                );
+
+            gap: 11px;
+        }
+
+        .color-item {
+            overflow: hidden;
+
+            border-radius: 15px;
+
+            background: white;
+
+            border:
+                1px solid
+                rgba(0,117,241,.1);
+
+            cursor: pointer;
+
+            transition:
+                .18s ease;
+        }
+
+        .color-item:hover {
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 8px 22px
+                rgba(0,70,130,.1);
+        }
+
+        .swatch {
+            height: 65px;
+        }
+
+        .color-info {
+            padding:
+                9px 10px;
+        }
+
+        .color-name {
+            font-weight: 700;
+
+            font-size: .9rem;
+        }
+
+        .color-code {
+            margin-top: 2px;
+
+            color: var(--muted);
+
+            font-size: .8rem;
+        }
+
+
+        /* =========================
+           TOAST
+        ========================= */
+
+        .toast {
+            position: fixed;
+
+            left: 50%;
+            bottom: 24px;
+
+            padding:
+                12px 20px;
+
+            border-radius: 13px;
+
+            background: white;
+
+            color: var(--text);
+
+            box-shadow:
+                0 10px 35px
+                rgba(0,50,100,.16);
+
+            opacity: 0;
+
+            transform:
+                translate(-50%, 15px);
+
+            pointer-events: none;
+
+            transition:
+                .25s ease;
+
+            z-index: 100;
+        }
+
+        .toast.show {
+            opacity: 1;
+
+            transform:
+                translate(-50%, 0);
+        }
+
+
+        footer {
+            margin-top: 40px;
+
+            text-align: center;
+
+            color: #8197aa;
+
+            font-size: .9rem;
+        }
+
+        footer strong {
+            color: var(--blue);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .builder {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .preview-stage {
+                min-height: 250px;
+
+                padding: 20px;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .page {
+                width:
+                    min(
+                        100% - 18px,
+                        600px
+                    );
+
+                padding-top: 20px;
+            }
+
+            .builder {
+                padding: 14px;
+
+                border-radius: 20px;
+            }
+
+            .preview-stage {
+                padding: 12px;
+            }
+
+            .link-card {
+                padding: 15px;
+
+                gap: 11px;
+            }
+
+            .icon {
+                width: 52px;
+                height: 52px;
+
+                border-radius: 13px;
+            }
+
+            .card-title {
+                font-size: 1.08rem;
+            }
+
+            .card-description {
+                font-size: .86rem;
+            }
+
+            .color-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .export-header {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<main class="page">
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="header">
+
+        <img
+            class="logo"
+            src="https://ndsite.web.app/assets/images/logo.png"
+            alt="ND Labs"
+        >
+
+        <h1>
+            ND Labs Color Builder
+        </h1>
+
+        <p>
+            Thiết kế bảng màu cho từng ô liên kết,
+            xem trước realtime và xuất trực tiếp
+            sang <strong>links.js</strong>.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         BUILDER
+    ========================== -->
+
+    <section class="builder">
+
+
+        <!-- CONTROLS -->
+
+        <div class="controls">
+
+            <div class="control-title">
+                🎨 Màu sắc
+            </div>
+
+
+            <!-- BACKGROUND -->
+
+            <div class="control">
+
+                <div class="control-label">
+
+                    <strong>
+                        🎴 Màu nền ô
+                    </strong>
+
+                    <span>
+                        color
+                    </span>
+
+                </div>
+
+                <div class="color-row">
+
+                    <input
+                        id="backgroundPicker"
+                        class="color-picker"
+                        type="color"
+                        value="#EAF5FF"
+                    >
+
+                    <input
+                        id="backgroundHex"
+                        class="hex-input"
+                        value="#EAF5FF"
+                        maxlength="7"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- TITLE -->
+
+            <div class="control">
+
+                <div class="control-label">
+
+                    <strong>
+                        🔤 Màu tiêu đề
+                    </strong>
+
+                    <span>
+                        textColor
+                    </span>
+
+                </div>
+
+                <div class="color-row">
+
+                    <input
+                        id="titlePicker"
+                        class="color-picker"
+                        type="color"
+                        value="#0075F1"
+                    >
+
+                    <input
+                        id="titleHex"
+                        class="hex-input"
+                        value="#0075F1"
+                        maxlength="7"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="control">
+
+                <div class="control-label">
+
+                    <strong>
+                        📝 Màu mô tả
+                    </strong>
+
+                    <span>
+                        mutedColor
+                    </span>
+
+                </div>
+
+                <div class="color-row">
+
+                    <input
+                        id="descriptionPicker"
+                        class="color-picker"
+                        type="color"
+                        value="#668096"
+                    >
+
+                    <input
+                        id="descriptionHex"
+                        class="hex-input"
+                        value="#668096"
+                        maxlength="7"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ICON -->
+
+            <div class="control">
+
+                <div class="control-label">
+
+                    <strong>
+                        ◆ Màu icon
+                    </strong>
+
+                    <span>
+                        iconColor
+                    </span>
+
+                </div>
+
+                <div class="color-row">
+
+                    <input
+                        id="iconPicker"
+                        class="color-picker"
+                        type="color"
+                        value="#0075F1"
+                    >
+
+                    <input
+                        id="iconHex"
+                        class="hex-input"
+                        value="#0075F1"
+                        maxlength="7"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ICON TEXT -->
+
+            <div class="control">
+
+                <div class="control-label">
+
+                    <strong>
+                        Aa Màu chữ icon
+                    </strong>
+
+                    <span>
+                        iconTextColor
+                    </span>
+
+                </div>
+
+                <div class="color-row">
+
+                    <input
+                        id="iconTextPicker"
+                        class="color-picker"
+                        type="color"
+                        value="#FFFFFF"
+                    >
+
+                    <input
+                        id="iconTextHex"
+                        class="hex-input"
+                        value="#FFFFFF"
+                        maxlength="7"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- SAMPLE TEXT -->
+
+            <div class="control">
+
+                <div class="control-label">
+
+                    <strong>
+                        ✏️ Nội dung mẫu
+                    </strong>
+
+                </div>
+
+                <input
+                    id="sampleTitle"
+                    class="text-input"
+                    value="Dự án mới"
+                    placeholder="Tên link"
+                >
+
+                <br><br>
+
+                <input
+                    id="sampleDescription"
+                    class="text-input"
+                    value="Đây là mô tả của dự án mới."
+                    placeholder="Mô tả"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- PREVIEW -->
+
+        <div class="preview">
+
+            <div class="preview-title">
+                👀 Xem trước
+            </div>
+
+            <div class="preview-subtitle">
+                Tất cả màu thay đổi ngay lập tức.
+            </div>
+
+
+            <div class="preview-stage">
+
+                <div
+                    class="link-card"
+                    id="previewCard"
+                >
+
+                    <div
+                        class="icon"
+                        id="previewIcon"
+                    >
+                        ND
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <div
+                            class="card-title"
+                            id="previewTitle"
+                        >
+                            Dự án mới
+                        </div>
+
+                        <div
+                            class="card-description"
+                            id="previewDescription"
+                        >
+                            Đây là mô tả của dự án mới.
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="arrow"
+                        id="previewArrow"
+                    >
+                        ›
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         EXPORT
+    ========================== -->
+
+    <section class="export">
+
+        <div class="export-header">
+
+            <h2>
+                📋 Object cho
+                <code>links.js</code>
+            </h2>
+
+            <button
+                class="copy-button"
+                id="copyObject"
+            >
+                Sao chép object
+            </button>
+
+        </div>
+
+
+        <textarea
+            id="codeOutput"
+            class="code-box"
+            readonly
+        ></textarea>
+
+    </section>
+
+
+    <!-- =========================
+         LIBRARY
+    ========================== -->
+
+    <section class="section">
+
+        <h2>
+            💙 Màu xanh dương
+        </h2>
+
+        <div
+            class="color-grid"
+            id="blueColors"
+        ></div>
+
+    </section>
+
+
+    <section class="section">
+
+        <h2>
+            🌈 Màu pastel
+        </h2>
+
+        <div
+            class="color-grid"
+            id="pastelColors"
+        ></div>
+
+    </section>
+
+
+    <section class="section">
+
+        <h2>
+            ✨ Màu sáng
+        </h2>
+
+        <div
+            class="color-grid"
+            id="lightColors"
+        ></div>
+
+    </section>
+
+
+    <footer>
+
+        © <span id="year"></span>
+
+        <strong>
+            ND Labs
+        </strong>
+
+    </footer>
+
+</main>
+
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script>
+
+    /* =====================================
+       COLOR LIBRARY
+    ===================================== */
+
+    const colors = {
+
+        blue: [
+
+            ["Xanh ND", "#0075F1"],
+            ["Xanh sáng", "#1688FF"],
+            ["Xanh trời", "#38A9FF"],
+            ["Xanh pastel", "#EAF5FF"],
+            ["Xanh nhạt", "#DFF1FF"],
+            ["Xanh băng", "#EFF8FF"],
+            ["Xanh baby", "#E5F4FF"],
+            ["Xanh biển", "#D8EEFF"],
+            ["Xanh thiên thanh", "#CDEAFF"],
+            ["Xanh rất nhạt", "#F5FAFF"],
+            ["Xanh pastel 2", "#E8F4FF"],
+            ["Xanh pastel 3", "#E3F2FD"],
+            ["Xanh powder", "#D9EEFF"],
+            ["Xanh sky", "#DCEFFF"],
+            ["Xanh aqua nhạt", "#E5F8FF"],
+            ["Xanh frost", "#EDF8FF"]
+
+        ],
+
+        pastel: [
+
+            ["Hồng pastel", "#FFEAF1"],
+            ["Tím pastel", "#F1EAFF"],
+            ["Tím xanh", "#EAEFFF"],
+            ["Vàng pastel", "#FFF8D9"],
+            ["Cam pastel", "#FFF0E3"],
+            ["Xanh lá", "#EAF8EE"],
+            ["Mint", "#E5F8F4"],
+            ["Xanh ngọc", "#E3F7F7"],
+            ["Đỏ pastel", "#FFEAEA"],
+            ["Peach", "#FFF0E8"],
+            ["Lavender", "#F3EEFF"],
+            ["Baby blue", "#EAF6FF"],
+            ["Rose", "#FFF0F5"],
+            ["Lemon", "#FFFBEA"],
+            ["Sage", "#EEF7ED"],
+            ["Sky pastel", "#EAF5FF"]
+
+        ],
+
+        light: [
+
+            ["Trắng xanh", "#F8FCFF"],
+            ["Trắng lạnh", "#F5FAFD"],
+            ["Trắng xanh nhạt", "#F2F9FF"],
+            ["Băng tuyết", "#F0F8FF"],
+            ["Mây xanh", "#EDF7FF"],
+            ["Sương xanh", "#F4FAFF"],
+            ["Pearl blue", "#F1F8FC"],
+            ["Ice blue", "#EAF7FF"],
+            ["Soft blue", "#F0F7FF"],
+            ["Cloud", "#F7FBFF"],
+            ["Very light blue", "#F5FAFF"],
+            ["White blue", "#FAFDFF"],
+            ["Snow blue", "#FBFDFF"],
+            ["Clean blue", "#F6FBFF"],
+            ["Air blue", "#F3F9FF"],
+            ["Crystal", "#F8FCFF"]
+
+        ]
+
+    };
+
+
+    /* =====================================
+       ELEMENTS
+    ===================================== */
+
+    const $ = id =>
+        document.getElementById(id);
+
+
+    const backgroundPicker =
+        $("backgroundPicker");
+
+    const backgroundHex =
+        $("backgroundHex");
+
+    const titlePicker =
+        $("titlePicker");
+
+    const titleHex =
+        $("titleHex");
+
+    const descriptionPicker =
+        $("descriptionPicker");
+
+    const descriptionHex =
+        $("descriptionHex");
+
+    const iconPicker =
+        $("iconPicker");
+
+    const iconHex =
+        $("iconHex");
+
+    const iconTextPicker =
+        $("iconTextPicker");
+
+    const iconTextHex =
+        $("iconTextHex");
+
+    const sampleTitle =
+        $("sampleTitle");
+
+    const sampleDescription =
+        $("sampleDescription");
+
+    const previewCard =
+        $("previewCard");
+
+    const previewIcon =
+        $("previewIcon");
+
+    const previewTitle =
+        $("previewTitle");
+
+    const previewDescription =
+        $("previewDescription");
+
+    const previewArrow =
+        $("previewArrow");
+
+    const codeOutput =
+        $("codeOutput");
+
+
+    /* =====================================
+       HEX
+    ===================================== */
+
+    function normalizeHex(value) {
+
+        value =
+            String(value)
+            .trim();
+
+        if (!value.startsWith("#")) {
+            value = "#" + value;
+        }
+
+        return value.toUpperCase();
+
+    }
+
+
+    function validHex(value) {
+
+        return /^#[0-9A-F]{6}$/i
+            .test(value.trim());
+
+    }
+
+
+    /* =====================================
+       UPDATE
+    ===================================== */
+
+    function updatePreview() {
+
+        const bg =
+            normalizeHex(
+                backgroundHex.value
+            );
+
+        const title =
+            normalizeHex(
+                titleHex.value
+            );
+
+        const description =
+            normalizeHex(
+                descriptionHex.value
+            );
+
+        const icon =
+            normalizeHex(
+                iconHex.value
+            );
+
+        const iconText =
+            normalizeHex(
+                iconTextHex.value
+            );
+
+
+        if (
+            !validHex(bg) ||
+            !validHex(title) ||
+            !validHex(description) ||
+            !validHex(icon) ||
+            !validHex(iconText)
+        ) {
+            return;
+        }
+
+
+        previewCard.style
+            .setProperty(
+                "--card-bg",
+                bg
+            );
+
+        previewTitle.style
+            .setProperty(
+                "color",
+                title
+            );
+
+        previewDescription.style
+            .setProperty(
+                "color",
+                description
+            );
+
+        previewIcon.style
+            .setProperty(
+                "background",
+                icon
+            );
+
+        previewIcon.style
+            .setProperty(
+                "color",
+                iconText
+            );
+
+        previewArrow.style
+            .setProperty(
+                "color",
+                icon
+            );
+
+
+        updateCode();
+
+    }
+
+
+    /* =====================================
+       COLOR CONTROL
+    ===================================== */
+
+    function connectColor(
+        picker,
+        input
+    ) {
+
+        picker.addEventListener(
+            "input",
+            () => {
+
+                input.value =
+                    picker.value.toUpperCase();
+
+                updatePreview();
+
+            }
+        );
+
+
+        input.addEventListener(
+            "input",
+            () => {
+
+                const value =
+                    normalizeHex(
+                        input.value
+                    );
+
+                if (
+                    validHex(value)
+                ) {
+
+                    picker.value =
+                        value;
+
+                    updatePreview();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    connectColor(
+        backgroundPicker,
+        backgroundHex
+    );
+
+    connectColor(
+        titlePicker,
+        titleHex
+    );
+
+    connectColor(
+        descriptionPicker,
+        descriptionHex
+    );
+
+    connectColor(
+        iconPicker,
+        iconHex
+    );
+
+    connectColor(
+        iconTextPicker,
+        iconTextHex
+    );
+
+
+    /* =====================================
+       SAMPLE TEXT
+    ===================================== */
+
+    sampleTitle.addEventListener(
+        "input",
+        () => {
+
+            previewTitle.textContent =
+                sampleTitle.value ||
+                "Dự án mới";
+
+            updateCode();
+
+        }
+    );
+
+
+    sampleDescription.addEventListener(
+        "input",
+        () => {
+
+            previewDescription.textContent =
+                sampleDescription.value ||
+                "Mô tả dự án.";
+
+            updateCode();
+
+        }
+    );
+
+
+    /* =====================================
+       GENERATE OBJECT
+    ===================================== */
+
+    function updateCode() {
+
+        const object = {
+
+            title:
+                sampleTitle.value ||
+                "Dự án mới",
+
+            description:
+                sampleDescription.value ||
+                "Mô tả dự án.",
+
+            url:
+                "https://example.com",
+
+            icon:
+                "ND",
+
+            color:
+                normalizeHex(
+                    backgroundHex.value
+                ),
+
+            textColor:
+                normalizeHex(
+                    titleHex.value
+                ),
+
+            mutedColor:
+                normalizeHex(
+                    descriptionHex.value
+                ),
+
+            iconColor:
+                normalizeHex(
+                    iconHex.value
+                ),
+
+            iconTextColor:
+                normalizeHex(
+                    iconTextHex.value
+                ),
+
+            newTab:
+                true
+
+        };
+
+
+        codeOutput.value =
+`{
+    title: ${JSON.stringify(object.title)},
+    description: ${JSON.stringify(object.description)},
+    url: "https://example.com",
+    icon: "ND",
+    color: "${object.color}",
+    textColor: "${object.textColor}",
+    mutedColor: "${object.mutedColor}",
+    iconColor: "${object.iconColor}",
+    iconTextColor: "${object.iconTextColor}",
+    newTab: true
+}`;
+
+    }
+
+
+    /* =====================================
+       COPY
+    ===================================== */
+
+    $("copyObject").addEventListener(
+        "click",
+        async () => {
+
+            try {
+
+                await navigator.clipboard
+                    .writeText(
+                        codeOutput.value
+                    );
+
+                showToast(
+                    "Đã sao chép object!"
+                );
+
+            } catch {
+
+                codeOutput.select();
+
+                document.execCommand(
+                    "copy"
+                );
+
+                showToast(
+                    "Đã sao chép object!"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================
+       COLOR LIBRARY
+    ===================================== */
+
+    function renderColors(
+        id,
+        list
+    ) {
+
+        const container =
+            $(id);
+
+
+        container.innerHTML =
+            list.map(
+                ([name, color]) => `
+
+                    <div
+                        class="color-item"
+                        data-color="${color}"
+                        title="Dùng màu này"
+                    >
+
+                        <div
+                            class="swatch"
+                            style="
+                                background:${color};
+                            "
+                        ></div>
+
+                        <div class="color-info">
+
+                            <div class="color-name">
+                                ${name}
+                            </div>
+
+                            <div class="color-code">
+                                ${color}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `
+            ).join("");
+
+
+        container
+            .querySelectorAll(
+                ".color-item"
+            )
+            .forEach(
+                item => {
+
+                    item.addEventListener(
+                        "click",
+                        () => {
+
+                            /*
+                             * Click màu thư viện
+                             * sẽ áp dụng vào MÀU NỀN.
+                             */
+
+                            const color =
+                                item.dataset.color;
+
+
+                            backgroundPicker.value =
+                                color;
+
+                            backgroundHex.value =
+                                color;
+
+
+                            updatePreview();
+
+
+                            document
+                                .querySelector(
+                                    ".builder"
+                                )
+                                .scrollIntoView({
+                                    behavior:
+                                        "smooth",
+
+                                    block:
+                                        "start"
+                                });
+
+
+                            showToast(
+                                "Đã chọn " +
+                                color
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+    }
+
+
+    renderColors(
+        "blueColors",
+        colors.blue
+    );
+
+    renderColors(
+        "pastelColors",
+        colors.pastel
+    );
+
+    renderColors(
+        "lightColors",
+        colors.light
+    );
+
+
+    /* =====================================
+       TOAST
+    ===================================== */
+
+    let toastTimer;
+
+    function showToast(message) {
+
+        clearTimeout(
+            toastTimer
+        );
+
+        $("toast").textContent =
+            message;
+
+        $("toast").classList.add(
+            "show"
+        );
+
+        toastTimer =
+            setTimeout(
+                () => {
+
+                    $("toast")
+                        .classList
+                        .remove("show");
+
+                },
+                2200
+            );
+
+    }
+
+
+    /* =====================================
+       INIT
+    ===================================== */
+
+    $("year").textContent =
+        new Date().getFullYear();
+
+    updatePreview();
+
+</script>
+
+</body>
+</html>
