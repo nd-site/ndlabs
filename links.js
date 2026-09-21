@@ -74,5 +74,18 @@ const ndLinks = [
         textColor: "#0284c7",
         mutedColor: "#58758e",
         newTab: true
+    },
+
+    {
+        title: "Color (V1)",
+        description: "Màu khung link",
+        url: "/ndlabs/color/v1",
+        icon: "ND",
+        color: "#EAF5FF",
+        textColor: "#0075F1",
+        mutedColor: "#668096",
+        iconColor: "#0075F1",
+        iconTextColor: "#FFFFFF",
+        newTab: true
     }
 ];
