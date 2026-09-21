@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>404 - Không tìm thấy trang | ND Labs</title>
+
+    <link
+        rel="icon"
+        href="https://ndsite.web.app/assets/images/logo.png"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            font-family: "Play", sans-serif;
+            color: #12304a;
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(0, 117, 241, 0.15),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(90, 190, 255, 0.16),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f7fcff,
+                    #eaf6ff,
+                    #f8fcff
+                );
+        }
+
+        .box {
+            width: min(560px, 100%);
+            padding: 45px 30px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(0, 117, 241, 0.12);
+            border-radius: 28px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 80, 150, 0.10);
+
+            backdrop-filter: blur(15px);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+
+            margin-bottom: 18px;
+
+            filter:
+                drop-shadow(
+                    0 10px 20px rgba(0, 117, 241, 0.15)
+                );
+        }
+
+        .error {
+            font-size: clamp(4rem, 15vw, 7rem);
+            line-height: 1;
+            font-weight: 700;
+            color: #0075f1;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+        }
+
+        p {
+            margin: 12px auto 28px;
+            max-width: 420px;
+
+            color: #668096;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+            padding: 0 25px;
+
+            border-radius: 14px;
+
+            background: #0075f1;
+            color: white;
+
+            font-size: 1rem;
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 20px rgba(0, 117, 241, 0.22);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .button:hover {
+            background: #0067d5;
+            transform: translateY(-2px);
+            box-shadow:
+                0 12px 25px rgba(0, 117, 241, 0.28);
+        }
+
+        .button:active {
+            transform: scale(0.97);
+        }
+
+        .brand {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #8197aa;
+        }
+
+        .brand strong {
+            color: #0075f1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="box">
+
+        <img
+            class="logo"
+            src="https://ndsite.web.app/assets/images/logo.png"
+            alt="ND Labs"
+        >
+
+        <div class="error">404</div>
+
+        <h1>Không tìm thấy trang</h1>
+
+        <p>
+            Trang bạn đang tìm kiếm không tồn tại,
+            đã được di chuyển hoặc đường dẫn không chính xác.
+        </p>
+
+        <a class="button" href="./index.html">
+            ← Về trang chủ
+        </a>
+
+        <div class="brand">
+            <strong>ND Labs</strong>
+        </div>
+
+    </main>
+
+</body>
+</html>
