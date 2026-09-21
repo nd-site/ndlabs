@@ -160,7 +160,7 @@ const ndLinks = [
     {
         title: "Kho đề Github - EduND",
         description: "Kho đề kiểm tra do ND Labs cung cấp cho người dùng EduND.",
-        url: "https://github.com/nd-site/ndlabs/edu/exam",
+        url: "https://github.com/nd-site/ndlabs/tree/main/edu/exam",
         image: "https://ndsite.web.app/assets/images/logo.png",
         color: "#FFEAF1",
         textColor: "#F00000",
