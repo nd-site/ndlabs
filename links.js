@@ -155,5 +155,18 @@ const ndLinks = [
         iconTextColor: "#FFFFFF",
         
         newTab: true
+    },
+
+    {
+        title: "Kho đề Github - EduND",
+        description: "Kho đề kiểm tra do ND Labs cung cấp cho người dùng EduND.",
+        url: "https://github.com/nd-site/ndlabs/edu/exam",
+        image: "https://ndsite.web.app/assets/images/logo.png",
+        color: "#FFEAF1",
+        textColor: "#F00000",
+        mutedColor: "#668096",
+        iconColor: "#F00000",
+        iconTextColor: "#FFFFFF",
+        newTab: true
     }
 ];
