@@ -1,0 +1,2682 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduND - Làm bài kiểm tra</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue: #0075f1;
+            --blue-dark: #005dcc;
+            --blue-light: #eaf5ff;
+            --text: #17324d;
+            --muted: #6d8499;
+            --border: #dcecf9;
+            --success: #16a34a;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Play", system-ui, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #ffffff 0,
+                    #eef8ff 38%,
+                    #dff2ff 100%
+                );
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .page {
+            width: min(1100px, calc(100% - 28px));
+            margin: auto;
+            padding: 25px 0 50px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 25px;
+        }
+
+        .brand img {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+        }
+
+        .brand-title {
+            margin: 0;
+            color: var(--blue);
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .brand-subtitle {
+            margin: 2px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* =========================
+           COMMON CARD
+        ========================= */
+
+        .card {
+            background: rgba(255, 255, 255, .92);
+            border: 1px solid rgba(0, 117, 241, .10);
+            border-radius: 24px;
+            box-shadow: 0 15px 45px rgba(0, 91, 160, .10);
+        }
+
+        /* =========================
+           UPLOAD SCREEN
+        ========================= */
+
+        #uploadScreen {
+            min-height: calc(100vh - 120px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .upload-card {
+            width: min(650px, 100%);
+            padding: 38px;
+            text-align: center;
+        }
+
+        .upload-icon {
+            width: 82px;
+            height: 82px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            background: var(--blue-light);
+            color: var(--blue);
+            font-size: 38px;
+        }
+
+        .upload-title {
+            margin: 0 0 8px;
+            font-size: 32px;
+            color: var(--blue);
+        }
+
+        .upload-description {
+            margin: 0 auto 25px;
+            max-width: 500px;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .drop-zone {
+            padding: 35px 20px;
+            border: 2px dashed #acd8fa;
+            border-radius: 20px;
+            background: #f7fcff;
+            transition: .2s;
+        }
+
+        .drop-zone.dragging {
+            border-color: var(--blue);
+            background: #eaf6ff;
+            transform: scale(1.01);
+        }
+
+        .drop-zone strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .drop-zone span {
+            display: block;
+            margin-bottom: 18px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .file-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 22px;
+            border: 0;
+            border-radius: 14px;
+            background: var(--blue);
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(0, 117, 241, .20);
+        }
+
+        .file-button:hover {
+            background: var(--blue-dark);
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .supported {
+            margin-top: 18px;
+            font-size: 12px;
+            color: #8298aa;
+        }
+
+        .error-box {
+            display: none;
+            margin-top: 18px;
+            padding: 13px 15px;
+            border-radius: 14px;
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            color: #be123c;
+            text-align: left;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        /* =========================
+           EXAM INFO
+        ========================= */
+
+        #examScreen {
+            display: none;
+        }
+
+        .exam-header {
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+
+        .exam-title {
+            margin: 0 0 8px;
+            color: var(--blue);
+            font-size: 29px;
+            line-height: 1.3;
+        }
+
+        .exam-description {
+            margin: 0 0 20px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .metadata-item {
+            padding: 8px 12px;
+            border-radius: 12px;
+            background: #f1f8ff;
+            border: 1px solid #e0f0fc;
+            font-size: 13px;
+        }
+
+        .metadata-item strong {
+            color: var(--blue);
+        }
+
+        .exam-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+
+        .primary-button,
+        .secondary-button {
+            border: 0;
+            padding: 13px 20px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .primary-button {
+            background: var(--blue);
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 117, 241, .18);
+        }
+
+        .primary-button:hover {
+            background: var(--blue-dark);
+        }
+
+        .secondary-button {
+            background: #edf7ff;
+            color: var(--blue);
+        }
+
+        /* =========================
+           QUIZ
+        ========================= */
+
+        #quizScreen {
+            display: none;
+        }
+
+        .quiz-topbar {
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 18px;
+            margin-bottom: 18px;
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 80, 140, .08);
+        }
+
+        .progress-info {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .timer {
+            padding: 8px 13px;
+            border-radius: 12px;
+            background: var(--blue-light);
+            color: var(--blue);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .timer.warning {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .timer.danger {
+            background: #fff1f2;
+            color: #dc2626;
+        }
+
+        .progress-bar {
+            height: 6px;
+            margin-top: 8px;
+            background: #e7f2fb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0;
+            height: 100%;
+            background: var(--blue);
+            transition: width .2s;
+        }
+
+        .question-card {
+            padding: 25px;
+            margin-bottom: 18px;
+        }
+
+        .question-number {
+            display: inline-flex;
+            padding: 6px 10px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            background: var(--blue-light);
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .question-type {
+            margin-left: 5px;
+            color: var(--muted);
+        }
+
+        .question-text {
+            margin: 0 0 20px;
+            font-size: 19px;
+            line-height: 1.55;
+            white-space: pre-wrap;
+        }
+
+        /* Multiple */
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            border: 1px solid #dcecf9;
+            border-radius: 15px;
+            background: #fbfdff;
+            transition: .18s;
+        }
+
+        .option:hover {
+            border-color: #8bc8f7;
+            background: #f4faff;
+        }
+
+        .option input {
+            margin-top: 3px;
+            accent-color: var(--blue);
+        }
+
+        .option label {
+            flex: 1;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        /* True / False */
+
+        .tf-table {
+            display: grid;
+            gap: 9px;
+        }
+
+        .tf-row {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            align-items: center;
+            gap: 15px;
+            padding: 13px;
+            border-radius: 14px;
+            background: #f8fcff;
+            border: 1px solid #e0eff9;
+        }
+
+        .tf-text {
+            line-height: 1.45;
+        }
+
+        .tf-choice {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--muted);
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .tf-choice input {
+            accent-color: var(--blue);
+        }
+
+        /* Short */
+
+        .short-input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #cfe5f6;
+            border-radius: 14px;
+            outline: none;
+            font-size: 16px;
+            background: #fbfdff;
+        }
+
+        .short-input:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(0,117,241,.08);
+        }
+
+        .question-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        /* =========================
+           RESULT
+        ========================= */
+
+        #resultScreen {
+            display: none;
+        }
+
+        .result-card {
+            padding: 35px;
+            text-align: center;
+        }
+
+        .result-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #eaf9ef;
+            color: var(--success);
+            font-size: 38px;
+        }
+
+        .result-title {
+            margin: 0 0 8px;
+            color: var(--blue);
+            font-size: 30px;
+        }
+
+        .score {
+            margin: 15px 0;
+            font-size: 52px;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .result-subtitle {
+            color: var(--muted);
+        }
+
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .stat {
+            padding: 16px;
+            border-radius: 16px;
+            background: #f5faff;
+        }
+
+        .stat strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 21px;
+            color: var(--blue);
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .review {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .review h3 {
+            margin-bottom: 12px;
+            color: var(--blue);
+        }
+
+        .review-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 14px;
+            border: 1px solid #e2edf5;
+            background: #fff;
+        }
+
+        .review-item.correct {
+            border-color: #bbf7d0;
+            background: #f0fdf4;
+        }
+
+        .review-item.wrong {
+            border-color: #fecaca;
+            background: #fef2f2;
+        }
+
+        .review-question {
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .review-answer {
+            margin-top: 7px;
+            color: #667b8e;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .review-explanation {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(0,0,0,.06);
+            color: #53697a;
+            font-size: 13px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+            .page {
+                width: min(100% - 18px, 650px);
+                padding-top: 15px;
+            }
+
+            .brand-title {
+                font-size: 25px;
+            }
+
+            .upload-card,
+            .exam-header,
+            .question-card,
+            .result-card {
+                padding: 20px;
+                border-radius: 20px;
+            }
+
+            .upload-title {
+                font-size: 27px;
+            }
+
+            .exam-title {
+                font-size: 23px;
+            }
+
+            .question-text {
+                font-size: 17px;
+            }
+
+            .quiz-topbar {
+                top: 6px;
+                padding: 11px;
+            }
+
+            .result-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .tf-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .tf-choice {
+                justify-content: flex-start;
+            }
+
+            .question-actions {
+                flex-direction: column;
+            }
+
+            .question-actions button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- BRAND -->
+    <header class="brand">
+        <img
+            src="https://ndsite.web.app/assets/images/logo.png"
+            alt="ND Labs"
+        >
+        <div>
+            <h1 class="brand-title">EduND</h1>
+            <p class="brand-subtitle">
+                Nền tảng làm bài kiểm tra từ file dữ liệu
+            </p>
+        </div>
+    </header>
+
+
+    <!-- =========================
+         UPLOAD SCREEN
+    ========================== -->
+
+    <section id="uploadScreen">
+
+        <div class="card upload-card">
+
+            <div class="upload-icon">📚</div>
+
+            <h2 class="upload-title">
+                EduND
+            </h2>
+
+            <p class="upload-description">
+                Tải lên file <strong>.js</strong> hoặc <strong>.json</strong>
+                theo cấu trúc đề kiểm tra của EduSpace để bắt đầu làm bài.
+            </p>
+
+            <div
+                id="dropZone"
+                class="drop-zone"
+            >
+                <strong>
+                    Kéo thả file đề thi vào đây
+                </strong>
+
+                <span>
+                    hoặc chọn file từ thiết bị
+                </span>
+
+                <label class="file-button">
+                    📂 Chọn file đề thi
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept=".js,.json,application/javascript,application/json"
+                    >
+                </label>
+            </div>
+
+            <div class="supported">
+                Hỗ trợ: data.js chứa <code>window.quizData</code>
+                hoặc file JSON có cấu trúc tương ứng.
+            </div>
+
+            <div
+                id="uploadError"
+                class="error-box"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         EXAM INFO
+    ========================== -->
+
+    <section id="examScreen">
+
+        <div class="card exam-header">
+
+            <h2
+                id="examTitle"
+                class="exam-title"
+            ></h2>
+
+            <p
+                id="examDescription"
+                class="exam-description"
+            ></p>
+
+            <div
+                id="metadata"
+                class="metadata"
+            ></div>
+
+            <div class="exam-actions">
+
+                <button
+                    id="startButton"
+                    class="primary-button"
+                >
+                    ▶ Bắt đầu làm bài
+                </button>
+
+                <button
+                    id="backUploadButton"
+                    class="secondary-button"
+                >
+                    ↩ Chọn đề khác
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         QUIZ
+    ========================== -->
+
+    <section id="quizScreen">
+
+        <div class="quiz-topbar">
+
+            <div style="flex:1">
+
+                <div class="progress-info">
+                    <span id="answeredCount">0</span>
+                    /
+                    <span id="totalQuestionCount">0</span>
+                    câu đã trả lời
+                </div>
+
+                <div class="progress-bar">
+                    <div
+                        id="progressFill"
+                        class="progress-fill"
+                    ></div>
+                </div>
+
+            </div>
+
+            <div
+                id="timer"
+                class="timer"
+            >
+                45:00
+            </div>
+
+        </div>
+
+        <div id="questionsContainer"></div>
+
+        <div class="card" style="padding:20px;text-align:center">
+
+            <button
+                id="submitButton"
+                class="primary-button"
+            >
+                ✓ Nộp bài
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         RESULT
+    ========================== -->
+
+    <section id="resultScreen">
+
+        <div class="card result-card">
+
+            <div class="result-icon">
+                ✓
+            </div>
+
+            <h2 class="result-title">
+                Hoàn thành bài kiểm tra
+            </h2>
+
+            <div
+                id="scoreDisplay"
+                class="score"
+            >
+                0 / 10
+            </div>
+
+            <p class="result-subtitle">
+                Kết quả được tính theo cấu hình điểm trong file đề.
+            </p>
+
+            <div class="result-stats">
+
+                <div class="stat">
+                    <strong id="correctStat">0</strong>
+                    <span>Đúng</span>
+                </div>
+
+                <div class="stat">
+                    <strong id="wrongStat">0</strong>
+                    <span>Sai / chưa trả lời</span>
+                </div>
+
+                <div class="stat">
+                    <strong id="percentStat">0%</strong>
+                    <span>Tỷ lệ điểm</span>
+                </div>
+
+            </div>
+
+            <button
+                id="retryButton"
+                class="primary-button"
+            >
+                ↻ Làm lại
+            </button>
+
+            <button
+                id="newFileButton"
+                class="secondary-button"
+                style="margin-left:8px"
+            >
+                📂 Đề khác
+            </button>
+
+            <div class="review">
+
+                <h3>
+                    Xem lại bài làm
+                </h3>
+
+                <div id="reviewContainer"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+"use strict";
+
+/* =========================================================
+   EDUND - QUIZ ENGINE
+   Tương thích cấu trúc data.js mẫu:
+   window.quizData = {...}
+========================================================= */
+
+let quizData = null;
+let questions = [];
+let userAnswers = {};
+let timerInterval = null;
+let remainingSeconds = 0;
+let examStarted = false;
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const uploadScreen = document.getElementById("uploadScreen");
+const examScreen = document.getElementById("examScreen");
+const quizScreen = document.getElementById("quizScreen");
+const resultScreen = document.getElementById("resultScreen");
+
+const fileInput = document.getElementById("fileInput");
+const dropZone = document.getElementById("dropZone");
+const uploadError = document.getElementById("uploadError");
+
+
+/* =========================================================
+   FILE INPUT
+========================================================= */
+
+fileInput.addEventListener("change", function () {
+
+    if (!this.files || !this.files.length) {
+        return;
+    }
+
+    loadQuizFile(this.files[0]);
+
+});
+
+
+/* Drag & Drop */
+
+dropZone.addEventListener("dragover", function (event) {
+
+    event.preventDefault();
+
+    dropZone.classList.add("dragging");
+
+});
+
+
+dropZone.addEventListener("dragleave", function () {
+
+    dropZone.classList.remove("dragging");
+
+});
+
+
+dropZone.addEventListener("drop", function (event) {
+
+    event.preventDefault();
+
+    dropZone.classList.remove("dragging");
+
+    const file = event.dataTransfer.files[0];
+
+    if (file) {
+        loadQuizFile(file);
+    }
+
+});
+
+
+/* =========================================================
+   LOAD FILE
+========================================================= */
+
+async function loadQuizFile(file) {
+
+    hideError();
+
+    try {
+
+        const fileName = file.name.toLowerCase();
+
+        if (
+            !fileName.endsWith(".js") &&
+            !fileName.endsWith(".json")
+        ) {
+            throw new Error(
+                "EduND chỉ hỗ trợ file .js hoặc .json."
+            );
+        }
+
+        const text = await file.text();
+
+        let data;
+
+        if (fileName.endsWith(".json")) {
+
+            data = JSON.parse(text);
+
+        } else {
+
+            data = parseJavaScriptQuiz(text);
+
+        }
+
+        validateQuizData(data);
+
+        quizData = data;
+
+        questions = Array.isArray(data.questions)
+            ? data.questions
+            : [];
+
+        showExamInfo();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showError(
+            "Không thể đọc file đề thi.<br><br>" +
+            "<strong>Lỗi:</strong> " +
+            escapeHTML(error.message)
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   PARSE JS
+========================================================= */
+
+function parseJavaScriptQuiz(source) {
+
+    /*
+     * File mẫu có dạng:
+     *
+     * window.quizData = {
+     *     ...
+     * };
+     *
+     * Vì object trong file mẫu là JSON-compatible,
+     * EduND có thể lấy phần object rồi JSON.parse().
+     */
+
+    let content = source.trim();
+
+    const match = content.match(
+        /(?:window\.)?quizData\s*=\s*([\s\S]*?);?\s*$/
+    );
+
+    if (!match) {
+
+        throw new Error(
+            "Không tìm thấy biến window.quizData trong file JS."
+        );
+
+    }
+
+    let objectText = match[1].trim();
+
+    /*
+     * Loại dấu ; cuối nếu có.
+     */
+    if (objectText.endsWith(";")) {
+        objectText = objectText.slice(0, -1).trim();
+    }
+
+    try {
+
+        return JSON.parse(objectText);
+
+    } catch (jsonError) {
+
+        /*
+         * Một số file JS có thể bọc dữ liệu bằng:
+         *
+         * window.quizData = {...}
+         *
+         * nhưng không hoàn toàn JSON.
+         *
+         * Thử thêm cách an toàn bằng Function.
+         *
+         * Chỉ thực hiện đối với file do người dùng
+         * chủ động tải lên.
+         */
+
+        try {
+
+            const factory = new Function(
+                `
+                "use strict";
+                let window = {};
+                ${content}
+                return window.quizData;
+                `
+            );
+
+            const result = factory();
+
+            if (!result) {
+                throw new Error(
+                    "window.quizData không có dữ liệu."
+                );
+            }
+
+            return result;
+
+        } catch (jsError) {
+
+            throw new Error(
+                "Cấu trúc file JS không hợp lệ hoặc không tương thích."
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   VALIDATE
+========================================================= */
+
+function validateQuizData(data) {
+
+    if (!data || typeof data !== "object") {
+
+        throw new Error(
+            "Dữ liệu đề thi không phải object hợp lệ."
+        );
+
+    }
+
+    if (!Array.isArray(data.questions)) {
+
+        throw new Error(
+            "Không tìm thấy mảng questions trong dữ liệu đề."
+        );
+
+    }
+
+    if (data.questions.length === 0) {
+
+        throw new Error(
+            "Mảng questions đang trống."
+        );
+
+    }
+
+    data.questions.forEach(function (question, index) {
+
+        if (!question.type) {
+
+            throw new Error(
+                `Câu ${index + 1} chưa có trường type.`
+            );
+
+        }
+
+        if (!question.question) {
+
+            throw new Error(
+                `Câu ${index + 1} chưa có nội dung câu hỏi.`
+            );
+
+        }
+
+        const validTypes = [
+            "multiple",
+            "truefalse",
+            "short"
+        ];
+
+        if (!validTypes.includes(question.type)) {
+
+            throw new Error(
+                `Câu ${index + 1} có type "${question.type}" không được EduND hỗ trợ.`
+            );
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   SHOW EXAM INFO
+========================================================= */
+
+function showExamInfo() {
+
+    uploadScreen.style.display = "none";
+    quizScreen.style.display = "none";
+    resultScreen.style.display = "none";
+    examScreen.style.display = "block";
+
+    const config = quizData.config || {};
+    const info = quizData.examInfo || {};
+
+    document.title =
+        (quizData.title || "EduND") +
+        " - EduND";
+
+
+    document.getElementById("examTitle").textContent =
+        quizData.title ||
+        info.examName ||
+        "Bài kiểm tra";
+
+
+    document.getElementById("examDescription").textContent =
+        quizData.description ||
+        "Đề kiểm tra được tải từ file dữ liệu.";
+
+
+    const metadata = document.getElementById("metadata");
+
+    metadata.innerHTML = "";
+
+
+    const fields = [
+
+        ["Môn", info.subject || quizData.subject],
+
+        [
+            "Lớp",
+            info.grade ||
+            quizData.grade ||
+            quizData.class
+        ],
+
+        [
+            "Tên bài",
+            info.examName ||
+            quizData.lesson
+        ],
+
+        [
+            "Năm học",
+            info.date ||
+            quizData.year
+        ],
+
+        [
+            "Lần làm",
+            info.attempt
+        ],
+
+        [
+            "Số câu",
+            questions.length
+        ],
+
+        [
+            "Thời gian",
+            formatDuration(
+                config.testDuration || 0
+            )
+        ]
+
+    ];
+
+
+    fields.forEach(function ([label, value]) {
+
+        if (
+            value !== undefined &&
+            value !== null &&
+            String(value).trim() !== ""
+        ) {
+
+            const item = document.createElement("div");
+
+            item.className = "metadata-item";
+
+            item.innerHTML =
+                `<strong>${escapeHTML(label)}:</strong> ` +
+                `${escapeHTML(String(value))}`;
+
+            metadata.appendChild(item);
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document
+    .getElementById("startButton")
+    .addEventListener("click", startQuiz);
+
+
+function startQuiz() {
+
+    examStarted = true;
+
+    userAnswers = {};
+
+    examScreen.style.display = "none";
+    resultScreen.style.display = "none";
+    quizScreen.style.display = "block";
+
+    document.getElementById("totalQuestionCount")
+        .textContent = questions.length;
+
+    renderQuestions();
+
+    startTimer();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================================
+   RENDER QUESTIONS
+========================================================= */
+
+function renderQuestions() {
+
+    const container =
+        document.getElementById("questionsContainer");
+
+    container.innerHTML = "";
+
+
+    questions.forEach(function (question, index) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card question-card";
+
+        const typeLabel =
+            getQuestionTypeLabel(question.type);
+
+
+        let html = `
+            <div class="question-number">
+                Câu ${index + 1}
+                <span class="question-type">
+                    • ${typeLabel}
+                </span>
+            </div>
+
+            <h3 class="question-text">
+                ${escapeHTML(question.question)}
+            </h3>
+        `;
+
+
+        if (question.type === "multiple") {
+
+            html += renderMultiple(question, index);
+
+        } else if (question.type === "truefalse") {
+
+            html += renderTrueFalse(question, index);
+
+        } else if (question.type === "short") {
+
+            html += renderShort(question, index);
+
+        }
+
+
+        card.innerHTML = html;
+
+        container.appendChild(card);
+
+    });
+
+
+    attachAnswerListeners();
+
+    updateProgress();
+
+}
+
+
+/* =========================================================
+   MULTIPLE
+========================================================= */
+
+function renderMultiple(question, index) {
+
+    const options =
+        Array.isArray(question.options)
+            ? question.options
+            : [];
+
+
+    return `
+        <div class="options">
+
+            ${options.map(function (option, optionIndex) {
+
+                return `
+                    <div class="option">
+
+                        <input
+                            type="radio"
+                            id="q${index}_o${optionIndex}"
+                            name="question_${index}"
+                            value="${optionIndex}"
+                        >
+
+                        <label for="q${index}_o${optionIndex}">
+                            <strong>
+                                ${String.fromCharCode(65 + optionIndex)}.
+                            </strong>
+                            ${escapeHTML(option)}
+                        </label>
+
+                    </div>
+                `;
+
+            }).join("")}
+
+        </div>
+    `;
+
+}
+
+
+/* =========================================================
+   TRUE / FALSE
+========================================================= */
+
+function renderTrueFalse(question, index) {
+
+    const options =
+        Array.isArray(question.options)
+            ? question.options
+            : [];
+
+
+    return `
+        <div class="tf-table">
+
+            ${options.map(function (option, optionIndex) {
+
+                return `
+                    <div class="tf-row">
+
+                        <div class="tf-text">
+                            <strong>
+                                ${String.fromCharCode(97 + optionIndex)}.
+                            </strong>
+                            ${escapeHTML(option)}
+                        </div>
+
+                        <label class="tf-choice">
+                            <input
+                                type="radio"
+                                name="tf_${index}_${optionIndex}"
+                                value="true"
+                            >
+                            Đúng
+                        </label>
+
+                        <label class="tf-choice">
+                            <input
+                                type="radio"
+                                name="tf_${index}_${optionIndex}"
+                                value="false"
+                            >
+                            Sai
+                        </label>
+
+                    </div>
+                `;
+
+            }).join("")}
+
+        </div>
+    `;
+
+}
+
+
+/* =========================================================
+   SHORT
+========================================================= */
+
+function renderShort(question, index) {
+
+    return `
+        <input
+            type="text"
+            class="short-input"
+            data-short-question="${index}"
+            placeholder="Nhập câu trả lời..."
+            autocomplete="off"
+        >
+    `;
+
+}
+
+
+/* =========================================================
+   ANSWER EVENTS
+========================================================= */
+
+function attachAnswerListeners() {
+
+    document
+        .querySelectorAll(
+            "#questionsContainer input"
+        )
+        .forEach(function (input) {
+
+            input.addEventListener(
+                "change",
+                updateProgress
+            );
+
+            input.addEventListener(
+                "input",
+                updateProgress
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   COLLECT ANSWERS
+========================================================= */
+
+function collectAnswers() {
+
+    const answers = {};
+
+
+    questions.forEach(function (question, index) {
+
+        if (question.type === "multiple") {
+
+            const selected =
+                document.querySelector(
+                    `input[name="question_${index}"]:checked`
+                );
+
+            answers[index] =
+                selected
+                    ? Number(selected.value)
+                    : null;
+
+        }
+
+
+        else if (question.type === "truefalse") {
+
+            const values = [];
+
+            const options =
+                Array.isArray(question.options)
+                    ? question.options
+                    : [];
+
+
+            options.forEach(function (_, optionIndex) {
+
+                const selected =
+                    document.querySelector(
+                        `input[name="tf_${index}_${optionIndex}"]:checked`
+                    );
+
+                if (!selected) {
+
+                    values.push(null);
+
+                } else {
+
+                    values.push(
+                        selected.value === "true"
+                    );
+
+                }
+
+            });
+
+            answers[index] = values;
+
+        }
+
+
+        else if (question.type === "short") {
+
+            const input =
+                document.querySelector(
+                    `[data-short-question="${index}"]`
+                );
+
+            answers[index] =
+                input
+                    ? input.value.trim()
+                    : "";
+
+        }
+
+    });
+
+
+    return answers;
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress() {
+
+    const answers = collectAnswers();
+
+    let answered = 0;
+
+
+    questions.forEach(function (question, index) {
+
+        const answer = answers[index];
+
+
+        if (question.type === "multiple") {
+
+            if (answer !== null) {
+                answered++;
+            }
+
+        }
+
+
+        else if (question.type === "truefalse") {
+
+            if (
+                Array.isArray(answer) &&
+                answer.some(value => value !== null)
+            ) {
+                answered++;
+            }
+
+        }
+
+
+        else if (question.type === "short") {
+
+            if (
+                typeof answer === "string" &&
+                answer.trim() !== ""
+            ) {
+                answered++;
+            }
+
+        }
+
+    });
+
+
+    document.getElementById("answeredCount")
+        .textContent = answered;
+
+
+    const total = questions.length;
+
+    const percentage =
+        total
+            ? (answered / total) * 100
+            : 0;
+
+
+    document.getElementById("progressFill")
+        .style.width =
+        percentage + "%";
+
+}
+
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+document
+    .getElementById("submitButton")
+    .addEventListener("click", function () {
+
+        const unanswered =
+            getUnansweredCount();
+
+
+        if (unanswered > 0) {
+
+            const confirmed =
+                confirm(
+                    `Bạn còn ${unanswered} câu chưa trả lời. ` +
+                    `Bạn có chắc muốn nộp bài không?`
+                );
+
+            if (!confirmed) {
+                return;
+            }
+
+        }
+
+
+        submitQuiz();
+
+    });
+
+
+function getUnansweredCount() {
+
+    const answers = collectAnswers();
+
+    let count = 0;
+
+
+    questions.forEach(function (question, index) {
+
+        const answer = answers[index];
+
+
+        if (question.type === "multiple") {
+
+            if (answer === null) {
+                count++;
+            }
+
+        }
+
+
+        else if (question.type === "truefalse") {
+
+            if (
+                !Array.isArray(answer) ||
+                answer.some(value => value === null)
+            ) {
+                count++;
+            }
+
+        }
+
+
+        else if (question.type === "short") {
+
+            if (!answer || !answer.trim()) {
+                count++;
+            }
+
+        }
+
+    });
+
+
+    return count;
+
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+function submitQuiz() {
+
+    clearInterval(timerInterval);
+
+    userAnswers = collectAnswers();
+
+    const result =
+        calculateScore(
+            questions,
+            userAnswers
+        );
+
+
+    showResult(result);
+
+}
+
+
+/* =========================================================
+   CALCULATE SCORE
+========================================================= */
+
+function calculateScore(
+    questionList,
+    answers
+) {
+
+    let totalScore = 0;
+    let maxScore = 0;
+    let correctCount = 0;
+    let wrongCount = 0;
+
+
+    questionList.forEach(function (question, index) {
+
+        const points =
+            getPointsForQuestion(
+                question
+            );
+
+
+        maxScore += points;
+
+
+        const answer =
+            answers[index];
+
+
+        const result =
+            gradeQuestion(
+                question,
+                answer
+            );
+
+
+        totalScore += result.score;
+
+
+        if (result.fullCorrect) {
+            correctCount++;
+        } else {
+            wrongCount++;
+        }
+
+    });
+
+
+    return {
+        totalScore,
+        maxScore,
+        correctCount,
+        wrongCount
+    };
+
+}
+
+
+/* =========================================================
+   GET POINTS
+========================================================= */
+
+function getPointsForQuestion(question) {
+
+    const layout =
+        quizData.config?.examLayout || {};
+
+
+    if (question.type === "multiple") {
+
+        return Number(
+            layout.multiple?.pointsPerQ ??
+            0
+        );
+
+    }
+
+
+    if (question.type === "truefalse") {
+
+        return Number(
+            layout.truefalse?.pointsPerQ ??
+            0
+        );
+
+    }
+
+
+    if (question.type === "short") {
+
+        return Number(
+            layout.short?.pointsPerQ ??
+            0
+        );
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* =========================================================
+   GRADE QUESTION
+========================================================= */
+
+function gradeQuestion(
+    question,
+    answer
+) {
+
+    const points =
+        getPointsForQuestion(question);
+
+
+    /* MULTIPLE */
+
+    if (question.type === "multiple") {
+
+        const correct =
+            Number(question.correct);
+
+
+        const isCorrect =
+            answer !== null &&
+            Number(answer) === correct;
+
+
+        return {
+            score: isCorrect ? points : 0,
+            fullCorrect: isCorrect
+        };
+
+    }
+
+
+    /* TRUE / FALSE */
+
+    if (question.type === "truefalse") {
+
+        const correct =
+            Array.isArray(question.correct)
+                ? question.correct
+                : Array.isArray(question.correctAnswers)
+                    ? question.correctAnswers
+                    : [];
+
+
+        const user =
+            Array.isArray(answer)
+                ? answer
+                : [];
+
+
+        let matched = 0;
+
+
+        correct.forEach(function (
+            value,
+            index
+        ) {
+
+            if (
+                user[index] !== null &&
+                user[index] !== undefined &&
+                user[index] === value
+            ) {
+                matched++;
+            }
+
+        });
+
+
+        const total =
+            correct.length;
+
+
+        const partialScoring =
+            quizData.config
+                ?.examLayout
+                ?.truefalse
+                ?.partialScoring ||
+            [];
+
+
+        let score = 0;
+
+
+        /*
+         * Mẫu data.js:
+         *
+         * [0.1, 0.25, 0.5, 1]
+         *
+         * 0 đúng  = 0
+         * 1 đúng  = 0.1
+         * 2 đúng  = 0.25
+         * 3 đúng  = 0.5
+         * 4 đúng  = 1
+         */
+
+        if (
+            matched > 0 &&
+            matched <= partialScoring.length
+        ) {
+
+            const ratio =
+                Number(
+                    partialScoring[matched - 1]
+                );
+
+            score =
+                points * ratio;
+
+        }
+
+
+        const fullCorrect =
+            total > 0 &&
+            matched === total;
+
+
+        return {
+            score,
+            fullCorrect
+        };
+
+    }
+
+
+    /* SHORT */
+
+    if (question.type === "short") {
+
+        const expected =
+            question.correct;
+
+
+        const actual =
+            answer;
+
+
+        const isCorrect =
+            compareShortAnswer(
+                actual,
+                expected
+            );
+
+
+        return {
+            score: isCorrect ? points : 0,
+            fullCorrect: isCorrect
+        };
+
+    }
+
+
+    return {
+        score: 0,
+        fullCorrect: false
+    };
+
+}
+
+
+/* =========================================================
+   SHORT ANSWER COMPARISON
+========================================================= */
+
+function compareShortAnswer(
+    actual,
+    expected
+) {
+
+    if (
+        actual === null ||
+        actual === undefined
+    ) {
+        return false;
+    }
+
+
+    if (
+        expected === null ||
+        expected === undefined
+    ) {
+        return false;
+    }
+
+
+    /*
+     * Cho phép correct là một mảng đáp án
+     * nếu các file sau này sử dụng dạng đó.
+     */
+
+    if (Array.isArray(expected)) {
+
+        return expected.some(
+            answer =>
+                normalizeAnswer(actual) ===
+                normalizeAnswer(answer)
+        );
+
+    }
+
+
+    return (
+        normalizeAnswer(actual) ===
+        normalizeAnswer(expected)
+    );
+
+}
+
+
+function normalizeAnswer(value) {
+
+    return String(value)
+        .trim()
+        .replace(/\s+/g, " ")
+        .toLowerCase();
+
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+function showResult(result) {
+
+    quizScreen.style.display = "none";
+    resultScreen.style.display = "block";
+
+
+    const maxScore =
+        result.maxScore;
+
+
+    document.getElementById("scoreDisplay")
+        .textContent =
+        `${formatNumber(result.totalScore)} / ${formatNumber(maxScore)}`;
+
+
+    document.getElementById("correctStat")
+        .textContent =
+        result.correctCount;
+
+
+    document.getElementById("wrongStat")
+        .textContent =
+        result.wrongCount;
+
+
+    const percentage =
+        maxScore > 0
+            ? (result.totalScore / maxScore) * 100
+            : 0;
+
+
+    document.getElementById("percentStat")
+        .textContent =
+        `${formatNumber(percentage)}%`;
+
+
+    renderReview();
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================================
+   REVIEW
+========================================================= */
+
+function renderReview() {
+
+    const container =
+        document.getElementById("reviewContainer");
+
+    container.innerHTML = "";
+
+
+    questions.forEach(function (
+        question,
+        index
+    ) {
+
+        const answer =
+            userAnswers[index];
+
+
+        const result =
+            gradeQuestion(
+                question,
+                answer
+            );
+
+
+        const item =
+            document.createElement("div");
+
+
+        item.className =
+            "review-item " +
+            (
+                result.fullCorrect
+                    ? "correct"
+                    : "wrong"
+            );
+
+
+        let answerText =
+            getUserAnswerText(
+                question,
+                answer
+            );
+
+
+        let correctText =
+            getCorrectAnswerText(
+                question
+            );
+
+
+        item.innerHTML = `
+
+            <div class="review-question">
+
+                Câu ${index + 1}.
+                ${escapeHTML(question.question)}
+
+            </div>
+
+            <div class="review-answer">
+
+                <strong>
+                    Bạn trả lời:
+                </strong>
+
+                ${escapeHTML(answerText)}
+
+                <br>
+
+                <strong>
+                    Đáp án:
+                </strong>
+
+                ${escapeHTML(correctText)}
+
+            </div>
+
+            ${
+                question.explanation
+                    ? `
+                        <div class="review-explanation">
+                            <strong>Giải thích:</strong>
+                            ${escapeHTML(question.explanation)}
+                        </div>
+                    `
+                    : ""
+            }
+
+        `;
+
+
+        container.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================================================
+   ANSWER DISPLAY
+========================================================= */
+
+function getUserAnswerText(
+    question,
+    answer
+) {
+
+    if (
+        answer === null ||
+        answer === undefined ||
+        answer === ""
+    ) {
+        return "Chưa trả lời";
+    }
+
+
+    if (question.type === "multiple") {
+
+        const index =
+            Number(answer);
+
+
+        if (
+            Array.isArray(question.options) &&
+            question.options[index] !== undefined
+        ) {
+
+            return (
+                String.fromCharCode(65 + index) +
+                ". " +
+                question.options[index]
+            );
+
+        }
+
+        return "Không hợp lệ";
+
+    }
+
+
+    if (question.type === "truefalse") {
+
+        if (!Array.isArray(answer)) {
+            return "Chưa trả lời";
+        }
+
+
+        return answer.map(
+            function (value, index) {
+
+                const letter =
+                    String.fromCharCode(
+                        97 + index
+                    );
+
+                if (value === null) {
+                    return `${letter}. Chưa chọn`;
+                }
+
+                return (
+                    `${letter}. ` +
+                    (
+                        value
+                            ? "Đúng"
+                            : "Sai"
+                    )
+                );
+
+            }
+        ).join(" | ");
+
+    }
+
+
+    return String(answer);
+
+}
+
+
+function getCorrectAnswerText(question) {
+
+    if (question.type === "multiple") {
+
+        const index =
+            Number(question.correct);
+
+
+        if (
+            Array.isArray(question.options) &&
+            question.options[index] !== undefined
+        ) {
+
+            return (
+                String.fromCharCode(65 + index) +
+                ". " +
+                question.options[index]
+            );
+
+        }
+
+    }
+
+
+    if (question.type === "truefalse") {
+
+        const correct =
+            Array.isArray(question.correct)
+                ? question.correct
+                : question.correctAnswers || [];
+
+
+        return correct.map(
+            function (value, index) {
+
+                return (
+                    `${String.fromCharCode(97 + index)}. ` +
+                    (
+                        value
+                            ? "Đúng"
+                            : "Sai"
+                    )
+                );
+
+            }
+        ).join(" | ");
+
+    }
+
+
+    if (question.type === "short") {
+
+        if (Array.isArray(question.correct)) {
+            return question.correct.join(" / ");
+        }
+
+        return String(
+            question.correct ?? ""
+        );
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function startTimer() {
+
+    clearInterval(timerInterval);
+
+
+    remainingSeconds =
+        Number(
+            quizData.config?.testDuration ||
+            0
+        );
+
+
+    updateTimer();
+
+
+    if (remainingSeconds <= 0) {
+        return;
+    }
+
+
+    timerInterval =
+        setInterval(function () {
+
+            remainingSeconds--;
+
+            updateTimer();
+
+
+            if (remainingSeconds <= 0) {
+
+                clearInterval(timerInterval);
+
+                alert(
+                    "Đã hết thời gian. Bài làm sẽ được tự động nộp."
+                );
+
+                submitQuiz();
+
+            }
+
+        }, 1000);
+
+}
+
+
+function updateTimer() {
+
+    const timer =
+        document.getElementById("timer");
+
+
+    timer.textContent =
+        formatDuration(
+            remainingSeconds
+        );
+
+
+    timer.classList.remove(
+        "warning",
+        "danger"
+    );
+
+
+    if (
+        remainingSeconds <= 300 &&
+        remainingSeconds > 60
+    ) {
+
+        timer.classList.add("warning");
+
+    }
+
+
+    if (remainingSeconds <= 60) {
+
+        timer.classList.add("danger");
+
+    }
+
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+document
+    .getElementById("backUploadButton")
+    .addEventListener("click", resetToUpload);
+
+
+document
+    .getElementById("newFileButton")
+    .addEventListener("click", resetToUpload);
+
+
+document
+    .getElementById("retryButton")
+    .addEventListener("click", function () {
+
+        resultScreen.style.display = "none";
+
+        startQuiz();
+
+    });
+
+
+function resetToUpload() {
+
+    clearInterval(timerInterval);
+
+    quizData = null;
+    questions = [];
+    userAnswers = {};
+    examStarted = false;
+
+    examScreen.style.display = "none";
+    quizScreen.style.display = "none";
+    resultScreen.style.display = "none";
+    uploadScreen.style.display = "flex";
+
+    fileInput.value = "";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function getQuestionTypeLabel(type) {
+
+    switch (type) {
+
+        case "multiple":
+            return "Trắc nghiệm";
+
+        case "truefalse":
+            return "Đúng / Sai";
+
+        case "short":
+            return "Trả lời ngắn";
+
+        default:
+            return type;
+
+    }
+
+}
+
+
+function formatDuration(seconds) {
+
+    seconds =
+        Number(seconds) || 0;
+
+
+    const hours =
+        Math.floor(seconds / 3600);
+
+
+    const minutes =
+        Math.floor(
+            (seconds % 3600) / 60
+        );
+
+
+    const secs =
+        seconds % 60;
+
+
+    if (hours > 0) {
+
+        return (
+            String(hours).padStart(2, "0") +
+            ":" +
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(secs).padStart(2, "0")
+        );
+
+    }
+
+
+    return (
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(secs).padStart(2, "0")
+    );
+
+}
+
+
+function formatNumber(number) {
+
+    return Number(number)
+        .toFixed(2)
+        .replace(/\.00$/, "")
+        .replace(/(\.\d)0$/, "$1");
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function showError(message) {
+
+    uploadError.innerHTML = message;
+
+    uploadError.style.display = "block";
+
+}
+
+
+function hideError() {
+
+    uploadError.style.display = "none";
+    uploadError.innerHTML = "";
+
+}
+</script>
+
+</body>
+</html>
