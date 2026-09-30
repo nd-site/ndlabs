@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Sử 11 - Bài 1 & Bài 2</title>
+    
+    <!-- Font Quicksand cho tiêu đề và Nunito cho thân bài -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'heading': ['Quicksand', 'sans-serif'],
+                        'body': ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        'book-bg': '#FDF9F1', 
+                        'book-paper': '#FFFFFF',
+                        'book-primary': '#D97757', 
+                        'book-primary-light': '#F6E6DF',
+                        'book-text': '#4A4036', 
+                        'book-accent': '#EAB308', 
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(217, 119, 87, 0.15)',
+                        'inner-soft': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F5EFEB;
+            background-image: radial-gradient(#d9775720 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D97757;
+            border-radius: 10px;
+            opacity: 0.5;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b85f42;
+        }
+
+        .content-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .book-content p {
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .nav-item.active {
+            background-color: #F6E6DF;
+            color: #D97757;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body class="font-body text-book-text h-screen flex overflow-hidden selection:bg-book-primary selection:text-white">
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="lg:hidden fixed top-4 left-4 z-50 bg-white p-3 rounded-2xl shadow-soft text-book-primary">
+        <i class="fas fa-bars text-xl"></i>
+    </button>
+
+    <!-- Sidebar (Mục lục Bài 1 & 2) -->
+    <aside id="sidebar" class="w-80 h-[calc(100vh-2rem)] bg-white/90 backdrop-blur-md shadow-soft m-4 rounded-[2.5rem] flex flex-col transition-transform duration-300 z-40 fixed lg:relative -translate-x-full lg:translate-x-0 border border-white/50">
+        
+        <!-- Header Sidebar -->
+        <div class="p-8 pb-4 flex flex-col items-center border-b border-book-primary-light/50">
+            <div class="w-20 h-20 bg-book-primary rounded-[2rem] flex items-center justify-center text-white text-3xl shadow-soft mb-4 rotate-3 hover:rotate-0 transition-transform">
+                <i class="fas fa-book-bookmark"></i>
+            </div>
+            <h1 class="font-heading text-xl font-bold text-center leading-tight">Lịch Sử 11<br><span class="text-book-primary">Chủ Đề 1</span></h1>
+            <p class="text-xs text-center mt-2 opacity-70 font-semibold bg-book-primary-light px-3 py-1 rounded-full">Cách mạng tư sản & Chủ nghĩa tư bản</p>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex-1 overflow-y-auto p-4 space-y-3" id="toc-container">
+            <!-- Rendered via JS -->
+        </nav>
+        
+        <div class="p-6 text-center text-xs opacity-50 border-t border-book-primary-light/50">
+            Tài liệu ôn tập Lịch Sử 11
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 h-screen overflow-y-auto p-4 lg:p-8 relative scroll-smooth w-full" id="main-scroll">
+        <div class="max-w-4xl mx-auto min-h-full flex flex-col">
+            
+            <!-- Book Page Paper -->
+            <article id="content-display" class="bg-white flex-1 rounded-[3rem] shadow-soft p-8 md:p-14 lg:p-20 relative border border-white/60 mb-8 content-fade-in">
+                <!-- Nội dung Bài học sẽ hiển thị ở đây -->
+            </article>
+
+            <!-- Navigation Buttons Bottom -->
+            <div class="flex justify-between items-center mt-auto pb-4 gap-4">
+                <button id="btn-prev" class="hidden px-6 py-4 bg-white rounded-full shadow-soft font-heading font-semibold text-book-text hover:text-book-primary hover:scale-105 transition-all">
+                    <i class="fas fa-arrow-left mr-2"></i> Bài 1
+                </button>
+                <button id="btn-next" class="hidden px-6 py-4 bg-book-primary text-white rounded-full shadow-soft font-heading font-semibold hover:bg-orange-600 hover:scale-105 transition-all ml-auto">
+                    Bài 2 <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- DỮ LIỆU NỘI DUNG CHỈ GIỮ LẠI BÀI 1 VÀ BÀI 2 ---
+        const bookData = [
+            {
+                id: 'bai-1',
+                lessonNum: '1',
+                title: 'Bài 1: Một số vấn đề chung về cách mạng tư sản',
+                content: `
+                    <div class="mb-8 border-b-2 border-book-primary/20 pb-6">
+                        <div class="inline-block bg-book-primary-light px-4 py-1.5 rounded-full mb-4">
+                            <i class="fas fa-landmark text-book-primary mr-2"></i>
+                            <span class="font-heading font-bold text-book-primary tracking-wider uppercase text-xs">Bài 1 - Lịch Sử 11</span>
+                        </div>
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold text-book-text mb-4 leading-tight">Một số vấn đề chung về cách mạng tư sản</h2>
+                        <p class="text-lg opacity-80 italic border-l-4 border-book-accent pl-4 py-1 bg-gray-50/50">Tìm hiểu tiền đề, mục tiêu, nhiệm vụ, giai cấp lãnh đạo, động lực, kết quả và ý nghĩa lịch sử của các cuộc cách mạng tư sản thời cổ - cận đại.</p>
+                    </div>
+
+                    <div class="book-content space-y-8">
+                        <!-- I. Thuật ngữ cốt lõi -->
+                        <section>
+                            <h3 class="font-heading text-2xl font-bold text-book-primary flex items-center gap-2 mb-4 border-b border-gray-100 pb-2">
+                                <span class="bg-book-primary text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm">I</span> 
+                                KHÁI NIỆM & THUẬT NGỮ CỐT LÕI
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <strong class="text-book-text font-bold">Cách mạng tư sản (CMTS):</strong> Là cuộc cách mạng do giai cấp tư sản (hoặc tư sản liên minh với quý tộc mới) lãnh đạo, nhằm lật đổ chế độ phong kiến (hoặc ách thống trị thực dân), xóa bỏ rào cản kinh tế, mở đường cho chủ nghĩa tư bản phát triển.
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <strong class="text-book-text font-bold">Quý tộc mới:</strong> Bộ phận quý tộc phong kiến chuyển sang kinh doanh theo phương thức tư bản chủ nghĩa (tiêu biểu như phong trào "Rào đất bón cỏ" nuôi cừu lấy lông ở Anh).
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- II. Tiền đề -->
+                        <section>
+                            <h3 class="font-heading text-2xl font-bold text-book-primary flex items-center gap-2 mb-4 border-b border-gray-100 pb-2">
+                                <span class="bg-book-primary text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm">II</span> 
+                                TIỀN ĐỀ CỦA CÁC CUỘC CÁCH MẠNG TƯ SẢN
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-blue-50/70 p-4 rounded-xl border border-blue-100">
+                                    <strong class="text-blue-900 block mb-1"><i class="fas fa-coins mr-2"></i> Kinh tế:</strong> 
+                                    Mầm mống kinh tế TBCN ra đời và phát triển mạnh mẽ nhưng bị chế độ phong kiến (hoặc chính sách cai trị thực dân) kìm hãm, cản trở.
+                                </div>
+                                <div class="bg-red-50/70 p-4 rounded-xl border border-red-100">
+                                    <strong class="text-red-900 block mb-1"><i class="fas fa-crown mr-2"></i> Chính trị:</strong> 
+                                    Chế độ chuyên chế phong kiến độc đoán (Anh, Pháp) hoặc ách thống trị khắc nghiệt của chính quốc (Anh đối với 13 thuộc địa Bắc Mỹ).
+                                </div>
+                                <div class="bg-amber-50/70 p-4 rounded-xl border border-amber-100">
+                                    <strong class="text-amber-900 block mb-1"><i class="fas fa-users mr-2"></i> Xã hội:</strong> 
+                                    Mâu thuẫn gay gắt giữa giai cấp tư sản, quần chúng nhân dân với giai cấp phong kiến thống trị hoặc chính quyền thực dân.
+                                </div>
+                                <div class="bg-emerald-50/70 p-4 rounded-xl border border-emerald-100">
+                                    <strong class="text-emerald-900 block mb-1"><i class="fas fa-lightbulb mr-2"></i> Tư tưởng:</strong> 
+                                    Xuất hiện các tư tưởng tiến bộ tấn công vào hệ tư tưởng phong kiến và Giáo hội (như Triết học Ánh sáng ở Pháp, Cải cách tôn giáo ở Anh).
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- III. Mục tiêu & Lãnh đạo -->
+                        <section>
+                            <h3 class="font-heading text-2xl font-bold text-book-primary flex items-center gap-2 mb-4 border-b border-gray-100 pb-2">
+                                <span class="bg-book-primary text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm">III</span> 
+                                MỤC TIÊU, NHIỆM VỤ, ĐỘNG LỰC VÀ LÃNH ĐẠO
+                            </h3>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li><strong>Mục tiêu:</strong> Lật đổ chế độ phong kiến / thực dân, xóa bỏ các rào cản, xác lập chính quyền tư sản, mở đường cho CNTB phát triển.</li>
+                                <li><strong>Nhiệm vụ:</strong>
+                                    <ul class="list-circle pl-6 mt-1 space-y-1">
+                                        <li><em>Dân tộc:</em> Giành độc lập, thống nhất thị trường dân tộc.</li>
+                                        <li><em>Dân chủ:</em> Xóa bỏ đẳng cấp phong kiến, đem lại các quyền tự do dân chủ, giải quyết vấn đề ruộng đất cho nông dân.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Lãnh đạo:</strong> Giai cấp tư sản (hoặc tư sản liên minh với Quý tộc mới, Chủ nô).</li>
+                                <li><strong>Động lực chính:</strong> Quần chúng nhân dân (nông dân, công nhân, thợ thủ công, nô lệ,...).</li>
+                            </ul>
+                        </section>
+
+                        <!-- IV. Kết quả & Ý nghĩa -->
+                        <section>
+                            <h3 class="font-heading text-2xl font-bold text-book-primary flex items-center gap-2 mb-4 border-b border-gray-100 pb-2">
+                                <span class="bg-book-primary text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm">IV</span> 
+                                KẾT QUẢ VÀ Ý NGHĨA LỊCH SỬ
+                            </h3>
+                            <div class="bg-gray-50 p-5 rounded-2xl border border-gray-200 space-y-2">
+                                <p><strong>Kết quả:</strong> Lật đổ các chính quyền phong kiến / thực dân; thiết lập nhà nước tư sản (theo thể chế Cộng hòa hoặc Quân chủ lập hiến).</p>
+                                <p><strong>Ý nghĩa:</strong> Chấm dứt sự thống trị của chế độ phong kiến suy tàn; mở ra thời đại mới trong lịch sử loài người - thời đại thắng lợi của Chủ nghĩa tư bản.</p>
+                            </div>
+                        </section>
+
+                        <!-- V. Bảng sự kiện nổi bật -->
+                        <section>
+                            <h3 class="font-heading text-2xl font-bold text-book-primary flex items-center gap-2 mb-4 border-b border-gray-100 pb-2">
+                                <span class="bg-book-primary text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm">V</span> 
+                                CÁC CUỘC CÁCH MẠNG TƯ SẢN TIÊU BIỂU
+                            </h3>
+                            <div class="overflow-x-auto rounded-xl border border-gray-200">
+                                <table class="w-full text-left text-sm">
+                                    <thead class="bg-book-primary-light text-book-text font-heading uppercase text-xs">
+                                        <tr>
+                                            <th class="px-4 py-3 font-bold border-b border-gray-200 w-1/4">Thời gian</th>
+                                            <th class="px-4 py-3 font-bold border-b border-gray-200 w-1/3">Sự kiện</th>
+                                            <th class="px-4 py-3 font-bold border-b border-gray-200 w-5/12">Ý nghĩa chính</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 bg-white">
+                                        <tr>
+                                            <td class="px-4 py-3 font-semibold text-book-primary">1566 - 1648</td>
+                                            <td class="px-4 py-3 font-semibold">Cách mạng Hà Lan</td>
+                                            <td class="px-4 py-3 text-gray-600">Cuộc CMTS đầu tiên trên thế giới.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 font-semibold text-book-primary">1640 - 1688</td>
+                                            <td class="px-4 py-3 font-semibold">Cách mạng tư sản Anh</td>
+                                            <td class="px-4 py-3 text-gray-600">Lật đổ chế độ phong kiến chuyên chế, xác lập thể chế Quân chủ lập hiến.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 font-semibold text-book-primary">1775 - 1783</td>
+                                            <td class="px-4 py-3 font-semibold">Chiến tranh giành độc lập ở Bắc Mỹ</td>
+                                            <td class="px-4 py-3 text-gray-600">Giải phóng 13 thuộc địa, thành lập Hợp chúng quốc Hoa Kỳ (USA).</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 font-semibold text-book-primary">1789 - 1794</td>
+                                            <td class="px-4 py-3 font-semibold">Cách mạng tư sản Pháp</td>
+                                            <td class="px-4 py-3 text-gray-600">Cuộc CMTS triệt để nhất thời kỳ cổ - cận đại, đập tan chế độ phong kiến.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                `
+            },
+            {
+                id: 'bai-2',
+                lessonNum: '2',
+                title: 'Bài 2: Sự xác lập và phát triển của chủ nghĩa tư bản',
+                content: `
+                    <div class="mb-8 border-b-2 border-book-primary/20 pb-6">
+                        <div class="inline-block bg-book-primary-light px-4 py-1.5 rounded-full mb-4">
+                            <i class="fas fa-chart-line text-book-primary mr-2"></i>
+                            <span class="font-heading font-bold text-book-primary tracking-wider uppercase text-xs">Bài 2 - Lịch Sử 11</span>
+                        </div>
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold text-book-text mb-4 leading-tight">Sự xác lập và phát triển của chủ nghĩa tư bản</h2>
+                        <p class="text-lg opacity-80 italic border-l-4 border-book-accent pl-4 py-1 bg-gray-50/50">Hệ thống hóa quá trình xác lập của CNTB, sự chuyển biến sang giai đoạn độc quyền và đặc điểm của chủ nghĩa tư bản hiện đại.</p>
+                    </div>
+
+                    <div class="book-content space-y-8">
+                        <!-- I. Thuật ngữ cốt lõi -->
+                        <section>
+                            <h3 class="font-heading text-2xl font-bold text-book-primary flex items-center gap-2 mb-4 border-b border-gray-100 pb-2">
+                                <span class="bg-book-primary text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm">I</span> 
+                                CÁC GIAI ĐOẠN PHÁT TRUYỂN CỦA CNTB
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <strong class="text-book-text font-bold">CNTB tự do cạnh tranh:</strong> Giai đoạn kinh tế dựa trên sự cạnh tranh tự do giữa các xí nghiệp tư nhân, chưa bị chi phối bởi các tổ chức độc quyền (từ thế kỷ XVI đến cuối thế kỷ XIX).
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <strong class="text-book-text font-bold">CNTB độc quyền (Chủ nghĩa đế quốc):</strong> Giai đoạn phát triển cao hơn của CNTB (cuối XIX - đầu XX), khi các tập đoàn tư bản lớn (Tơ-rớt, Các-ten, Xanh-đi-ca,...) chi phối toàn bộ đời sống kinh tế - chính trị.
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <strong class="text-book-text font-bold">CNTB hiện đại:</strong> Thuật ngữ chỉ CNTB từ sau Chiến tranh thế giới thứ hai (1945) đến nay, kết hợp giữa tư bản tư nhân với nhà nước, có khả năng tự điều chỉnh và áp dụng công nghệ cao.
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- II. Quá trình xác lập -->
+                        <section>
+                            <h3 class="font-heading text-2xl font-bold text-book-primary flex items-center gap-2 mb-4 border-b border-gray-100 pb-2">
+                                <span class="bg-book-primary text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm">II</span> 
+                                QUÁ TRÌNH XÁC LẬP CNTB (XVI - NỬA SAU XIX)
+                            </h3>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li><strong>Giai đoạn XVI - XVIII:</strong> CNTB từng bước xác lập ở châu Âu và Bắc Mỹ thông qua các cuộc CMTS đầu tiên (Hà Lan, Anh, Mỹ, Pháp).</li>
+                                <li><strong>Giai đoạn nửa sau XIX:</strong> Tác động của cuộc Cách mạng công nghiệp đã giúp CNTB thắng lợi hoàn toàn ở châu Âu, Bắc Mỹ và mở rộng tầm ảnh hưởng ra toàn thế giới.</li>
+                            </ul>
+                        </section>
+
+                        <!-- III. Chuyển sang độc quyền -->
+                        <section>
+                            <h3 class="font-heading text-2xl font-bold text-book-primary flex items-center gap-2 mb-4 border-b border-gray-100 pb-2">
+                                <span class="bg-book-primary text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm">III</span> 
+                                CHUYỂN TỪ TỰ DO CẠNH TRANH SANG ĐỘC QUYỀN
+                            </h3>
+                            <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 mb-4">
+                                <p><strong>Bối cảnh:</strong> Cuối thế kỷ XIX - đầu thế kỷ XX, do tác động của CM công nghiệp lần 2 và quá trình tích tụ tư bản mạnh mẽ.</p>
+                            </div>
+                            <p class="font-bold mb-2 text-book-text">5 đặc điểm cốt lõi của CN Độc quyền (Chủ nghĩa đế quốc):</p>
+                            <ol class="list-decimal pl-6 space-y-1">
+                                <li>Sự tập trung sản xuất dẫn đến việc hình thành các tổ chức độc quyền.</li>
+                                <li>Sự kết hợp giữa tư bản ngân hàng và tư bản công nghiệp tạo thành <strong>tư bản tài chính</strong>.</li>
+                                <li><strong>Xuất khẩu tư bản</strong> trở thành đặc trưng quan trọng thay vì chỉ xuất khẩu hàng hóa.</li>
+                                <li>Sự hình thành các liên minh tư bản độc quyền quốc tế chia nhau thị trường thế giới.</li>
+                                <li>Sự phân chia lãnh thổ thế giới giữa các cường quốc đế quốc (dẫn đến tranh chấp, chiến tranh).</li>
+                            </ol>
+                        </section>
+
+                        <!-- IV. CNTB Hiện đại -->
+                        <section>
+                            <h3 class="font-heading text-2xl font-bold text-book-primary flex items-center gap-2 mb-4 border-b border-gray-100 pb-2">
+                                <span class="bg-book-primary text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm">IV</span> 
+                                CHỦ NGHĨA TƯ BẢN HIỆN ĐẠI (TỪ 1945 ĐẾN NAY)
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                                    <strong class="text-emerald-800 block mb-2"><i class="fas fa-rocket mr-2"></i> Tiềm năng & Ưu thế:</strong>
+                                    <ul class="list-disc pl-5 text-sm space-y-1">
+                                        <li>Trình độ sản xuất rất cao dựa trên CM Khoa học - Công nghệ.</li>
+                                        <li>Khả năng tự điều chỉnh và thích nghi với biến động kinh tế.</li>
+                                        <li>Mở rộng liên kết khu vực và toàn cầu hóa kinh tế.</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-red-50 p-4 rounded-xl border border-red-100">
+                                    <strong class="text-red-800 block mb-2"><i class="fas fa-exclamation-triangle mr-2"></i> Thách thức & Hạn chế:</strong>
+                                    <ul class="list-disc pl-5 text-sm space-y-1">
+                                        <li>Gia tăng khoảng cách giàu nghèo và bất bình đẳng xã hội.</li>
+                                        <li>Đối mặt với các đợt khủng hoảng tài chính - kinh tế chu kỳ.</li>
+                                        <li>Mâu thuẫn xã hội cùng các rủi ro cạn kiệt tài nguyên & môi trường.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- V. Mốc thời gian -->
+                        <section>
+                            <h3 class="font-heading text-2xl font-bold text-book-primary flex items-center gap-2 mb-4 border-b border-gray-100 pb-2">
+                                <span class="bg-book-primary text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm">V</span> 
+                                CÁC MỐC THỜI GIAN TRỌNG TÂM
+                            </h3>
+                            <div class="overflow-x-auto rounded-xl border border-gray-200">
+                                <table class="w-full text-left text-sm">
+                                    <thead class="bg-book-primary-light text-book-text font-heading uppercase text-xs">
+                                        <tr>
+                                            <th class="px-4 py-3 font-bold border-b border-gray-200 w-1/3">Mốc thời gian</th>
+                                            <th class="px-4 py-3 font-bold border-b border-gray-200 w-2/3">Nội dung chuyển biến</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 bg-white">
+                                        <tr>
+                                            <td class="px-4 py-3 font-semibold text-book-primary">XVI - XVIII</td>
+                                            <td class="px-4 py-3">CNTB từng bước hình thành và xác lập ở châu Âu & Bắc Mỹ.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 font-semibold text-book-primary">Nửa sau XIX</td>
+                                            <td class="px-4 py-3">CNTB thắng lợi hoàn toàn trên phạm vi thế giới.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 font-semibold text-book-primary">Cuối XIX - đầu XX</td>
+                                            <td class="px-4 py-3">CNTB chuyển sang giai đoạn độc quyền (Chủ nghĩa đế quốc).</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 font-semibold text-book-primary">Từ 1945 đến nay</td>
+                                            <td class="px-4 py-3">CNTB bước vào giai đoạn CNTB hiện đại.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                `
+            }
+        ];
+
+        let currentIndex = 0;
+        const tocContainer = document.getElementById('toc-container');
+        const contentDisplay = document.getElementById('content-display');
+        const btnPrev = document.getElementById('btn-prev');
+        const btnNext = document.getElementById('btn-next');
+        const sidebar = document.getElementById('sidebar');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        let mobileMenuOpen = false;
+
+        function buildNavigation() {
+            tocContainer.innerHTML = '';
+            bookData.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = `nav-item w-full text-left p-4 rounded-2xl transition-all flex items-center gap-3 hover:bg-book-primary-light/50 border border-transparent`;
+                btn.innerHTML = `
+                    <div class="w-10 h-10 rounded-xl bg-book-primary text-white flex items-center justify-center font-bold text-base shadow-soft shrink-0">
+                        ${item.lessonNum}
+                    </div>
+                    <div class="flex flex-col overflow-hidden">
+                        <span class="text-[11px] uppercase font-bold text-book-primary tracking-wider">Bài học ${item.lessonNum}</span>
+                        <span class="font-heading text-sm font-bold truncate">${item.title.split(': ')[1]}</span>
+                    </div>
+                `;
+                btn.onclick = () => loadContent(index);
+                btn.dataset.index = index;
+                tocContainer.appendChild(btn);
+            });
+        }
+
+        function loadContent(index) {
+            currentIndex = index;
+            const data = bookData[index];
+            
+            contentDisplay.classList.remove('content-fade-in');
+            
+            setTimeout(() => {
+                contentDisplay.innerHTML = data.content;
+                contentDisplay.classList.add('content-fade-in');
+                document.getElementById('main-scroll').scrollTop = 0;
+            }, 10);
+
+            // Update active styling
+            document.querySelectorAll('.nav-item').forEach(el => {
+                if(parseInt(el.dataset.index) === index) {
+                    el.classList.add('active');
+                    el.classList.add('border-book-primary/30');
+                } else {
+                    el.classList.remove('active');
+                    el.classList.remove('border-book-primary/30');
+                }
+            });
+
+            // Update navigation buttons
+            if (index === 0) {
+                btnPrev.style.display = 'none';
+                btnNext.style.display = 'block';
+                btnNext.innerHTML = 'Bài 2 <i class="fas fa-arrow-right ml-2"></i>';
+            } else {
+                btnPrev.style.display = 'block';
+                btnPrev.innerHTML = '<i class="fas fa-arrow-left mr-2"></i> Bài 1';
+                btnNext.style.display = 'none';
+            }
+
+            if(window.innerWidth < 1024 && mobileMenuOpen) {
+                toggleMobileMenu();
+            }
+        }
+
+        btnPrev.onclick = () => {
+            if (currentIndex > 0) loadContent(currentIndex - 1);
+        };
+
+        btnNext.onclick = () => {
+            if (currentIndex < bookData.length - 1) loadContent(currentIndex + 1);
+        };
+
+        function toggleMobileMenu() {
+            mobileMenuOpen = !mobileMenuOpen;
+            if (mobileMenuOpen) {
+                sidebar.classList.remove('-translate-x-full');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times text-xl"></i>';
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        // Initialize
+        buildNavigation();
+        loadContent(0);
+
+    </script>
+</body>
+</html>
