@@ -1,0 +1,616 @@
+{
+  "title": "Đề cương ôn tập TX - Môn Công nghệ 11",
+  "config": {
+    "testDuration": 2700,
+    "examLayout": {
+      "multiple": {
+        "count": 38,
+        "pointsPerQ": 0.25
+      },
+      "truefalse": {
+        "count": 5,
+        "pointsPerQ": 1,
+        "partialScoring": [
+          0.1,
+          0.25,
+          0.5,
+          1
+        ]
+      },
+      "short": {
+        "count": 1,
+        "pointsPerQ": 0.5
+      }
+    }
+  },
+  "examInfo": {
+    "subject": "Công nghệ",
+    "grade": "11",
+    "date": "2026-10-01",
+    "examName": "Ôn tập TX",
+    "attempt": "Bản 1"
+  },
+  "questions": [
+    {
+      "type": "multiple",
+      "question": "Cơ khí chế tạo là ngành kỹ thuật công nghệ sử dụng kiến thức của bộ môn",
+      "options": [
+        "Vật lí",
+        "Hóa học",
+        "Toán học",
+        "Công nghệ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Cơ khí chế tạo là ngành kỹ thuật công nghệ ứng dụng nguyên lý của bộ môn",
+      "options": [
+        "Vật lí",
+        "Hóa học",
+        "Toán học",
+        "Công nghệ"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Các vật liệu cơ khí gồm vật liệu kim loại và hợp kim, vật liệu phi kim loại và một số loại vật liệu khác được gọi là",
+      "options": [
+        "đối tượng lao động.",
+        "công cụ lao động.",
+        "sản phẩm ngành cơ khí.",
+        "ngành cơ khí chế tạo."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Các máy công cụ như tiện, phay, bào, hàn... được gọi là",
+      "options": [
+        "đối tượng lao động.",
+        "công cụ lao động.",
+        "sản phẩm ngành cơ khí.",
+        "ngành cơ khí chế tạo."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Cơ khí chế tạo nghiên cứu và thực hiện những quá trình nào?",
+      "options": [
+        "Thiết kế, chế tạo, vận hành, bảo dưỡng, sửa chữa các máy, thiết bị, chi tiết phục vụ cho sản xuất và cho đời sống của con người.",
+        "Thiết kế, thi công, vận hành, sửa chữa các chi tiết phục vụ cho sản xuất và cho đời sống của con người.",
+        "Thiết kế, lắp đặt, sửa chữa, bảo dưỡng các thiết bị, chi tiết phục vụ cho sản xuất và cho đời sống của con người.",
+        "Chế tạo, vận hành, bảo dưỡng, sửa chữa các máy móc phục vụ cho sản xuất và cho đời sống của con người."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Sắp xếp các bước sau sao cho đúng với quy trình chế tạo cơ khí: 1. Thực hiện gia công các chi tiết máy của sản phẩm; 2. Đọc bản vẽ chi tiết; 3. Xử lý và bảo vệ bề mặt của sản phẩm; 4. Chế tạo phôi; 5. Lắp ráp và kiểm tra chất lượng của sản phẩm",
+      "options": [
+        "1 - 2 - 3 - 4 - 5",
+        "2 - 4 - 1 - 3 - 5",
+        "2 - 4 - 5 - 3 - 1",
+        "4 - 1 - 2 - 5 - 3"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Sản phẩm chủ yếu của ngành cơ khí chế tạo là",
+      "options": [
+        "đồ sinh hoạt.",
+        "chi tiết máy móc sản xuất.",
+        "nhiên liệu.",
+        "năng lượng."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Quy trình chế tạo cơ khí có",
+      "options": [
+        "4 bước cơ bản.",
+        "5 bước cơ bản.",
+        "6 bước cơ bản.",
+        "7 bước cơ bản."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Bước đầu tiên trong quy trình chế tạo cơ khí là",
+      "options": [
+        "Đọc bản vẽ chi tiết.",
+        "Chế tạo phôi.",
+        "Thực hiện gia công các chi tiết của sản phẩm.",
+        "Lắp ráp và kiểm tra chất lượng sản phẩm."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Sản phẩm nào của cơ khí chế tạo giúp nâng cao chất lượng cuộc sống?",
+      "options": [
+        "Máy dệt công nghiệp.",
+        "Máy khai thác khoáng sản.",
+        "Máy lọc không khí.",
+        "Máy thi công đường."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Chống gỉ cho bề mặt sản phẩm thuộc quy trình chế tạo cơ khí:",
+      "options": [
+        "Đọc bản vẽ.",
+        "Chế tạo phôi.",
+        "Gia công chi tiết máy.",
+        "Xử lý và bảo vệ bề mặt sản phẩm."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Vì sao cơ khí chế tạo thúc đẩy, hỗ trợ các ngành nghề khác phát triển?",
+      "options": [
+        "Vì nó tạo ra các máy móc phục vụ cho đời sống con người.",
+        "Vì nó tạo ra các máy móc phục vụ cho các ngành nghề khác.",
+        "Vì nó nâng cao hiệu quả và đảm bảo yêu cầu kỹ thuật cho quá trình chế tạo.",
+        "Vì đối tượng lao động của ngành cơ khí chế tạo là các vật liệu như kim loại, hợp kim."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Tại sao cần phải nghiên cứu bản vẽ chi tiết khi chế tạo cơ khí?",
+      "options": [
+        "Để có thể chế tạo sản phẩm đúng hình dạng, kích thước và yêu cầu kỹ thuật.",
+        "Để giảm chi phí sản xuất.",
+        "Để nâng cao khả năng đọc bản vẽ.",
+        "Để tăng giá thành sản phẩm."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Việc lắp ráp và kiểm tra chất lượng sản phẩm có vai trò gì trong quy trình chế tạo cơ khí?",
+      "options": [
+        "Kiểm tra khả năng làm việc.",
+        "Khắc phục các lỗi trên sản phẩm.",
+        "Kiểm tra khả năng làm việc và khắc phục các lỗi trên sản phẩm trước khi đóng gói và đưa sản phẩm vào sử dụng.",
+        "Kiểm tra khả năng làm việc của sản phẩm và khắc phục các lỗi trên sản phẩm trước khi chế tạo."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+
+    {
+      "type": "multiple",
+      "question": "Công việc nghiên cứu, ứng dụng các kiến thức về toán học, khoa học và kỹ thuật vào việc chọn vật liệu, thiết kế tính toán, kích thước các thông số của các chi tiết máy để đảm bảo yêu cầu kinh tế - kỹ thuật đặt ra là",
+      "options": [
+        "thiết kế các sản phẩm cơ khí.",
+        "gia công cơ khí.",
+        "lắp ráp sản phẩm cơ khí.",
+        "bảo dưỡng và sửa chữa thiết bị cơ khí."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Ngành nghề không thuộc ngành nghề cơ khí chế tạo là",
+      "options": [
+        "Kĩ sư cơ khí.",
+        "Kĩ sư cơ học.",
+        "Thợ gia công cơ khí.",
+        "Thợ lắp ráp cơ khí."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Công việc sử dụng các máy công cụ, công nghệ và áp dụng các nguyên lý vật liệu để tạo ra các thành phẩm từ vật liệu ban đầu là",
+      "options": [
+        "thiết kế sản phẩm cơ khí.",
+        "gia công cơ khí.",
+        "lắp ráp sản phẩm cơ khí.",
+        "bảo dưỡng và sửa chữa thiết bị cơ khí."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Môi trường làm việc của ngành cơ khí chế tạo là môi trường",
+      "options": [
+        "khắc nghiệt.",
+        "tiềm ẩn nhiều nguy cơ gây tai nạn.",
+        "khắc nghiệt và tiềm ẩn nhiều nguy cơ gây tai nạn.",
+        "không khắc nghiệt và không tiềm ẩn nhiều nguy cơ gây tai nạn."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Ngành nghề trong lĩnh vực cơ khí gồm",
+      "options": [
+        "2 nhóm ngành nghề.",
+        "3 nhóm ngành nghề.",
+        "4 nhóm ngành nghề.",
+        "5 nhóm ngành nghề."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Công việc cần có kiến thức chuyên môn sâu liên quan đến quy trình sản xuất cơ khí, truyền động, lắp ghép các chi tiết, am hiểu các vấn đề kỹ thuật cơ khí",
+      "options": [
+        "thiết kế các sản phẩm cơ khí.",
+        "gia công cơ khí.",
+        "lắp ráp sản phẩm cơ khí.",
+        "bảo dưỡng và sửa chữa thiết bị cơ khí."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Ngành nghề thực hiện các công việc chăm sóc, thực hiện kiểm tra, chuẩn đoán trạng thái kỹ thuật, theo dõi thường xuyên, ngăn ngừa hỏng hóc, xử lý sự cố, sửa chữa các sai hỏng là",
+      "options": [
+        "thiết kế sản phẩm cơ khí.",
+        "gia công cơ khí.",
+        "lắp ráp sản phẩm cơ khí.",
+        "bảo dưỡng và sửa chữa thiết bị cơ khí."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Giai đoạn cuối cùng của quá trình sản xuất nhằm tạo ra một sản phẩm hoàn chỉnh là",
+      "options": [
+        "bảo dưỡng, sửa chữa thiết bị cơ khí.",
+        "lắp ráp sản phẩm cơ khí.",
+        "thiết kế sản phẩm cơ khí.",
+        "gia công cơ khí."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Các kỹ sư cơ khí có thể làm các ngành nghề thuộc lĩnh vực",
+      "options": [
+        "thiết kế sản phẩm cơ khí.",
+        "gia công cơ khí.",
+        "thiết kế sản phẩm cơ khí, lắp ráp sản phẩm cơ khí, sửa chữa, bảo dưỡng các thiết bị cơ khí.",
+        "lắp ráp sản phẩm cơ khí."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Người thiết kế các sản phẩm cơ khí cần",
+      "options": [
+        "biết vận hành các máy công cụ thông dụng.",
+        "có kiến thức chuyên môn liên quan đến quy trình sản xuất cơ khí.",
+        "biết sử dụng các phần mềm phục vụ thiết kế, mô phỏng, hoàn thiện các bản vẽ gia công.",
+        "có hiểu biết về nguyên lý hoạt động của các thiết bị cơ khí."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Người lắp ráp các sản phẩm cơ khí cần căn cứ vào",
+      "options": [
+        "bản vẽ lắp sản phẩm.",
+        "nguyên lý hoạt động của sản phẩm.",
+        "cấu tạo của sản phẩm.",
+        "yêu cầu của khách hàng."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Người lao động thuộc lĩnh vực cơ khí chế tạo là",
+      "options": [
+        "người trực tiếp tham gia thiết kế, lắp ráp, phân tích, đánh giá, vận hành, sửa chữa, bảo trì, bảo dưỡng, đề xuất sáng kiến,... thuộc cơ khí chế tạo.",
+        "người có khả năng thiết kế, xây dựng vận hành, sử dụng, bảo trì hệ thống điện, điện tử và thiết bị viễn thông.",
+        "người có tiếp cận, khai thác các sản phẩm, giải pháp kỹ thuật, công nghệ tiên tiến trong lĩnh vực điện, điện tử viễn thông.",
+        "người có khả năng thiết kế, xây dựng, vận hành, sử dụng, bảo trì hệ thống hàng hóa, vận chuyển hàng hóa."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Quá trình chủ yếu của giai đoạn sản xuất một sản phẩm cơ khí là",
+      "options": [
+        "quá trình thiết kế sản phẩm cơ khí.",
+        "quá trình gia công cơ khí.",
+        "quá trình lắp ráp sản phẩm cơ khí.",
+        "quá trình bảo dưỡng, sửa chữa sản phẩm cơ khí."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Việc sử dụng được các phần mềm AutoCAD, 3D Solidworks... là một lợi thế của người làm thiết kế sản phẩm cơ khí là vì",
+      "options": [
+        "đây là phần mềm hỗ trợ cho việc tính toán - công việc của người làm thiết kế sản phẩm cơ khí.",
+        "đây là phần mềm hỗ trợ cho việc thiết kế - công việc của người làm thiết kế sản phẩm cơ khí.",
+        "đây là phần mềm hỗ trợ cho việc chế tạo - công việc của người làm thiết kế sản phẩm cơ khí.",
+        "đây là phần mềm hỗ trợ cho việc lắp ráp - công việc của người làm thiết kế sản phẩm cơ khí."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Các nghề nghiệp thiết kế sản phẩm cơ khí thường làm việc ở",
+      "options": [
+        "các phòng kỹ thuật của cơ sở sản xuất cơ khí, doanh nghiệp chuyên bảo trì, bảo dưỡng thiết bị cơ khí, công ty chuyên cung cấp thiết bị cơ khí, máy công cụ, CNC,...",
+        "các phòng kỹ thuật của nhà máy cơ khí, trung tâm nghiên cứu phát triển của các doanh nghiệp cơ khí, cơ sở sản xuất các sản phẩm cơ khí...",
+        "các phân xưởng lắp ráp của các nhà máy cơ khí chế tạo ô tô, xe máy,...",
+        "các phân xưởng sản xuất của các nhà máy sản xuất phụ tùng ô tô, xe máy, đóng tàu..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+
+    {
+      "type": "multiple",
+      "question": "Vật liệu cơ khí",
+      "options": [
+        "là vật liệu được dùng trong sản xuất cơ khí để tạo nên các sản phẩm cho lĩnh vực công nghiệp.",
+        "là vật liệu được dùng trong sản xuất cơ khí để tạo nên các sản phẩm cho các lĩnh vực trong cuộc sống.",
+        "là vật liệu được dùng trong sản xuất cơ khí để tạo nên các sản phẩm cho lĩnh vực nông nghiệp.",
+        "Là vật liệu được dùng trong sản xuất cơ khí để tạo nên các sản phẩm cho lĩnh vực giao thông vận tải."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Vật liệu cơ khí được chia làm",
+      "options": [
+        "2 nhóm.",
+        "3 nhóm.",
+        "4 nhóm.",
+        "5 nhóm."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Vật liệu cơ khí là vật liệu dùng trong sản xuất cơ khí để tạo nên các sản phẩm cho",
+      "options": [
+        "lĩnh vực công nghiệp.",
+        "các lĩnh vực trong cuộc sống.",
+        "lĩnh vực nông nghiệp.",
+        "lĩnh vực giao thông vận tải."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Vật liệu cơ khí chủ yếu dùng trong lĩnh vực",
+      "options": [
+        "sản xuất cơ khí.",
+        "xây dựng.",
+        "y tế.",
+        "công nghiệp hoá học."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Vật liệu cơ khí có tính",
+      "options": [
+        "đa dạng.",
+        "tuyệt đối.",
+        "đa dạng và tương đối.",
+        "đa dạng và tuyệt đối."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Khi sử dụng vật liệu cơ khí cần đáp ứng các yêu cầu về",
+      "options": [
+        "tính sử dụng và tính kinh tế.",
+        "tính kinh tế và tính công nghệ.",
+        "tính sử dụng, tính kinh tế và tính công nghệ.",
+        "tính sử dụng và tính công nghệ."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Người ta phân chia vật liệu cơ khí ra làm 3 nhóm dựa vào",
+      "options": [
+        "giá thành.",
+        "cấu tạo.",
+        "cấu tạo và tính chất.",
+        "tính chất và giá thành."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Nhóm vật liệu nào sau đây thuộc vật liệu cơ khí?",
+      "options": [
+        "sắt, thép, gang, đồng, nhôm, vàng, bạc, thủy tinh, nhựa.",
+        "sắt, thép, gang, đồng, nhôm, vàng, bạc, compozit, cao su, gốm sứ.",
+        "sắt, thép, gang, đồng, nhôm, vàng, bạc, compozit, cao su, nhựa.",
+        "sắt, thép, gang, đồng, nhôm, vàng, bạc, đá quý, compozit, cao su."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "type": "multiple",
+      "question": "Vật liệu cơ khí được chia ra các loại sau:",
+      "options": [
+        "Kim loại, phi kim loại, vật liệu mới.",
+        "Kim loại, phi kim loại, compozit.",
+        "Kim loại, phi kim loại, ceramic.",
+        "Kim loại, phi kim loại, nanô."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+
+    {
+      "type": "truefalse",
+      "question": "Trong giờ học có một nhóm học sinh nhận định như sau:",
+      "options": [
+        "Việc thiết kế cơ khí thường được thực hiện bởi kỹ sư cơ khí.",
+        "Người lắp ráp các sản phẩm cơ khí cần căn cứ vào cấu tạo của sản phẩm để lắp.",
+        "Quy trình tạo ra một sản phẩm cơ khí diễn ra theo trình tự thiết kế sản phẩm, gia công cơ khí, lắp ráp sản phẩm cơ khí.",
+        "Người thiết kế các sản phẩm cơ khí chỉ cần có hiểu biết về nguyên lí hoạt động của các thiết bị cơ khí."
+      ],
+      "correct": [
+        true,
+        false,
+        true,
+        false
+      ],
+      "correctAnswers": [
+        true,
+        false,
+        true,
+        false
+      ],
+      "explanation": ""
+    },
+    {
+      "type": "truefalse",
+      "question": "Trong giờ học nhóm học sinh trao đổi các ý kiến về yêu cầu của nhóm việc gia công cơ khí như sau:",
+      "options": [
+        "Thiết lập chế độ làm việc và vận hành các máy công cụ để chế tạo ra sản phẩm cơ khí đúng yêu cầu.",
+        "Vận hành và giám sát máy công cụ để phát hiện các lỗi hoặc trục trặc từ đó điều chỉnh máy khi cần thiết.",
+        "Kiểm tra các phần công việc để tìm lỗi và sử dụng các dụng cụ đo để kiểm tra các yêu cầu kỹ thuật của sản phẩm.",
+        "Máy cắt Laser CNC là làm việc trong một môi trường không khí với độ chính xác gần như tuyệt đối."
+      ],
+      "correct": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "correctAnswers": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "explanation": ""
+    },
+    {
+      "type": "truefalse",
+      "question": "Người lao động trong ngành cơ khí cần",
+      "options": [
+        "biết sử dụng điện thoại, sử dụng điều khiển từ xa.",
+        "đọc bản vẽ, phân tích yêu cầu kỹ thuật, lập quy trình công nghệ.",
+        "phân tích, giải quyết vấn đề chuyên môn.",
+        "vận hành được máy CNC để chế tạo sản phẩm ngành cơ khí."
+      ],
+      "correct": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "correctAnswers": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "explanation": ""
+    },
+    {
+      "type": "truefalse",
+      "question": "Đặc điểm và môi trường làm việc của ngành cơ khí khắc nghiệt, tiềm ẩn nhiều nguy cơ gây tai nạn. Vì vậy người lao động cần:",
+      "options": [
+        "Có sức khỏe tốt; cẩn thận, kiên trì; yêu thích công việc, đam mê máy móc và kỹ thuật.",
+        "Có tinh thần hợp tác với cấp trên, khả năng làm việc cá nhân và làm đúng công việc của mình.",
+        "Có phản ứng nhanh nhạy để xử lý tình huống trong quá trình lao động; tuân thủ tuyệt đối an toàn lao động.",
+        "Cần đảm nhận vận hành và sử dụng mọi thiết bị máy móc làm việc."
+      ],
+      "correct": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "correctAnswers": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "explanation": ""
+    },
+    {
+      "type": "truefalse",
+      "question": "Trong giờ học nhóm học sinh trao đổi các ý kiến về các ngành nghề trong lĩnh vực cơ khí chế tạo như sau:",
+      "options": [
+        "Ngành thiết kế là ngành tạo ra sản phẩm cơ khí.",
+        "Ngành gia công cơ khí là ngành tạo ra sản phẩm cơ khí bằng nhiều phương pháp khác nhau.",
+        "Ngành thiết kế không yêu cầu có chuyên môn sâu liên quan đến quy trình sản xuất cơ khí, tính toán thiết kế, gia công cơ khí.",
+        "Chế tạo bu lông bằng phương pháp đúc thuộc ngành gia công cơ khí."
+      ],
+      "correct": [
+        false,
+        true,
+        false,
+        true
+      ],
+      "correctAnswers": [
+        false,
+        true,
+        false,
+        true
+      ],
+      "explanation": ""
+    },
+
+    {
+      "type": "short",
+      "question": "Hãy phân tích những điểm mạnh của bản thân để chứng minh mình phù hợp với 1 trong 4 nhóm ngành nghề cơ khí chế tạo.",
+      "correct": "",
+      "explanation": "Câu hỏi tự luận trong tài liệu không cung cấp đáp án cố định; cần chấm theo nội dung phân tích và mức độ phù hợp với một trong bốn nhóm ngành nghề cơ khí chế tạo."
+    }
+  ]
+}
