@@ -1,0 +1,76 @@
+{
+    "title": "Đề kiểm tra Giữa học kỳ 1 - Môn Tin học 11",
+    "config": {
+        "testDuration": 2700,
+        "examLayout": {
+            "multiple": {
+                "count": 1,
+                "pointsPerQ": 0.25
+            },
+            "truefalse": {
+                "count": 1,
+                "pointsPerQ": 1,
+                "partialScoring": [
+                    0.1,
+                    0.25,
+                    0.5,
+                    1
+                ]
+            },
+            "short": {
+                "count": 1,
+                "pointsPerQ": 0.5
+            }
+        }
+    },
+    "examInfo": {
+        "subject": "Tin học",
+        "grade": "11",
+        "date": "2026-10-15",
+        "examName": "Kiểm tra Giữa kỳ 1",
+        "attempt": "Bản 1"
+    },
+    "questions": [
+        {
+            "type": "multiple",
+            "question": "Ngôn ngữ lập trình nào thường được sử dụng phổ biến trong phát triển giao diện Web hiện nay?",
+            "options": [
+                "HTML/CSS/JavaScript",
+                "C++",
+                "Pascal",
+                "Assembly"
+            ],
+            "correct": 0,
+            "explanation": "HTML, CSS và JavaScript là bộ ba công cụ cốt lõi trong xây dựng giao diện ứng dụng Web."
+        },
+        {
+            "type": "truefalse",
+            "question": "Xét các phát biểu sau về hệ điều hành và phần mềm máy tính:",
+            "options": [
+                "Linux là một hệ điều hành mã nguồn mở.",
+                "RAM là bộ nhớ lưu trữ dữ liệu vĩnh viễn ngay cả khi tắt máy.",
+                "Python là ngôn ngữ lập trình dịch trực tiếp ra mã máy mà không cần trình thông dịch.",
+                "Firebase cung cấp giải pháp cơ sở dữ liệu thời gian thực (Realtime Database)."
+            ],
+            "correct": [
+                true,
+                false,
+                false,
+                true
+            ],
+            "correctAnswers": [
+                true,
+                false,
+                false,
+                true
+            ],
+            "explanation": "RAM là bộ nhớ khả biến (mất dữ liệu khi mất điện). Python là ngôn ngữ thông dịch."
+        },
+        {
+            "type": "short",
+            "question": "Kết quả của phép toán 2^3 + 5 bằng bao nhiêu?",
+            "correct": "13",
+            "explanation": "2 mũ 3 bằng 8, cộng thêm 5 bằng 13."
+        }
+    ]
+}
