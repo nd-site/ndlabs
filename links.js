@@ -168,5 +168,18 @@ const ndLinks = [
         iconColor: "#F00000",
         iconTextColor: "#FFFFFF",
         newTab: true
+    },
+
+    {
+        title: "Quản lý quỹ lớp 11A4 (26-27)",
+        description: "Trang quản lí quỹ lớp của lớp 11A4 năm học 2026-2027 (THPT Lộc An)",
+        url: "/ndlabs/tool/quan-li-quy-lop-11a4-2627",
+        image: "https://ndsite.web.app/assets/images/avatar.png",
+        color: "#0075F1",
+        textcolor: "#FFFFFF",
+        mutedcolor: "#FFFFFF",
+        iconcolor: "#FFFFFF",
+        icontextcolor: "#0075F1",
+        newtab: false
     }
 ];
