@@ -178,7 +178,6 @@ const ndLinks = [
         color: "#488FDB",
         textcolor: "#FFFFFF",
         mutedcolor: "#FFFFFF",
-        iconcolor: "#FFFFFF",
         newtab: false
     }
 ];
