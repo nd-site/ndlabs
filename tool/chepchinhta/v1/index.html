@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đọc Chép Chính Tả - ND Labs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f7ff;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen text-slate-800">
+
+    <div class="max-w-4xl mx-auto space-y-6">
+        
+        <!-- Header -->
+        <header class="bg-blue-600 text-white p-5 rounded-2xl shadow-sm text-center">
+            <h1 class="text-2xl font-bold">Ứng Dụng Đọc Chép Chính Tả</h1>
+            <p class="text-blue-100 text-sm mt-1">Dành cho học sinh - Tốc độ đọc chuẩn, rõ dấu câu</p>
+        </header>
+
+        <!-- Main Display Box (Khung hiện chữ đang đọc) -->
+        <div class="bg-white p-6 rounded-2xl border-2 border-blue-400 shadow-md text-center">
+            <div class="text-xs font-semibold text-blue-500 uppercase tracking-wider mb-2">Cụm từ đang đọc</div>
+            <div id="currentChunkDisplay" class="text-2xl md:text-4xl font-bold text-blue-900 min-h-[4rem] flex items-center justify-center p-4 bg-blue-50 rounded-xl border border-blue-100">
+                (Bấm "Phát" để bắt đầu đọc)
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="mt-4 flex items-center justify-between text-xs text-slate-500 font-medium">
+                <span id="progressText">Cụm: 0 / 0</span>
+                <span id="statusBadge" class="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full">Sẵn sàng</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2 mt-2 overflow-hidden">
+                <div id="progressBar" class="bg-blue-600 h-2 rounded-full transition-all duration-300 w-0"></div>
+            </div>
+        </div>
+
+        <!-- Controls Bar -->
+        <div class="bg-white p-5 rounded-2xl border border-blue-200 shadow-sm flex flex-wrap items-center justify-center gap-3">
+            <button id="btnPrev" onclick="prevChunk()" class="px-4 py-2.5 bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold rounded-xl transition active:scale-95">
+                ⏮ Cụm trước
+            </button>
+            
+            <button id="btnPlay" onclick="togglePlay()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-md transition active:scale-95 flex items-center gap-2">
+                ▶ Phát đọc
+            </button>
+
+            <button id="btnStop" onclick="stopSpeech()" class="px-5 py-2.5 bg-rose-100 hover:bg-rose-200 text-rose-700 font-semibold rounded-xl transition active:scale-95">
+                ⏹ Dừng hẳn
+            </button>
+
+            <button id="btnNext" onclick="nextChunk()" class="px-4 py-2.5 bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold rounded-xl transition active:scale-95">
+                Cụm tiếp ⏭
+            </button>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="bg-white p-5 rounded-2xl border border-blue-200 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Tốc độ đọc -->
+            <div>
+                <div class="flex justify-between text-sm font-medium mb-1 text-slate-700">
+                    <label for="rateSlider">Tốc độ phát âm:</label>
+                    <span id="rateVal" class="text-blue-600 font-bold">0.5x (Mặc định)</span>
+                </div>
+                <input type="range" id="rateSlider" min="0.5" max="1.2" step="0.05" value="0.5" 
+                       class="w-full accent-blue-600 cursor-pointer" oninput="updateSettings()">
+            </div>
+
+            <!-- Thời gian dừng giữa các cụm -->
+            <div>
+                <div class="flex justify-between text-sm font-medium mb-1 text-slate-700">
+                    <label for="pauseSlider">Thời gian chờ chép:</label>
+                    <span id="pauseVal" class="text-blue-600 font-bold">2.0 giây</span>
+                </div>
+                <input type="range" id="pauseSlider" min="1.0" max="6.0" step="0.5" value="2.0" 
+                       class="w-full accent-blue-600 cursor-pointer" oninput="updateSettings()">
+            </div>
+
+            <!-- Độ dài cụm từ -->
+            <div>
+                <div class="flex justify-between text-sm font-medium mb-1 text-slate-700">
+                    <label for="chunkSizeSelect">Độ dài cụm từ:</label>
+                    <span class="text-blue-600 font-bold">Cụm ngắn</span>
+                </div>
+                <select id="chunkSizeSelect" onchange="prepareText()" class="w-full p-1.5 border border-slate-300 rounded-lg text-sm bg-slate-50 font-medium focus:ring-2 focus:ring-blue-400 outline-none">
+                    <option value="2">Ngắn (Tối đa 2 từ / cụm)</option>
+                    <option value="3" selected>Vừa đủ (Tối đa 3 từ / cụm)</option>
+                    <option value="4">Dài (Tối đa 4 từ / cụm)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Input Section -->
+        <div class="bg-white p-5 rounded-2xl border border-blue-200 shadow-sm space-y-3">
+            <div class="flex justify-between items-center">
+                <label for="inputText" class="font-bold text-slate-700 text-lg">Nhập đoạn văn bản bài học:</label>
+                <button onclick="clearText()" class="text-xs text-rose-500 hover:underline">Xóa tất cả</button>
+            </div>
+            <textarea id="inputText" rows="7" 
+                      placeholder="Dán hoặc nhập đoạn văn bản vào đây... Máy sẽ đọc lần lượt từng cụm từ ngắn và ghép tên dấu câu (phẩy, chấm, hai chấm, xuống dòng,...) vào cuối cụm."
+                      class="w-full p-4 border border-slate-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none resize-y text-slate-800 leading-relaxed font-normal"
+                      oninput="prepareText()"></textarea>
+            
+            <div class="text-xs text-slate-500 bg-blue-50 p-3 rounded-lg border border-blue-100">
+                💡 <b>Mẹo đọc chép:</b> Tên dấu câu (phẩy, chấm, xuống dòng,...) sẽ được ghép và đọc liền vào cuối cụm chữ tương ứng (ví dụ: <i>"Hôm nay, (phẩy)"</i>), giúp học sinh nghe chép liền mạch và không bị sót dấu.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script Application Logic -->
+    <script>
+        let chunks = [];
+        let currentIndex = 0;
+        let isPlaying = false;
+        let isPaused = false;
+        let timer = null;
+        let synth = window.speechSynthesis;
+        let selectedVoice = null;
+
+        // Load voices and pick Vietnamese if available
+        function loadVoices() {
+            let voices = synth.getVoices();
+            selectedVoice = voices.find(v => v.lang.includes('vi') || v.lang.includes('VI')) || null;
+        }
+
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        function prepareText() {
+            stopSpeech();
+            let rawText = document.getElementById('inputText').value;
+            if (!rawText.trim()) {
+                chunks = [];
+                currentIndex = 0;
+                updateUI();
+                return;
+            }
+
+            const puncDict = {
+                '...': 'ba chấm',
+                '…': 'ba chấm',
+                '.': 'chấm',
+                ',': 'phẩy',
+                '?': 'chấm hỏi',
+                '!': 'chấm cảm',
+                ':': 'hai chấm',
+                ';': 'chấm phẩy',
+                '(': 'mở ngoặc',
+                ')': 'đóng ngoặc',
+                '"': 'ngoặc kép',
+                '“': 'ngoặc kép',
+                '”': 'ngoặc kép',
+                "'": 'ngoặc đơn',
+                '‘': 'ngoặc đơn',
+                '’': 'ngoặc đơn',
+                '-': 'gạch ngang',
+                '–': 'gạch ngang',
+                '—': 'gạch ngang'
+            };
+
+            let maxWords = parseInt(document.getElementById('chunkSizeSelect').value) || 3;
+            let tokens = rawText.match(/(\.\.\.|…|\n+|[.,?!:;()"“”'‘’\-–—]|[^\s.,?!:;()"“”'‘’\-–—]+)/g) || [];
+
+            chunks = [];
+            let currentWords = [];
+
+            function flushChunk(puncInfo = null) {
+                if (currentWords.length === 0 && !puncInfo) return;
+
+                let wordsStr = currentWords.join(" ");
+                let displayText = wordsStr;
+                let speakText = wordsStr;
+
+                if (puncInfo) {
+                    if (wordsStr) {
+                        displayText = `${wordsStr}${puncInfo.symbol} (${puncInfo.name})`;
+                        speakText = `${wordsStr} ${puncInfo.name}`;
+                        chunks.push({ displayText, speakText });
+                    } else if (chunks.length > 0) {
+                        // Nếu từ rỗng (ví dụ dấu câu đi kèm liên tiếp), ghép vào cụm trước đó
+                        let prev = chunks[chunks.length - 1];
+                        prev.displayText += `${puncInfo.symbol} (${puncInfo.name})`;
+                        prev.speakText += ` ${puncInfo.name}`;
+                    } else {
+                        chunks.push({
+                            displayText: `(${puncInfo.name})`,
+                            speakText: puncInfo.name
+                        });
+                    }
+                } else if (wordsStr) {
+                    chunks.push({ displayText, speakText });
+                }
+
+                currentWords = [];
+            }
+
+            for (let i = 0; i < tokens.length; i++) {
+                let token = tokens[i];
+                let trimmed = token.trim();
+
+                if (token.includes('\n')) {
+                    flushChunk({ symbol: '', name: 'xuống dòng' });
+                    continue;
+                }
+
+                if (puncDict[trimmed]) {
+                    // Gặp dấu câu: ghép dấu câu vào các từ hiện tại và đóng cụm
+                    flushChunk({ symbol: trimmed, name: puncDict[trimmed] });
+                } else if (trimmed.length > 0) {
+                    currentWords.push(trimmed);
+                    if (currentWords.length >= maxWords) {
+                        // Kiểm tra xem token kế tiếp có phải dấu câu không
+                        let nextToken = tokens[i + 1] ? tokens[i + 1].trim() : '';
+                        if (!puncDict[nextToken] && !tokens[i + 1]?.includes('\n')) {
+                            flushChunk();
+                        }
+                    }
+                }
+            }
+
+            flushChunk();
+
+            currentIndex = 0;
+            updateUI();
+        }
+
+        function updateUI() {
+            let display = document.getElementById('currentChunkDisplay');
+            let progressText = document.getElementById('progressText');
+            let progressBar = document.getElementById('progressBar');
+            let statusBadge = document.getElementById('statusBadge');
+
+            if (chunks.length === 0) {
+                display.innerText = "(Bấm \"Phát\" để bắt đầu đọc)";
+                progressText.innerText = "Cụm: 0 / 0";
+                progressBar.style.width = "0%";
+                statusBadge.innerText = "Chờ nhập liệu";
+                statusBadge.className = "px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full";
+                return;
+            }
+
+            let item = chunks[currentIndex];
+            display.innerText = item ? item.displayText : "(Hoàn thành)";
+            progressText.innerText = `Cụm: ${currentIndex + 1} / ${chunks.length}`;
+            
+            let percent = ((currentIndex + 1) / chunks.length) * 100;
+            progressBar.style.width = percent + "%";
+
+            if (isPlaying && !isPaused) {
+                statusBadge.innerText = "Đang đọc...";
+                statusBadge.className = "px-2.5 py-1 bg-emerald-100 text-emerald-700 font-semibold rounded-full";
+            } else if (isPaused) {
+                statusBadge.innerText = "Đang tạm dừng";
+                statusBadge.className = "px-2.5 py-1 bg-amber-100 text-amber-700 font-semibold rounded-full";
+            } else {
+                statusBadge.innerText = "Sẵn sàng";
+                statusBadge.className = "px-2.5 py-1 bg-blue-100 text-blue-700 font-semibold rounded-full";
+            }
+        }
+
+        function speakCurrentChunk() {
+            if (!isPlaying || isPaused) return;
+
+            if (currentIndex >= chunks.length) {
+                stopSpeech();
+                document.getElementById('currentChunkDisplay').innerText = "🎉 Đã hoàn thành bài đọc!";
+                return;
+            }
+
+            updateUI();
+
+            let textToRead = chunks[currentIndex].speakText;
+            let utterance = new SpeechSynthesisUtterance(textToRead);
+            
+            utterance.lang = 'vi-VN';
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            }
+
+            // Tốc độ đọc (mặc định 0.5)
+            let rate = parseFloat(document.getElementById('rateSlider').value) || 0.5;
+            utterance.rate = rate;
+
+            utterance.onend = function () {
+                if (!isPlaying || isPaused) return;
+
+                // Thời gian chờ chép (mặc định 2.0s)
+                let pauseTime = (parseFloat(document.getElementById('pauseSlider').value) || 2.0) * 1000;
+
+                timer = setTimeout(() => {
+                    currentIndex++;
+                    speakCurrentChunk();
+                }, pauseTime);
+            };
+
+            utterance.onerror = function (e) {
+                console.error("Speech error:", e);
+                timer = setTimeout(() => {
+                    currentIndex++;
+                    speakCurrentChunk();
+                }, 2000);
+            };
+
+            synth.cancel();
+            synth.speak(utterance);
+        }
+
+        function togglePlay() {
+            if (chunks.length === 0) {
+                prepareText();
+                if (chunks.length === 0) {
+                    let display = document.getElementById('currentChunkDisplay');
+                    display.innerText = "⚠️ Vui lòng nhập đoạn văn bản cần đọc!";
+                    return;
+                }
+            }
+
+            let playBtn = document.getElementById('btnPlay');
+
+            if (!isPlaying) {
+                isPlaying = true;
+                isPaused = false;
+                playBtn.innerHTML = "⏸ Tạm dừng";
+                playBtn.className = "px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow-md transition active:scale-95 flex items-center gap-2";
+                speakCurrentChunk();
+            } else if (isPlaying && !isPaused) {
+                isPaused = true;
+                synth.cancel();
+                clearTimeout(timer);
+                playBtn.innerHTML = "▶ Tiếp tục";
+                playBtn.className = "px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-md transition active:scale-95 flex items-center gap-2";
+                updateUI();
+            } else if (isPaused) {
+                isPaused = false;
+                playBtn.innerHTML = "⏸ Tạm dừng";
+                playBtn.className = "px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow-md transition active:scale-95 flex items-center gap-2";
+                speakCurrentChunk();
+            }
+        }
+
+        function stopSpeech() {
+            isPlaying = false;
+            isPaused = false;
+            synth.cancel();
+            clearTimeout(timer);
+
+            let playBtn = document.getElementById('btnPlay');
+            playBtn.innerHTML = "▶ Phát đọc";
+            playBtn.className = "px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-md transition active:scale-95 flex items-center gap-2";
+
+            currentIndex = 0;
+            updateUI();
+        }
+
+        function nextChunk() {
+            if (chunks.length === 0) return;
+            synth.cancel();
+            clearTimeout(timer);
+            if (currentIndex < chunks.length - 1) {
+                currentIndex++;
+            }
+            updateUI();
+            if (isPlaying && !isPaused) {
+                speakCurrentChunk();
+            }
+        }
+
+        function prevChunk() {
+            if (chunks.length === 0) return;
+            synth.cancel();
+            clearTimeout(timer);
+            if (currentIndex > 0) {
+                currentIndex--;
+            }
+            updateUI();
+            if (isPlaying && !isPaused) {
+                speakCurrentChunk();
+            }
+        }
+
+        function updateSettings() {
+            let rate = document.getElementById('rateSlider').value;
+            let pause = document.getElementById('pauseSlider').value;
+
+            document.getElementById('rateVal').innerText = rate + "x" + (rate == 0.5 ? " (Mặc định)" : "");
+            document.getElementById('pauseVal').innerText = pause + " giây";
+        }
+
+        function clearText() {
+            document.getElementById('inputText').value = "";
+            prepareText();
+        }
+
+        // Tải danh sách giọng nói ban đầu
+        loadVoices();
+    </script>
+</body>
+</html>
