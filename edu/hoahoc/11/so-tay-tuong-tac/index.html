@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sổ Tay Tương Tác Hóa Học 11 - Kết Nối Tri Thức | ND Labs</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#16a34a',
+                            600: '#15803d',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        slateBg: '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        .tab-active {
+            border-bottom: 3px solid #16a34a;
+            color: #15803d;
+            font-weight: 700;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+    </style>
+</head>
+<body class="bg-slateBg text-slate-800 font-sans leading-relaxed flex flex-col min-h-screen">
+
+    <!-- Chosen Palette: Warm Scientific Sage / Emerald & Soft Slate Neutral -->
+    <!-- Application Structure Plan: 
+        1. Sticky Header & Navigation: Brand badge (ND Labs logo + home redirect button to /ndlabs) and tab-based navigation for chemistry modules.
+        2. Section 1: Overview & Foundation Progression (Grade 8-10 -> 11 continuity matrix).
+        3. Section 2: Chemical Equilibrium & Solution Chemistry with an interactive pH/Ionization calculator & dynamic Le Chatelier Haber-Bosch yield simulator using Chart.js.
+        4. Section 3: Nitrogen & Sulfur Chemistry with environmental impact breakdown (Acid rain, Eutrophication) & oxidation level chart.
+        5. Section 4: Organic Chemistry Principles & Separation Techniques comparison view with interactive Boiling Point chart.
+        6. Section 5 & 6: Hydrocarbons, Halogens, Alcohol, Phenol, Carbonyl, Carboxylic Acid with reactivity rules (Markovnikov, Zaitsev) & qualitative test matrices.
+        7. Section 7: Interactive Reagent Identification Engine & Organic Synthesis Pathway Tool.
+        WHY THIS STRUCTURE: Keeps brand identity strong (ND Labs integration) while providing high school students and teachers seamless navigation between chemistry theory, dynamic calculators, visual comparison charts, and reagent identification lookup.
+    -->
+    <!-- Visualization & Content Choices:
+        - Program Module Distribution -> Goal: Inform -> Donut Chart -> Interactive Legend -> Chart.js
+        - Haber-Bosch Yield vs Temp & Pressure -> Goal: Compare/Change -> Dynamic Line Chart with Sliders -> Chart.js
+        - Organic Functional Groups Boiling Points -> Goal: Compare -> Bar Chart -> Chart.js
+        - Qualitative Reagent Lookup -> Goal: Organize & Search -> Dynamic HTML Grid + Filter -> Vanilla JS
+        - Organic Synthesis Roadmap -> Goal: Process/Flow -> HTML/CSS Interactive Steps -> Vanilla JS
+        Confirming NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand & Title Group -->
+                <div class="flex items-center space-x-3">
+                    <a href="/ndlabs" class="flex items-center space-x-2.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3 py-1.5 rounded-xl transition group text-slate-800">
+                        <img src="https://ndsite.web.app/assets/images/avatar.png" alt="ND Labs Logo" class="w-7 h-7 rounded-full shadow-sm group-hover:scale-105 transition-transform object-cover">
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold leading-tight text-slate-900 group-hover:text-brand-600">ND Labs</span>
+                            <span class="text-[10px] text-slate-500 group-hover:text-slate-700">‹ Trang chủ</span>
+                        </div>
+                    </a>
+                    <div class="h-6 w-px bg-slate-200 hidden sm:block"></div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm shadow">
+                            H11
+                        </div>
+                        <div>
+                            <h1 class="font-bold text-slate-900 text-sm sm:text-base leading-tight">Hóa Học 11 - KNTT</h1>
+                            <p class="text-[10px] sm:text-xs text-slate-500 hidden md:block">Sổ Tay Tổng Hợp & Tra Cứu Tương Tác Chuyên Sâu</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-1 text-sm font-medium overflow-x-auto custom-scrollbar">
+                    <button onclick="scrollToSection('sec-overview')" class="px-2.5 py-1.5 text-slate-600 hover:text-brand-600 transition">Tổng Quan</button>
+                    <button onclick="scrollToSection('sec-equilibrium')" class="px-2.5 py-1.5 text-slate-600 hover:text-brand-600 transition">Cân Bằng & pH</button>
+                    <button onclick="scrollToSection('sec-inorganic')" class="px-2.5 py-1.5 text-slate-600 hover:text-brand-600 transition">Nitrogen & Sulfur</button>
+                    <button onclick="scrollToSection('sec-organic-base')" class="px-2.5 py-1.5 text-slate-600 hover:text-brand-600 transition">ĐC Hữu Cơ</button>
+                    <button onclick="scrollToSection('sec-hydrocarbons')" class="px-2.5 py-1.5 text-slate-600 hover:text-brand-600 transition">Hydrocarbon</button>
+                    <button onclick="scrollToSection('sec-derivatives')" class="px-2.5 py-1.5 text-slate-600 hover:text-brand-600 transition">Dẫn Xuất</button>
+                    <button onclick="scrollToSection('sec-lookup')" class="px-3 py-1.5 bg-brand-50 text-brand-700 font-semibold rounded-md border border-brand-200 hover:bg-brand-100 transition"> Tra Cứu</button>
+                </nav>
+            </div>
+        </div>
+        <!-- Mobile Nav Bar -->
+        <div class="md:hidden flex items-center overflow-x-auto px-2 py-2 bg-slate-100 border-t border-slate-200 text-xs space-x-1.5 custom-scrollbar">
+            <a href="/ndlabs" class="whitespace-nowrap px-2.5 py-1 bg-white border border-slate-300 font-bold text-slate-800 rounded flex items-center space-x-1">
+                <img src="https://ndsite.web.app/assets/images/avatar.png" alt="ND" class="w-3.5 h-3.5 rounded-full">
+                <span>ND Labs</span>
+            </a>
+            <button onclick="scrollToSection('sec-overview')" class="whitespace-nowrap px-2 py-1 bg-white rounded shadow-sm text-slate-700">Tổng Quan</button>
+            <button onclick="scrollToSection('sec-equilibrium')" class="whitespace-nowrap px-2 py-1 bg-white rounded shadow-sm text-slate-700">Cân Bằng & pH</button>
+            <button onclick="scrollToSection('sec-inorganic')" class="whitespace-nowrap px-2 py-1 bg-white rounded shadow-sm text-slate-700">N & S</button>
+            <button onclick="scrollToSection('sec-organic-base')" class="whitespace-nowrap px-2 py-1 bg-white rounded shadow-sm text-slate-700">ĐC Hữu Cơ</button>
+            <button onclick="scrollToSection('sec-hydrocarbons')" class="whitespace-nowrap px-2 py-1 bg-white rounded shadow-sm text-slate-700">Hydrocarbon</button>
+            <button onclick="scrollToSection('sec-derivatives')" class="whitespace-nowrap px-2 py-1 bg-white rounded shadow-sm text-slate-700">Dẫn Xuất</button>
+            <button onclick="scrollToSection('sec-lookup')" class="whitespace-nowrap px-2 py-1 bg-brand-600 text-white rounded font-medium">Tra Cứu</button>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- SECTION 1: OVERVIEW & CONTINUITY -->
+        <section id="sec-overview" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+            <div class="border-b border-slate-100 pb-4 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">Chương 1 - 6 Overview</span>
+                <h2 class="text-2xl font-bold text-slate-900 mt-2">1. Tổng Quan Hệ Thống Chương Trình & Sự Kế Thừa Tri Thức</h2>
+                <p class="text-slate-600 text-sm mt-1">
+                    Chương trình Hóa học 11 (Kết nối tri thức với cuộc sống) gồm 6 chương với 25 bài học, đánh dấu bước chuyển từ mô tả hiện tượng đơn thuần (THCS) sang giải thích bản chất "tại sao" và "bằng cách nào" nhờ Động hóa học, Cân bằng hóa học, Thuyết Brønsted – Lowry và Cơ chế phản ứng hữu cơ.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                <div class="lg:col-span-1 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-3 text-center">Phân Bổ Cấu Trúc Khối Lượng Kiến Thức</h3>
+                    <div class="chart-container">
+                        <canvas id="overviewChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 overflow-x-auto">
+                    <h3 class="font-bold text-slate-800 mb-3">Mạch Tri Thức Kế Thừa Giữa Các Cấp Học</h3>
+                    <table class="w-full text-left text-xs sm:text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-700">
+                                <th class="p-3 border border-slate-200 font-bold rounded-tl-lg">Chương Lớp 11</th>
+                                <th class="p-3 border border-slate-200 font-bold">Nội Dung Cốt Lõi Lớp 11</th>
+                                <th class="p-3 border border-slate-200 font-bold rounded-tr-lg">Nền Tảng Liên Quan (Lớp 8, 9, 10)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-600">
+                            <tr>
+                                <td class="p-3 border border-slate-200 font-semibold text-brand-700">Chương 1: Cân bằng hóa học</td>
+                                <td class="p-3 border border-slate-200">Phản ứng thuận nghịch, K_c, Le Chatelier, thuyết Brønsted-Lowry, pH, chuẩn độ.</td>
+                                <td class="p-3 border border-slate-200">Tốc độ phản ứng, biến thiên enthalpy Δ_r H⁰_298, Arrhenius (Lớp 10).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-slate-200 font-semibold text-brand-700">Chương 2: Nitrogen – Sulfur</td>
+                                <td class="p-3 border border-slate-200">N2, NH3, NH4+, NOx, HNO3, SO2, H2SO4; quy trình Haber-Bosch; mưa acid, phú dưỡng.</td>
+                                <td class="p-3 border border-slate-200">Tính chất phi kim, liên kết cộng hóa trị, số oxi hóa, phản ứng acid-base (Lớp 9, 10).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-slate-200 font-semibold text-brand-700">Chương 3: Đại cương Hóa Hữu Cơ</td>
+                                <td class="p-3 border border-slate-200">Tách tinh chế (chưng cất, chiết, kết tinh, sắc ký); phổ khối MS; thuyết cấu tạo, đồng phân.</td>
+                                <td class="p-3 border border-slate-200">Khái niệm hợp chất hữu cơ, phân loại hydrocarbon cơ bản (Lớp 9).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-slate-200 font-semibold text-brand-700">Chương 4: Hydrocarbon</td>
+                                <td class="p-3 border border-slate-200">Alkane, Alkene, Alkyne, Arene; quy tắc Markovnikov; thế, cộng, trùng hợp, oxi hóa.</td>
+                                <td class="p-3 border border-slate-200">CH4, C2H4, C2H2, C6H6 và phản ứng cháy cơ bản (Lớp 9).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-slate-200 font-semibold text-brand-700">Chương 5: Halogen - Alcohol - Phenol</td>
+                                <td class="p-3 border border-slate-200">Dẫn xuất halogen, Alcohol, Phenol; liên kết hydrogen; thế nucleophile, quy tắc Zaitsev.</td>
+                                <td class="p-3 border border-slate-200">C2H5OH, phản ứng với Na, tính chất của nhóm -OH (Lớp 9).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-slate-200 font-semibold text-brand-700">Chương 6: Carbonyl - Carboxylic Acid</td>
+                                <td class="p-3 border border-slate-200">Aldehyde, Ketone (C=O), Carboxylic Acid (-COOH); tráng bạc, ester hóa.</td>
+                                <td class="p-3 border border-slate-200">CH3COOH, tính acid yếu, phản ứng tạo ester với alcohol (Lớp 9).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: CHEMICAL EQUILIBRIUM & SOLUTION CHEMISTRY -->
+        <section id="sec-equilibrium" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+            <div class="border-b border-slate-100 pb-4 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">Chương 1</span>
+                <h2 class="text-2xl font-bold text-slate-900 mt-2">2. Cân Bằng Hóa Học & Dung Dịch Nước</h2>
+                <p class="text-slate-600 text-sm mt-1">
+                    Trạng thái cân bằng động xuất hiện khi tốc độ phản ứng thuận (v_t) bằng tốc độ phản ứng nghịch (v_n). Hằng số cân bằng $K_c$ chỉ phụ thuộc nhiệt độ. Thuyết Brønsted-Lowry định nghĩa Acid nhường proton ($H^+$) và Base nhận proton ($H^+$).
+                </p>
+            </div>
+
+            <!-- Two Column Interactive Suite -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Simulator 1: Haber-Bosch Le Chatelier Equilibrium Shift -->
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-slate-800 text-base"> Mô Phỏng Cân Bằng Haber-Bosch ($N_2 + 3H_2 \rightleftharpoons 2NH_3$)</h3>
+                            <span class="text-xs bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded">Δ_r H⁰_298 = -92.2 kJ</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">
+                            Điều chỉnh Nhiệt độ & Áp suất để quan sát hiệu suất tạo $NH_3$ theo Nguyên lý Le Chatelier. (Tăng T -> cân bằng chuyển dịch thu nhiệt (trái); Tăng P -> chuyển dịch giảm số mol khí (phải)).
+                        </p>
+
+                        <div class="space-y-4 mb-4 bg-white p-4 rounded-lg border border-slate-200">
+                            <div>
+                                <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                    <span>Nhiệt Độ ($T$): <strong id="tempVal" class="text-brand-700">450 °C</strong></span>
+                                    <span class="text-slate-400">200 °C - 600 °C</span>
+                                </div>
+                                <input id="tempSlider" type="range" min="200" max="600" value="450" step="10" class="w-full accent-brand-600 cursor-pointer">
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-medium text-slate-700 mb-1">
+                                    <span>Áp Suất ($P$): <strong id="pressVal" class="text-brand-700">200 atm</strong></span>
+                                    <span class="text-slate-400">10 atm - 400 atm</span>
+                                </div>
+                                <input id="pressSlider" type="range" min="10" max="400" value="200" step="10" class="w-full accent-brand-600 cursor-pointer">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="haberChart"></canvas>
+                        </div>
+                        <div class="mt-3 bg-brand-50 border border-brand-200 p-3 rounded-lg text-xs text-brand-900">
+                            <strong>Kết luận công nghiệp:</strong> Trong thực tế sản xuất $NH_3$, nhiệt độ tối ưu được chọn là <strong>450 - 500 °C</strong> cùng áp suất <strong>150 - 200 bar</strong> có xúc tác Fe biến tính để đảm bảo hài hòa giữa <em>hiệu suất cân bằng</em> và <em>tốc độ phản ứng</em>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Tool 2: pH & Ionization Calculator -->
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-base mb-3"> Bộ Tính Toán pH Dung Dịch & Chỉ Thị Màu</h3>
+                        <p class="text-xs text-slate-600 mb-4">
+                            Nhập nồng độ nồng độ mol $[H^+]$ hoặc $[OH^-]$ để tính pH, xác định môi trường dung dịch và màu chất chỉ thị tương ứng.
+                        </p>
+
+                        <div class="bg-white p-4 rounded-lg border border-slate-200 space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Loại Thông Số Đầu Vào:</label>
+                                <select id="phCalcMode" class="w-full text-xs p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 outline-none">
+                                    <option value="hplus">Nồng độ H+ ([H+]) mol/L</option>
+                                    <option value="ohminus">Nồng độ OH- ([OH-]) mol/L</option>
+                                    <option value="phdirect">Giá trị pH trực tiếp</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Nhập Giá Trị (ví dụ: 0.001 hoặc 1e-3):</label>
+                                <input id="phInputValue" type="text" value="0.001" placeholder="0.001" class="w-full text-xs p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 outline-none font-mono">
+                            </div>
+
+                            <button onclick="calculatePH()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs py-2 px-4 rounded-md shadow transition">
+                                Tính Toán Ngay
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="phResultBox" class="mt-4 p-4 rounded-lg bg-white border border-slate-200 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-slate-500">Chỉ số pH:</span>
+                            <span id="resPHVal" class="text-2xl font-black text-brand-700">3.00</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-slate-500">Môi trường:</span>
+                            <span id="resEnvVal" class="font-bold text-red-600">Acid ([H+] > 10⁻⁷ M)</span>
+                        </div>
+                        <div class="pt-2 border-t border-slate-100 text-xs space-y-1">
+                            <div class="flex justify-between">
+                                <span>Phenolphthalein:</span>
+                                <strong id="resIndPheno" class="text-slate-700">Không màu</strong>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Quỳ tím (Litmus):</span>
+                                <strong id="resIndLitmus" class="text-red-600">Hóa đỏ</strong>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Methyl Orange:</span>
+                                <strong id="resIndMO" class="text-red-500">Hóa đỏ / Cam</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: INORGANIC CHEMISTRY - NITROGEN & SULFUR -->
+        <section id="sec-inorganic" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+            <div class="border-b border-slate-100 pb-4 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">Chương 2</span>
+                <h2 class="text-2xl font-bold text-slate-900 mt-2">3. Nitrogen & Sulfur – Phi Kim Bền Vững & Tác Động Môi Trường</h2>
+                <p class="text-slate-600 text-sm mt-1">
+                    Nitrogen ($N_2$) bền trơ ở nhiệt độ thường do liên kết ba $N \equiv N$ ($945 \text{ kJ/mol}$). Sulfur ($S$) tồn tại ở nhiều số oxi hóa. Cả hai là nguyên tố cốt lõi trong công nghiệp sản xuất phân bón và hóa chất cơ bản ($HNO_3, H_2SO_4$).
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <!-- Card NH3 -->
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="flex items-center space-x-2 text-brand-700 font-bold mb-1">
+                        <span class="px-2 py-0.5 bg-brand-100 rounded text-xs">NH₃</span>
+                        <span>Ammonia</span>
+                    </div>
+                    <p class="text-xs text-slate-600">Tháp tam giác, phân cực mạnh, tạo liên kết H tốt nên tan cực nhiều trong nước. Bazo yếu ($NH_3 + H_2O \rightleftharpoons NH_4^+ + OH^-$) & Tính khử mạnh (N⁻³).</p>
+                </div>
+                <!-- Card HNO3 -->
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="flex items-center space-x-2 text-brand-700 font-bold mb-1">
+                        <span class="px-2 py-0.5 bg-brand-100 rounded text-xs">HNO₃</span>
+                        <span>Nitric Acid</span>
+                    </div>
+                    <p class="text-xs text-slate-600">Số oxi hóa N⁺⁵ cao nhất. Acid mạnh + Chất oxi hóa cực mạnh (oxi hóa hầu hết kim loại trừ Au, Pt, sinh ra sản phẩm khử $NO_2, NO, N_2O, N_2, NH_4NO_3$).</p>
+                </div>
+                <!-- Card SO2 -->
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="flex items-center space-x-2 text-brand-700 font-bold mb-1">
+                        <span class="px-2 py-0.5 bg-brand-100 rounded text-xs">SO₂</span>
+                        <span>Sulfur Dioxide</span>
+                    </div>
+                    <p class="text-xs text-slate-600">Số oxi hóa S⁺⁴ trung gian. Vừa có tính khử (làm mất màu nước Bromine $SO_2 + Br_2 + 2H_2O \rightarrow H_2SO_4 + 2HBr$), vừa có tính oxi hóa ($SO_2 + 2H_2S \rightarrow 3S + 2H_2O$).</p>
+                </div>
+                <!-- Card H2SO4 -->
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="flex items-center space-x-2 text-brand-700 font-bold mb-1">
+                        <span class="px-2 py-0.5 bg-brand-100 rounded text-xs">H₂SO₄ đ</span>
+                        <span>Sulfuric Acid Đặc</span>
+                    </div>
+                    <p class="text-xs text-slate-600">S⁺⁶. Acid mạnh, tính oxi hóa mạnh (oxi hóa Cu sinh $SO_2$), tính háo nước cực cao (chiếm H, O từ carbohydrate gây than hóa). Nhận biết ion $SO_4^{2-}$ bằng $Ba^{2+}$ (kết tủa $BaSO_4$ trắng).</p>
+                </div>
+            </div>
+
+            <!-- Environmental Impact Highlight -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <div>
+                    <h3 class="font-bold text-red-700 text-sm flex items-center space-x-2 mb-2">
+                        <span>🌧️ Hiện Tượng Mưa Acid (Acid Rain)</span>
+                    </h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-2">
+                        Do khí độc $SO_2$ và $NO_x$ từ khí thải công nghiệp, giao thông hòa tan trong nước mưa tạo acid:
+                    </p>
+                    <div class="bg-white p-3 rounded font-mono text-xs border border-slate-200 space-y-1 text-slate-700">
+                        <p>2SO₂ + O₂ + 2H₂O ⟶ 2H₂SO₄</p>
+                        <p>4NO₂ + O₂ + 2H₂O ⟶ 4HNO₃</p>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">Tác hại: Làm phá hủy công trình kim loại/đá vôi, acid hóa đất và hồ nước gây chết sinh vật.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-emerald-700 text-sm flex items-center space-x-2 mb-2">
+                        <span>🌿 Hiện Tượng Phú Dưỡng (Eutrophication)</span>
+                    </h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-2">
+                        Do dư thừa nguồn phân bón chứa ion Nitrate ($NO_3^-$) và Phosphate ($PO_4^{3-}$) xả vào nguồn nước đọng:
+                    </p>
+                    <div class="bg-white p-3 rounded text-xs border border-slate-200 space-y-1 text-slate-700">
+                        <p>1. Tảo tích tụ phát triển đột biến (Tảo nở hoa).</p>
+                        <p>2. Tảo chết phân hủy tiêu thụ kiệt Oxi hòa tan ($DO$).</p>
+                        <p>3. Cá và hệ sinh thái dưới nước suy hố hoại tử, bốc mùi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: ORGANIC BASE & SEPARATION -->
+        <section id="sec-organic-base" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+            <div class="border-b border-slate-100 pb-4 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">Chương 3</span>
+                <h2 class="text-2xl font-bold text-slate-900 mt-2">4. Đại Cương Hóa Hữu Cơ & Phương Pháp Tách Biệt Tinh Chế</h2>
+                <p class="text-slate-600 text-sm mt-1">
+                    Hợp chất hữu cơ nhất thiết chứa Carbon. Liên kết chủ đạo là liên kết cộng hóa trị. Xác định Công thức phân tử (CTPT) nhờ mảnh pic ion phân tử $[M^+]$ trên phổ khối lượng MS ($m/z$).
+                </p>
+            </div>
+
+            <!-- Separation Methods Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:shadow-md transition">
+                    <span class="text-xs font-bold text-brand-700">01. Chưng Cất</span>
+                    <h4 class="font-bold text-slate-800 text-sm my-1">Dựa vào nhiệt độ sôi ($t^\circ_s$)</h4>
+                    <p class="text-xs text-slate-600">Tách các chất lỏng hòa tan vào nhau có $t^\circ_s$ khác biệt rõ rệt. Ví dụ: Tách Ethanol ra khỏi giấm chín / rượu lên men; Chưng cất phân đoạn dầu mỏ.</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:shadow-md transition">
+                    <span class="text-xs font-bold text-brand-700">02. Chiết (Extraction)</span>
+                    <h4 class="font-bold text-slate-800 text-sm my-1">Dựa vào độ tan khác nhau</h4>
+                    <p class="text-xs text-slate-600">Phân bố chất tan giữa 2 môi trường không tan vào nhau (lỏng-lỏng hoặc lỏng-rắn). Ví dụ: Chiết tinh dầu thảo mộc bằng dung môi hữu cơ; Ngâm rượu thuốc.</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:shadow-md transition">
+                    <span class="text-xs font-bold text-brand-700">03. Kết Tinh</span>
+                    <h4 class="font-bold text-slate-800 text-sm my-1">Dựa vào độ tan theo $T$</h4>
+                    <p class="text-xs text-slate-600">Thay đổi độ tan của chất rắn trong dung môi theo nhiệt độ để thu chất rắn tinh khiết. Ví dụ: Tinh chế đường kính, muối ăn, acid benzoic rắn.</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:shadow-md transition">
+                    <span class="text-xs font-bold text-brand-700">04. Sắc Ký Cột</span>
+                    <h4 class="font-bold text-slate-800 text-sm my-1">Hấp phụ Pha Cố Định & Pha Động</h4>
+                    <p class="text-xs text-slate-600">Tách các chất có lượng nhỏ và cấu trúc rất tương tự nhau dựa trên khả năng hấp phụ khác nhau. Ví dụ: Tách sắc tố thực vật, hoạt chất sinh học.</p>
+                </div>
+            </div>
+
+            <!-- Chart & Isomerism detail -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-800 text-sm mb-3 text-center">So Sánh Nhiệt Độ Sôi Giữa Các Nhóm Chức Hữu Cơ (M Mạch Cương Tương)</h3>
+                    <div class="chart-container">
+                        <canvas id="boilingPointChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2 text-center">Do khả năng tạo <strong>liên kết hydrogen liên phân tử</strong>: Carboxylic acid (dimer bền) > Alcohol > Carbonyl / Dẫn xuất > Hydrocarbon.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-brand-50 border border-brand-200 p-4 rounded-xl">
+                        <h4 class="font-bold text-brand-900 text-sm mb-1"> Thuyết Cấu Tạo Hóa Học & Đồng Phân</h4>
+                        <ul class="text-xs text-brand-800 space-y-1.5 list-disc list-inside">
+                            <li><strong>Hóa trị cố định trong hợp chất hữu cơ:</strong> Carbon (IV), Hydrogen (I), Oxygen (II), Halogen (I), Nitrogen (III).</li>
+                            <li><strong>Đồng phân cấu tạo:</strong> Cùng CTPT nhưng khác trật tự liên kết (Đồng phân mạch C, đồng phân vị trí nhóm chức, đồng phân nhóm chức).</li>
+                            <li><strong>Đồng phân hình học ($cis-trans$):</strong> Xuất hiện ở alkene có dạng $abC=Ccd$ với điều kiện $a \neq b$ và $c \neq d$.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                        <h4 class="font-bold text-slate-800 text-sm mb-1"> Xác Định CTPT Qua Phổ Phân Tích Khối Lượng (MS)</h4>
+                        <p class="text-xs text-slate-600">
+                            Pic ion phân tử $[M^+]$ có giá trị $m/z$ lớn nhất trên phổ khối chính là khối lượng phân tử ($M$) của hợp chất. Từ công thức đơn giản nhất $(C_aH_bO_c)_n$, ta có: $n = \frac{M}{M_{(C_aH_bO_c)}}$.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: HYDROCARBONS -->
+        <section id="sec-hydrocarbons" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+            <div class="border-b border-slate-100 pb-4 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">Chương 4</span>
+                <h2 class="text-2xl font-bold text-slate-900 mt-2">5. Hydrocarbon – Alkane, Alkene, Alkyne & Arene</h2>
+                <p class="text-slate-600 text-sm mt-1">
+                    Hydrocarbon chỉ chứa Carbon và Hydrogen. Phân loại theo bản chất liên kết: No (Alkane - liên kết $\sigma$), Không no (Alkene $\sigma+\pi$, Alkyne $\sigma+2\pi$), Thơm (Arene - vòng benzene liên hợp $\pi$).
+                </p>
+            </div>
+
+            <!-- Rules & Reactivity Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                
+                <!-- Rule 1: Markovnikov -->
+                <div class="p-5 rounded-xl bg-amber-50/50 border border-amber-200">
+                    <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Quy Tắc Cộng</span>
+                    <h3 class="font-bold text-amber-900 text-base mt-2 mb-1">Quy Tắc Markovnikov</h3>
+                    <p class="text-xs text-slate-700 leading-relaxed">
+                        Khi cộng tác nhân bất đối xứng ($HX$: $HCl, HBr, H_2O$) vào Alkene/Alkyne bất đối xứng: 
+                        <br><strong class="text-amber-900">Hydrogen (H)</strong> ưu tiên cộng vào Carbon mang <em>nhiều H hơn</em>. 
+                        <br><strong class="text-amber-900">Phần tử mang điện âm (X)</strong> cộng vào Carbon bậc cao hơn mang <em>ít H hơn</em> (Tạo sản phẩm chính).
+                    </p>
+                    <div class="mt-3 p-2 bg-white rounded border border-amber-200 font-mono text-xs text-slate-800">
+                        CH₂=CH-CH₃ + HCl ⟶ CH₃-CH(Cl)-CH₃ (Chính)
+                    </div>
+                </div>
+
+                <!-- Rule 2: Substitution Selectivity in Alkanes -->
+                <div class="p-5 rounded-xl bg-blue-50/50 border border-blue-200">
+                    <span class="text-xs font-bold text-blue-800 bg-blue-100 px-2 py-0.5 rounded">Quy Tắc Thế Halogen</span>
+                    <h3 class="font-bold text-blue-900 text-base mt-2 mb-1">Thế Chọn Lọc Alkane</h3>
+                    <p class="text-xs text-slate-700 leading-relaxed">
+                        Phản ứng thế Halogen ($Cl_2, Br_2$, chiếu sáng $h\nu$) vào Alkane:
+                        <br>Nguyên tử Halogen ưu tiên thế nguyên tử Hydrogen ở <strong>Carbon bậc cao hơn</strong> (Carbon liên kết với nhiều C khác hơn) để tạo sản phẩm chính.
+                    </p>
+                    <div class="mt-3 p-2 bg-white rounded border border-blue-200 font-mono text-xs text-slate-800">
+                        CH₃-CH₂-CH₃ + Cl₂ ⟶ CH₃-CH(Cl)-CH₃ + HCl
+                    </div>
+                </div>
+
+                <!-- Rule 3: Arene Electrophilic Substitution -->
+                <div class="p-5 rounded-xl bg-emerald-50/50 border border-emerald-200">
+                    <span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">Thế Vòng Thơm</span>
+                    <h3 class="font-bold text-emerald-900 text-base mt-2 mb-1">Quy Tắc Thế Arene</h3>
+                    <p class="text-xs text-slate-700 leading-relaxed">
+                        - <strong>Nhóm đẩy e (Alkyl -CH₃):</strong> Dễ phản ứng thế hơn Benzene, định hướng thế ưu tiên vị trí <em>Ortho (o-)</em> và <em>Para (p-)</em>.
+                        <br>- <strong>Nhóm hút e (-NO₂, -COOH):</strong> Khó thế hơn, định hướng vị trí <em>Meta (m-)</em>.
+                    </p>
+                    <div class="mt-3 p-2 bg-white rounded border border-emerald-200 font-mono text-xs text-slate-800">
+                        C₆H₅-CH₃ + HNO₃ ⟶ o-/p- Nitro-toluene
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Hydrocarbon Reaction Summary Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 font-bold">
+                            <th class="p-3 border border-slate-200">Loại Hydrocarbon</th>
+                            <th class="p-3 border border-slate-200">Liên Kết Đặc Trưng</th>
+                            <th class="p-3 border border-slate-200">Phản Ứng Đặc Trưng</th>
+                            <th class="p-3 border border-slate-200">Thuốc Thử & Hiện Tượng Nhận Biết</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-600">
+                        <tr>
+                            <td class="p-3 border border-slate-200 font-bold text-slate-800">Alkane ($C_nH_{2n+2}$)</td>
+                            <td class="p-3 border border-slate-200">Đơn $\sigma$ bền</td>
+                            <td class="p-3 border border-slate-200">Thế Halogen ($h\nu$), Cracking, Reforming, Đốt cháy ($n_{H_2O} > n_{CO_2}$)</td>
+                            <td class="p-3 border border-slate-200">Không làm mất màu nước $Br_2$ hay $KMnO_4$ ở điều kiện thường.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border border-slate-200 font-bold text-slate-800">Alkene ($C_nH_{2n}$)</td>
+                            <td class="p-3 border border-slate-200">Đôi $C=C$ ($1\sigma + 1\pi$)</td>
+                            <td class="p-3 border border-slate-200">Cộng ($H_2, X_2, HX$), Trùng hợp (PE, PP), Oxi hóa ($KMnO_4$)</td>
+                            <td class="p-3 border border-slate-200"><strong>Mất màu tím $KMnO_4$ & Mất màu da cam nước $Br_2$</strong> ở ngay $t^\circ$ phòng.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border border-slate-200 font-bold text-slate-800">Alkyne ($C_nH_{2n-2}$)</td>
+                            <td class="p-3 border border-slate-200">Ba $C \equiv C$ ($1\sigma + 2\pi$)</td>
+                            <td class="p-3 border border-slate-200">Cộng, Thế ion kim loại (Alk-1-yne), Oxi hóa</td>
+                            <td class="p-3 border border-slate-200">Alk-1-yne ($HC \equiv C-R$) + $AgNO_3/NH_3$ ⟶ <strong>Kết tủa vàng nhạt</strong> ($Ag-C \equiv C-R$). Mất màu $Br_2, KMnO_4$.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border border-slate-200 font-bold text-slate-800">Arene (Benzene/Alkylbenzene)</td>
+                            <td class="p-3 border border-slate-200">Vòng Benzene liên hợp bền</td>
+                            <td class="p-3 border border-slate-200">Thế electrophile ($Br_2/Fe$, $HNO_3/H_2SO_4$), Oxi hóa nhánh mạch (Toluene)</td>
+                            <td class="p-3 border border-slate-200">Benzene không làm mất màu $KMnO_4$. Toluene làm <strong>mất màu tím $KMnO_4$ khi đun nóng</strong>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 6: HALOGENS, ALCOHOL, PHENOL, CARBONYL & CARBOXYLIC ACID -->
+        <section id="sec-derivatives" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+            <div class="border-b border-slate-100 pb-4 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">Chương 5 & 6</span>
+                <h2 class="text-2xl font-bold text-slate-900 mt-2">6. Dẫn Xuất Halogen – Alcohol – Phenol – Carbonyl & Carboxylic Acid</h2>
+                <p class="text-slate-600 text-sm mt-1">
+                    Các nhóm chức chứa Oxy và Halogen quyết định sự đa dạng phản ứng hữu cơ. Nổi bật là phản ứng tách Zaitsev, tính acid của Phenol, tính khử của Aldehyde và phản ứng Ester hóa.
+                </p>
+            </div>
+
+            <!-- Core Principles Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                
+                <!-- Zaitsev Elimination Rule -->
+                <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="px-2 py-0.5 bg-brand-100 text-brand-800 font-bold text-xs rounded">Quy Tắc Tách</span>
+                        <h3 class="font-bold text-slate-800 text-sm">Quy Tắc Tách Zaitsev (Halogen & Alcohol)</h3>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Khi tách $HX$ từ Dẫn xuất Halogen (dung dịch $KOH/Alcohol, t^\circ$) hoặc tách $H_2O$ từ Alcohol ($H_2SO_4$ đặc, $170^\circ C$):
+                        <br>Nhóm $-X$ hoặc $-OH$ ưu tiên tách cùng nguyên tử Hydrogen ở <strong>Carbon lân cận bậc cao hơn</strong> (chứa ít H hơn) ⟶ Tạo Alkene có nhiều nhóm thế hơn là sản phẩm chính.
+                    </p>
+                    <div class="bg-white p-2.5 rounded border border-slate-200 font-mono text-xs text-slate-800">
+                        CH₃-CH(OH)-CH₂-CH₃ ⎯(170°C, H₂SO₄ đ)→ CH₃-CH=CH-CH₃ (Chính) + H₂O
+                    </div>
+                </div>
+
+                <!-- Phenol Special Character -->
+                <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="px-2 py-0.5 bg-brand-100 text-brand-800 font-bold text-xs rounded">Cấu Trúc Bền</span>
+                        <h3 class="font-bold text-slate-800 text-sm">Hiệu Ứng Cộng Hưởng Вòng Phenol ($C_6H_5OH$)</h3>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Cặp e p của O liên hợp với hệ $\pi$ vòng thơm ($+C$):
+                        <br>1. Liên kết $O-H$ phân cực cực mạnh ⟶ Phenol có <strong>tính acid yếu</strong> ($K_a \approx 10^{-10}$), tác dụng được $NaOH$ (Alcohol không có tính chất này).
+                        <br>2. Mật độ e tăng cao tại vị trí <em>Ortho / Para</em> ⟶ Phản ứng thế $Br_2$ cực dễ ngay nhiệt độ phòng tạo <strong>kết tủa trắng 2,4,6-tribromophenol</strong>.
+                    </p>
+                    <div class="bg-white p-2.5 rounded border border-slate-200 font-mono text-xs text-slate-800">
+                        C₆H₅OH + 3Br₂(aq) ⟶ C₆H₂Br₃OH ↓ (Trắng) + 3HBr
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Comparison Matrix: Aldehyde vs Ketone vs Carboxylic Acid -->
+            <div class="overflow-x-auto">
+                <h3 class="font-bold text-slate-800 text-sm mb-3">So Sánh Hợp Chất Carbonyl ($C=O$) & Carboxylic Acid ($-COOH$)</h3>
+                <table class="w-full text-xs text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 font-bold">
+                            <th class="p-3 border border-slate-200">Loại Hợp Chất</th>
+                            <th class="p-3 border border-slate-200">Nhóm Chức</th>
+                            <th class="p-3 border border-slate-200">Tính Chất Hóa Học Đột Phá</th>
+                            <th class="p-3 border border-slate-200">Thuốc Thử Đặc Trưng & Hiện Tượng</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-600">
+                        <tr>
+                            <td class="p-3 border border-slate-200 font-bold text-slate-800">Aldehyde</td>
+                            <td class="p-3 border border-slate-200 font-mono text-brand-700">-CHO</td>
+                            <td class="p-3 border border-slate-200">Vừa có tính khử mạnh (dễ bị oxi hóa thành Acid), vừa có tính oxi hóa (cộng $H_2$ ra Alcohol bậc 1).</td>
+                            <td class="p-3 border border-slate-200">
+                                1. Thuốc thử Tollens ($AgNO_3/NH_3, t^\circ$) ⟶ <strong>Tráng bạc sáng bóng ($Ag$)</strong>.
+                                <br>2. $Cu(OH)_2/NaOH, t^\circ$ ⟶ <strong>Kết tủa đỏ gạch ($Cu_2O$)</strong>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border border-slate-200 font-bold text-slate-800">Ketone</td>
+                            <td class="p-3 border border-slate-200 font-mono text-brand-700">-CO-</td>
+                            <td class="p-3 border border-slate-200">Bền với các chất oxi hóa nhẹ ($AgNO_3/NH_3, Cu(OH)_2$). Bị khử bởi $NaBH_4 / LiAlH_4$ tạo Alcohol bậc 2.</td>
+                            <td class="p-3 border border-slate-200"><strong>Âm tính</strong> với phản ứng tráng bạc và nước $Br_2$ (dùng để phân biệt nhanh với Aldehyde).</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border border-slate-200 font-bold text-slate-800">Carboxylic Acid</td>
+                            <td class="p-3 border border-slate-200 font-mono text-brand-700">-COOH</td>
+                            <td class="p-3 border border-slate-200">
+                                Mang đầy đủ tính chất một acid (đổi màu quỳ đỏ, tác dụng kim loại trước H, basic oxide, base, muối carbonate). Tham gia <strong>phản ứng ester hóa</strong> với Alcohol ($H_2SO_4$ đ, $t^\circ$).
+                            </td>
+                            <td class="p-3 border border-slate-200">
+                                Tác dụng $NaHCO_3$ hoặc $Na_2CO_3$ ⟶ <strong>Sủi bọt khí $CO_2$ mạnh</strong> ngay nhiệt độ phòng.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 7: INTERACTIVE REAGENT LOOKUP & SYNTHESIS PATHWAY -->
+        <section id="sec-lookup" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border-2 border-brand-500">
+            <div class="border-b border-slate-100 pb-4 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-white bg-brand-600 px-2.5 py-1 rounded-full">Công Cụ Tra Cứu Tương Tác</span>
+                <h2 class="text-2xl font-bold text-slate-900 mt-2">7. Tra Cứu Nhận Biết Hóa Chất & Trục Chuyển Hóa Hữu Cơ</h2>
+                <p class="text-slate-600 text-sm mt-1">
+                    Sử dụng các bộ lọc tương tác dưới đây để tra cứu nhanh phương pháp nhận biết nhóm chất/ion hoặc khám phá sơ đồ chuỗi phản ứng chuyển hóa chức hữu cơ từ Alkane đến Ester.
+                </p>
+            </div>
+
+            <!-- Tab Switcher for Lookup Tools -->
+            <div class="flex border-b border-slate-200 mb-6 space-x-4">
+                <button id="btnTabLookup" onclick="switchLookupTab('reagents')" class="pb-2 text-sm font-bold border-b-2 border-brand-600 text-brand-700"> Bảng Tra Cứu Nhận Biết</button>
+                <button id="btnTabPathway" onclick="switchLookupTab('pathway')" class="pb-2 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-800"> Trục Chuyển Hóa Hữu Cơ</button>
+            </div>
+
+            <!-- TAB CONTENT 1: REAGENT LOOKUP ENGINE -->
+            <div id="tabReagents" class="space-y-6">
+                <div class="flex flex-col sm:flex-row gap-4 items-center justify-between bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <div class="w-full sm:w-1/2">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Lọc Theo Nhóm Chất / Ion:</label>
+                        <select id="reagentFilterSelect" onchange="filterReagentTable()" class="w-full text-xs p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
+                            <option value="all">-- Tất Cả Chất (Hữu Cơ & Vô Cơ) --</option>
+                            <option value="inorganic">Hợp Chất Vô Cơ (NH4+, SO4 2-, Ion kim loại)</option>
+                            <option value="hydrocarbon">Hydrocarbon (Alkene, Alk-1-yne, Toluene)</option>
+                            <option value="oxygen">Hợp Chất Chứa Oxy (Alcohol, Phenol, Aldehyde, Acid)</option>
+                        </select>
+                    </div>
+                    <div class="w-full sm:w-1/2">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Tìm Kiếm Nhanh (Từ khóa):</label>
+                        <input id="reagentSearchInput" type="text" onkeyup="filterReagentTable()" placeholder="Nhập tên chất, thuốc thử, hiện tượng..." class="w-full text-xs p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse">
+                        <thead>
+                            <tr class="bg-brand-50 text-brand-900 font-bold border-b border-brand-200">
+                                <th class="p-3 border border-slate-200">Chất / Ion Cần Nhận Biết</th>
+                                <th class="p-3 border border-slate-200">Thuốc Thử Sử Dụng</th>
+                                <th class="p-3 border border-slate-200">Hiện Tượng Quan Sát Được</th>
+                                <th class="p-3 border border-slate-200">Phương Trình Phản Ứng Minh Họa</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reagentTableBody" class="divide-y divide-slate-200 text-slate-700">
+                            <!-- Dynamic Content Inserted by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB CONTENT 2: SYNTHESIS PATHWAY VIEWER -->
+            <div id="tabPathway" class="hidden space-y-6">
+                <p class="text-xs text-slate-600">
+                    Nhấp vào từng bước phản ứng bên dưới để xem chi tiết tác nhân, điều kiện và cơ chế chuyển hóa giữa các lớp hợp chất hữu cơ:
+                </p>
+
+                <!-- Interactive Pathway Chain Steps -->
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-2 text-center text-xs font-bold">
+                    <button onclick="showPathwayDetail(1)" class="p-3 rounded-lg border border-slate-200 bg-slate-50 hover:bg-brand-50 hover:border-brand-300 transition">
+                        1. Alkane
+                    </button>
+                    <button onclick="showPathwayDetail(2)" class="p-3 rounded-lg border border-slate-200 bg-slate-50 hover:bg-brand-50 hover:border-brand-300 transition">
+                        2. Dẫn Xuất Halogen
+                    </button>
+                    <button onclick="showPathwayDetail(3)" class="p-3 rounded-lg border border-slate-200 bg-slate-50 hover:bg-brand-50 hover:border-brand-300 transition">
+                        3. Alcohol
+                    </button>
+                    <button onclick="showPathwayDetail(4)" class="p-3 rounded-lg border border-slate-200 bg-slate-50 hover:bg-brand-50 hover:border-brand-300 transition">
+                        4. Aldehyde
+                    </button>
+                    <button onclick="showPathwayDetail(5)" class="p-3 rounded-lg border border-slate-200 bg-slate-50 hover:bg-brand-50 hover:border-brand-300 transition">
+                        5. Carboxylic Acid
+                    </button>
+                    <button onclick="showPathwayDetail(6)" class="p-3 rounded-lg border border-slate-200 bg-slate-50 hover:bg-brand-50 hover:border-brand-300 transition">
+                        6. Ester
+                    </button>
+                </div>
+
+                <!-- Pathway Detail Display Box -->
+                <div id="pathwayDetailBox" class="p-5 rounded-xl bg-slate-50 border border-slate-200">
+                    <h4 id="pwTitle" class="font-bold text-brand-800 text-base mb-2">Chọn một bước chuyển hóa ở trên để xem chi tiết...</h4>
+                    <p id="pwDesc" class="text-xs text-slate-600 leading-relaxed">
+                        Mạch chuyển hóa hữu cơ từ Hydrocarbon đơn giản đến các dẫn xuất mang nhóm chức phức tạp phản ánh đúng logic hóa học trong đề thi và thực tiễn tổng hợp.
+                    </p>
+                    <div id="pwCode" class="mt-3 p-3 bg-white rounded border border-slate-200 font-mono text-xs text-slate-800 hidden">
+                        <!-- Equation Example -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 space-y-3">
+            <div class="flex items-center justify-center space-x-2">
+                <a href="/ndlabs" class="inline-flex items-center space-x-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-lg transition text-slate-800 font-bold">
+                    <img src="https://ndsite.web.app/assets/images/avatar.png" alt="ND Labs" class="w-5 h-5 rounded-full object-cover">
+                    <span>ND Labs</span>
+                </a>
+                <span class="text-slate-300">•</span>
+                <span class="font-semibold text-slate-700">Sổ Tay Hóa Học 11 - Kết Nối Tri Thức Với Cuộc Sống</span>
+            </div>
+            <p>Ứng dụng học tập & tra cứu tương tác trực quan thiết kế trên nền Tailwind CSS & Chart.js.</p>
+            <div>
+                <a href="/ndlabs" class="inline-flex items-center space-x-1.5 text-brand-600 hover:text-brand-700 font-semibold transition bg-brand-50 hover:bg-brand-100 px-3 py-1 rounded-md border border-brand-200">
+                    <span>‹ Quay về trang chủ ND Labs</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Data Store for Reagent Identification
+        const reagentData = [
+            {
+                cat: 'inorganic',
+                target: 'Ion Ammonium (NH₄⁺)',
+                reagent: 'Dung dịch Kiềm (NaOH, KOH) đun nóng',
+                phenomenon: 'Thoát khí mùi khai đặc trưng, làm xanh quỳ tím ẩm.',
+                equation: 'NH₄⁺ + OH⁻ ⎯(t°)→ NH₃ ↑ + H₂O'
+            },
+            {
+                cat: 'inorganic',
+                target: 'Ion Sulfate (SO₄²⁻)',
+                reagent: 'Dung dịch muối Ba²⁺ (BaCl₂, Ba(NO₃)₂)',
+                phenomenon: 'Xuất hiện kết tủa trắng bền, không tan trong acid mạnh.',
+                equation: 'Ba²⁺ + SO₄²⁻ ⟶ BaSO₄ ↓'
+            },
+            {
+                cat: 'hydrocarbon',
+                target: 'Alkene / Alkyne (Khí không no)',
+                reagent: 'Dung dịch Nước Bromine (Br₂) hoặc KMnO₄',
+                phenomenon: 'Dung dịch Bromine nhạt màu/mất màu da cam; KMnO₄ mất màu tím tạo kết tủa nâu đen MnO₂.',
+                equation: 'CH₂=CH₂ + Br₂ ⟶ CH₂Br-CH₂Br'
+            },
+            {
+                cat: 'hydrocarbon',
+                target: 'Alk-1-yne (Có liên kết C≡C đầu mạch)',
+                reagent: 'Dung dịch AgNO₃ trong NH₃',
+                phenomenon: 'Xuất hiện kết tủa vàng nhạt đặc trưng.',
+                equation: 'HC≡CH + 2AgNO₃ + 2NH₃ ⟶ AgC≡CAg ↓ + 2NH₄NO₃'
+            },
+            {
+                cat: 'hydrocarbon',
+                target: 'Toluene (Alkylbenzene)',
+                reagent: 'Dung dịch KMnO₄ đun nóng',
+                phenomenon: 'Mất màu tím của dung dịch KMnO₄ khi đun nóng (Benzene không có phản ứng này).',
+                equation: 'C₆H₅-CH₃ + 2KMnO₄ ⎯(t°)→ C₆H₅COOK + 2MnO₂ ↓ + KOH + H₂O'
+            },
+            {
+                cat: 'oxygen',
+                target: 'Alcohol đa chức có -OH lề kề (Glycerol, Ethylene glycol)',
+                reagent: 'Cu(OH)₂ ở nhiệt độ phòng',
+                phenomenon: 'Cu(OH)₂ tan ra tạo dung dịch phức chất màu xanh lam thẫm.',
+                equation: '2C₃H₈O₃ + Cu(OH)₂ ⟶ (C₃H₇O₃)₂Cu + 2H₂O'
+            },
+            {
+                cat: 'oxygen',
+                target: 'Phenol (C₆H₅OH)',
+                reagent: 'Dung dịch Nước Bromine (Br₂)',
+                phenomenon: 'Xuất hiện kết tủa trắng 2,4,6-tribromophenol ngay lập tức.',
+                equation: 'C₆H₅OH + 3Br₂ ⟶ C₆H₂Br₃OH ↓ (Trắng) + 3HBr'
+            },
+            {
+                cat: 'oxygen',
+                target: 'Aldehyde (-CHO)',
+                reagent: 'Thuốc thử Tollens (AgNO₃/NH₃) đun nóng',
+                phenomenon: 'Tạo lớp kim loại Bạc (Ag) sáng bóng tráng bám thành ống nghiệm.',
+                equation: 'R-CHO + 2[Ag(NH₃)₂]OH ⎯(t°)→ R-COONH₄ + 2Ag ↓ + 3NH₃ + H₂O'
+            },
+            {
+                cat: 'oxygen',
+                target: 'Carboxylic Acid (-COOH)',
+                reagent: 'Dung dịch NaHCO₃ hoặc Na₂CO₃',
+                phenomenon: 'Sủi bọt khí CO₂ rất mạnh ngay ở nhiệt độ phòng.',
+                equation: 'R-COOH + NaHCO₃ ⟶ R-COONa + CO₂ ↑ + H₂O'
+            }
+        ];
+
+        // Pathway Step Details
+        const pathwayDetails = {
+            1: {
+                title: 'Bước 1: Từ Alkane ⟶ Dẫn Xuất Halogen',
+                desc: 'Thực hiện phản ứng thế Halogen (Cl₂, Br₂) dưới điều kiện chiếu sáng (hν). Thế ưu tiên ở Carbon bậc cao hơn.',
+                code: 'CH₃-CH₃ + Cl₂ ⎯(hν)→ CH₃-CH₂-Cl + HCl'
+            },
+            2: {
+                title: 'Bước 2: Từ Dẫn Xuất Halogen ⟶ Alcohol',
+                desc: 'Thực hiện phản ứng thế Nucleophile bằng cách đun nóng với dung dịch kiềm loãng (NaOH/H₂O).',
+                code: 'CH₃-CH₂-Cl + NaOH ⎯(t°)→ CH₃-CH₂-OH + NaCl'
+            },
+            3: {
+                title: 'Bước 3: Từ Alcohol ⟶ Aldehyde / Ketone',
+                desc: 'Oxi hóa không hoàn toàn Alcohol bậc 1 bằng CuO đun nóng thu được Aldehyde (Alcohol bậc 2 tạo Ketone).',
+                code: 'CH₃-CH₂-OH + CuO ⎯(t°)→ CH₃-CHO + Cu ↓ + H₂O'
+            },
+            4: {
+                title: 'Bước 4: Từ Aldehyde ⟶ Carboxylic Acid',
+                desc: 'Oxi hóa Aldehyde bằng các chất oxi hóa như O₂ (xúc tác Mn²⁺), nước Bromine hoặc thuốc thử Tollens.',
+                code: '2CH₃-CHO + O₂ ⎯(Mn²⁺, t°)→ 2CH₃-COOH'
+            },
+            5: {
+                title: 'Bước 5: Từ Carboxylic Acid + Alcohol ⟶ Ester',
+                desc: 'Phản ứng Ester hóa thuận nghịch đun nóng với xúc tác H₂SO₄ đặc.',
+                code: 'CH₃-COOH + C₂H₅OH ⇌ (H₂SO₄ đ, t°) CH₃-COOC₂H₅ + H₂O'
+            },
+            6: {
+                title: 'Bước 6: Ứng Dụng Sản Phẩm Ester & Polymer',
+                desc: 'Ester có mùi thơm hoa quả làm hương liệu, chất dung môi hữu cơ hoặc sản xuất thủy tinh hữu cơ plexiglas.',
+                code: 'CH₂=C(CH₃)-COOCH₃ ⎯(trùng hợp)→ Poly(methyl methacrylate)'
+            }
+        };
+
+        // Charts Initialization Variables
+        let haberChartInstance = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initOverviewChart();
+            initHaberChart();
+            initBoilingPointChart();
+            renderReagentTable(reagentData);
+            calculatePH();
+        });
+
+        // Navigation Smooth Scroll
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                const yOffset = -70;
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        }
+
+        // Section 1 Chart: Program Distribution
+        function initOverviewChart() {
+            const ctx = document.getElementById('overviewChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Cân bằng & pH', 'N & S Phi Kim', 'ĐC Hữu Cơ', 'Hydrocarbon', 'Halogen-Alcohol-Phenol', 'Carbonyl & Acid'],
+                    datasets: [{
+                        data: [15, 20, 15, 20, 15, 15],
+                        backgroundColor: [
+                            '#16a34a', '#0284c7', '#f59e0b', '#8b5cf6', '#ec4899', '#14b8a6'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12,
+                                font: { size: 10 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Section 2 Interactive Simulator: Haber-Bosch Yield
+        function initHaberChart() {
+            const ctx = document.getElementById('haberChart').getContext('2d');
+            
+            haberChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['300°C', '350°C', '400°C', '450°C', '500°C', '550°C', '600°C'],
+                    datasets: [{
+                        label: 'Hiệu Suất Tạo NH3 (%) tại Áp Suất Hiện Tại',
+                        data: [65, 55, 42, 30, 20, 12, 7],
+                        borderColor: '#16a34a',
+                        backgroundColor: 'rgba(22, 163, 74, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#15803d'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: { display: true, text: 'Hiệu Suất Cân Bằng (%)', font: { size: 11 } }
+                        },
+                        x: {
+                            title: { display: true, text: 'Nhiệt Độ (°C)', font: { size: 11 } }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Sliders listener
+            document.getElementById('tempSlider').addEventListener('input', updateHaberSimulation);
+            document.getElementById('pressSlider').addEventListener('input', updateHaberSimulation);
+        }
+
+        function updateHaberSimulation() {
+            const T = parseInt(document.getElementById('tempSlider').value);
+            const P = parseInt(document.getElementById('pressSlider').value);
+
+            document.getElementById('tempVal').innerText = T + ' °C';
+            document.getElementById('pressVal').innerText = P + ' atm';
+
+            // Approximate model for NH3 yield % = f(T, P)
+            // Higher P -> higher yield; Higher T -> lower yield
+            const temps = [300, 350, 400, 450, 500, 550, 600];
+            const newYields = temps.map(t => {
+                let base = 85 - (t - 300) * 0.15;
+                let pressFactor = (P / 200) * 0.8;
+                let result = base * pressFactor;
+                return Math.min(Math.max(Math.round(result), 2), 98);
+            });
+
+            haberChartInstance.data.datasets[0].data = newYields;
+            haberChartInstance.update();
+        }
+
+        // Section 2 Tool: pH Calculator
+        function calculatePH() {
+            const mode = document.getElementById('phCalcMode').value;
+            const inputStr = document.getElementById('phInputValue').value.trim();
+            const val = parseFloat(inputStr);
+
+            let ph = 7.0;
+
+            if (isNaN(val) || val <= 0) {
+                alert('Vui lòng nhập số dương hợp lệ!');
+                return;
+            }
+
+            if (mode === 'hplus') {
+                ph = -Math.log10(val);
+            } else if (mode === 'ohminus') {
+                let pOH = -Math.log10(val);
+                ph = 14 - pOH;
+            } else {
+                ph = val;
+            }
+
+            ph = Math.min(Math.max(ph, 0), 14);
+
+            document.getElementById('resPHVal').innerText = ph.toFixed(2);
+
+            const resEnv = document.getElementById('resEnvVal');
+            const resLitmus = document.getElementById('resIndLitmus');
+            const resPheno = document.getElementById('resIndPheno');
+            const resMO = document.getElementById('resIndMO');
+
+            if (ph < 6.8) {
+                resEnv.innerText = 'Acid ([H+] > 10⁻⁷ M)';
+                resEnv.className = 'font-bold text-red-600';
+                resLitmus.innerText = 'Hóa Đỏ';
+                resLitmus.className = 'text-red-600 font-bold';
+                resPheno.innerText = 'Không Màu';
+                resPheno.className = 'text-slate-600';
+                resMO.innerText = ph < 3.1 ? 'Hóa Đỏ' : 'Hóa Cam';
+                resMO.className = 'text-red-500 font-bold';
+            } else if (ph > 7.2) {
+                resEnv.innerText = 'Base ([H+] < 10⁻⁷ M)';
+                resEnv.className = 'font-bold text-blue-600';
+                resLitmus.innerText = 'Hóa Xanh';
+                resLitmus.className = 'text-blue-600 font-bold';
+                resPheno.innerText = ph >= 8.3 ? 'Hóa Hồng / Tím Hồng' : 'Không màu';
+                resPheno.className = ph >= 8.3 ? 'text-pink-600 font-bold' : 'text-slate-600';
+                resMO.innerText = 'Hóa Vàng';
+                resMO.className = 'text-yellow-600 font-bold';
+            } else {
+                resEnv.innerText = 'Trung Tính ([H+] = 10⁻⁷ M)';
+                resEnv.className = 'font-bold text-emerald-600';
+                resLitmus.innerText = 'Tím (Không đổi màu)';
+                resLitmus.className = 'text-purple-600';
+                resPheno.innerText = 'Không Màu';
+                resPheno.className = 'text-slate-600';
+                resMO.innerText = 'Vàng / Cam';
+                resMO.className = 'text-amber-500';
+            }
+        }
+
+        // Section 4 Chart: Boiling Points
+        function initBoilingPointChart() {
+            const ctx = document.getElementById('boilingPointChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Alkane (Ethane)', 'Halogen (Ethyl Cl)', 'Carbonyl (Acetaldehyde)', 'Alcohol (Ethanol)', 'Acid (Acetic Acid)'],
+                    datasets: [{
+                        label: 'Nhiệt Độ Sôi (°C)',
+                        data: [-88.6, 12.3, 20.2, 78.3, 117.9],
+                        backgroundColor: [
+                            '#94a3b8', '#38bdf8', '#fbbf24', '#34d399', '#f43f5e'
+                        ],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            title: { display: true, text: 'Nhiệt Độ Sôi (°C)', font: { size: 11 } }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        // Section 7 Tool: Reagents Table Renderer & Search Filter
+        function renderReagentTable(data) {
+            const tbody = document.getElementById('reagentTableBody');
+            tbody.innerHTML = '';
+
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-slate-400">Không tìm thấy kết quả phù hợp.</td></tr>';
+                return;
+            }
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition';
+                tr.innerHTML = `
+                    <td class="p-3 border border-slate-200 font-bold text-slate-900">${item.target}</td>
+                    <td class="p-3 border border-slate-200 font-medium text-brand-800">${item.reagent}</td>
+                    <td class="p-3 border border-slate-200 text-slate-700">${item.phenomenon}</td>
+                    <td class="p-3 border border-slate-200 font-mono text-xs text-slate-800 bg-slate-50/50">${item.equation}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterReagentTable() {
+            const cat = document.getElementById('reagentFilterSelect').value;
+            const query = document.getElementById('reagentSearchInput').value.toLowerCase().trim();
+
+            const filtered = reagentData.filter(item => {
+                const matchCat = (cat === 'all') || (item.cat === cat);
+                const matchQuery = item.target.toLowerCase().includes(query) || 
+                                   item.reagent.toLowerCase().includes(query) || 
+                                   item.phenomenon.toLowerCase().includes(query) ||
+                                   item.equation.toLowerCase().includes(query);
+                return matchCat && matchQuery;
+            });
+
+            renderReagentTable(filtered);
+        }
+
+        // Section 7 Tool: Tab & Pathway Detail Switcher
+        function switchLookupTab(tabName) {
+            const tabR = document.getElementById('tabReagents');
+            const tabP = document.getElementById('tabPathway');
+            const btnR = document.getElementById('btnTabLookup');
+            const btnP = document.getElementById('btnTabPathway');
+
+            if (tabName === 'reagents') {
+                tabR.classList.remove('hidden');
+                tabP.classList.add('hidden');
+                btnR.className = 'pb-2 text-sm font-bold border-b-2 border-brand-600 text-brand-700';
+                btnP.className = 'pb-2 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-800';
+            } else {
+                tabR.classList.add('hidden');
+                tabP.classList.remove('hidden');
+                btnP.className = 'pb-2 text-sm font-bold border-b-2 border-brand-600 text-brand-700';
+                btnR.className = 'pb-2 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-800';
+                showPathwayDetail(1);
+            }
+        }
+
+        function showPathwayDetail(step) {
+            const info = pathwayDetails[step];
+            if (!info) return;
+
+            document.getElementById('pwTitle').innerText = info.title;
+            document.getElementById('pwDesc').innerText = info.desc;
+
+            const codeBox = document.getElementById('pwCode');
+            codeBox.innerText = info.code;
+            codeBox.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
