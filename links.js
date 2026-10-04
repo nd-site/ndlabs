@@ -179,5 +179,17 @@ const ndLinks = [
         textcolor: "#FF0000",
         mutedcolor: "#FF0000",
         newtab: false
+    },
+    {
+        title: "Chép chính tả",
+        description: "Chép chính tả theo tốc độ viết.",
+        url: "/ndlabs/tool/chepchinhta/v1",
+        image: "https://ndsite.web.app/assets/images/avatar.png",
+        color: "#FFEAEA",
+        textColor: "#FF4A4A",
+        mutedColor: "#668096",
+        iconColor: "#FF0000",
+        iconTextColor: "#FFFFFF",
+        newTab: true
     }
 ];
