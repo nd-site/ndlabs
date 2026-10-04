@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hóa Học 11 KNTT - Bài 1, 2 | ND Labs</title>
+    <link rel="icon" type="image/png" href="https://ndsite.web.app/assets/images/avatar.png">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfeff',
+                            100: '#cffaff',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            900: '#164e63',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- MathJax for LaTeX Rendering -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' },
+            startup: {
+                pageReady: () => {
+                    return MathJax.startup.defaultPageReady().then(() => {
+                        console.log('MathJax initial typesetting complete');
+                    });
+                }
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0f172a;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease-in-out;
+        }
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 4px 20px -2px rgba(14, 165, 233, 0.15);
+        }
+        .formula-box {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%);
+            border-left: 4px solid #38bdf8;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden bg-slate-950 text-slate-100">
+
+    <!-- Header Navigation -->
+    <header class="h-16 border-b border-slate-800 bg-slate-900/90 backdrop-blur-md px-4 lg:px-6 flex items-center justify-between shrink-0 z-30">
+        <div class="flex items-center space-x-3 lg:space-x-4">
+            <a href="/ndlabs" class="flex items-center space-x-2 text-slate-300 hover:text-cyan-400 transition-colors bg-slate-800/80 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700/60 text-xs lg:text-sm font-medium">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Trang chủ ND Labs</span>
+            </a>
+            <div class="h-5 w-px bg-slate-800"></div>
+            <div class="flex items-center space-x-3">
+                <img src="https://ndsite.web.app/assets/images/avatar.png" alt="ND Labs Logo" class="w-8 h-8 rounded-full border border-cyan-500/40 shadow-sm shadow-cyan-500/20" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=ND';">
+                <div>
+                    <h1 class="text-sm lg:text-base font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 leading-tight">
+                        Hóa Học 11 KNTT
+                    </h1>
+                    <p class="text-[11px] text-slate-400 hidden sm:block">Bài 1 & Bài 2 • Tóm tắt kiến thức & Công thức ôn tập</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="flex items-center space-x-1 lg:space-x-1.5 bg-slate-950/80 p-1 rounded-xl border border-slate-800/90 overflow-x-auto custom-scrollbar">
+            <button onclick="switchTab('all')" id="tab-all" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20 flex items-center shrink-0">
+                <i class="fa-solid fa-layer-group mr-1.5"></i>Tất cả
+            </button>
+            <button onclick="switchTab('bai1')" id="tab-bai1" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center shrink-0">
+                <i class="fa-solid fa-scale-balanced mr-1.5"></i>Bài 1: Cân bằng hóa học
+            </button>
+            <button onclick="switchTab('bai2')" id="tab-bai2" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center shrink-0">
+                <i class="fa-solid fa-flask-vial mr-1.5"></i>Bài 2: Dung dịch nước
+            </button>
+            <button onclick="switchTab('formulas')" id="tab-formulas" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center shrink-0">
+                <i class="fa-solid fa-square-root-variable mr-1.5"></i>Sổ tay công thức
+            </button>
+            <button onclick="switchTab('interactive')" id="tab-interactive" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center shrink-0">
+                <i class="fa-solid fa-calculator mr-1.5 text-amber-400"></i>Công cụ & Mô phỏng
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content Container (Optimized for 16:9 Viewport) -->
+    <main class="flex-1 p-3 lg:p-4 overflow-hidden relative">
+
+        <!-- ==================== TAB 1: TẤT CẢ (SUMMARY DASHBOARD) ==================== -->
+        <div id="content-all" class="tab-content h-full grid grid-cols-12 gap-3 lg:gap-4 overflow-hidden">
+            
+            <!-- Left Column: Bài 1 -->
+            <section class="col-span-12 lg:col-span-6 flex flex-col glass-panel rounded-2xl overflow-hidden border border-slate-800/80">
+                <div class="px-4 py-3 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between shrink-0">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <h2 class="font-bold text-sm lg:text-base text-cyan-300">Bài 1: Khái niệm về Cân bằng hóa học</h2>
+                    </div>
+                    <span class="text-[10px] bg-cyan-950 text-cyan-400 border border-cyan-800/60 px-2 py-0.5 rounded-full font-medium">Chương 1</span>
+                </div>
+                <div class="p-4 flex-1 overflow-y-auto custom-scrollbar space-y-4">
+                    
+                    <!-- Core Concept Card -->
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-l-cyan-400">
+                        <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-arrows-rotate text-cyan-400 mr-2"></i>1. Phản ứng thuận nghịch & Cân bằng động
+                        </h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Phản ứng thuận nghịch xảy ra theo hai chiều ngược nhau trong cùng điều kiện: $aA + bB \rightleftharpoons cC + dD$.
+                        </p>
+                        <div class="mt-2 text-xs bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/80 text-cyan-200">
+                            <strong>Trạng thái cân bằng:</strong> Là trạng thái mà tốc độ phản ứng thuận bằng tốc độ phản ứng nghịch ($v_t = v_n$). Đây là <span class="text-amber-300 font-semibold">cân bằng động</span> (phản ứng vẫn tiếp diễn ở cấp vi mô, nồng độ các chất không đổi ở cấp vĩ mô).
+                        </div>
+                    </div>
+
+                    <!-- Equilibrium Constant Card -->
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-l-sky-400">
+                        <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-square-root-variable text-sky-400 mr-2"></i>2. Hằng số cân bằng ($K_c$)
+                        </h3>
+                        <div class="formula-box p-3 rounded-lg text-center mb-2">
+                            <p class="text-sm font-semibold text-sky-300">$$K_c = \frac{[C]^c \cdot [D]^d}{[A]^a \cdot [B]^b}$$</p>
+                        </div>
+                        <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+                            <li>$[A], [B], [C], [D]$ là nồng độ mol của các chất ở trạng thái cân bằng ($\text{M}$).</li>
+                            <li><strong class="text-rose-300">Lưu ý quan trọng:</strong> <span class="underline">Không</span> ghi nồng độ của <strong>chất rắn</strong> vào biểu thức $K_c$.</li>
+                            <li>$K_c$ chỉ phụ thuộc vào <strong>bản chất phản ứng</strong> và <strong>nhiệt độ</strong> (không phụ thuộc nồng độ ban đầu hay chất xúc tác).</li>
+                        </ul>
+                    </div>
+
+                    <!-- Le Chatelier Principle Card -->
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-l-indigo-400">
+                        <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-compass text-indigo-400 mr-2"></i>3. Nguyên lý Le Chatelier & Chuyển dịch cân bằng
+                        </h3>
+                        <p class="text-xs text-slate-300 mb-2">
+                            <em>"Một phản ứng đang ở trạng thái cân bằng, khi chịu tác động từ bên ngoài (nồng độ, nhiệt độ, áp suất) thì cân bằng sẽ chuyển dịch theo chiều chống lại tác động đó."</em>
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                            <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                                <span class="text-cyan-400 font-bold">• Tăng Nồng độ chất A:</span>
+                                <p class="text-slate-400 text-[11px]">Dịch chuyển theo chiều giảm A (chiều thuận).</p>
+                            </div>
+                            <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                                <span class="text-amber-400 font-bold">• Tăng Áp suất chung:</span>
+                                <p class="text-slate-400 text-[11px]">Dịch chuyển theo chiều làm <strong>giảm số mol khí</strong>.</p>
+                            </div>
+                            <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                                <span class="text-rose-400 font-bold">• Tăng Nhiệt độ:</span>
+                                <p class="text-slate-400 text-[11px]">Dịch chuyển theo chiều <strong>thu nhiệt ($\Delta_r H^o > 0$)</strong>.</p>
+                            </div>
+                            <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                                <span class="text-emerald-400 font-bold">• Chất xúc tác:</span>
+                                <p class="text-slate-400 text-[11px]">Chỉ tăng tốc đạt cân bằng, <strong>không làm chuyển dịch</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Right Column: Bài 2 -->
+            <section class="col-span-12 lg:col-span-6 flex flex-col glass-panel rounded-2xl overflow-hidden border border-slate-800/80">
+                <div class="px-4 py-3 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between shrink-0">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse"></span>
+                        <h2 class="font-bold text-sm lg:text-base text-blue-300">Bài 2: Cân bằng trong dung dịch nước</h2>
+                    </div>
+                    <span class="text-[10px] bg-blue-950 text-blue-400 border border-blue-800/60 px-2 py-0.5 rounded-full font-medium">Chương 1</span>
+                </div>
+                <div class="p-4 flex-1 overflow-y-auto custom-scrollbar space-y-4">
+
+                    <!-- Electrolytes Classification Card -->
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-l-blue-400">
+                        <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-bolt text-blue-400 mr-2"></i>1. Phân loại chất điện li
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                            <div class="bg-slate-900/90 p-2.5 rounded-lg border border-emerald-500/20">
+                                <span class="text-emerald-400 font-bold block mb-1">Chất điện li mạnh ($\rightarrow$)</span>
+                                <p class="text-[11px] text-slate-300 leading-tight">Phân li hoàn toàn. Gồm Axit mạnh ($\text{HCl}, \text{HNO}_3, \text{H}_2\text{SO}_4$), Bazơ mạnh ($\text{NaOH}, \text{Ba(OH)}_2$) và Hầu hết muối tan ($\text{NaCl}, \text{KNO}_3$).</p>
+                            </div>
+                            <div class="bg-slate-900/90 p-2.5 rounded-lg border border-amber-500/20">
+                                <span class="text-amber-400 font-bold block mb-1">Chất điện li yếu ($\rightleftharpoons$)</span>
+                                <p class="text-[11px] text-slate-300 leading-tight">Phân li 1 phần. Gồm Axit yếu ($\text{CH}_3\text{COOH}, \text{HF}, \text{HClO}, \text{H}_2\text{S}$), Bazơ yếu ($\text{Cu(OH)}_2, \text{NH}_3$).</p>
+                            </div>
+                            <div class="bg-slate-900/90 p-2.5 rounded-lg border border-rose-500/20">
+                                <span class="text-rose-400 font-bold block mb-1">Không điện li</span>
+                                <p class="text-[11px] text-slate-300 leading-tight">Dung dịch không dẫn điện: Glucose ($\text{C}_6\text{H}_{12}\text{O}_6$), Đường Saccharose, Ethanol ($\text{C}_2\text{H}_5\text{OH}$), Glycerol.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bronsted-Lowry Theory -->
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-l-teal-400">
+                        <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-atom text-teal-400 mr-2"></i>2. Thuyết Acid - Base (Brønsted - Lowry)
+                        </h3>
+                        <div class="grid grid-cols-2 gap-2 text-xs mb-2">
+                            <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                                <strong class="text-teal-300">Acid:</strong> Chất/ion có khả năng <strong>NHƯỜNG $H^+$</strong> (proton).
+                            </div>
+                            <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                                <strong class="text-purple-300">Base:</strong> Chất/ion có khả năng <strong>NHẬN $H^+$</strong> (proton).
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-300 bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+                            <strong>Chất/ion lưỡng tính:</strong> Vừa có thể nhường vừa có thể nhận $H^+$ (Ví dụ: $\text{H}_2\text{O}, \text{HCO}_3^-, \text{HS}^-, \text{H}_2\text{PO}_4^-$).
+                        </p>
+                    </div>
+
+                    <!-- pH & Ion Product Card -->
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-l-purple-400">
+                        <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-vial text-purple-400 mr-2"></i>3. Chỉ số pH & Môi trường dung dịch
+                        </h3>
+                        <div class="formula-box p-2.5 rounded-lg text-center mb-2">
+                            <p class="text-xs font-semibold text-purple-300">$K_w = [H^+][OH^-] = 10^{-14} \quad \Big| \quad pH = -\log[H^+] \quad \Big| \quad pH + pOH = 14$</p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-1.5 text-center text-[11px]">
+                            <div class="bg-rose-950/50 border border-rose-800/60 p-1.5 rounded-lg text-rose-300">
+                                <strong>Acid</strong><br>$pH < 7$<br>$[H^+] > 10^{-7}\text{M}$
+                            </div>
+                            <div class="bg-slate-900/80 border border-slate-700/60 p-1.5 rounded-lg text-slate-300">
+                                <strong>Trung tính</strong><br>$pH = 7$<br>$[H^+] = 10^{-7}\text{M}$
+                            </div>
+                            <div class="bg-blue-950/50 border border-blue-800/60 p-1.5 rounded-lg text-blue-300">
+                                <strong>Base (Kiềm)</strong><br>$pH > 7$<br>$[OH^-] > 10^{-7}\text{M}$
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charge Neutrality & Reactions -->
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-l-amber-400">
+                        <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-scale-unbalanced-flip text-amber-400 mr-2"></i>4. Bảo toàn điện tích & Phản ứng trao đổi ion
+                        </h3>
+                        <p class="text-xs text-slate-300 mb-1.5">
+                            <strong>Định luật Bảo toàn Điện tích:</strong> Trong mọi dung dịch, $\sum n_{\text{điện tích (+)}} = \sum n_{\text{điện tích (-)}}$.
+                        </p>
+                        <p class="text-[11px] text-slate-400 bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+                            <strong>Điều kiện phản ứng trao đổi ion:</strong> Sản phẩm phải tạo thành chất <strong>kết tủa</strong> ($\downarrow$), chất <strong>khí</strong> ($\uparrow$) hoặc <strong>chất điện li yếu</strong> (như $\text{H}_2\text{O}$).
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== TAB 2: BÀI 1 DEEP DIVE ==================== -->
+        <div id="content-bai1" class="tab-content hidden h-full flex flex-col glass-panel rounded-2xl border border-slate-800/80 overflow-hidden">
+            <div class="px-5 py-3.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+                <h2 class="font-bold text-base text-cyan-300 flex items-center">
+                    <i class="fa-solid fa-book-open mr-2.5 text-cyan-400"></i>
+                    Bài 1: Khái niệm về Cân bằng hóa học — Tóm tắt chuyên sâu
+                </h2>
+                <span class="text-xs text-slate-400">Hóa học 11 • Kết nối tri thức</span>
+            </div>
+            <div class="p-6 flex-1 overflow-y-auto custom-scrollbar space-y-6">
+                
+                <!-- Section A -->
+                <div class="glass-card p-5 rounded-2xl space-y-3">
+                    <h3 class="text-sm font-bold text-cyan-300 uppercase tracking-wider flex items-center border-b border-slate-800 pb-2">
+                        <span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xs mr-2">A</span>
+                        Phản ứng một chiều, Phản ứng thuận nghịch và Trạng thái cân bằng
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-300 leading-relaxed">
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+                            <h4 class="font-bold text-slate-200 text-sm mb-1.5 text-amber-400">Phản ứng một chiều ($\rightarrow$)</h4>
+                            <p>Là phản ứng chỉ xảy ra theo chiều từ chất tham gia tạo thành sản phẩm mà sản phẩm không thể tác dụng với nhau để tạo lại chất ban đầu.</p>
+                            <p class="mt-2 font-mono text-cyan-300 bg-slate-950 p-2 rounded">$\text{Fe} + 2\text{HCl} \rightarrow \text{FeCl}_2 + \text{H}_2\uparrow$</p>
+                        </div>
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+                            <h4 class="font-bold text-slate-200 text-sm mb-1.5 text-cyan-400">Phản ứng thuận nghịch ($\rightleftharpoons$)</h4>
+                            <p>Là phản ứng trong cùng điều kiện, xảy ra đồng thời theo chiều thuận (tạo sản phẩm) và chiều nghịch (tạo lại chất đầu).</p>
+                            <p class="mt-2 font-mono text-cyan-300 bg-slate-950 p-2 rounded">$\text{Cl}_2 + \text{H}_2\text{O} \rightleftharpoons \text{HCl} + \text{HClO}$</p>
+                        </div>
+                    </div>
+                    <div class="bg-cyan-950/30 border border-cyan-800/50 p-4 rounded-xl text-xs text-cyan-200 space-y-1">
+                        <p class="font-bold text-cyan-300"><i class="fa-solid fa-circle-info mr-1"></i> Bản chất Động học của Trạng thái Cân bằng Hóa học:</p>
+                        <p>• Trạng thái cân bằng là trạng thái của phản ứng thuận nghịch khi tốc độ phản ứng thuận bằng tốc độ phản ứng nghịch ($v_t = v_n$).</p>
+                        <p>• Tại trạng thái cân bằng, nồng độ của các chất trong hệ là không đổi. Phản ứng không dừng lại mà vẫn tiếp diễn với tốc độ hai chiều bằng nhau (Cân bằng động).</p>
+                    </div>
+                </div>
+
+                <!-- Section B -->
+                <div class="glass-card p-5 rounded-2xl space-y-3">
+                    <h3 class="text-sm font-bold text-sky-300 uppercase tracking-wider flex items-center border-b border-slate-800 pb-2">
+                        <span class="w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-xs mr-2">B</span>
+                        Hằng số cân bằng ($K_c$) và Ví dụ minh họa từ Đề ôn tập
+                    </h3>
+                    <p class="text-xs text-slate-300">Xét phản ứng thuận nghịch tổng quát: $aA + bB \rightleftharpoons cC + dD$</p>
+                    <div class="formula-box p-4 rounded-xl text-center">
+                        <p class="text-base font-bold text-sky-300">$$K_c = \frac{[C]^c \cdot [D]^d}{[A]^a \cdot [B]^b}$$</p>
+                        <p class="text-xs text-slate-400 mt-2">Trong đó $[A], [B], [C], [D]$ là nồng độ mol của các chất ở trạng thái cân bằng ($\text{mol/L}$).</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800">
+                            <strong class="text-amber-300 block mb-1">Ví dụ 1: Phản ứng có chất rắn (Trích đề bài)</strong>
+                            <p class="text-slate-300">$$\text{C}_{(s)} + 2\text{H}_{2(g)} \rightleftharpoons \text{CH}_{4(g)}$$</p>
+                            <p class="text-emerald-400 mt-1">$\Rightarrow K_c = \frac{[\text{CH}_4]}{[\text{H}_2]^2}$ (Không ghi nồng độ chất rắn $\text{C}$).</p>
+                        </div>
+                        <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800">
+                            <strong class="text-amber-300 block mb-1">Ví dụ 2: Phản ứng Tổng hợp Ammonia</strong>
+                            <p class="text-slate-300">$$\text{N}_{2(g)} + 3\text{H}_{2(g)} \rightleftharpoons 2\text{NH}_{3(g)}$$</p>
+                            <p class="text-emerald-400 mt-1">$\Rightarrow K_c = \frac{[\text{NH}_3]^2}{[\text{N}_2] \cdot [\text{H}_2]^3}$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section C -->
+                <div class="glass-card p-5 rounded-2xl space-y-3">
+                    <h3 class="text-sm font-bold text-indigo-300 uppercase tracking-wider flex items-center border-b border-slate-800 pb-2">
+                        <span class="w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs mr-2">C</span>
+                        Các yếu tố ảnh hưởng đến Cân bằng hóa học (Nguyên lý Le Chatelier)
+                    </h3>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left text-slate-300 border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900 text-slate-200 border-b border-slate-800">
+                                    <th class="p-3">Yếu tố tác động</th>
+                                    <th class="p-3">Sự thay đổi bên ngoài</th>
+                                    <th class="p-3">Chiều dịch chuyển của Cân bằng</th>
+                                    <th class="p-3">Ghi chú & Ví dụ tiêu biểu</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800/60">
+                                <tr>
+                                    <td class="p-3 font-semibold text-cyan-300">Nồng độ</td>
+                                    <td class="p-3">• Tăng nồng độ chất tham gia<br>• Giảm nồng độ sản phẩm</td>
+                                    <td class="p-3 text-emerald-400 font-medium">Chiều Thuận ($\rightarrow$)</td>
+                                    <td class="p-3 text-slate-400">Cân bằng dịch chuyển theo chiều làm giảm nồng độ chất thêm vào.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-semibold text-amber-300">Áp suất</td>
+                                    <td class="p-3">• Tăng áp suất chung<br>• Giảm áp suất chung</td>
+                                    <td class="p-3 text-amber-300 font-medium">• Chiều giảm số mol khí<br>• Chiều tăng số mol khí</td>
+                                    <td class="p-3 text-slate-400">Nếu tổng số mol khí 2 vế bằng nhau (VD: $\text{H}_2 + \text{I}_2 \rightleftharpoons 2\text{HI}$), áp suất <strong>không ảnh hưởng</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-semibold text-rose-300">Nhiệt độ</td>
+                                    <td class="p-3">• Tăng nhiệt độ<br>• Giảm nhiệt độ</td>
+                                    <td class="p-3 text-rose-300 font-medium">• Chiều thu nhiệt ($\Delta_r H^o > 0$)<br>• Chiều tỏa nhiệt ($\Delta_r H^o < 0$)</td>
+                                    <td class="p-3 text-slate-400">VD: $2\text{NO}_2 \rightleftharpoons \text{N}_2\text{O}_4, \Delta H < 0$. Hạ nhiệt độ (ngâm đá) làm màu nâu nhạt dần (chiều thuận).</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-semibold text-purple-300">Chất xúc tác</td>
+                                    <td class="p-3">Thêm chất xúc tác (VD: bột Fe)</td>
+                                    <td class="p-3 text-slate-400"><strong>Không chuyển dịch</strong></td>
+                                    <td class="p-3 text-slate-400">Chất xúc tác làm tăng tốc độ phản ứng thuận và nghịch với số lần như nhau, giúp hệ nhanh đạt cân bằng.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ==================== TAB 3: BÀI 2 DEEP DIVE ==================== -->
+        <div id="content-bai2" class="tab-content hidden h-full flex flex-col glass-panel rounded-2xl border border-slate-800/80 overflow-hidden">
+            <div class="px-5 py-3.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+                <h2 class="font-bold text-base text-blue-300 flex items-center">
+                    <i class="fa-solid fa-flask-vial mr-2.5 text-blue-400"></i>
+                    Bài 2: Cân bằng trong dung dịch nước — Tóm tắt chuyên sâu
+                </h2>
+                <span class="text-xs text-slate-400">Hóa học 11 • Kết nối tri thức</span>
+            </div>
+            <div class="p-6 flex-1 overflow-y-auto custom-scrollbar space-y-6">
+
+                <!-- Section A -->
+                <div class="glass-card p-5 rounded-2xl space-y-3">
+                    <h3 class="text-sm font-bold text-blue-300 uppercase tracking-wider flex items-center border-b border-slate-800 pb-2">
+                        <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-xs mr-2">A</span>
+                        Sự điện li & Bảng phân loại chất trong Đề thi
+                    </h3>
+                    <p class="text-xs text-slate-300">Sự điện li là quá trình phân li các chất trong nước ra ion.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-emerald-500/30">
+                            <h4 class="font-bold text-emerald-400 text-sm mb-2">Chất điện li mạnh ($\rightarrow$)</h4>
+                            <p class="text-slate-300 mb-2">Phân li hoàn toàn ra ion khi tan trong nước.</p>
+                            <ul class="space-y-1 text-slate-300 font-mono text-[11px]">
+                                <li>• Acid mạnh: $\text{HCl}, \text{HNO}_3, \text{H}_2\text{SO}_4, \text{HClO}_4$</li>
+                                <li>• Base mạnh: $\text{NaOH}, \text{KOH}, \text{Ba(OH)}_2, \text{Ca(OH)}_2$</li>
+                                <li>• Muối tan: $\text{NaCl}, \text{CuSO}_4, \text{AlCl}_3, \text{KAl(SO}_4)_2\cdot 12\text{H}_2\text{O}$</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-amber-500/30">
+                            <h4 class="font-bold text-amber-400 text-sm mb-2">Chất điện li yếu ($\rightleftharpoons$)</h4>
+                            <p class="text-slate-300 mb-2">Chỉ phân li một phần ra ion trong nước.</p>
+                            <ul class="space-y-1 text-slate-300 font-mono text-[11px]">
+                                <li>• Acid yếu: $\text{CH}_3\text{COOH}, \text{HF}, \text{HClO}, \text{HNO}_2, \text{H}_2\text{SO}_3, \text{H}_3\text{PO}_4, \text{HCN}, \text{H}_2\text{S}$</li>
+                                <li>• Base yếu: $\text{Fe(OH)}_3, \text{Cu(OH)}_2, \text{NH}_3$</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-rose-500/30">
+                            <h4 class="font-bold text-rose-400 text-sm mb-2">Chất không điện li</h4>
+                            <p class="text-slate-300 mb-2">Hòa tan vào nước nhưng không phân li ra ion (không dẫn điện).</p>
+                            <ul class="space-y-1 text-slate-300 font-mono text-[11px]">
+                                <li>• Đường Glucose ($\text{C}_6\text{H}_{12}\text{O}_6$)</li>
+                                <li>• Đường Saccharose ($\text{C}_{12}\text{H}_{22}\text{O}_{11}$)</li>
+                                <li>• Rượu Ethanol ($\text{C}_2\text{H}_5\text{OH}$)</li>
+                                <li>• Glycerol ($\text{C}_3\text{H}_5(\text{OH})_3$), Benzene ($\text{C}_6\text{H}_6$)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section B -->
+                <div class="glass-card p-5 rounded-2xl space-y-3">
+                    <h3 class="text-sm font-bold text-teal-300 uppercase tracking-wider flex items-center border-b border-slate-800 pb-2">
+                        <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center text-xs mr-2">B</span>
+                        Thuyết Acid - Base của Brønsted - Lowry
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+                            <strong class="text-teal-300 text-sm block mb-1">Định nghĩa Brønsted - Lowry:</strong>
+                            <p class="text-slate-300">• <strong>Acid:</strong> Là chất hoặc ion có khả năng <strong>nhường $H^+$</strong> (proton).</p>
+                            <p class="text-slate-300">• <strong>Base:</strong> Là chất hoặc ion có khả năng <strong>nhận $H^+$</strong> (proton).</p>
+                            <div class="mt-3 p-2 bg-slate-950 rounded border border-slate-800 text-cyan-300">
+                                $\text{CH}_3\text{COOH} + \text{H}_2\text{O} \rightleftharpoons \text{CH}_3\text{COO}^- + \text{H}_3\text{O}^+$<br>
+                                <span class="text-slate-400 text-[11px]">(Acid nhường $H^+$ cho $\text{H}_2\text{O}$)</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+                            <strong class="text-purple-300 text-sm block mb-1">Lưỡng tính & Cặp Acid-Base liên hợp:</strong>
+                            <p class="text-slate-300 mb-2">Các ion/chất vừa nhường vừa nhận $H^+$ được gọi là chất lưỡng tính:</p>
+                            <p class="font-mono text-amber-300 text-[11px]">$\text{HS}^- + \text{H}_2\text{O} \rightleftharpoons \text{S}^{2-} + \text{H}_3\text{O}^+$ (tính acid)</p>
+                            <p class="font-mono text-amber-300 text-[11px] mt-1">$\text{HS}^- + \text{H}_2\text{O} \rightleftharpoons \text{H}_2\text{S} + \text{OH}^-$ (tính base)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section C -->
+                <div class="glass-card p-5 rounded-2xl space-y-3">
+                    <h3 class="text-sm font-bold text-purple-300 uppercase tracking-wider flex items-center border-b border-slate-800 pb-2">
+                        <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs mr-2">C</span>
+                        Phản ứng trao đổi ion & Phương trình Ion rút gọn
+                    </h3>
+                    <p class="text-xs text-slate-300">Phản ứng trao đổi ion trong dung dịch các chất điện li chỉ xảy ra khi sản phẩm tạo thành có ít nhất một trong các điều kiện: <strong>Chất kết tủa, chất khí hoặc chất điện li yếu</strong>.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800">
+                            <strong class="text-sky-300 block mb-1">Ví dụ 1: Tạo kết tủa</strong>
+                            <p class="text-slate-300">$\text{AgNO}_3 + \text{KBr} \rightarrow \text{AgBr}\downarrow + \text{KNO}_3$</p>
+                            <p class="text-emerald-400 mt-1 font-bold">PT ion rút gọn: $\text{Ag}^+ + \text{Br}^- \rightarrow \text{AgBr}\downarrow$</p>
+                        </div>
+                        <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800">
+                            <strong class="text-sky-300 block mb-1">Ví dụ 2: Phản ứng tạo khí $\text{H}_2\text{S}$ (Trích đề)</strong>
+                            <p class="text-slate-300">$\text{FeS} + 2\text{HCl} \rightarrow \text{FeCl}_2 + \text{H}_2\text{S}\uparrow$</p>
+                            <p class="text-emerald-400 mt-1 font-bold">PT ion rút gọn: $\text{S}^{2-} + 2\text{H}^+ \rightarrow \text{H}_2\text{S}\uparrow$</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ==================== TAB 4: SỔ TAY CÔNG THỨC ==================== -->
+        <div id="content-formulas" class="tab-content hidden h-full flex flex-col glass-panel rounded-2xl border border-slate-800/80 overflow-hidden">
+            <div class="px-5 py-3.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+                <h2 class="font-bold text-base text-amber-300 flex items-center">
+                    <i class="fa-solid fa-square-root-variable mr-2.5 text-amber-400"></i>
+                    Sổ tay Công thức Hóa Học 11 — Bài 1 & Bài 2
+                </h2>
+                <span class="text-xs text-slate-400">Tra cứu nhanh</span>
+            </div>
+            <div class="p-6 flex-1 overflow-y-auto custom-scrollbar space-y-4">
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left text-slate-200 border-collapse">
+                        <thead>
+                            <tr class="bg-slate-900 text-amber-400 border-b border-slate-800">
+                                <th class="p-3 w-12 text-center">STT</th>
+                                <th class="p-3 w-1/4">Tên Công thức / Đại lượng</th>
+                                <th class="p-3">Công thức Toán học / Hóa học</th>
+                                <th class="p-3">Ý nghĩa & Đơn vị</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 font-mono">
+                            <tr class="hover:bg-slate-900/40">
+                                <td class="p-3 text-center text-slate-500">1</td>
+                                <td class="p-3 font-semibold text-cyan-300 font-sans">Hằng số Cân bằng ($K_c$)</td>
+                                <td class="p-3 text-cyan-200">$$K_c = \frac{[C]^c \cdot [D]^d}{[A]^a \cdot [B]^b}$$</td>
+                                <td class="p-3 text-slate-400 font-sans">$[A], [B], [C], [D]$ là nồng độ mol ở trạng thái cân bằng ($\text{M}$). Không tính chất rắn.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/40">
+                                <td class="p-3 text-center text-slate-500">2</td>
+                                <td class="p-3 font-semibold text-sky-300 font-sans">Tích số ion của nước ($K_w$)</td>
+                                <td class="p-3 text-sky-200">$$K_w = [H^+][OH^-] = 10^{-14} \text{ (ở } 25^\circ\text{C)}$$</td>
+                                <td class="p-3 text-slate-400 font-sans">$\Rightarrow [H^+] = \frac{10^{-14}}{[OH^-]}$ hoặc $[OH^-] = \frac{10^{-14}}{[H^+]}$.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/40">
+                                <td class="p-3 text-center text-slate-500">3</td>
+                                <td class="p-3 font-semibold text-purple-300 font-sans">Công thức tính pH</td>
+                                <td class="p-3 text-purple-200">$$pH = -\log[H^+] \quad \Rightarrow \quad [H^+] = 10^{-pH}$$</td>
+                                <td class="p-3 text-slate-400 font-sans">$[H^+]$ là nồng độ ion $H^+$ ($\text{mol/L}$). $pH < 7$: Acid; $pH = 7$: Trung tính; $pH > 7$: Base.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/40">
+                                <td class="p-3 text-center text-slate-500">4</td>
+                                <td class="p-3 font-semibold text-indigo-300 font-sans">Mối liên hệ pH và pOH</td>
+                                <td class="p-3 text-indigo-200">$$pOH = -\log[OH^-] \quad \Rightarrow \quad pH + pOH = 14$$</td>
+                                <td class="p-3 text-slate-400 font-sans">Dùng để tính nhanh pH của dung dịch Kiềm/Base mạnh khi biết $[OH^-]$.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/40">
+                                <td class="p-3 text-center text-slate-500">5</td>
+                                <td class="p-3 font-semibold text-emerald-300 font-sans">Nồng độ Mol ($C_M$) & Số mol ($n$)</td>
+                                <td class="p-3 text-emerald-200">$$C_M = \frac{n}{V} \quad \Big| \quad n = C_M \cdot V = \frac{m}{M}$$</td>
+                                <td class="p-3 text-slate-400 font-sans">$V$ tính bằng Lít ($\text{L}$), $m$ là khối lượng ($\text{gam}$), $M$ là khối lượng mol ($\text{g/mol}$).</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/40">
+                                <td class="p-3 text-center text-slate-500">6</td>
+                                <td class="p-3 font-semibold text-amber-300 font-sans">pH Phản ứng Trung hòa Dư</td>
+                                <td class="p-3 text-amber-200">$$n_{H^+\text{ dư}} = n_{H^+\text{ đầu}} - n_{OH^-\text{ phản ứng}}$$</td>
+                                <td class="p-3 text-slate-400 font-sans">Sau phản ứng: $[H^+]_{\text{sau}} = \frac{n_{H^+\text{ dư}}}{V_1 + V_2} \Rightarrow pH = -\log[H^+]_{\text{sau}}$.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/40">
+                                <td class="p-3 text-center text-slate-500">7</td>
+                                <td class="p-3 font-semibold text-rose-300 font-sans">Bảo toàn Điện tích Dung dịch</td>
+                                <td class="p-3 text-rose-200">$$\sum n_{\text{điện tích (+)}} = \sum n_{\text{điện tích (-)}}$$</td>
+                                <td class="p-3 text-slate-400 font-sans">VD với $Ca^{2+}(a), Mg^{2+}(b), Cl^-(c), HCO_3^-(d)$: $2a + 2b = c + d$.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/40">
+                                <td class="p-3 text-center text-slate-500">8</td>
+                                <td class="p-3 font-semibold text-teal-300 font-sans">Khối lượng Muối Cô Cạn</td>
+                                <td class="p-3 text-teal-200">$$m_{\text{muối}} = \sum m_{\text{các ion trong dung dịch}}$$</td>
+                                <td class="p-3 text-slate-400 font-sans">Tính khối lượng muối khan khi cô cạn dung dịch bằng tổng khối lượng các ion thành phần.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ==================== TAB 5: CÔNG CỤ TÍNH TOÁN & MÔ PHỎNG ==================== -->
+        <div id="content-interactive" class="tab-content hidden h-full flex flex-col glass-panel rounded-2xl border border-slate-800/80 overflow-hidden">
+            <div class="px-5 py-3.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between shrink-0">
+                <h2 class="font-bold text-base text-amber-300 flex items-center">
+                    <i class="fa-solid fa-calculator mr-2.5 text-amber-400"></i>
+                    Bộ công cụ tính toán & Mô phỏng Hóa Học 11
+                </h2>
+                <span class="text-xs text-slate-400">Tương tác trực quan</span>
+            </div>
+            
+            <div class="p-4 lg:p-6 flex-1 overflow-y-auto custom-scrollbar grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Tool 1: Interactive pH Calculator -->
+                <div class="glass-card p-5 rounded-2xl space-y-4 border border-slate-800">
+                    <div class="flex items-center space-x-2 border-b border-slate-800 pb-3">
+                        <div class="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">
+                            <i class="fa-solid fa-vial"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-purple-300">Công cụ 1: Máy tính pH & Môi trường Dung dịch</h3>
+                            <p class="text-[11px] text-slate-400">Nhập nồng độ $[H^+]$ hoặc $[OH^-]$ để tra cứu chỉ số pH ngay lập tức</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-xs">
+                        <div>
+                            <label class="block text-slate-300 font-medium mb-1">Loại nồng độ nhập vào:</label>
+                            <select id="ph-calc-type" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-slate-200 focus:outline-none focus:border-purple-400">
+                                <option value="h">Nồng độ H+ (mol/L)</option>
+                                <option value="oh">Nồng độ OH- (mol/L)</option>
+                                <option value="ph">Giá trị pH trực tiếp</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-slate-300 font-medium mb-1">Nhập giá trị (Ví dụ: 0.01 hoặc 1e-3):</label>
+                            <input type="number" id="ph-calc-input" step="any" value="0.01" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-slate-200 font-mono focus:outline-none focus:border-purple-400">
+                        </div>
+
+                        <button onclick="calculatePH()" class="w-full py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold rounded-lg shadow-lg shadow-purple-500/20 transition-all">
+                            Tính toán chỉ số pH
+                        </button>
+
+                        <!-- Result Display Box -->
+                        <div id="ph-result-box" class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400">Giá trị pH:</span>
+                                <span id="res-ph-val" class="text-xl font-extrabold text-purple-300">2.00</span>
+                            </div>
+                            <div class="flex items-center justify-between text-[11px]">
+                                <span class="text-slate-400">Nồng độ $[H^+]$:</span>
+                                <span id="res-h-val" class="font-mono text-cyan-300">1.00e-2 M</span>
+                            </div>
+                            <div class="flex items-center justify-between text-[11px]">
+                                <span class="text-slate-400">Nồng độ $[OH^-]$:</span>
+                                <span id="res-oh-val" class="font-mono text-cyan-300">1.00e-12 M</span>
+                            </div>
+                            <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+                                <span class="text-slate-400">Môi trường dung dịch:</span>
+                                <span id="res-env-val" class="px-2.5 py-0.5 rounded-full font-bold text-xs bg-rose-950 text-rose-300 border border-rose-800">Acid (Axit)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tool 2: Le Chatelier Shift Predictor -->
+                <div class="glass-card p-5 rounded-2xl space-y-4 border border-slate-800">
+                    <div class="flex items-center space-x-2 border-b border-slate-800 pb-3">
+                        <div class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-cyan-300">Mô phỏng 2: Dự đoán chuyển dịch Cân bằng</h3>
+                            <p class="text-[11px] text-slate-400">Chọn phản ứng & yếu tố tác động để xem kết quả dự đoán</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-xs">
+                        <div>
+                            <label class="block text-slate-300 font-medium mb-1">Chọn phản ứng cân bằng:</label>
+                            <select id="sim-eq-select" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-slate-200 focus:outline-none focus:border-cyan-400">
+                                <option value="haber">N2(g) + 3H2(g) ⇌ 2NH3(g) (ΔH < 0, Tỏa nhiệt)</option>
+                                <option value="no2">2NO2(g, nâu đỏ) ⇌ N2O4(g, không màu) (ΔH < 0, Tỏa nhiệt)</option>
+                                <option value="caco3">CaCO3(s) ⇌ CaO(s) + CO2(g) (ΔH > 0, Thu nhiệt)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-slate-300 font-medium mb-1">Tác động từ bên ngoài:</label>
+                            <select id="sim-action-select" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-slate-200 focus:outline-none focus:border-cyan-400">
+                                <option value="inc_t">Tăng nhiệt độ</option>
+                                <option value="dec_t">Giảm nhiệt độ</option>
+                                <option value="inc_p">Tăng áp suất chung của hệ</option>
+                                <option value="dec_p">Giảm áp suất chung của hệ</option>
+                            </select>
+                        </div>
+
+                        <button onclick="simulateEquilibrium()" class="w-full py-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold rounded-lg shadow-lg shadow-cyan-500/20 transition-all">
+                            Dự đoán sự chuyển dịch
+                        </button>
+
+                        <div id="sim-result-box" class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Kết quả mô phỏng:</span>
+                            <p id="sim-direction" class="text-sm font-extrabold text-emerald-400">Cân bằng chuyển dịch theo chiều Thuận ($\rightarrow$)</p>
+                            <p id="sim-explanation" class="text-xs text-slate-300 leading-relaxed">Giải thích sẽ hiển thị tại đây...</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Global JavaScript Implementation -->
+    <script>
+        // Ensure switchTab is globally available immediately
+        window.switchTab = function(tabId) {
+            console.log("Switching tab to:", tabId);
+
+            // Hide all contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Reset tab button styles
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.className = "tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center shrink-0";
+            });
+
+            // Show selected content
+            const targetContent = document.getElementById('content-' + tabId);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+
+            // Highlight selected tab button
+            const targetBtn = document.getElementById('tab-' + tabId);
+            if (targetBtn) {
+                targetBtn.className = "tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20 flex items-center shrink-0 font-bold";
+            }
+
+            // Trigger MathJax typesetting for newly visible content
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise().catch((err) => console.log('MathJax typeset error:', err));
+            }
+        };
+
+        // Interactive pH Calculator Logic
+        function calculatePH() {
+            const type = document.getElementById('ph-calc-type').value;
+            const rawVal = parseFloat(document.getElementById('ph-calc-input').value);
+
+            if (isNaN(rawVal) || rawVal <= 0) {
+                alert('Vui lòng nhập một số dương hợp lệ!');
+                return;
+            }
+
+            let h = 1e-7, oh = 1e-7, ph = 7;
+
+            if (type === 'h') {
+                h = rawVal;
+                oh = 1e-14 / h;
+                ph = -Math.log10(h);
+            } else if (type === 'oh') {
+                oh = rawVal;
+                h = 1e-14 / oh;
+                ph = -Math.log10(h);
+            } else if (type === 'ph') {
+                ph = rawVal;
+                h = Math.pow(10, -ph);
+                oh = 1e-14 / h;
+            }
+
+            document.getElementById('res-ph-val').innerText = ph.toFixed(2);
+            document.getElementById('res-h-val').innerText = h.toExponential(2) + ' M';
+            document.getElementById('res-oh-val').innerText = oh.toExponential(2) + ' M';
+
+            const envBox = document.getElementById('res-env-val');
+            if (ph < 6.95) {
+                envBox.innerText = 'Môi trường ACID (Axit)';
+                envBox.className = 'px-2.5 py-0.5 rounded-full font-bold text-xs bg-rose-950 text-rose-300 border border-rose-800';
+            } else if (ph > 7.05) {
+                envBox.innerText = 'Môi trường BASE (Kiềm)';
+                envBox.className = 'px-2.5 py-0.5 rounded-full font-bold text-xs bg-blue-950 text-blue-300 border border-blue-800';
+            } else {
+                envBox.innerText = 'Môi trường TRUNG TÍNH';
+                envBox.className = 'px-2.5 py-0.5 rounded-full font-bold text-xs bg-slate-800 text-slate-300 border border-slate-700';
+            }
+        }
+
+        // Equilibrium Simulator Logic
+        function simulateEquilibrium() {
+            const eq = document.getElementById('sim-eq-select').value;
+            const action = document.getElementById('sim-action-select').value;
+
+            const resDir = document.getElementById('sim-direction');
+            const resExp = document.getElementById('sim-explanation');
+
+            if (eq === 'haber') {
+                // N2 + 3H2 <=> 2NH3 (deltaH < 0, 4 mol gas -> 2 mol gas)
+                if (action === 'inc_t') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều NGHỊCH (←)';
+                    resDir.className = 'text-sm font-extrabold text-rose-400';
+                    resExp.innerText = 'Vì phản ứng thuận tỏa nhiệt (ΔH < 0), khi tăng nhiệt độ, cân bằng chuyển dịch theo chiều thu nhiệt (chiều nghịch) để chống lại sự tăng nhiệt độ.';
+                } else if (action === 'dec_t') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều THUẬN (→)';
+                    resDir.className = 'text-sm font-extrabold text-emerald-400';
+                    resExp.innerText = 'Hạ nhiệt độ thúc đẩy cân bằng chuyển dịch theo chiều tỏa nhiệt (chiều thuận) để bù đắp lượng nhiệt bị giảm.';
+                } else if (action === 'inc_p') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều THUẬN (→)';
+                    resDir.className = 'text-sm font-extrabold text-emerald-400';
+                    resExp.innerText = 'Chiều thuận từ 4 mol khí (1 N2 + 3 H2) giảm xuống 2 mol khí (2 NH3). Tăng áp suất khiến hệ chuyển dịch theo chiều làm giảm số mol khí.';
+                } else if (action === 'dec_p') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều NGHỊCH (←)';
+                    resDir.className = 'text-sm font-extrabold text-rose-400';
+                    resExp.innerText = 'Giảm áp suất khiến cân bằng chuyển dịch theo chiều làm tăng số mol khí (chiều nghịch, tạo ra 4 mol khí).';
+                }
+            } else if (eq === 'no2') {
+                // 2NO2 <=> N2O4 (deltaH < 0, 2 mol gas -> 1 mol gas)
+                if (action === 'inc_t') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều NGHỊCH (←) (Đậm màu nâu đỏ)';
+                    resDir.className = 'text-sm font-extrabold text-amber-400';
+                    resExp.innerText = 'Tăng nhiệt độ làm cân bằng dịch chuyển theo chiều thu nhiệt (chiều nghịch, tạo thêm NO2 màu nâu đỏ).';
+                } else if (action === 'dec_t') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều THUẬN (→) (Nhạt màu nâu)';
+                    resDir.className = 'text-sm font-extrabold text-emerald-400';
+                    resExp.innerText = 'Giảm nhiệt độ (ngâm đá) làm cân bằng chuyển dịch theo chiều tỏa nhiệt (chiều thuận, tạo N2O4 không màu).';
+                } else if (action === 'inc_p') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều THUẬN (→)';
+                    resDir.className = 'text-sm font-extrabold text-emerald-400';
+                    resExp.innerText = 'Tăng áp suất làm cân bằng dịch chuyển theo chiều làm giảm số mol khí (từ 2 mol NO2 giảm xuống 1 mol N2O4).';
+                } else if (action === 'dec_p') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều NGHỊCH (←)';
+                    resDir.className = 'text-sm font-extrabold text-rose-400';
+                    resExp.innerText = 'Giảm áp suất làm cân bằng dịch chuyển theo chiều tăng số mol khí (chiều nghịch).';
+                }
+            } else if (eq === 'caco3') {
+                // CaCO3(s) <=> CaO(s) + CO2(g) (deltaH > 0, 0 mol gas -> 1 mol gas)
+                if (action === 'inc_t') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều THUẬN (→)';
+                    resDir.className = 'text-sm font-extrabold text-emerald-400';
+                    resExp.innerText = 'Phản ứng nung vôi thu nhiệt (ΔH > 0). Tăng nhiệt độ giúp cân bằng dịch chuyển theo chiều thuận tạo vôi sống CaO.';
+                } else if (action === 'dec_t') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều NGHỊCH (←)';
+                    resDir.className = 'text-sm font-extrabold text-rose-400';
+                    resExp.innerText = 'Giảm nhiệt độ làm cân bằng dịch chuyển theo chiều tỏa nhiệt (chiều nghịch).';
+                } else if (action === 'inc_p') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều NGHỊCH (←)';
+                    resDir.className = 'text-sm font-extrabold text-rose-400';
+                    resExp.innerText = 'Chất tham gia ở dạng rắn (0 mol khí), sản phẩm có 1 mol khí CO2. Tăng áp suất đẩy cân bằng về chiều giảm khí (chiều nghịch).';
+                } else if (action === 'dec_p') {
+                    resDir.innerText = 'Cân bằng chuyển dịch theo chiều THUẬN (→)';
+                    resDir.className = 'text-sm font-extrabold text-emerald-400';
+                    resExp.innerText = 'Giảm áp suất (hoặc hút khí CO2 ra) giúp cân bằng dịch chuyển theo chiều thuận.';
+                }
+            }
+        }
+
+        // Initialize simulation on load
+        window.addEventListener('load', function() {
+            calculatePH();
+            simulateEquilibrium();
+        });
+    </script>
+</body>
+</html>
