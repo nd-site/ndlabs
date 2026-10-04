@@ -191,5 +191,17 @@ const ndLinks = [
         iconColor: "#FF0000",
         iconTextColor: "#FFFFFF",
         newTab: true
+    },
+    {
+        title: "Hóa Học 11 KNTT - Bài 1, 2",
+        description: "Tổng hợp kiến thức Hóa Học lớp 11 sách Kết Nối Tri Thức bài 1 và bài 2 | ND Labs",
+        url: "/ndlabs/edu/hoahoc/11/kien-thuc-bai-1-2",
+        image: "https://ndsite.web.app/assets/images/avatar.png",
+        color: "#EAEFFF",
+        textColor: "#007BFF",
+        mutedColor: "#668096",
+        iconColor: "#0075F1",
+        iconTextColor: "#FFFFFF",
+        newTab: true
     }
 ];
