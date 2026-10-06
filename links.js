@@ -215,5 +215,17 @@ const ndLinks = [
         iconColor: "#0075F1",
         iconTextColor: "#FFFFFF",
         newTab: true
-    }
+    },
+    {
+        title: "GDQP-AN 11 KNTT - Bài 1, 2",
+        description: "Tổng hợp kiến thức GDQP-AN lớp 11 sách Kết Nối Tri Thức bài 1 và bài 2 | ND Labs",
+        url: "/ndlabs/edu/gdqp/11/kien-thuc-b1-b2",
+        image: "https://ndsite.web.app/assets/images/avatar.png",
+        color: "#EAEFFF",
+        textColor: "#007BFF",
+        mutedColor: "#668096",
+        iconColor: "#0075F1",
+        iconTextColor: "#FFFFFF",
+        newTab: true
+    },
 ];
