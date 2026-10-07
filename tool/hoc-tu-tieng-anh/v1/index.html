@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ND Labs</title>
+    <link rel="icon" type="image/png" href="https://ndsite.web.app/assets/images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header / Navbar */
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .brand img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+            border: none;
+        }
+
+        .btn-success:hover {
+            opacity: 0.9;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 1.5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* Navigation Tabs */
+        .tab-nav {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.25rem;
+            background: none;
+            border: none;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Action Toolbar */
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface);
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .toolbar-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* Table Style */
+        .table-container {
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.875rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        th {
+            background: #f8fafc;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        td [contenteditable="true"] {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            outline: none;
+            border: 1px solid transparent;
+        }
+
+        td [contenteditable="true"]:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+
+        .badge-pos {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: #e0e7ff;
+            color: #3730a3;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        .audio-btn {
+            background: #f1f5f9;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .audio-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-header h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-family: monospace;
+            font-size: 0.875rem;
+            resize: vertical;
+            margin-bottom: 1rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Practice Area Styles */
+        .practice-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .practice-mode-select {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .card-prompt {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            color: var(--text);
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .practice-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .practice-input:focus {
+            border-color: var(--primary);
+        }
+
+        .feedback {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            min-height: 24px;
+        }
+
+        .feedback.correct {
+            color: var(--success);
+        }
+
+        .feedback.incorrect {
+            color: var(--danger);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .help-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #1e40af;
+            line-height: 1.5;
+        }
+
+        .help-box ol {
+            margin-left: 1.25rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="/ndlabs" class="brand">
+            <img src="https://ndsite.web.app/assets/images/logo.png" alt="ND Labs Logo">
+            <span>ND Labs</span>
+        </a>
+        <div class="nav-actions">
+            <a href="/ndlabs" class="btn"><i class="fa-solid fa-house"></i> Trang chủ</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('list-tab')"><i class="fa-solid fa-list"></i> Danh Sách Từ Vựng</button>
+            <button class="tab-btn" onclick="switchTab('practice-tab')"><i class="fa-solid fa-graduation-cap"></i> Luyện Tập</button>
+        </div>
+
+        <!-- TAB 1: Danh sách từ vựng & Quản lý -->
+        <div id="list-tab" class="tab-content active">
+            <div class="toolbar">
+                <div class="toolbar-group">
+                    <button class="btn btn-primary" onclick="addRow()"><i class="fa-solid fa-plus"></i> Thêm từ mới</button>
+                    <button class="btn" onclick="openModal('ai-modal')"><i class="fa-solid fa-wand-magic-sparkles" style="color: #8b5cf6;"></i> Điền tự động bằng AI</button>
+                </div>
+                <div class="toolbar-group">
+                    <button class="btn" onclick="openModal('import-modal')"><i class="fa-solid fa-file-import"></i> Nhập JSON</button>
+                    <button class="btn" onclick="exportJSON()"><i class="fa-solid fa-file-export"></i> Tải file JSON</button>
+                    <input type="file" id="file-input" accept=".json" class="hidden" onchange="handleFileUpload(event)">
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">STT</th>
+                            <th style="width: 140px;">Từ (English)</th>
+                            <th style="width: 120px;">Phát âm</th>
+                            <th style="width: 90px;">Từ loại</th>
+                            <th style="width: 60px;">Nghe</th>
+                            <th style="width: 180px;">Nghĩa</th>
+                            <th>Cách dùng</th>
+                            <th>Ví dụ</th>
+                            <th style="width: 50px;">Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vocab-table-body">
+                        <!-- Rendered by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 2: Luyện tập -->
+        <div id="practice-tab" class="tab-content">
+            <div class="practice-container">
+                <div class="practice-mode-select">
+                    <button class="btn btn-sm" id="mode-1" onclick="setPracticeMode(1)">Anh &rarr; Nghĩa</button>
+                    <button class="btn btn-sm" id="mode-2" onclick="setPracticeMode(2)">Phiên âm &rarr; Anh</button>
+                    <button class="btn btn-sm" id="mode-3" onclick="setPracticeMode(3)">Việt &rarr; Anh</button>
+                    <button class="btn btn-sm" id="mode-4" onclick="setPracticeMode(4)">Nghe &rarr; Anh</button>
+                </div>
+
+                <div id="practice-card">
+                    <div class="card-prompt" id="prompt-display">
+                        <!-- Display prompt content -->
+                    </div>
+                    <input type="text" id="practice-answer" class="practice-input" placeholder="Nhập câu trả lời của bạn..." autocomplete="off">
+                    <div id="feedback" class="feedback"></div>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                        <button class="btn btn-primary" onclick="checkAnswer()"><i class="fa-solid fa-check"></i> Kiểm tra</button>
+                        <button class="btn" onclick="nextQuestion()"><i class="fa-solid fa-forward"></i> Bỏ qua / Tiếp theo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Filling Modal -->
+    <div id="ai-modal" class="modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-wand-magic-sparkles" style="color: #8b5cf6;"></i> Điền tự động các ô thiếu bằng AI</h3>
+                <button class="modal-close" onclick="closeModal('ai-modal')">&times;</button>
+            </div>
+            
+            <div class="help-box">
+                <strong>Hướng dẫn sử dụng AI hoàn thiện từ vựng:</strong>
+                <ol>
+                    <li>Nhấn nút bên dưới để <strong>sao chép Prompt</strong> kèm danh sách từ vựng hiện tại của bạn.</li>
+                    <li>Dán prompt này vào <strong>ChatGPT, Claude, hoặc Gemini</strong>.</li>
+                    <li>Copy phản hồi dạng JSON từ AI và dán vào ô bên dưới, sau đó bấm <strong>Cập nhật</strong>.</li>
+                </ol>
+            </div>
+
+            <button class="btn btn-success" style="width: 100%; margin-bottom: 1rem;" onclick="copyAIPrompt()">
+                <i class="fa-solid fa-copy"></i> Sao chép Prompt hướng dẫn AI
+            </button>
+
+            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.875rem;">Dán nội dung JSON hoàn chỉnh từ AI vào đây:</label>
+            <textarea id="ai-json-input" placeholder="Dán mã JSON trả về từ AI vào đây..."></textarea>
+
+            <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                <button class="btn" onclick="closeModal('ai-modal')">Hủy</button>
+                <button class="btn btn-primary" onclick="applyAIJSON()">Cập nhật danh sách</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import JSON Modal -->
+    <div id="import-modal" class="modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-file-import"></i> Nhập dữ liệu JSON</h3>
+                <button class="modal-close" onclick="closeModal('import-modal')">&times;</button>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.875rem;">Cách 1: Tải lên file .json</label>
+                <button class="btn" onclick="document.getElementById('file-input').click()"><i class="fa-solid fa-upload"></i> Chọn file từ máy tính</button>
+            </div>
+
+            <div>
+                <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.875rem;">Cách 2: Dán trực tiếp văn bản JSON</label>
+                <textarea id="raw-json-input" placeholder='[{"word": "example", "ipa": "/ɪɡˈzɑːm.pəl/", "pos": "n", "meaning": "ví dụ", "usage": "dùng để minh họa", "example": "This is an example."}]'></textarea>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                <button class="btn" onclick="closeModal('import-modal')">Hủy</button>
+                <button class="btn btn-primary" onclick="importRawJSON()">Tải dữ liệu lên</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Default Sample Data
+        let vocabList = [
+            {
+                word: "resilient",
+                ipa: "/rɪˈzɪl.jənt/",
+                pos: "adj",
+                meaning: "kiên cường, phục hồi nhanh",
+                usage: "Mô tả người hoặc vật có khả năng thích ứng, bật dậy sau khó khăn.",
+                example: "She is a resilient girl who never gives up."
+            },
+            {
+                word: "innovate",
+                ipa: "/ˈɪn.ə.veɪt/",
+                pos: "v",
+                meaning: "đổi mới, cách tân",
+                usage: "Dùng trong ngữ cảnh công nghệ, sáng tạo phương pháp mới.",
+                example: "Companies must innovate to remain competitive."
+            }
+        ];
+
+        let currentPracticeMode = 1;
+        let currentQuestion = null;
+
+        // Initialize App
+        document.addEventListener("DOMContentLoaded", () => {
+            renderTable();
+            initPractice();
+            
+            // Enter key shortcut for practice input
+            document.getElementById('practice-answer').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    checkAnswer();
+                }
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+
+            if (tabId === 'practice-tab') {
+                nextQuestion();
+            }
+        }
+
+        // Render Vocabulary Table
+        function renderTable() {
+            const tbody = document.getElementById('vocab-table-body');
+            tbody.innerHTML = '';
+
+            vocabList.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="text-align: center; font-weight: 600; color: var(--text-muted);">${index + 1}</td>
+                    <td contenteditable="true" onblur="updateData(${index}, 'word', this.innerText)">${item.word || ''}</td>
+                    <td contenteditable="true" onblur="updateData(${index}, 'ipa', this.innerText)">${item.ipa || ''}</td>
+                    <td><span class="badge-pos" contenteditable="true" onblur="updateData(${index}, 'pos', this.innerText)">${item.pos || ''}</span></td>
+                    <td style="text-align: center;">
+                        <button class="audio-btn" onclick="speakText('${escapeQuotes(item.word)}')"><i class="fa-solid fa-volume-high"></i></button>
+                    </td>
+                    <td contenteditable="true" onblur="updateData(${index}, 'meaning', this.innerText)">${item.meaning || ''}</td>
+                    <td contenteditable="true" onblur="updateData(${index}, 'usage', this.innerText)">${item.usage || ''}</td>
+                    <td contenteditable="true" onblur="updateData(${index}, 'example', this.innerText)">${item.example || ''}</td>
+                    <td style="text-align: center;">
+                        <button class="btn btn-sm" style="color: var(--danger); border: none;" onclick="deleteRow(${index})"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function escapeQuotes(str) {
+            return (str || '').replace(/'/g, "\\'");
+        }
+
+        // Update Inline Edit Data
+        function updateData(index, key, value) {
+            vocabList[index][key] = value.trim();
+        }
+
+        // Add Row
+        function addRow() {
+            vocabList.push({ word: "", ipa: "", pos: "", meaning: "", usage: "", example: "" });
+            renderTable();
+        }
+
+        // Delete Row
+        function deleteRow(index) {
+            vocabList.splice(index, 1);
+            renderTable();
+        }
+
+        // Text-to-Speech
+        function speakText(text) {
+            if (!text) return;
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Modals
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // Export JSON File
+        function exportJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(vocabList, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "vocab_ndlabs.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        // Import File JSON
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if (Array.isArray(parsed)) {
+                        vocabList = parsed;
+                        renderTable();
+                        closeModal('import-modal');
+                        alert('Nhập dữ liệu JSON thành công!');
+                    } else {
+                        alert('File JSON phải chứa một mảng danh sách từ!');
+                    }
+                } catch (err) {
+                    alert('Lỗi định dạng file JSON!');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Import Raw Text JSON
+        function importRawJSON() {
+            const rawText = document.getElementById('raw-json-input').value.trim();
+            if (!rawText) return;
+
+            try {
+                const parsed = JSON.parse(rawText);
+                if (Array.isArray(parsed)) {
+                    vocabList = parsed;
+                    renderTable();
+                    closeModal('import-modal');
+                    document.getElementById('raw-json-input').value = '';
+                    alert('Dán dữ liệu JSON thành công!');
+                } else {
+                    alert('Dữ liệu JSON phải chứa một mảng!');
+                }
+            } catch (err) {
+                alert('Mã JSON không hợp lệ. Vui lòng kiểm tra lại!');
+            }
+        }
+
+        // AI Prompt Generation & Copy
+        function copyAIPrompt() {
+            const prompt = `Bạn là một chuyên gia ngôn ngữ Tiếng Anh. Hãy kiểm tra danh sách từ vựng dạng JSON dưới đây.
+Nhiệm vụ của bạn:
+1. Giữ nguyên danh sách từ vựng hiện có, điền đầy đủ tất cả các thông tin còn thiếu (word, ipa, pos, meaning, usage, example) một cách chính xác tuyệt đối.
+2. Quy định từ loại (pos) dùng ký hiệu viết tắt tiếng Anh: n (danh từ), v (động từ), adj (tính từ), adv (trạng từ), prep (giới từ), conj (liên từ).
+3. Nghĩa (meaning) và cách dùng (usage) ghi bằng Tiếng Việt súc tích, chính xác.
+4. Chỉ trả về duy nhất một chuỗi JSON chuẩn (mảng các object), không kèm theo bất kỳ văn bản giải thích hay Markdown fence nào khác.
+
+Danh sách hiện tại:
+${JSON.stringify(vocabList, null, 2)}`;
+
+            navigator.clipboard.writeText(prompt).then(() => {
+                alert('Đã sao chép Prompt vào bộ nhớ tạm! Bạn có thể dán trực tiếp cho AI.');
+            }).catch(() => {
+                alert('Không thể sao chép tự động. Hãy thử lại!');
+            });
+        }
+
+        // Apply AI JSON Result
+        function applyAIJSON() {
+            const rawText = document.getElementById('ai-json-input').value.trim();
+            if (!rawText) return;
+
+            try {
+                // Remove markdown formatting if AI added codeblocks
+                const cleanJSON = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
+                const parsed = JSON.parse(cleanJSON);
+                
+                if (Array.isArray(parsed)) {
+                    vocabList = parsed;
+                    renderTable();
+                    closeModal('ai-modal');
+                    document.getElementById('ai-json-input').value = '';
+                    alert('Đã tự động cập nhật từ vựng từ AI!');
+                } else {
+                    alert('Dữ liệu từ AI không phải dạng mảng JSON chuẩn!');
+                }
+            } catch (err) {
+                alert('Lỗi xử lý JSON. Hãy chắc chắn bạn đã dán đúng định dạng JSON từ AI!');
+            }
+        }
+
+        // Practice Mode Logic
+        function setPracticeMode(mode) {
+            currentPracticeMode = mode;
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`mode-${i}`).className = (i === mode) ? 'btn btn-sm btn-primary' : 'btn btn-sm';
+            }
+            nextQuestion();
+        }
+
+        function initPractice() {
+            setPracticeMode(1);
+        }
+
+        function nextQuestion() {
+            const validVocab = vocabList.filter(item => item.word && item.word.trim() !== '');
+            
+            if (validVocab.length === 0) {
+                document.getElementById('prompt-display').innerText = "Chưa có danh sách từ vựng!";
+                return;
+            }
+
+            document.getElementById('feedback').innerText = '';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('practice-answer').value = '';
+
+            const randomIndex = Math.floor(Math.random() * validVocab.length);
+            currentQuestion = validVocab[randomIndex];
+
+            const promptDisplay = document.getElementById('prompt-display');
+
+            switch (currentPracticeMode) {
+                case 1: // Look English -> Type Meaning
+                    promptDisplay.innerHTML = `<span>${currentQuestion.word}</span> <span style="font-size: 1rem; color: var(--text-muted);">(${currentQuestion.pos || ''})</span>`;
+                    break;
+                case 2: // Look IPA -> Type English
+                    promptDisplay.innerHTML = `<span style="color: var(--primary);">${currentQuestion.ipa || 'N/A'}</span>`;
+                    break;
+                case 3: // Look Vietnamese -> Type English
+                    promptDisplay.innerText = currentQuestion.meaning || 'N/A';
+                    break;
+                case 4: // Listen -> Type English
+                    promptDisplay.innerHTML = `<button class="btn btn-primary" onclick="speakText('${escapeQuotes(currentQuestion.word)}')"><i class="fa-solid fa-volume-high"></i> Bấm để nghe</button>`;
+                    speakText(currentQuestion.word);
+                    break;
+            }
+        }
+
+        function checkAnswer() {
+            if (!currentQuestion) return;
+
+            const userAns = document.getElementById('practice-answer').value.trim().toLowerCase();
+            const feedback = document.getElementById('feedback');
+
+            let isCorrect = false;
+
+            if (currentPracticeMode === 1) {
+                // Flexible text match for meaning
+                const targetMeaning = (currentQuestion.meaning || '').toLowerCase();
+                isCorrect = userAns !== '' && targetMeaning.includes(userAns);
+            } else {
+                // Exact match for English word
+                const targetWord = (currentQuestion.word || '').toLowerCase();
+                isCorrect = userAns === targetWord;
+            }
+
+            if (isCorrect) {
+                feedback.innerText = "Chính xác! 🎉";
+                feedback.className = "feedback correct";
+                setTimeout(() => nextQuestion(), 1200);
+            } else {
+                let correctAnswerText = (currentPracticeMode === 1) ? currentQuestion.meaning : currentQuestion.word;
+                feedback.innerText = `Chưa đúng! Đáp án đúng: ${correctAnswerText}`;
+                feedback.className = "feedback incorrect";
+            }
+        }
+    </script>
+</body>
+</html>
