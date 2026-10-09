@@ -229,7 +229,7 @@ const ndLinks = [
         newTab: true
     },
     {
-        title: "ND Labs",
+        title: "Học từ tiếng Anh - ND Labs",
         description: "Học từ tiếng Anh (Bản 1) | ND Labs",
         url: "/ndlabs/tool/hoc-tu-tieng-anh/v1",
         image: "https://ndsite.web.app/assets/images/logo.png",
@@ -243,9 +243,23 @@ const ndLinks = [
         newTab: true
     },
     {
-        title: "ND Labs",
+        title: "Học từ tiếng Anh - ND Labs",
         description: "Học từ tiếng Anh (Bản 2) | ND Labs",
         url: "/ndlabs/tool/hoc-tu-tieng-anh/v2",
+        image: "https://ndsite.web.app/assets/images/logo.png",
+
+        color: "#EAF5FF",
+        textColor: "#0068D9",
+        mutedColor: "#58758E",
+        iconColor: "#0075F1",
+        iconTextColor: "#FFFFFF",
+
+        newTab: true
+    },
+    {
+        title: "Học từ tiếng Anh - ND Labs",
+        description: "Học từ tiếng Anh (Bản 3) | ND Labs",
+        url: "/ndlabs/tool/hoc-tu-tieng-anh/v3",
         image: "https://ndsite.web.app/assets/images/logo.png",
 
         color: "#EAF5FF",
