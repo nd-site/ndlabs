@@ -70,7 +70,7 @@ const ndLinks = [
     {
         title: "Text to Image (V2)",
         description: "Chuyển đổi hình ảnh thành văn bản.",
-        url: "/ndlabs/tti/v2",
+        url: "/ndlabs/tool/chuyen-anh-thanh-van-ban/v2",
         image: "https://ndsite.web.app/assets/images/logo.png",
 
         color: "#F0F9FF",
@@ -85,7 +85,7 @@ const ndLinks = [
     {
         title: "Color",
         description: "Công cụ tạo và thử màu cho các khung link.",
-        url: "/ndlabs/color/v1",
+        url: "/ndlabs/tool/color/v1",
         icon: "ND",
 
         color: "#EAF5FF",
@@ -130,7 +130,7 @@ const ndLinks = [
     {
         title: "Kho đề Github - EduND",
         description: "Kho đề kiểm tra do ND Labs cung cấp cho người dùng EduND.",
-        url: "https://github.com/nd-site/ndlabs/tree/main/edu/exam",
+        url: "https://github.com/nd-site/ndlabs/tree/main/edu/kho-de",
         image: "https://ndsite.web.app/assets/images/logo.png",
         color: "#FFEAF1",
         textColor: "#F00000",
@@ -153,7 +153,7 @@ const ndLinks = [
     {
         title: "Chép chính tả",
         description: "Chép chính tả theo tốc độ viết.",
-        url: "/ndlabs/tool/chepchinhta/v1",
+        url: "/ndlabs/edu/chepchinhta/v1",
         image: "https://ndsite.web.app/assets/images/avatar.png",
         color: "#FFEAEA",
         textColor: "#FF4A4A",
