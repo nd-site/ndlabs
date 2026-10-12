@@ -1,34 +1,50 @@
 [
-  {
-    "word": "quality",
-    "ipa": "/ˈkwɑːləti/",
-    "pos": "n",
-    "meaning": "Phẩm chất, chất lượng",
-    "usage": "Có thể chỉ đặc tính tốt đẹp của con người (phẩm chất) hoặc mức độ tốt xấu của một sự vật (chất lượng).",
-    "example": "Honesty is an essential quality for a good leader."
-  },
-  {
-    "word": "(have) common characteristics",
-    "ipa": "/ˈkɑːmən ˌkerəktəˈrɪstɪks/",
-    "pos": "n",
-    "meaning": "Có đặc điểm chung",
-    "usage": "Chỉ những nét tính cách, tính chất hoặc hình thức giống nhau giữa các đối tượng hoặc thế hệ.",
-    "example": "People born in the same era often share common characteristics."
-  },
-  {
-    "word": "(deal with) generational conflicts",
-    "ipa": "/ˌdʒenəˈreɪʃənl ˈkɑːnflɪkts/",
-    "pos": "n",
-    "meaning": "(Giải quyết) xung đột giữa các thế hệ",
-    "usage": "Dùng để nói về việc đối phó hoặc tìm cách giải quyết mâu thuẫn bắt nguồn từ sự khác biệt tuổi tác, suy nghĩ.",
-    "example": "Open communication is key to dealing with generational conflicts."
-  },
-  {
-    "word": "(have) cultural values",
-    "ipa": "/ˈkʌltʃərəl ˈvæljuːz/",
-    "pos": "n",
-    "meaning": "(Có) giá trị về văn hóa",
-    "usage": "Chỉ những chuẩn mực, niềm tin và truyền thống văn hóa tốt đẹp được lưu truyền qua các thế hệ.",
-    "example": "It is important for young people to preserve traditional cultural values."
-  }
+{
+"word": "quality",
+"ipa": "/ˈkwɑːləti/",
+"pos": "n",
+"meaning": "Phẩm chất, chất lượng",
+"usage": "Có thể chỉ đặc tính tốt đẹp của con người (phẩm chất) hoặc mức độ tốt xấu của một sự vật (chất lượng).",
+"example": "Honesty is an essential quality for a good leader."
+},
+{
+"word": "(have) common characteristics",
+"ipa": "/ˈkɑːmən ˌkerəktəˈrɪstɪks/",
+"pos": "n",
+"meaning": "Có đặc điểm chung",
+"usage": "Chỉ những nét tính cách, tính chất hoặc hình thức giống nhau giữa các đối tượng hoặc thế hệ.",
+"example": "People born in the same era often share common characteristics."
+},
+{
+"word": "(deal with) generational conflicts",
+"ipa": "/ˌdʒenəˈreɪʃənl ˈkɑːnflɪkts/",
+"pos": "n",
+"meaning": "(Giải quyết) xung đột giữa các thế hệ",
+"usage": "Dùng để nói về việc đối phó hoặc tìm cách giải quyết mâu thuẫn bắt nguồn từ sự khác biệt tuổi tác, suy nghĩ.",
+"example": "Open communication is key to dealing with generational conflicts."
+},
+{
+"word": "(have) cultural values",
+"ipa": "/ˈkʌltʃərəl ˈvæljuːz/",
+"pos": "n",
+"meaning": "(Có) giá trị về văn hóa",
+"usage": "Chỉ những chuẩn mực, niềm tin và truyền thống văn hóa tốt đẹp được lưu truyền qua các thế hệ.",
+"example": "It is important for young people to preserve traditional cultural values."
+},
+{
+"word": "existed",
+"ipa": "/ɪɡˈzɪstɪd/",
+"pos": "v",
+"meaning": "Đã tồn tại",
+"usage": "Dùng ở thì quá khứ để chỉ việc có thật hoặc sinh tồn trong một thời điểm trước đây.",
+"example": "Many ancient traditions have existed for centuries."
+},
+{
+"word": "particular society",
+"ipa": "/pərˈtɪkjələr səˈsaɪəti/",
+"pos": "np",
+"meaning": "Một xã hội cụ thể",
+"usage": "Dùng để chỉ một cộng đồng người nhất định với các đặc trưng văn hóa, luật lệ hoặc lối sống riêng biệt.",
+"example": "Every particular society has its own customs and norms."
+}
 ]
