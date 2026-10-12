@@ -68,21 +68,6 @@ const ndLinks = [
     },
 
     {
-        title: "Text to Image (V1)",
-        description: "Chuyển đổi hình ảnh thành văn bản.",
-        url: "/ndlabs/tti/v1",
-        image: "https://ndsite.web.app/assets/images/logo.png",
-
-        color: "#F0F9FF",
-        textColor: "#0284C7",
-        mutedColor: "#58758E",
-        iconColor: "#0284C7",
-        iconTextColor: "#FFFFFF",
-
-        newTab: true
-    },
-
-    {
         title: "Text to Image (V2)",
         description: "Chuyển đổi hình ảnh thành văn bản.",
         url: "/ndlabs/tti/v2",
@@ -98,7 +83,7 @@ const ndLinks = [
     },
 
     {
-        title: "Color (V1)",
+        title: "Color",
         description: "Công cụ tạo và thử màu cho các khung link.",
         url: "/ndlabs/color/v1",
         icon: "ND",
@@ -109,21 +94,6 @@ const ndLinks = [
         iconColor: "#0075F1",
         iconTextColor: "#FFFFFF",
 
-        newTab: true
-    },
-
-    {
-        title: "EduND - Làm bài kiểm tra (V1)",
-        description: "Trang làm bài kiểm tra bằng cách tải lên file đề.",
-        url: "/ndlabs/edu/v1",
-        image: "https://ndsite.web.app/assets/images/logo.png",
-        
-        color: "#EEF7ED",
-        textColor: "#0075F1",
-        mutedColor: "#668096",
-        iconColor: "#0075F1",
-        iconTextColor: "#FFFFFF",
-        
         newTab: true
     },
 
@@ -143,7 +113,7 @@ const ndLinks = [
     },
 
     {
-        title: "EduND - Tạo đề kiểm tra (V1)",
+        title: "EduND - Tạo đề kiểm tra",
         description: "Trang tạo bài kiểm tra bằng cách tải lên file đề và chỉnh sửa.",
         url: "/ndlabs/edu/creator/v1",
         image: "https://ndsite.web.app/assets/images/logo.png",
@@ -230,36 +200,8 @@ const ndLinks = [
     },
     {
         title: "Học từ tiếng Anh - ND Labs",
-        description: "Học từ tiếng Anh (Bản 1) | ND Labs",
-        url: "/ndlabs/tool/hoc-tu-tieng-anh/v1",
-        image: "https://ndsite.web.app/assets/images/logo.png",
-
-        color: "#EAF5FF",
-        textColor: "#0068D9",
-        mutedColor: "#58758E",
-        iconColor: "#0075F1",
-        iconTextColor: "#FFFFFF",
-
-        newTab: true
-    },
-    {
-        title: "Học từ tiếng Anh - ND Labs",
-        description: "Học từ tiếng Anh (Bản 2) | ND Labs",
-        url: "/ndlabs/tool/hoc-tu-tieng-anh/v2",
-        image: "https://ndsite.web.app/assets/images/logo.png",
-
-        color: "#EAF5FF",
-        textColor: "#0068D9",
-        mutedColor: "#58758E",
-        iconColor: "#0075F1",
-        iconTextColor: "#FFFFFF",
-
-        newTab: true
-    },
-    {
-        title: "Học từ tiếng Anh - ND Labs",
         description: "Học từ tiếng Anh (Bản 3) | ND Labs",
-        url: "/ndlabs/tool/hoc-tu-tieng-anh/v3",
+        url: "/ndlabs/edu/hoc-tu-tieng-anh/v3",
         image: "https://ndsite.web.app/assets/images/logo.png",
 
         color: "#EAF5FF",
@@ -268,6 +210,18 @@ const ndLinks = [
         iconColor: "#0075F1",
         iconTextColor: "#FFFFFF",
 
+        newTab: true
+    },
+    {
+        title: "Kho từ Github - EduND",
+        description: "Kho từ vựng theo từng bài học môn Tiếng Anh do ND Labs cung cấp cho người dùng EduND.",
+        url: "https://github.com/nd-site/ndlabs/tree/main/edu/hoc-tu-tieng-anh/kho-de",
+        image: "https://ndsite.web.app/assets/images/logo.png",
+        color: "#FFEAF1",
+        textColor: "#F00000",
+        mutedColor: "#668096",
+        iconColor: "#F00000",
+        iconTextColor: "#FFFFFF",
         newTab: true
     },
 ];
