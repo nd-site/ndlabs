@@ -1,0 +1,130 @@
+[
+  {
+    "word": "disadvantage",
+    "ipa": "/ˌdɪsədˈvɑːntɪdʒ/",
+    "pos": "n",
+    "meaning": "nhược điểm, bất lợi",
+    "usage": "Dùng để chỉ yếu tố không thuận lợi hoặc mặt hạn chế của một hệ thống, phương pháp hay tình huống.",
+    "example": "High living costs are a major disadvantage of moving to big cities."
+  },
+  {
+    "word": "certainty",
+    "ipa": "/ˈsɜːtnti/",
+    "pos": "n",
+    "meaning": "sự chắc chắn",
+    "usage": "Dùng để diễn tả trạng thái không có chút nghi ngờ nào về một sự việc hoặc sự thật.",
+    "example": "There is no certainty about when the new transport project will be completed."
+  },
+  {
+    "word": "uncertainty",
+    "ipa": "/ʌnˈsɜːtnti/",
+    "pos": "n",
+    "meaning": "sự không chắc chắn",
+    "usage": "Dùng để miêu tả tình trạng thiếu thông tin rõ ràng hoặc cảm giác nghi ngờ về tương lai.",
+    "example": "Economic uncertainty makes it hard for the city to plan future investment."
+  },
+  {
+    "word": "exhibition",
+    "ipa": "/ˌeksɪˈbɪʃn/",
+    "pos": "n",
+    "meaning": "cuộc triển lãm",
+    "usage": "Dùng để chỉ sự kiện trưng bày các sản phẩm, tác phẩm nghệ thuật hoặc mô hình công nghệ cho công chúng xem.",
+    "example": "Our class visited an exhibition about future smart cities."
+  },
+  {
+    "word": "negative impact",
+    "ipa": "/ˈneɡətɪv ˈɪmpækt/",
+    "pos": "np",
+    "meaning": "tác động tiêu cực",
+    "usage": "Cụm danh từ dùng để miêu tả ảnh hưởng xấu, có hại đến môi trường, xã hội hoặc sức khỏe.",
+    "example": "Using renewable energy helps reduce the negative impact of factories on nature."
+  },
+  {
+    "word": "private vehicle",
+    "ipa": "/ˈpraɪvət ˈviːəkl/",
+    "pos": "np",
+    "meaning": "phương tiện cá nhân",
+    "usage": "Cụm danh từ chỉ các phương tiện giao thông thuộc sở hữu riêng của cá nhân như ô tô, xe máy.",
+    "example": "The city council encourages people to use public transit instead of private vehicles."
+  },
+  {
+    "word": "tram",
+    "ipa": "/træm/",
+    "pos": "n",
+    "meaning": "xe điện, tàu điện bánh sắt",
+    "usage": "Dùng để chỉ loại phương tiện giao thông công cộng chạy bằng điện trên đường ray trong thành phố.",
+    "example": "Taking a tram is a quick and clean way to travel around the city centre."
+  },
+  {
+    "word": "traffic jam",
+    "ipa": "/ˈtræfɪk dʒæm/",
+    "pos": "np",
+    "meaning": "ùn tắc giao thông, tắc đường",
+    "usage": "Cụm danh từ chỉ tình trạng số lượng phương tiện quá tải dẫn đến việc di chuyển rất chậm hoặc dừng lại hoàn toàn.",
+    "example": "Smart traffic lights help reduce traffic jams during rush hours."
+  },
+  {
+    "word": "city dweller",
+    "ipa": "/ˈsɪti ˈdwelər/",
+    "pos": "np",
+    "meaning": "cư dân thành phố",
+    "usage": "Cụm danh từ thuộc chủ đề xã hội học/đô thị chỉ những người sinh sống lâu dài tại khu vực đô thị.",
+    "example": "Many city dwellers enjoy walking in the community parks at weekends."
+  },
+  {
+    "word": "sensor",
+    "ipa": "/ˈsensər/",
+    "pos": "n",
+    "meaning": "cảm biến",
+    "usage": "Dùng trong kĩ thuật, công nghệ chỉ thiết bị phát hiện và phản ứng với tín hiệu ánh sáng, nhiệt độ, chuyển động.",
+    "example": "Smart sensors monitor pollution levels across the city in real time."
+  },
+  {
+    "word": "operate",
+    "ipa": "/ˈɒpəreɪt/",
+    "pos": "v",
+    "meaning": "vận hành, hoạt động",
+    "usage": "Dùng để miêu tả hành động điều khiển thiết bị hoặc quá trình hoạt động của một hệ thống, phương tiện.",
+    "example": "The autonomous metro line operates smoothly without a human driver."
+  },
+  {
+    "word": "infrastructure",
+    "ipa": "/ˈɪnfrəstrʌktʃər/",
+    "pos": "n",
+    "meaning": "cơ sở hạ tầng",
+    "usage": "Dùng trong quy hoạch đô thị chỉ các hệ thống giao thông, điện, nước và viễn thông phục vụ xã hội.",
+    "example": "Modern infrastructure is essential for sustainable economic development."
+  },
+  {
+    "word": "impress",
+    "ipa": "/ɪmˈpres/",
+    "pos": "v",
+    "meaning": "gây ấn tượng",
+    "usage": "Dùng để diễn tả việc tạo ra cảm giác thán phục hoặc chú ý mạnh mẽ cho ai đó.",
+    "example": "The futuristic architecture of the museum never fails to impress visitors."
+  },
+  {
+    "word": "high-rise building",
+    "ipa": "/ˈhaɪ raɪz ˈbɪldɪŋ/",
+    "pos": "np",
+    "meaning": "tòa nhà cao tầng",
+    "usage": "Cụm danh từ miêu tả công trình kiến trúc gồm nhiều tầng, thường là chung cư hoặc văn phòng làm việc.",
+    "example": "Vertical gardens are built on high-rise buildings to reduce urban heat."
+  },
+  {
+    "word": "built environment",
+    "ipa": "/ˌbɪlt ɪnˈvaɪrənmənt/",
+    "pos": "np",
+    "meaning": "môi trường nhân tạo, môi trường xây dựng",
+    "usage": "Thuật ngữ kiến trúc/môi trường chỉ không gian do con người tạo ra bao gồm nhà cửa, công viên, đường xá.",
+    "example": "Sustainable design aims to create a built environment that works in harmony with nature."
+  },
+  {
+    "word": "sustainable",
+    "ipa": "/səˈsteɪnəbl/",
+    "pos": "adj",
+    "meaning": "bền vững",
+    "usage": "Dùng để miêu tả phương pháp hoặc phát triển đáp ứng nhu cầu hiện tại mà không tổn hại đến môi trường tương lai.",
+    "example": "Solar power is a sustainable source of energy for future cities."
+  }
+]
