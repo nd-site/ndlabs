@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sơ Đồ Tư Duy Công Thức Lượng Giác - Toán 11</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX cho hiển thị công thức Toán -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderKaTeX();"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fffbeb;
+        }
+        .node-card {
+            transition: all 0.25s ease-in-out;
+        }
+        .node-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(217, 119, 6, 0.2);
+        }
+        /* Tối ưu hóa việc hiển thị công thức toán không bị vỡ/tràn */
+        .katex-display {
+            margin: 0.3em 0 !important;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 2px 0;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fef3c7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f59e0b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d97706;
+        }
+    </style>
+</head>
+<body class="text-amber-950 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-500 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white/15 p-2 rounded-xl backdrop-blur-md">
+                    <i class="fa-solid fa-square-root-variable text-2xl text-yellow-200"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold tracking-tight">Sơ Đồ Công Thức Lượng Giác</h1>
+                    <p class="text-xs text-amber-100 font-light">Toán 11 - Kết nối tri thức với cuộc sống</p>
+                </div>
+            </div>
+            
+            <!-- Quick Navigation / Filters -->
+            <div class="flex flex-wrap gap-1.5 text-xs font-semibold">
+                <button onclick="scrollToSection('sec-co-ban')" class="bg-white/10 hover:bg-white/25 px-2.5 py-1.5 rounded-lg transition backdrop-blur-sm">1. Cơ bản</button>
+                <button onclick="scrollToSection('sec-cong')" class="bg-white/10 hover:bg-white/25 px-2.5 py-1.5 rounded-lg transition backdrop-blur-sm">2. Cộng</button>
+                <button onclick="scrollToSection('sec-nhan-ha')" class="bg-white/10 hover:bg-white/25 px-2.5 py-1.5 rounded-lg transition backdrop-blur-sm">3. Nhân & Hạ bậc</button>
+                <button onclick="scrollToSection('sec-bien-doi')" class="bg-white/10 hover:bg-white/25 px-2.5 py-1.5 rounded-lg transition backdrop-blur-sm">4. Tích $\leftrightarrow$ Tổng</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 space-y-6">
+
+        <!-- SECTION 1: CÔNG THỨC CƠ BẢN -->
+        <section id="sec-co-ban" class="space-y-3">
+            <div class="flex items-center space-x-2.5 border-b border-amber-200 pb-2">
+                <span class="bg-amber-600 text-white text-sm w-7 h-7 rounded-lg flex items-center justify-center font-bold">1</span>
+                <h2 class="text-lg font-bold text-amber-900">Công thức Lượng giác Cơ bản & Cung liên quan</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <!-- Card 1.1 -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded">Hằng đẳng thức gốc</span>
+                        <div class="text-center py-2 my-2 bg-amber-50/60 rounded-lg text-sm sm:text-base font-semibold text-amber-950 overflow-x-auto">
+                            $$\sin^2 \alpha + \cos^2 \alpha = 1$$
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Mẹo nhớ:</b> <i>"Sin bình cộng cos bình bằng 1, hằng đẳng thức vàng trong làng lượng giác."</i>
+                    </p>
+                </div>
+
+                <!-- Card 1.2 -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded">Tích Tan & Cot</span>
+                        <div class="text-center py-2 my-2 bg-amber-50/60 rounded-lg text-sm sm:text-base font-semibold text-amber-950 overflow-x-auto">
+                            $$\tan \alpha \cdot \cot \alpha = 1$$
+                        </div>
+                        <p class="text-[10px] text-amber-700 text-center font-medium">ĐIỀU KIỆN: $\alpha \neq k\frac{\pi}{2}$</p>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Thơ chế:</b> <i>"Bắt được quả Tan, Sin nằm trên Cos / Cotang dại dột, bị Cos đè cho!"</i>
+                    </p>
+                </div>
+
+                <!-- Card 1.3 -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded">Liên hệ Tan & Cos</span>
+                        <div class="text-center py-2 my-2 bg-amber-50/60 rounded-lg text-sm sm:text-base font-semibold text-amber-950 overflow-x-auto">
+                            $$1 + \tan^2 \alpha = \frac{1}{\cos^2 \alpha}$$
+                        </div>
+                        <p class="text-[10px] text-amber-700 text-center font-medium">ĐIỀU KIỆN: $\alpha \neq \frac{\pi}{2} + k\pi$</p>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Mẹo nhớ:</b> <i>"Một cộng bình tan bằng một trên bình cos"</i> (Dùng đổi biến nhanh khi biết tan).
+                    </p>
+                </div>
+
+                <!-- Card 1.4 -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded">Liên hệ Cot & Sin</span>
+                        <div class="text-center py-2 my-2 bg-amber-50/60 rounded-lg text-sm sm:text-base font-semibold text-amber-950 overflow-x-auto">
+                            $$1 + \cot^2 \alpha = \frac{1}{\sin^2 \alpha}$$
+                        </div>
+                        <p class="text-[10px] text-amber-700 text-center font-medium">ĐIỀU KIỆN: $\alpha \neq k\pi$</p>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Mẹo nhớ:</b> <i>"Một cộng cotang bình ra ngay một trên sin bình"</i>.
+                    </p>
+                </div>
+
+                <!-- Card 1.5 - Cung liên quan -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm md:col-span-2 lg:col-span-4">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 mb-2">
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-orange-100 text-orange-800 rounded">Cung có liên quan đặc biệt</span>
+                        <span class="text-xs font-bold text-orange-900 bg-orange-100 px-2.5 py-0.5 rounded-full border border-orange-300">Thần chú kinh điển: "Cos đối, sin bù, phụ chéo, khác $\pi$ tan"</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-xs py-2 bg-amber-50/40 rounded-lg px-3 font-medium text-amber-950">
+                        <div class="bg-white p-2 rounded border border-amber-100">
+                            <p class="font-bold text-amber-800 mb-0.5">• Góc đối ($-\alpha$):</p>
+                            <p>$$\cos(-\alpha) = \cos\alpha$$</p>
+                            <p class="text-[10px] text-gray-500 mt-1">Cos đối giữ nguyên, các hàm khác đổi dấu.</p>
+                        </div>
+                        <div class="bg-white p-2 rounded border border-amber-100">
+                            <p class="font-bold text-amber-800 mb-0.5">• Góc bù ($\pi-\alpha$):</p>
+                            <p>$$\sin(\pi-\alpha) = \sin\alpha$$</p>
+                            <p class="text-[10px] text-gray-500 mt-1">Sin bù giữ nguyên dấu.</p>
+                        </div>
+                        <div class="bg-white p-2 rounded border border-amber-100">
+                            <p class="font-bold text-amber-800 mb-0.5">• Góc phụ ($\frac{\pi}{2}-\alpha$):</p>
+                            <p>$$\sin\left(\frac{\pi}{2}-\alpha\right) = \cos\alpha$$</p>
+                            <p class="text-[10px] text-gray-500 mt-1">Phụ chéo: Sin $\leftrightarrow$ Cos, Tan $\leftrightarrow$ Cot.</p>
+                        </div>
+                        <div class="bg-white p-2 rounded border border-amber-100">
+                            <p class="font-bold text-amber-800 mb-0.5">• Khác $\pi$ ($\alpha+\pi$):</p>
+                            <p>$$\tan(\alpha+\pi) = \tan\alpha$$</p>
+                            <p class="text-[10px] text-gray-500 mt-1">Tan và Cot giữ nguyên dấu khi thêm/bớt $\pi$.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: CÔNG THỨC CỘNG -->
+        <section id="sec-cong" class="space-y-3">
+            <div class="flex items-center space-x-2.5 border-b border-amber-200 pb-2">
+                <span class="bg-orange-600 text-white text-sm w-7 h-7 rounded-lg flex items-center justify-center font-bold">2</span>
+                <h2 class="text-lg font-bold text-amber-900">Công thức Cộng</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+                <!-- Sin -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-orange-100 text-orange-800 rounded">Cộng Sin</span>
+                        <div class="py-2 my-2 bg-orange-50/50 rounded-lg space-y-1 text-center text-xs sm:text-sm font-semibold overflow-x-auto">
+                            <div>$$\sin(a + b) = \sin a \cos b + \cos a \sin b$$</div>
+                            <div>$$\sin(a - b) = \sin a \cos b - \cos a \sin b$$</div>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Thơ chế:</b> <i>"Sin thì sin cos cos sin rõ ràng, sin thì cùng dấu xin chàng nhớ cho!"</i>
+                    </p>
+                </div>
+
+                <!-- Cos -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-orange-100 text-orange-800 rounded">Cộng Cos</span>
+                        <div class="py-2 my-2 bg-orange-50/50 rounded-lg space-y-1 text-center text-xs sm:text-sm font-semibold overflow-x-auto">
+                            <div>$$\cos(a + b) = \cos a \cos b - \sin a \sin b$$</div>
+                            <div>$$\cos(a - b) = \cos a \cos b + \sin a \sin b$$</div>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Thơ chế:</b> <i>"Cos thì cos cos sin sin, cos thì đổi dấu hỡi nàng ('coi chừng' dấu trừ)"</i>.
+                    </p>
+                </div>
+
+                <!-- Tan -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-orange-100 text-orange-800 rounded">Cộng Tan</span>
+                        <div class="py-2 my-2 bg-orange-50/50 rounded-lg space-y-1 text-center text-xs sm:text-sm font-semibold overflow-x-auto">
+                            <div>$$\tan(a + b) = \frac{\tan a + \tan b}{1 - \tan a \tan b}$$</div>
+                            <div>$$\tan(a - b) = \frac{\tan a - \tan b}{1 + \tan a \tan b}$$</div>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Thơ chế:</b> <i>"Tan một tổng hai tầng cao rộng / Trên thượng tầng tan cộng tan tan / Dưới hạ tầng số 1 ngang tàng / Dám trừ một tích tan tan oai hùng!"</i>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: CÔNG THỨC NHÂN ĐÔI & HẠ BẬC -->
+        <section id="sec-nhan-ha" class="space-y-3">
+            <div class="flex items-center space-x-2.5 border-b border-amber-200 pb-2">
+                <span class="bg-amber-500 text-white text-sm w-7 h-7 rounded-lg flex items-center justify-center font-bold">3</span>
+                <h2 class="text-lg font-bold text-amber-900">Công thức Nhân đôi, Nhân ba & Hạ bậc</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+                <!-- Nhân đôi -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded">Công thức Nhân đôi</span>
+                        <div class="py-2 my-2 bg-amber-50/50 rounded-lg space-y-1.5 text-center text-xs sm:text-sm font-semibold overflow-x-auto">
+                            <div>$$\sin 2a = 2\sin a \cos a$$</div>
+                            <div>$$\cos 2a = \cos^2 a - \sin^2 a$$</div>
+                            <div>$$\tan 2a = \frac{2\tan a}{1 - \tan^2 a}$$</div>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Thơ chế:</b> <i>"Sin gấp đôi bằng hai sin cos / Cos gấp đôi bằng bình cos trừ bình sin / Tan đôi ta lấy đôi tan, chia một trừ lại bình tan ra liền!"</i>
+                    </p>
+                </div>
+
+                <!-- Hạ bậc -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded">Công thức Hạ bậc</span>
+                        <div class="py-2 my-2 bg-amber-50/50 rounded-lg space-y-1.5 text-center text-xs sm:text-sm font-semibold overflow-x-auto">
+                            <div>$$\sin^2 a = \frac{1 - \cos 2a}{2}$$</div>
+                            <div>$$\cos^2 a = \frac{1 + \cos 2a}{2}$$</div>
+                            <div>$$\tan^2 a = \frac{1 - \cos 2a}{1 + \cos 2a}$$</div>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Mẹo nhớ:</b> <i>"Sin bình thì trừ, cos bình thì cộng"</i> (Cả hai đều chia 2 và góc tăng gấp đôi thành $\cos 2a$).
+                    </p>
+                </div>
+
+                <!-- Nhân ba -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded">Công thức Nhân ba</span>
+                        <div class="py-2 my-2 bg-amber-50/50 rounded-lg space-y-1.5 text-center text-xs sm:text-sm font-semibold overflow-x-auto">
+                            <div>$$\sin 3a = 3\sin a - 4\sin^3 a$$</div>
+                            <div>$$\cos 3a = 4\cos^3 a - 3\cos a$$</div>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Thơ chế:</b> <i>"Nhân ba một góc bất kỳ / Sin thì ba bốn, cos thì bốn ba / Dấu trừ đặt giữa hai ta / Lập phương chỗ bốn... thế là ok!"</i>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: BIẾN ĐỔI TÍCH <-> TỔNG -->
+        <section id="sec-bien-doi" class="space-y-3">
+            <div class="flex items-center space-x-2.5 border-b border-amber-200 pb-2">
+                <span class="bg-orange-500 text-white text-sm w-7 h-7 rounded-lg flex items-center justify-center font-bold">4</span>
+                <h2 class="text-lg font-bold text-amber-900">Biến đổi Tích $\leftrightarrow$ Tổng</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                <!-- Tích thành Tổng -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-orange-100 text-orange-800 rounded">Tích thành Tổng</span>
+                        <div class="py-2 my-2 bg-orange-50/50 rounded-lg space-y-1 text-center text-xs sm:text-sm font-semibold overflow-x-auto">
+                            <div>$$\cos a \cos b = \frac{1}{2} [\cos(a - b) + \cos(a + b)]$$</div>
+                            <div>$$\sin a \sin b = \frac{1}{2} [\cos(a - b) - \cos(a + b)]$$</div>
+                            <div>$$\sin a \cos b = \frac{1}{2} [\sin(a + b) + \sin(a - b)]$$</div>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Thơ chế:</b> <i>"Cos cos nửa cos-cộng cộng cos-trừ / Sin sin nửa cos-trừ trừ cos-cộng / Sin cos nửa sin-cộng cộng sin-trừ"</i>.
+                    </p>
+                </div>
+
+                <!-- Tổng thành Tích -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-orange-100 text-orange-800 rounded">Tổng thành Tích</span>
+                        <div class="py-2 my-2 bg-orange-50/50 rounded-lg space-y-1 text-center text-xs sm:text-sm font-semibold overflow-x-auto">
+                            <div>$$\cos x + \cos y = 2\cos\frac{x+y}{2}\cos\frac{x-y}{2}$$</div>
+                            <div>$$\cos x - \cos y = -2\sin\frac{x+y}{2}\sin\frac{x-y}{2}$$</div>
+                            <div>$$\sin x + \sin y = 2\sin\frac{x+y}{2}\cos\frac{x-y}{2}$$</div>
+                            <div>$$\sin x - \sin y = 2\cos\frac{x+y}{2}\sin\frac{x-y}{2}$$</div>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-lightbulb text-amber-600 mr-1"></i><b>Thơ chế:</b> <i>"Cos cộng cos bằng hai cos cos / Cos trừ cos bằng trừ hai sin sin / Sin cộng sin bằng hai sin cos / Sin trừ sin bằng hai cos sin"</i>.
+                    </p>
+                </div>
+
+                <!-- Tan tổng hai góc dạng tình yêu -->
+                <div class="node-card bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm md:col-span-2">
+                    <div>
+                        <span class="text-[11px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded">Tổng Tan (Thơ vui về Tình yêu)</span>
+                        <div class="py-2 my-2 bg-amber-50/50 rounded-lg text-center text-xs sm:text-sm font-semibold overflow-x-auto">
+                            $$\tan x + \tan y = \frac{\sin(x + y)}{\cos x \cos y}$$
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-amber-800/80 bg-amber-50 p-2 rounded-lg border border-amber-100 mt-1">
+                        <i class="fa-regular fa-heart text-pink-600 mr-1"></i><b>Thơ chế:</b> <i>"Tan mình cộng với tan ta / Bằng sin hai đứa trên cos ta cos mình"</i> (Tình mình cộng lại tình ta, sinh ra hai đứa con mình con ta!).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-amber-950 text-amber-300 text-xs py-4 border-t border-amber-900 mt-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="font-medium">Sơ đồ Công thức Lượng giác - Toán 11 (Kết nối tri thức)</p>
+        </div>
+    </footer>
+
+    <!-- Script KaTeX render & cuộn mượt -->
+    <script>
+        function renderKaTeX() {
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            renderKaTeX();
+        });
+    </script>
+</body>
+</html>
