@@ -224,4 +224,18 @@ const ndLinks = [
         iconTextColor: "#FFFFFF",
         newTab: true
     },
+    {
+        title: "Công thức lượng giác môn toán lớp 11 - ND Labs",
+        description: "Tổng hợp tất cả các công thức lượng giác môn toán lớp 11 (Bản 1) | ND Labs",
+        url: "/ndlabs/edu/toan/11/cong-thuc-luong-giac/v1",
+        image: "https://ndsite.web.app/assets/images/logo.png",
+
+        color: "#EAF5FF",
+        textColor: "#0068D9",
+        mutedColor: "#58758E",
+        iconColor: "#0075F1",
+        iconTextColor: "#FFFFFF",
+
+        newTab: true
+    },
 ];
