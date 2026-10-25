@@ -1,0 +1,327 @@
+<html style="margin:0;padding:0;">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+(function(){
+  var s = document.createElement('style');
+  s.textContent = `
+    :root{
+      --bg:#eef5ff;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --accent:#2563eb;
+      --accent-soft:rgba(37,99,235,.12);
+      --accent-strong:#1d4ed8;
+      --success:#16a34a;
+      --error:#dc2626;
+      --border:rgba(37,99,235,.18);
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--text);margin:0}
+    .soft-card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 4px 20px rgba(37,99,235,.06)}
+    .key{
+      display:flex;align-items:center;justify-content:center;
+      height:44px;border-radius:12px;border:1px solid var(--border);
+      background:#f8fbff;color:var(--text);font-size:13px;font-weight:500;
+      transition:all .12s ease;user-select:none;flex:1;min-width:0;
+    }
+    .key.active{background:var(--accent);color:#fff;transform:translateY(2px);border-color:var(--accent-strong)}
+    .key.wide{flex:1.6}
+    .key.extra{flex:2.2}
+    .key.space{flex:7}
+    .finger-pinky{background:#fef3c7;border-color:#f59e0b}
+    .finger-ring{background:#fee2e2;border-color:#f87171}
+    .finger-middle{background:#dbeafe;border-color:#60a5fa}
+    .finger-index{background:#dcfce7;border-color:#4ade80}
+    .finger-thumb{background:#f3e8ff;border-color:#c084fc}
+    .char{display:inline-block;padding:1px 0;border-radius:4px;transition:background .08s}
+    .char.correct{color:var(--success)}
+    .char.wrong{color:var(--error);background:rgba(220,38,38,.1)}
+    .char.current{background:var(--accent);color:#fff;animation:pulse 1s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+    .stat-card{transition:transform .2s ease}
+    .stat-card:hover{transform:translateY(-3px)}
+    textarea:focus, input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+    .btn{
+      border-radius:14px;border:1px solid var(--border);padding:12px 24px;
+      font-weight:600;cursor:pointer;transition:all .18s ease;font-family:inherit;font-size:15px;
+    }
+    .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent-strong)}
+    .btn-primary:hover{background:var(--accent-strong);transform:translateY(-1px);box-shadow:0 6px 18px rgba(37,99,235,.25)}
+    .btn-secondary{background:#fff;color:var(--accent)}
+    .btn-secondary:hover{background:var(--accent-soft)}
+  `;
+  document.head.appendChild(s);
+})();
+</script>
+<div style="background-color:transparent;box-sizing:border-box;">
+<div class="max-w-6xl mx-auto px-4 py-10">
+
+  <!-- Header -->
+  <div class="text-center mb-10">
+    <div style="display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:13px;font-weight:500;margin-bottom:14px;border:1px solid var(--border)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M6 16h12"/></svg>
+      LUYỆN GÕ 10 NGÓN
+    </div>
+    <h1 class="text-4xl font-bold mb-3" style="letter-spacing:-0.02em">Gõ nhanh chính xác như chuyên gia</h1>
+    <p style="color:var(--muted);max-width:560px;margin:0 auto">Gõ theo đúng ngón tay quy ước, theo dõi tốc độ và độ chính xác theo thời gian thực</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <div class="soft-card stat-card p-5 text-center">
+      <div style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Tốc độ</div>
+      <div id="wpm" class="text-3xl font-bold" style="color:var(--accent)">0</div>
+      <div style="color:var(--muted);font-size:12px">WPM</div>
+    </div>
+    <div class="soft-card stat-card p-5 text-center">
+      <div style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Độ chính xác</div>
+      <div id="acc" class="text-3xl font-bold" style="color:var(--success)">100%</div>
+      <div style="color:var(--muted);font-size:12px">Accuracy</div>
+    </div>
+    <div class="soft-card stat-card p-5 text-center">
+      <div style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Thời gian</div>
+      <div id="time" class="text-3xl font-bold" style="color:var(--text)">00:00</div>
+      <div style="color:var(--muted);font-size:12px">Giây</div>
+    </div>
+    <div class="soft-card stat-card p-5 text-center">
+      <div style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Đã gõ</div>
+      <div id="progress" class="text-3xl font-bold" style="color:#7c3aed">0%</div>
+      <div style="color:var(--muted);font-size:12px">Hoàn thành</div>
+    </div>
+  </div>
+
+  <!-- Text to type -->
+  <div class="soft-card p-6 mb-4">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div style="font-weight:600;color:var(--text)">Đoạn văn cần gõ</div>
+      <button id="newText" class="btn btn-secondary text-sm" style="padding:8px 16px;border-radius:10px">Đoạn mới</button>
+    </div>
+    <div id="textDisplay" style="font-size:20px;line-height:1.9;letter-spacing:.3px;color:#334155;min-height:120px"></div>
+  </div>
+
+  <!-- Input -->
+  <div class="soft-card p-4 mb-6">
+    <textarea id="input" rows="3" placeholder="Bắt đầu gõ ở đây..." style="width:100%;padding:16px 18px;border-radius:16px;border:1px solid var(--border);font-size:18px;font-family:inherit;resize:none;background:#fafcff;color:var(--text)"></textarea>
+  </div>
+
+  <!-- Keyboard -->
+  <div class="soft-card p-5 mb-6">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div style="font-weight:600">Bàn phím ảo - chỉ dẫn ngón tay</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--muted)">
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;border-radius:4px;background:#fef3c7;border:1px solid #f59e0b"></span>Út</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;border-radius:4px;background:#fee2e2;border:1px solid #f87171"></span>Ap út</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;border-radius:4px;background:#dbeafe;border:1px solid #60a5fa"></span>Giữa</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;border-radius:4px;background:#dcfce7;border:1px solid #4ade80"></span>Trỏ</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;border-radius:4px;background:#f3e8ff;border:1px solid #c084fc"></span>Ngón cái</span>
+      </div>
+    </div>
+    <div id="keyboard" style="display:flex;flex-direction:column;gap:6px"></div>
+  </div>
+
+  <!-- Controls -->
+  <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+    <button id="reset" class="btn btn-primary">Làm mới</button>
+  </div>
+
+  <!-- Result modal -->
+  <div id="result" class="soft-card p-8 text-center mt-8" style="display:none">
+    <div class="text-2xl font-bold mb-4" style="color:var(--accent)">Hoàn thành! 🎉</div>
+    <div class="grid grid-cols-3 gap-4 max-w-md mx-auto">
+      <div><div class="text-3xl font-bold" id="rWpm" style="color:var(--accent)">0</div><div style="color:var(--muted);font-size:12px">WPM</div></div>
+      <div><div class="text-3xl font-bold" id="rAcc" style="color:var(--success)">0%</div><div style="color:var(--muted);font-size:12px">Accuracy</div></div>
+      <div><div class="text-3xl font-bold" id="rTime" style="color:var(--text)">0s</div><div style="color:var(--muted);font-size:12px">Thời gian</div></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+(function(){
+  const SAMPLES = [
+    "Cong nghe thong tin dang thay doi cuoc song cua chung ta moi ngay. Viec hoc gõ 10 ngón se giup ban tiet kiem rat nhieu thoi gian trong cong viec va hoc tap.",
+    "Hoc lap trinh khong don gian nhung rat thu vi. Ban can kiên nhien, luyen tap moi ngay va luon muon tim hieu nhung dieu moi. Thanh cong se den voi nhung ai khong bo cuoc.",
+    "Viet Nam la quoc gia dang phat trien manh ve cong nghe. Nhieu doanh nghiep start-up ra doi va tao ra nhung san pham gia tri cho cong dong.",
+    "Doc sach la mot thoi quen tot dep. Moi cuon sach deu mang lai cho chung ta nhung kien thuc moi, mo rong the gioi va giup chung ta suy nghi sau sac hon."
+  ];
+
+  // Quy ước ngón tay cho từng phím
+  const FINGER_MAP = {
+    '`':'pinky-L','1':'pinky-L','2':'ring-L','3':'middle-L','4':'index-L','5':'index-L',
+    '6':'index-R','7':'index-R','8':'middle-R','9':'ring-R','0':'pinky-R','-':'pinky-R','=':'pinky-R',
+    'q':'pinky-L','w':'ring-L','e':'middle-L','r':'index-L','t':'index-L',
+    'y':'index-R','u':'index-R','i':'middle-R','o':'ring-R','p':'pinky-R','[':'pinky-R',']':'pinky-R','\\':'pinky-R',
+    'a':'pinky-L','s':'ring-L','d':'middle-L','f':'index-L','g':'index-L',
+    'h':'index-R','j':'index-R','k':'middle-R','l':'ring-R',';':'pinky-R',"'":'pinky-R',
+    'z':'pinky-L','x':'ring-L','c':'middle-L','v':'index-L','b':'index-L',
+    'n':'index-R','m':'index-R',',':'middle-R','.':'ring-R','/':'pinky-R',
+    ' ':'thumb'
+  };
+
+  const KEYBOARD_ROWS = [
+    ['`','1','2','3','4','5','6','7','8','9','0','-','='],
+    ['q','w','e','r','t','y','u','i','o','p','[',']','\\'],
+    ['a','s','d','f','g','h','j','k','l',';',"'"],
+    ['z','x','c','v','b','n','m',',','.','/'],
+    [' ']
+  ];
+
+  const FINGER_CLASS = {
+    'pinky-L':'finger-pinky','pinky-R':'finger-pinky',
+    'ring-L':'finger-ring','ring-R':'finger-ring',
+    'middle-L':'finger-middle','middle-R':'finger-middle',
+    'index-L':'finger-index','index-R':'finger-index',
+    'thumb':'finger-thumb'
+  };
+
+  let currentText = '';
+  let startTime = null;
+  let timer = null;
+  let totalTyped = 0;
+  let correctTyped = 0;
+  let keyEls = {};
+
+  const $ = id => document.getElementById(id);
+  const textDisplay = $('textDisplay');
+  const input = $('input');
+  const keyboard = $('keyboard');
+
+  // Tạo bàn phím ảo
+  function buildKeyboard(){
+    keyboard.innerHTML = '';
+    KEYBOARD_ROWS.forEach((row, idx) => {
+      const rowDiv = document.createElement('div');
+      rowDiv.style.cssText = 'display:flex;gap:6px';
+      if(idx === 2) rowDiv.style.paddingLeft = '22px';
+      if(idx === 3) rowDiv.style.paddingLeft = '44px';
+      if(idx === 4) rowDiv.style.paddingLeft = '120px';
+
+      row.forEach(k => {
+        const key = document.createElement('div');
+        key.className = 'key';
+        if(k === ' ') key.classList.add('space');
+        const finger = FINGER_MAP[k.toLowerCase()] || 'index-R';
+        key.classList.add(FINGER_CLASS[finger]);
+        key.textContent = k === ' ' ? 'SPACE' : k.toUpperCase();
+        key.dataset.key = k;
+        rowDiv.appendChild(key);
+        keyEls[k.toLowerCase()] = key;
+      });
+      keyboard.appendChild(rowDiv);
+    });
+  }
+
+  // Load đoạn văn mới
+  function loadNewText(){
+    currentText = SAMPLES[Math.floor(Math.random()*SAMPLES.length)];
+    renderText();
+    reset();
+  }
+
+  function renderText(){
+    textDisplay.innerHTML = currentText.split('').map((c,i) =>
+      `<span class="char" data-idx="${i}">${c === ' ' ? '\u00A0' : c}</span>`
+    ).join('');
+    updateCharClass(0);
+  }
+
+  function updateCharClass(pos){
+    document.querySelectorAll('.char').forEach((el,i) => {
+      el.classList.remove('correct','wrong','current');
+      if(i < pos){
+        const typed = input.value[i];
+        el.classList.add(typed === currentText[i] ? 'correct' : 'wrong');
+      } else if(i === pos){
+        el.classList.add('current');
+      }
+    });
+  }
+
+  function updateStats(){
+    const pos = input.value.length;
+    if(pos === 0){ $('wpm').textContent = '0'; $('acc').textContent = '100%'; $('progress').textContent = '0%'; return; }
+
+    // Tính đúng/sai
+    let correct = 0;
+    for(let i=0;i<pos;i++) if(input.value[i] === currentText[i]) correct++;
+    correctTyped = correct;
+    totalTyped = pos;
+
+    const acc = Math.round((correct/pos)*100);
+    $('acc').textContent = acc + '%';
+    $('progress').textContent = Math.round((pos/currentText.length)*100) + '%';
+
+    if(startTime){
+      const mins = (Date.now() - startTime) / 60000;
+      const wpm = Math.round((correct/5) / Math.max(mins, 0.01));
+      $('wpm').textContent = wpm;
+    }
+  }
+
+  function updateTime(){
+    if(!startTime) return;
+    const s = Math.floor((Date.now() - startTime)/1000);
+    const mm = String(Math.floor(s/60)).padStart(2,'0');
+    const ss = String(s%60).padStart(2,'0');
+    $('time').textContent = `${mm}:${ss}`;
+  }
+
+  function highlightKey(k){
+    const key = keyEls[k];
+    if(!key) return;
+    key.classList.add('active');
+    setTimeout(() => key.classList.remove('active'), 120);
+  }
+
+  function finish(){
+    clearInterval(timer);
+    const s = Math.floor((Date.now() - startTime)/1000);
+    $('rWpm').textContent = $('wpm').textContent;
+    $('rAcc').textContent = $('acc').textContent;
+    $('rTime').textContent = s + 's';
+    $('result').style.display = 'block';
+    input.disabled = true;
+  }
+
+  function reset(){
+    clearInterval(timer);
+    startTime = null;
+    input.value = '';
+    input.disabled = false;
+    $('wpm').textContent = '0';
+    $('acc').textContent = '100%';
+    $('time').textContent = '00:00';
+    $('progress').textContent = '0%';
+    $('result').style.display = 'none';
+    updateCharClass(0);
+    setTimeout(() => input.focus(), 50);
+  }
+
+  // Sự kiện
+  input.addEventListener('input', e => {
+    if(!startTime && input.value.length > 0){
+      startTime = Date.now();
+      timer = setInterval(updateTime, 250);
+    }
+    const pos = input.value.length;
+    updateCharClass(pos);
+    updateStats();
+    if(pos >= currentText.length) finish();
+  });
+
+  input.addEventListener('keydown', e => {
+    highlightKey(e.key.length === 1 ? e.key.toLowerCase() : (e.key === ' ' ? ' ' : null));
+  });
+
+  $('reset').addEventListener('click', reset);
+  $('newText').addEventListener('click', loadNewText);
+
+  // Khởi tạo
+  buildKeyboard();
+  loadNewText();
+})();
+</script>
+</html>
