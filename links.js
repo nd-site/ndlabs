@@ -150,6 +150,7 @@ const ndLinks = [
         mutedcolor: "#FF0000",
         newtab: false
     },
+    
     {
         title: "Chép chính tả",
         description: "Chép chính tả theo tốc độ viết.",
@@ -162,6 +163,7 @@ const ndLinks = [
         iconTextColor: "#FFFFFF",
         newTab: true
     },
+    
     {
         title: "Hóa Học 11 KNTT - Bài 1, 2",
         description: "Tổng hợp kiến thức Hóa Học lớp 11 sách Kết Nối Tri Thức bài 1 và bài 2 | ND Labs",
@@ -174,6 +176,7 @@ const ndLinks = [
         iconTextColor: "#FFFFFF",
         newTab: true
     },
+    
     {
         title: "Sổ Tay Tương Tác Hóa Học 11 KNTT",
         description: "Sổ tay ghi chép các kiến thức liên quan tới môn Hóa Học lớp 11 sách Kết Nối Tri Thức | ND Labs",
@@ -186,6 +189,7 @@ const ndLinks = [
         iconTextColor: "#FFFFFF",
         newTab: true
     },
+    
     {
         title: "GDQP-AN 11 KNTT - Bài 1, 2",
         description: "Tổng hợp kiến thức GDQP-AN lớp 11 sách Kết Nối Tri Thức bài 1 và bài 2 | ND Labs",
@@ -198,6 +202,7 @@ const ndLinks = [
         iconTextColor: "#FFFFFF",
         newTab: true
     },
+    
     {
         title: "Học từ tiếng Anh - ND Labs",
         description: "Học từ tiếng Anh (Bản 3) | ND Labs",
@@ -212,6 +217,7 @@ const ndLinks = [
 
         newTab: true
     },
+    
     {
         title: "Kho từ Github - EduND",
         description: "Kho từ vựng theo từng bài học môn Tiếng Anh do ND Labs cung cấp cho người dùng EduND.",
@@ -224,6 +230,7 @@ const ndLinks = [
         iconTextColor: "#FFFFFF",
         newTab: true
     },
+    
     {
         title: "Công thức lượng giác môn toán lớp 11 - ND Labs",
         description: "Tổng hợp tất cả các công thức lượng giác môn toán lớp 11 (Bản 1) | ND Labs",
@@ -237,5 +244,16 @@ const ndLinks = [
         iconTextColor: "#FFFFFF",
 
         newTab: true
+    },
+    
+    {
+        title: "Luyện gõ 10 ngón - ND Labs",
+        description: "Trang luyện gõ bàn phím bằng 10 ngón tay.",
+        url: "/ndlabs/tool/luyen-go-muoi-ngon/v1",
+        image: "https://ndsite.web.app/assets/images/avatar.png",
+        color: "#FFF0E3",
+        textcolor: "#FF0000",
+        mutedcolor: "#FF0000",
+        newtab: true
     },
 ];
