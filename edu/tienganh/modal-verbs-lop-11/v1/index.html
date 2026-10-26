@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sơ Đồ Tư Duy Modal Verbs - Tiếng Anh 11</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #fcfcfc;
+            color: #1a1a1a;
+        }
+
+        /* SVG Connections Container */
+        #svg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Card Node Styles */
+        .node-card {
+            position: relative;
+            z-index: 2;
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        .node-card:hover {
+            border-color: #000000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Relation Lines */
+        .connection-line {
+            stroke: #cbd5e1;
+            stroke-width: 2;
+            fill: none;
+            transition: stroke 0.2s ease;
+        }
+
+        .connection-line.highlight {
+            stroke: #2563eb;
+            stroke-width: 2.5;
+        }
+
+        /* Essential paper background subtle grid */
+        .paper-grid {
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="paper-grid min-h-screen p-4 md:p-8 relative overflow-x-hidden">
+
+    <!-- Header Section -->
+    <header class="max-w-6xl mx-auto mb-8 border-b border-gray-300 pb-4 flex justify-between items-end">
+        <div>
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">MODAL VERBS</h1>
+            <p class="text-sm text-gray-500 mt-1">Sơ đồ hệ thống kiến thức & mối liên hệ tương quan (Lớp 11 Global Success Focus)</p>
+        </div>
+        <div class="text-xs text-gray-400 font-mono">WHITEBOARD CONCEPT</div>
+    </header>
+
+    <!-- Main Container for Mindmap -->
+    <div id="mindmap-container" class="max-w-6xl mx-auto relative min-h-[900px] my-4">
+        
+        <!-- SVG Canvas for Connecting Lines -->
+        <svg id="svg-canvas"></svg>
+
+        <!-- CENTER ROOT NODE -->
+        <div id="node-root" class="node-card absolute left-1/2 top-10 -translate-x-1/2 p-4 rounded-xl text-center w-64 shadow-sm border-2 border-black bg-white">
+            <span class="text-xs font-semibold uppercase tracking-wider text-blue-600">Động từ khuyết thiếu</span>
+            <h2 class="text-xl font-extrabold text-gray-900 mt-0.5">MODAL VERBS</h2>
+            <p class="text-xs text-gray-500 mt-1">Công thức chung: <span class="font-mono text-black font-semibold">S + Modal + V (nguyên thể)</span></p>
+        </div>
+
+        <!-- LEVEL 1: CATEGORIES -->
+        
+        <!-- BRANCH 1: Unit 2 Focus (Nghĩa vụ & Lời khuyên) -->
+        <div id="node-b1" class="node-card absolute left-[5%] top-[220px] w-80 p-4 rounded-lg border-l-4 border-l-blue-600">
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="font-bold text-gray-800 text-sm">1. NGHĨA VỤ & LỜI KHUYÊN</h3>
+                <span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-1.5 py-0.5 rounded">Unit 2 Focus</span>
+            </div>
+            <p class="text-xs text-gray-600 mb-3">Sử dụng để diễn đạt sự bắt buộc, cần thiết hoặc đưa ra lời khuyên.</p>
+            
+            <div class="space-y-3 text-xs">
+                <div id="sub-must" class="p-2 bg-gray-50 rounded border border-gray-100">
+                    <div class="font-semibold text-gray-900">Must + V</div>
+                    <div class="text-gray-600">Nghĩa vụ chủ quan (do bản thân tự thấy cần thiết).</div>
+                    <div class="italic text-gray-500 text-[11px] mt-0.5">Ex: I must study harder.</div>
+                </div>
+
+                <div id="sub-haveto" class="p-2 bg-gray-50 rounded border border-gray-100">
+                    <div class="font-semibold text-gray-900">Have to + V</div>
+                    <div class="text-gray-600">Nghĩa vụ khách quan (do quy định, luật lệ bên ngoài).</div>
+                    <div class="italic text-gray-500 text-[11px] mt-0.5">Ex: We have to wear uniforms.</div>
+                </div>
+
+                <div id="sub-should" class="p-2 bg-gray-50 rounded border border-gray-100">
+                    <div class="font-semibold text-gray-900">Should / Ought to + V</div>
+                    <div class="text-gray-600">Lời khuyên, ý kiến nên làm điều gì đó.</div>
+                    <div class="italic text-gray-500 text-[11px] mt-0.5">Ex: You should ask your parents.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BRANCH 2: Phủ định & Sự không cần thiết -->
+        <div id="node-b2" class="node-card absolute left-[38%] top-[220px] w-80 p-4 rounded-lg border-l-4 border-l-red-500">
+            <h3 class="font-bold text-gray-800 text-sm mb-1">2. PHỦ ĐỊNH & SỰ KHÔNG CẦN THIẾT</h3>
+            <p class="text-xs text-gray-600 mb-3">Sự khác biệt quan trọng trong dạng phủ định.</p>
+
+            <div class="space-y-3 text-xs">
+                <div id="sub-mustnt" class="p-2 bg-gray-50 rounded border border-gray-100">
+                    <div class="font-semibold text-red-600">Mustn't + V (Cấm đoán)</div>
+                    <div class="text-gray-600">Tuyệt đối không được làm (sự cấm đoán).</div>
+                    <div class="italic text-gray-500 text-[11px] mt-0.5">Ex: You mustn't cheat in exams.</div>
+                </div>
+
+                <div id="sub-dont-haveto" class="p-2 bg-gray-50 rounded border border-gray-100">
+                    <div class="font-semibold text-amber-600">Don't / Doesn't have to + V</div>
+                    <div class="text-gray-600">Không bắt buộc / Không cần thiết phải làm.</div>
+                    <div class="italic text-gray-500 text-[11px] mt-0.5">Ex: You don't have to clean today.</div>
+                </div>
+
+                <div id="sub-shouldnt" class="p-2 bg-gray-50 rounded border border-gray-100">
+                    <div class="font-semibold text-gray-800">Shouldn't + V</div>
+                    <div class="text-gray-600">Khuyên không nên làm điều gì đó.</div>
+                    <div class="italic text-gray-500 text-[11px] mt-0.5">Ex: You shouldn't stay up late.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BRANCH 3: Khả năng & Cho phép -->
+        <div id="node-b3" class="node-card absolute right-[5%] top-[220px] w-80 p-4 rounded-lg border-l-4 border-l-emerald-500">
+            <h3 class="font-bold text-gray-800 text-sm mb-1">3. KHẢ NĂNG & SỰ CHO PHÉP</h3>
+            <p class="text-xs text-gray-600 mb-3">Diễn đạt năng lực hoặc xin/cho phép.</p>
+
+            <div class="space-y-3 text-xs">
+                <div id="sub-can-could" class="p-2 bg-gray-50 rounded border border-gray-100">
+                    <div class="font-semibold text-gray-900">Can / Could + V</div>
+                    <div class="text-gray-600">Năng lực bản thân (Hiện tại / Quá khứ) hoặc Yêu cầu lịch sự.</div>
+                    <div class="italic text-gray-500 text-[11px] mt-0.5">Ex: I can speak English.</div>
+                </div>
+
+                <div id="sub-may-might" class="p-2 bg-gray-50 rounded border border-gray-100">
+                    <div class="font-semibold text-gray-900">May / Might + V</div>
+                    <div class="text-gray-600">Khả năng xảy ra (May: ~50%, Might: ~30%) hoặc Xin phép trang trọng.</div>
+                    <div class="italic text-gray-500 text-[11px] mt-0.5">Ex: It might rain later.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPARISON / RELATIONSHIP NODES (BOTTOM) -->
+        
+        <!-- RELATIONSHIP NODE 1: Must vs Have to -->
+        <div id="node-rel1" class="node-card absolute left-[10%] top-[650px] w-[38%] p-4 rounded-xl border border-gray-300 bg-slate-50">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wide">Mối quan hệ: MUST vs. HAVE TO</h4>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+                <div class="bg-white p-2 rounded border border-gray-200">
+                    <div class="font-semibold text-blue-700">MUST</div>
+                    <div class="text-gray-600 text-[11px] mt-1">Xuất phát từ cảm xúc/quyết định của **người nói** (Chủ quan).</div>
+                </div>
+                <div class="bg-white p-2 rounded border border-gray-200">
+                    <div class="font-semibold text-indigo-700">HAVE TO</div>
+                    <div class="text-gray-600 text-[11px] mt-1">Do **luật lệ, nội quy, hoàn cảnh** bắt buộc (Khách quan).</div>
+                </div>
+            </div>
+            <div class="mt-2 text-[11px] text-gray-500 border-t border-gray-200 pt-1.5 italic">
+                *Lưu ý Quá Khứ:* "Must" không có dạng quá khứ, bắt buộc dùng **HAD TO** cho cả hai.
+            </div>
+        </div>
+
+        <!-- RELATIONSHIP NODE 2: Mustn't vs Don't have to -->
+        <div id="node-rel2" class="node-card absolute right-[10%] top-[650px] w-[38%] p-4 rounded-xl border border-gray-300 bg-slate-50">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="w-2 h-2 rounded-full bg-red-600"></span>
+                <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wide">Mối quan hệ: MUSTN'T vs. DON'T HAVE TO</h4>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+                <div class="bg-white p-2 rounded border border-gray-200">
+                    <div class="font-semibold text-red-600">MUSTN'T</div>
+                    <div class="text-gray-600 text-[11px] mt-1">**CẤM**! Hành động không được phép thực hiện.</div>
+                </div>
+                <div class="bg-white p-2 rounded border border-gray-200">
+                    <div class="font-semibold text-amber-600">DON'T HAVE TO</div>
+                    <div class="text-gray-600 text-[11px] mt-1">**KHÔNG BẮT BUỘC**. Làm hay không tùy ý.</div>
+                </div>
+            </div>
+            <div class="mt-2 text-[11px] text-gray-500 border-t border-gray-200 pt-1.5 italic">
+                *Ví dụ:* You **mustn't** park here (Cấm đỗ). / You **don't have to** pay (Miễn phí).
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script draw relationships dynamically -->
+    <script>
+        function drawConnections() {
+            const svg = document.getElementById('svg-canvas');
+            svg.innerHTML = ''; // Clear existing lines
+
+            const container = document.getElementById('mindmap-container').getBoundingClientRect();
+
+            // Helper to get center anchor point of an element relative to container
+            function getAnchor(elementId, position = 'center') {
+                const el = document.getElementById(elementId);
+                if (!el) return { x: 0, y: 0 };
+                const rect = el.getBoundingClientRect();
+                
+                let x = rect.left + rect.width / 2 - container.left;
+                let y = rect.top + rect.height / 2 - container.top;
+
+                if (position === 'top') y = rect.top - container.top;
+                if (position === 'bottom') y = rect.bottom - container.top;
+                if (position === 'left') x = rect.left - container.left;
+                if (position === 'right') x = rect.right - container.left;
+
+                return { x, y };
+            }
+
+            // Draw Curved path
+            function createCurve(start, end, strokeColor = '#cbd5e1', isDashed = false) {
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const deltaY = end.y - start.y;
+                const controlY1 = start.y + deltaY * 0.5;
+                const controlY2 = end.y - deltaY * 0.5;
+
+                const d = `M ${start.x} ${start.y} C ${start.x} ${controlY1}, ${end.x} ${controlY2}, ${end.x} ${end.y}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', strokeColor);
+                path.setAttribute('stroke-width', '2');
+                path.setAttribute('fill', 'none');
+                if (isDashed) {
+                    path.setAttribute('stroke-dasharray', '4 4');
+                }
+                svg.appendChild(path);
+            }
+
+            // Root to Branch 1, 2, 3
+            const rootBottom = getAnchor('node-root', 'bottom');
+            createCurve(rootBottom, getAnchor('node-b1', 'top'), '#2563eb');
+            createCurve(rootBottom, getAnchor('node-b2', 'top'), '#ef4444');
+            createCurve(rootBottom, getAnchor('node-b3', 'top'), '#10b981');
+
+            // Branch 1 to Rel 1 (Must vs Have to)
+            createCurve(getAnchor('node-b1', 'bottom'), getAnchor('node-rel1', 'top'), '#94a3b8', true);
+
+            // Branch 2 to Rel 2 (Mustn't vs Don't Have to)
+            createCurve(getAnchor('node-b2', 'bottom'), getAnchor('node-rel2', 'top'), '#94a3b8', true);
+        }
+
+        // Initial draw and redraw on window resize
+        window.addEventListener('load', drawConnections);
+        window.addEventListener('resize', drawConnections);
+    </script>
+</body>
+</html>
