@@ -248,12 +248,25 @@ const ndLinks = [
     
     {
         title: "Luyện gõ 10 ngón - ND Labs",
-        description: "Trang luyện gõ bàn phím bằng 10 ngón tay.",
+        description: "Trang luyện gõ bàn phím bằng 10 ngón tay (Bản 1).",
         url: "/ndlabs/tool/luyen-go-muoi-ngon/v1",
         image: "https://ndsite.web.app/assets/images/avatar.png",
         color: "#FFF0E3",
         textcolor: "#FF0000",
         mutedcolor: "#FF0000",
         newtab: true
+    },
+    
+    {
+        title: "Tổng hợp kiến thức Modal Verbs lớp 11 môn Tiếng Anh",
+        description: "Tổng hợp kiến thức về Modal Verbs lớp 11 môn Tiếng Anh (Bản 1) - EduND by ND Labs",
+        url: "/ndlabs/edu/tienganh/modal-verbs-lop-11/v1",
+        image: "https://ndsite.web.app/assets/images/logo.png",
+        color: "#FFEAF1",
+        textColor: "#F00000",
+        mutedColor: "#668096",
+        iconColor: "#F00000",
+        iconTextColor: "#FFFFFF",
+        newTab: true
     },
 ];
