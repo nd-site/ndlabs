@@ -1,0 +1,50 @@
+[
+  {
+    "word": "urban lifestyle",
+    "ipa": "/ˈɜː.bən ˈlaɪf.staɪl/",
+    "pos": "n",
+    "meaning": "Lối sống đô thị, lối sống thành thị",
+    "usage": "Dùng để miêu tả phong cách sống, thói quen và sinh hoạt của con người tại các thành phố lớn.",
+    "example": "Many young people prefer the fast-paced urban lifestyle."
+  },
+  {
+    "word": "urban centre",
+    "ipa": "/ˈɜː.bən ˈsen.tər/",
+    "pos": "n",
+    "meaning": "Trung tâm đô thị",
+    "usage": "Chỉ khu vực trung tâm tập trung đông dân cư, các hoạt động kinh tế và thương mại của thành phố.",
+    "example": "The government plans to modernize the urban centre to reduce pollution."
+  },
+  {
+    "word": "roof garden",
+    "ipa": "/ˈruːf ˌɡɑː.dən/",
+    "pos": "n",
+    "meaning": "Khu vườn trên mái nhà/sân thượng",
+    "usage": "Chỉ khu vườn được trồng trên mái hoặc sân thượng của các tòa nhà cao tầng.",
+    "example": "They built a lovely roof garden to grow fresh vegetables."
+  },
+  {
+    "word": "architecture",
+    "ipa": "/ˈɑː.kɪ.tek.tʃər/",
+    "pos": "n",
+    "meaning": "Kiến trúc, phong cách kiến trúc",
+    "usage": "Chỉ nghệ thuật, khoa học thiết kế và xây dựng các tòa nhà hoặc kiểu dáng kiến trúc.",
+    "example": "The city is famous for its impressive modern architecture."
+  },
+  {
+    "word": "suburbs",
+    "ipa": "/ˈsʌb.ɜːbz/",
+    "pos": "n",
+    "meaning": "Vùng ngoại ô",
+    "usage": "Chỉ khu vực dân cư nằm xung quanh hoặc rìa của một thành phố lớn.",
+    "example": "Many families move to the suburbs for a quieter environment."
+  },
+  {
+    "word": "dweller",
+    "ipa": "/ˈdwel.ər/",
+    "pos": "n",
+    "meaning": "Cư dân, người ở",
+    "usage": "Thường đi kèm với từ chỉ nơi chốn (như city dweller, slum dweller) để chỉ người sinh sống ở khu vực đó.",
+    "example": "City dwellers often face high living costs and noise pollution."
+  }
+]
