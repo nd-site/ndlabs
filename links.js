@@ -299,4 +299,19 @@ const ndLinks = [
 
         newTab: true
     },
+    
+    {
+        title: "CL Edu - Kế hoạch phát triển | Thiết kế bởi ND Labs",
+        description: "Kế hoạch phát triển của CL Edu phát triển bởi Châu Nhật Đăng và Lương Trung Nguyên - Thiết kế bởi ND Labs",
+        url: "/ndlabs/tool/cledu-ke-hoach-phat-trien/v1",
+        image: "https://ndsite.web.app/assets/images/logo.png",
+
+        color: "#EAF5FF",
+        textColor: "#0068D9",
+        mutedColor: "#58758E",
+        iconColor: "#0075F1",
+        iconTextColor: "#FFFFFF",
+
+        newTab: true
+    },
 ];
