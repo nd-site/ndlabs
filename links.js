@@ -269,4 +269,19 @@ const ndLinks = [
         iconTextColor: "#FFFFFF",
         newTab: true
     },
+
+    {
+        title: "EduND - Thí nghiệm dao động điều hòa Vật Lý 11",
+        description: "Phòng thí nghiệm ảo bài học dao động điều hòa và năng lượng môn Vật Lý lớp 11 - EduND",
+        url: "/ndlabs/edu/vatly/11/thi-nghiem-dao-dong-dieu-hoa/v1",
+        image: "https://ndsite.web.app/assets/images/logo.png",
+        
+        color: "#EEF7ED",
+        textColor: "#0075F1",
+        mutedColor: "#668096",
+        iconColor: "#0075F1",
+        iconTextColor: "#FFFFFF",
+        
+        newTab: true
+    },
 ];
