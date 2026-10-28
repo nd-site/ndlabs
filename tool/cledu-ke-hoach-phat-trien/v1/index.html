@@ -1,0 +1,159 @@
+<html style="margin:0;padding:0;">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+(function(){
+  var s=document.createElement('style');
+  s.textContent=':root{--brand:#3b82f6;--brand-dark:#1d4ed8;--brand-deep:#1e3a8a;--brand-100:#dbeafe;--brand-200:#bfdbfe;--pastel-sky:#e0f2fe;--pastel-lav:#e0e7ff;--pastel-mint:#d1fae5;--pastel-peach:#ffedd5;--pastel-rose:#ffe4e6;--ink:#1e293b;--muted:#64748b;--bg:#f0f7ff;--card:#fff;--border:rgba(30,41,59,.08)}'
+  +'.tab-btn{padding:10px 22px;border-radius:12px;font-weight:800;font-size:14px;color:var(--muted);background:transparent;border:1.5px solid transparent;cursor:pointer;transition:all .2s;font-family:Nunito,sans-serif}'
+  +'.tab-btn.active{color:var(--brand-dark);background:var(--brand-100);border-color:var(--brand)}'
+  +'.prio{display:inline-block;padding:1px 8px;border-radius:999px;font-size:10px;font-weight:800;font-family:"IBM Plex Mono",monospace;margin-left:6px;vertical-align:middle}'
+  +'.p0{background:#dbeafe;color:#1d4ed8}.p1{background:#d1fae5;color:#047857}.p2{background:#ffedd5;color:#b45309}.p3{background:#ffe4e6;color:#be123c}'
+  +'.feat{padding:7px 0;border-bottom:1px dashed var(--border);font-size:13.5px;line-height:1.55}.feat:last-child{border-bottom:none}'
+  +'.mod-card{transition:transform .2s,box-shadow .2s}.mod-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(37,99,235,.12)}';
+  document.head.appendChild(s);
+})();
+</script>
+<div style="background-color:transparent;box-sizing:border-box;">
+<div style="font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);padding:28px 20px 44px;">
+<div style="max-width:1040px;margin:0 auto;">
+
+  <!-- Header -->
+  <div style="background:linear-gradient(135deg,#1d4ed8,#3b82f6 60%,#93c5fd);border-radius:20px;padding:30px 28px;color:#fff;margin-bottom:20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.1);"></div>
+    <p style="margin:0 0 6px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.85;position:relative;">CL Edu · Product Roadmap</p>
+    <h1 style="margin:0;font-weight:900;font-size:32px;line-height:1.15;position:relative;">Kế hoạch tính năng <span style="color:#bae6fd;">CL Edu</span></h1>
+    <p style="margin:10px 0 0;font-size:14px;opacity:.92;max-width:620px;position:relative;">Web app Quản lý &amp; Học tập Vật lý 11 — Chủ đề Dao động điều hòa. Ưu tiên: <strong>P0</strong> bắt buộc · <strong>P1</strong> quan trọng · <strong>P2</strong> nên có · <strong>P3</strong> mở rộng.</p>
+  </div>
+
+  <!-- Stats -->
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+    <div style="flex:1 1 140px;min-width:130px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;">
+      <div style="font-weight:900;font-size:26px;color:var(--brand-dark);line-height:1;">3</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;font-weight:700;">Vai trò người dùng</div>
+    </div>
+    <div style="flex:1 1 140px;min-width:130px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;">
+      <div style="font-weight:900;font-size:26px;color:var(--brand-dark);line-height:1;">10</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;font-weight:700;">Module chức năng</div>
+    </div>
+    <div style="flex:1 1 140px;min-width:130px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;">
+      <div style="font-weight:900;font-size:26px;color:var(--brand-dark);line-height:1;">4</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;font-weight:700;">Giai đoạn triển khai</div>
+    </div>
+    <div style="flex:1 1 140px;min-width:130px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;">
+      <div style="font-weight:900;font-size:26px;color:var(--brand-dark);line-height:1;">~50</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;font-weight:700;">Tính năng chi tiết</div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:8px;width:fit-content;">
+    <button class="tab-btn active" data-tab="phase">Theo giai đoạn</button>
+    <button class="tab-btn" data-tab="module">Theo module</button>
+    <button class="tab-btn" data-tab="role">Theo vai trò</button>
+  </div>
+
+  <div id="panel" style="display:flex;flex-wrap:wrap;gap:14px;"></div>
+
+  <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:20px;">CL Edu · Feature Plan v1.0 — Giai đoạn 0 (MVP) tập trung vào giá trị cốt lõi: học sinh làm bài + thí nghiệm ảo, giáo viên quản lý lớp &amp; chấm điểm tự động.</p>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  var P={p0:'<span class="prio p0">P0</span>',p1:'<span class="prio p1">P1</span>',p2:'<span class="prio p2">P2</span>',p3:'<span class="prio p3">P3</span>'};
+  var phases=[
+    {name:'Giai đoạn 0 — MVP',sub:'Tuần 1–8 · Giá trị cốt lõi',bg:'#dbeafe',bd:'#3b82f6',items:[
+      {t:'Đăng ký / đăng nhập (email + Google), phân quyền GV–HS, quên mật khẩu',p:'p0'},
+      {t:'Giáo viên tạo lớp, phát mã mời / link mời, duyệt học sinh, quản lý danh sách',p:'p0'},
+      {t:'Ngân hàng câu hỏi trắc nghiệm (chủ đề: SHM, động năng–thế năng–cơ năng)',p:'p0'},
+      {t:'Tạo bài tập, đặt hạn nộp, chế độ Luyện tập / Tính điểm, chấm tự động',p:'p0'},
+      {t:'Học sinh làm bài, xem lời giải chi tiết &amp; đáp án sau khi nộp',p:'p0'},
+      {t:'Virtual Lab: con lắc lò xo + con lắc đơn, đồ thị năng lượng realtime (xem prototype)',p:'p0'},
+      {t:'Dashboard cơ bản: điểm cá nhân (HS), phổ điểm lớp (GV)',p:'p0'},
+      {t:'Thông báo: bài tập mới, sắp hết hạn, có điểm mới',p:'p1'}
+    ]},
+    {name:'Giai đoạn 1',sub:'Tuần 9–12 · Tương tác realtime',bg:'#d1fae5',bd:'#059669',items:[
+      {t:'Live Quiz: giáo viên tạo phòng, chiếu câu hỏi (host view), đếm ngược',p:'p1'},
+      {t:'Học sinh tham gia bằng mã phòng, chọn đáp án A/B/C/D trên thiết bị cá nhân',p:'p1'},
+      {t:'Bảng xếp hạng realtime + thống kê tỉ lệ chọn từng đáp án',p:'p1'},
+      {t:'Reveal đáp án &amp; giải thích, xuất kết quả Excel/PDF sau buổi thi',p:'p1'},
+      {t:'Ngân hàng câu hỏi mở rộng: tự luận, ảnh, công thức LaTeX; import Excel/Word',p:'p1'},
+      {t:'Báo cáo chi tiết: tiến độ từng học sinh, điểm theo chủ đề, xuất PDF',p:'p1'},
+      {t:'Hộp thư GV ↔ HS, nhắc nhở tự động qua email / trình duyệt',p:'p2'}
+    ]},
+    {name:'Giai đoạn 2',sub:'Tuần 13–18 · AI & cá nhân hóa',bg:'#ffedd5',bd:'#d97706',items:[
+      {t:'AI chẩn đoán: nhận diện lỗ hổng kiến thức từng học sinh (vd: nhầm ĐK–TT)',p:'p2'},
+      {t:'Khuyến nghị lộ trình cải thiện + tự động sinh đề luyện tập bù đắp điểm yếu',p:'p2'},
+      {t:'Nhận xét tự động cho học sinh &amp; gợi ý cho GV (phần nào cần giảng lại)',p:'p2'},
+      {t:'Kho học liệu: video lý thuyết, tài liệu PDF, công thức tra cứu nhanh',p:'p2'},
+      {t:'Liên kết bài tập ↔ lý thuyết liên quan; glossary thuật ngữ vật lý',p:'p2'},
+      {t:'Virtual Lab nâng cao: lưu báo cáo thí nghiệm PDF, thí nghiệm có hướng dẫn task',p:'p2'},
+      {t:'Dự báo điểm & cảnh báo học sinh có nguy cơ yếu',p:'p3'}
+    ]},
+    {name:'Giai đoạn 3 — Mở rộng',sub:'Tùy chọn · Sau MVP',bg:'#ffe4e6',bd:'#be123c',items:[
+      {t:'Gamification: điểm kinh nghiệm, huy hiệu, bảng xếp hạng học tập',p:'p3'},
+      {t:'Tài khoản phụ huynh: xem tiến độ & điểm của con',p:'p3'},
+      {t:'Admin panel: quản lý người dùng, cấu hình hệ thống, logs, backup',p:'p3'},
+      {t:'Mobile app (React Native) hoặc PWA cài đặt được',p:'p3'},
+      {t:'API mở cho hệ thống trường học (LMS integration)',p:'p3'},
+      {t:'Mở rộng chủ đề: sóng cơ, dòng điện xoay chiều, vật lý 12',p:'p3'}
+    ]}
+  ];
+  var modules=[
+    {name:'1. Auth & Tài khoản',prio:'p0',items:['Đăng ký/đăng nhập email + Google','Phân quyền GV / HS / Admin','Quên mật khẩu, đổi mật khẩu','Hồ sơ cá nhân, avatar, cài đặt thông báo']},
+    {name:'2. Quản lý lớp học',prio:'p0',items:['Tạo lớp, mã mời/link mời, duyệt HS','Danh sách học sinh, xuất Excel','Chia nhóm trong lớp','Lưu trữ lớp cũ, nhân bản lớp']},
+    {name:'3. Ngân hàng & Bài tập',prio:'p0',items:['Ngân hàng câu hỏi (trắc nghiệm + tự luận + LaTeX)','Tạo bài tập, chọn chủ đề, đặt hạn nộp','Chế độ Luyện tập / Tính điểm','Chấm tự động trắc nghiệm, lời giải chi tiết từng bước','Import câu hỏi Excel/Word, ngân hàng đề thi']},
+    {name:'4. Virtual Lab (Thí nghiệm ảo)',prio:'p0',items:['Con lắc lò xo, con lắc đơn (2D; 3D sau)','Biến số đầu vào: m, k, l, A, góc lệch','Đồ thị realtime: x(t), v(t), ĐK/TT/Cơ năng','Play/Pause/Reset, tốc độ 0.5×–2×','Lưu ảnh đồ thị, xuất báo cáo PDF','Thí nghiệm có hướng dẫn (task-based)']},
+    {name:'5. Live Quiz (Thi tập trung realtime)',prio:'p1',items:['Host view: chiếu câu hỏi, đếm ngược, reveal đáp án','Student view: mã phòng, chọn A/B/C/D tối giản','Bảng xếp hạng realtime (Socket.io/WebSocket)','Thống kê tỉ lệ đáp án từng câu','Xuất kết quả Excel/PDF, ôn tập sau thi']},
+    {name:'6. AI Analytics & Personalization',prio:'p2',items:['Phổ điểm bài kiểm tra & toàn khóa','Chẩn đoán lỗ hổng kiến thức từng HS','Nhận xét tự động + lộ trình cải thiện','Sinh đề luyện tập bù đắp điểm yếu','Gợi ý cho GV: phần nào cần giảng lại','Dự báo điểm, cảnh báo yếu']},
+    {name:'7. Dashboard & Báo cáo',prio:'p1',items:['Dashboard HS: điểm, tiến độ, lịch sử làm bài','Dashboard GV: phổ điểm, điểm yếu chung của lớp','Biểu đồ tiến độ theo thời gian','Xuất báo cáo PDF/Excel']},
+    {name:'8. Thông báo & Tin nhắn',prio:'p1',items:['Thông báo bài tập mới, sắp hết hạn','Kết quả kiểm tra, xếp hạng','Inbox GV ↔ HS','Đẩy qua email / trình duyệt']},
+    {name:'9. Học liệu & Lý thuyết',prio:'p2',items:['Kho video lý thuyết, tài liệu PDF','Công thức tra cứu nhanh','Glossary thuật ngữ vật lý','Liên kết bài tập ↔ lý thuyết liên quan']},
+    {name:'10. Hệ thống & Admin',prio:'p3',items:['Quản lý người dùng, khóa/mở tài khoản','Cấu hình hệ thống, branding','Logs hoạt động, backup dữ liệu','Phân quyền mở rộng']}
+  ];
+  var roles=[
+    {name:'Học sinh',bg:'#dbeafe',bd:'#3b82f6',items:['Đăng nhập, xem danh sách bài tập & hạn nộp','Làm bài trắc nghiệm/tự luận, nộp bài','Xem lời giải chi tiết & điểm sau khi nộp','Dùng Virtual Lab tự do hoặc theo bài hướng dẫn','Tham gia Live Quiz bằng mã phòng','Xem điểm, tiến độ cá nhân, phổ điểm so với lớp','Nhận thông báo & lộ trình học cá nhân hóa (AI)','Xem video lý thuyết & tra cứu công thức']},
+    {name:'Giáo viên',bg:'#d1fae5',bd:'#059669',items:['Tạo lớp, quản lý danh sách học sinh','Soạn & giao bài tập, đặt hạn nộp, cấu hình chế độ','Duyệt & chấm bài (tự động trắc nghiệm, thủ công tự luận)','Tạo & host Live Quiz, xem thống kê realtime','Xem dashboard lớp: phổ điểm, điểm yếu chung','Nhận AI insights: học sinh nào yếu, chủ đề nào cần giảng lại','Xuất báo cáo điểm & tiến độ (PDF/Excel)','Tạo thí nghiệm ảo hướng dẫn cho học sinh']},
+    {name:'Quản trị viên (P3)',bg:'#ffe4e6',bd:'#be123c',items:['Quản lý tài khoản GV/HS, khóa/mở khóa','Cấu hình hệ thống & branding CL Edu','Giám sát logs & hiệu năng hệ thống','Backup & phục hồi dữ liệu','Phân quyền & kiểm toán hoạt động']}
+  ];
+
+  var panel=document.getElementById('panel');
+  function card(h,sub,bg,bd,itemsHtml){
+    return '<div class="mod-card" style="flex:1 1 300px;min-width:280px;background:var(--card);border:1px solid var(--border);border-top:3px solid '+bd+';border-radius:14px;padding:18px;">'
+      +'<div style="padding:8px 12px;background:'+bg+';border-radius:10px;margin-bottom:12px;">'
+      +'<div style="font-weight:900;font-size:16px;color:var(--ink);">'+h+'</div>'
+      +(sub?'<div style="font-size:12px;color:var(--muted);font-weight:700;margin-top:2px;">'+sub+'</div>':'')
+      +'</div>'+itemsHtml+'</div>';
+  }
+  function renderPhase(){
+    panel.innerHTML=phases.map(function(p){
+      var items=p.items.map(function(f){return '<div class="feat">'+f.t+P[f.p]+'</div>';}).join('');
+      return card(p.name,p.sub,p.bg,p.bd,items);
+    }).join('');
+  }
+  function renderModule(){
+    panel.innerHTML=modules.map(function(m){
+      var items=m.items.map(function(f){return '<div class="feat">· '+f+'</div>';}).join('');
+      return card(m.name,'Module ưu tiên '+P[m.prio].replace('prio ',''),'#f0f7ff','#3b82f6',items);
+    }).join('');
+  }
+  function renderRole(){
+    panel.innerHTML=roles.map(function(r){
+      var items=r.items.map(function(f){return '<div class="feat">· '+f+'</div>';}).join('');
+      return card(r.name,null,r.bg,r.bd,items);
+    }).join('');
+  }
+  var views={phase:renderPhase,module:renderModule,role:renderRole};
+  document.querySelectorAll('.tab-btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.tab-btn').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      views[b.dataset.tab]();
+    });
+  });
+  renderPhase();
+})();
+</script>
+</html>
