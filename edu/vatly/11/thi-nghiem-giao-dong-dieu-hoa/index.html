@@ -1,0 +1,379 @@
+<html style="margin:0;padding:0;">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+(function(){
+  var s=document.createElement('style');
+  s.textContent=':root{--bg:#f8fafb;--card:#ffffff;--text:#0f172a;--muted:#64748b;--accent:#2d7eb5;--accent-soft:rgba(45,126,181,.14);--accent2:#c85a3a;--accent2-soft:rgba(200,90,58,.14);--border:rgba(15,23,42,.08);--green:#059669}'
+  +'.reveal{opacity:0;transform:translateY(16px);animation:fu .55s ease forwards}.reveal:nth-child(2){animation-delay:.08s}.reveal:nth-child(3){animation-delay:.16s}.reveal:nth-child(4){animation-delay:.24s}@keyframes fu{to{opacity:1;transform:translateY(0)}}'
+  +'.tab-btn{padding:10px 20px;border-radius:10px;font-weight:600;font-size:14px;color:var(--muted);background:transparent;border:1px solid transparent;cursor:pointer;transition:all .2s}'
+  +'.tab-btn.active{color:var(--text);background:var(--accent-soft);border:1px solid var(--accent)}'
+  +'.ctl-btn{padding:10px 22px;border-radius:10px;font-weight:600;font-size:14px;cursor:pointer;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}'
+  +'.ctl-btn.primary{background:var(--accent-soft);border:1px solid var(--accent)}'
+  +'.ctl-btn:active{transform:scale(.96)}'
+  +'input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;background:rgba(15,23,42,.1);outline:none;cursor:pointer}'
+  +'input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25);cursor:pointer}'
+  +'input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);border:2px solid #fff;cursor:pointer}'
+  +'.stat-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px dashed var(--border);font-size:13px}'
+  +'.stat-row:last-child{border-bottom:none}'
+  +'.legend-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}';
+  document.head.appendChild(s);
+})();
+</script>
+<div style="background-color:transparent;box-sizing:border-box;">
+<div style="font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);padding:28px 20px 40px;">
+<div style="max-width:960px;margin:0 auto;">
+
+  <!-- Header -->
+  <div class="reveal" style="margin-bottom:20px;">
+    <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 6px;">Vật lý 11 · Dao động điều hòa</p>
+    <h1 style="font-size:28px;font-weight:700;margin:0 0 6px;line-height:1.2;">Phòng thí nghiệm ảo <span style="background:linear-gradient(100deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;">Virtual Physics Lab</span></h1>
+    <p style="color:var(--muted);font-size:14px;margin:0;">Mô phỏng con lắc, quan sát chuyển hóa năng lượng theo thời gian thực. Điều chỉnh tham số để thấy ngay sự thay đổi của chu kỳ và biên độ.</p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="reveal" style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+    <button class="tab-btn active" id="tab-spring">Con lắc lò xo</button>
+    <button class="tab-btn" id="tab-pendulum">Con lắc đơn</button>
+  </div>
+
+  <!-- Main grid -->
+  <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px;">
+
+    <!-- Simulation canvas -->
+    <div class="reveal" style="flex:1 1 420px;min-width:300px;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <strong style="font-size:14px;">Mô phỏng chuyển động</strong>
+        <span id="modeLabel" style="font-size:12px;color:var(--muted);"></span>
+      </div>
+      <canvas id="simCanvas" style="width:100%;height:300px;display:block;border-radius:10px;background:linear-gradient(180deg,#f1f5f9,#e8eef5);"></canvas>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;align-items:center;">
+        <button class="ctl-btn primary" id="playBtn">Tạm dừng</button>
+        <button class="ctl-btn" id="resetBtn">Đặt lại</button>
+        <span style="font-size:12px;color:var(--muted);margin-left:6px;">Tốc độ:</span>
+        <button class="ctl-btn" data-speed="0.5" style="padding:6px 12px;font-size:12px;">0.5×</button>
+        <button class="ctl-btn primary" data-speed="1" style="padding:6px 12px;font-size:12px;">1×</button>
+        <button class="ctl-btn" data-speed="2" style="padding:6px 12px;font-size:12px;">2×</button>
+      </div>
+    </div>
+
+    <!-- Controls + stats -->
+    <div class="reveal" style="flex:1 1 280px;min-width:260px;display:flex;flex-direction:column;gap:16px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:16px;">
+        <strong style="font-size:14px;display:block;margin-bottom:12px;">Tham số đầu vào</strong>
+        <div id="springParams">
+          <div style="margin-bottom:12px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Khối lượng m</span><span id="mVal" style="font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;">0.50 kg</span></div>
+            <input type="range" id="mSlider" min="0.1" max="2" step="0.05" value="0.5">
+          </div>
+          <div style="margin-bottom:12px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Độ cứng k</span><span id="kVal" style="font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;">20 N/m</span></div>
+            <input type="range" id="kSlider" min="5" max="100" step="1" value="20">
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Biên độ A</span><span id="AVal" style="font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;">0.15 m</span></div>
+            <input type="range" id="ASlider" min="0.05" max="0.3" step="0.01" value="0.15">
+          </div>
+        </div>
+        <div id="pendulumParams" style="display:none;">
+          <div style="margin-bottom:12px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Khối lượng m</span><span id="mVal2" style="font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;">0.50 kg</span></div>
+            <input type="range" id="mSlider2" min="0.1" max="2" step="0.05" value="0.5">
+          </div>
+          <div style="margin-bottom:12px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Chiều dài dây l</span><span id="lVal" style="font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;">1.00 m</span></div>
+            <input type="range" id="lSlider" min="0.3" max="2" step="0.05" value="1.0">
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Biên độ góc θ₀</span><span id="thVal" style="font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;">10°</span></div>
+            <input type="range" id="thSlider" min="3" max="25" step="1" value="10">
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:16px;">
+        <strong style="font-size:14px;display:block;margin-bottom:8px;">Chỉ số thời gian thực</strong>
+        <div id="statsPanel"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Energy chart -->
+  <div class="reveal" style="background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:16px;margin-bottom:16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
+      <strong style="font-size:14px;">Đồ thị năng lượng theo thời gian</strong>
+      <div style="font-size:12px;color:var(--muted);">
+        <span class="legend-dot" style="background:var(--accent2);"></span>Động năng
+        <span class="legend-dot" style="background:var(--accent);margin-left:12px;"></span>Thế năng
+        <span class="legend-dot" style="background:var(--green);margin-left:12px;"></span>Cơ năng (bảo toàn)
+      </div>
+    </div>
+    <canvas id="chartCanvas" style="width:100%;height:240px;display:block;border-radius:10px;background:#fbfdfe;"></canvas>
+  </div>
+
+  <!-- Formula card -->
+  <div class="reveal" style="background:var(--accent-soft);border:1px solid var(--accent);border-radius:16px;padding:16px;">
+    <strong style="font-size:13px;display:block;margin-bottom:8px;color:var(--accent);">Công thức áp dụng (chế độ hiện tại)</strong>
+    <div id="formulaBox" style="font-size:13px;line-height:1.8;color:var(--text);"></div>
+  </div>
+
+  <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:20px;">Prototype phân hệ B · Mô hình giải tích SHM, không tích phân số → cơ năng luôn bảo toàn. Tích hợp vào React app qua component wrapper.</p>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  var G=9.8;
+  var state={mode:'spring',playing:true,speed:1,t:0,m:0.5,k:20,A:0.15,l:1.0,th0:10*Math.PI/180,samples:[],lastTs:null};
+
+  var simC=document.getElementById('simCanvas'), chartC=document.getElementById('chartCanvas');
+  var simCtx=simC.getContext('2d'), chartCtx=chartC.getContext('2d');
+
+  function sizeCanvas(c){var dpr=window.devicePixelRatio||1;var w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;c.getContext('2d').setTransform(dpr,0,0,dpr,0,0);return {w:w,h:h};}
+  var simSize=sizeCanvas(simC), chartSize=sizeCanvas(chartC);
+  window.addEventListener('resize',function(){simSize=sizeCanvas(simC);chartSize=sizeCanvas(chartC);});
+
+  function omega(){return state.mode==='spring'?Math.sqrt(state.k/state.m):Math.sqrt(G/state.l);}
+  function period(){return 2*Math.PI/omega();}
+  function current(){
+    var w=omega(), ph=w*state.t;
+    if(state.mode==='spring'){
+      var x=state.A*Math.cos(ph), v=-state.A*w*Math.sin(ph);
+      var ke=0.5*state.m*v*v, pe=0.5*state.k*x*x;
+      return {x:x,v:v,ke:ke,pe:pe,total:ke+pe};
+    } else {
+      var th=state.th0*Math.cos(ph), thd=-state.th0*w*Math.sin(ph);
+      var v=state.l*thd;
+      var ke=0.5*state.m*v*v, pe=state.m*G*state.l*(1-Math.cos(th));
+      return {x:th,v:v,ke:ke,pe:pe,total:ke+pe};
+    }
+  }
+
+  // ---- Draw spring oscillator ----
+  function drawSpring(sz){
+    var ctx=simCtx,w=sz.w,h=sz.h;ctx.clearRect(0,0,w,h);
+    var cur=current();var x=cur.x;
+    var eqX=w*0.35, groundY=h*0.62, scale=Math.min(w*0.45/0.3, 600); // px per meter, cap
+    var massX=eqX+x*scale;
+    var massR=22;
+    // ground
+    ctx.fillStyle='#cbd5e1';ctx.fillRect(w*0.08,groundY,w*0.84,6);
+    ctx.strokeStyle='#94a3b8';ctx.lineWidth=1;
+    for(var gx=w*0.08;gx<w*0.92;gx+=10){ctx.beginPath();ctx.moveTo(gx,groundY+6);ctx.lineTo(gx-6,groundY+14);ctx.stroke();}
+    // wall
+    ctx.fillStyle='#64748b';ctx.fillRect(w*0.08-8,h*0.3,8,groundY-h*0.3+6);
+    // equilibrium marker
+    ctx.strokeStyle='#94a3b8';ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(eqX,h*0.28);ctx.lineTo(eqX,groundY);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#64748b';ctx.font='11px IBM Plex Sans';ctx.textAlign='center';ctx.fillText('VTCB',eqX,h*0.26);
+    // amplitude markers
+    var aPx=state.A*scale;
+    ctx.strokeStyle='rgba(45,126,181,.4)';ctx.beginPath();ctx.moveTo(eqX-aPx,h*0.35);ctx.lineTo(eqX-aPx,groundY);ctx.moveTo(eqX+aPx,h*0.35);ctx.lineTo(eqX+aPx,groundY);ctx.stroke();
+    // spring zigzag
+    var springStart=w*0.08, springEnd=massX-massR;
+    var coils=10, segW=(springEnd-springStart)/(coils*2);
+    ctx.strokeStyle='#334155';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(springStart,groundY-14);
+    for(var i=0;i<coils;i++){
+      ctx.lineTo(springStart+segW*(i*2+1),groundY-14-14);
+      ctx.lineTo(springStart+segW*(i*2+2),groundY-14);
+    }
+    ctx.stroke();
+    // mass block
+    var grad=ctx.createLinearGradient(massX-massR,groundY-36,massX+massR,groundY);
+    grad.addColorStop(0,'#2d7eb5');grad.addColorStop(1,'#1e5a85');
+    ctx.fillStyle=grad;
+    ctx.beginPath();ctx.roundRect(massX-massR,groundY-36,massR*2,36,6);ctx.fill();
+    ctx.fillStyle='#fff';ctx.font='bold 12px IBM Plex Sans';ctx.textAlign='center';ctx.fillText('m',massX,groundY-14);
+    // velocity arrow
+    if(Math.abs(cur.v)>0.01){
+      var dir=cur.v>0?1:-1, len=Math.min(60,Math.abs(cur.v)*40);
+      ctx.strokeStyle='#c85a3a';ctx.fillStyle='#c85a3a';ctx.lineWidth=3;
+      var ay=groundY-50;
+      ctx.beginPath();ctx.moveTo(massX,ay);ctx.lineTo(massX+dir*len,ay);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(massX+dir*len,ay);ctx.lineTo(massX+dir*(len-8),ay-5);ctx.lineTo(massX+dir*(len-8),ay+5);ctx.closePath();ctx.fill();
+      ctx.font='11px IBM Plex Sans';ctx.fillText('v',massX+dir*(len+10),ay+4);
+    }
+    // x label
+    ctx.fillStyle='#0f172a';ctx.font='12px IBM Plex Sans';ctx.textAlign='left';
+    ctx.fillText('x = '+(x*100).toFixed(1)+' cm',w*0.62,h*0.2);
+    ctx.fillText('t = '+state.t.toFixed(2)+' s',w*0.62,h*0.2+18);
+  }
+
+  // ---- Draw simple pendulum ----
+  function drawPendulum(sz){
+    var ctx=simCtx,w=sz.w,h=sz.h;ctx.clearRect(0,0,w,h);
+    var cur=current();var th=cur.x;
+    var pivotX=w/2, pivotY=h*0.18;
+    var lPx=Math.min(h*0.6, w*0.4);
+    var bobX=pivotX+lPx*Math.sin(th), bobY=pivotY+lPx*Math.cos(th);
+    var bobR=18;
+    // ceiling
+    ctx.fillStyle='#64748b';ctx.fillRect(pivotX-60,pivotY-8,120,8);
+    ctx.strokeStyle='#94a3b8';ctx.lineWidth=1;
+    for(var cx=pivotX-60;cx<pivotX+60;cx+=10){ctx.beginPath();ctx.moveTo(cx,pivotY-8);ctx.lineTo(cx-6,pivotY-16);ctx.stroke();}
+    // pivot
+    ctx.fillStyle='#334155';ctx.beginPath();ctx.arc(pivotX,pivotY,4,0,Math.PI*2);ctx.fill();
+    // equilibrium dashed
+    ctx.strokeStyle='#94a3b8';ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(pivotX,pivotY);ctx.lineTo(pivotX,pivotY+lPx+30);ctx.stroke();ctx.setLineDash([]);
+    // amplitude arc
+    ctx.strokeStyle='rgba(45,126,181,.35)';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.arc(pivotX,pivotY,30,-Math.PI/2-state.th0,-Math.PI/2+state.th0);ctx.stroke();
+    // rod
+    ctx.strokeStyle='#334155';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(pivotX,pivotY);ctx.lineTo(bobX,bobY);ctx.stroke();
+    // bob
+    var grad=ctx.createRadialGradient(bobX-5,bobY-5,2,bobX,bobY,bobR);
+    grad.addColorStop(0,'#2d7eb5');grad.addColorStop(1,'#1e5a85');
+    ctx.fillStyle=grad;ctx.beginPath();ctx.arc(bobX,bobY,bobR,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#fff';ctx.font='bold 12px IBM Plex Sans';ctx.textAlign='center';ctx.fillText('m',bobX,bobY+4);
+    // velocity arrow (tangential)
+    if(Math.abs(cur.v)>0.01){
+      var dir=cur.v>0?1:-1;
+      var tx=-Math.cos(th), ty=Math.sin(th); // tangent direction for increasing theta
+      var len=Math.min(40,Math.abs(cur.v)*25);
+      ctx.strokeStyle='#c85a3a';ctx.fillStyle='#c85a3a';ctx.lineWidth=3;
+      var ax=bobX+tx*dir*(bobR+4), ay=bobY+ty*dir*(bobR+4);
+      ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(ax+tx*dir*len,ay+ty*dir*len);ctx.stroke();
+      var ex=ax+tx*dir*len, ey=ay+ty*dir*len;
+      ctx.beginPath();ctx.moveTo(ex,ey);ctx.lineTo(ex-tx*dir*8-ty*dir*5,ey-ty*dir*8+tx*dir*5);ctx.lineTo(ex-tx*dir*8+ty*dir*5,ey-ty*dir*8-tx*dir*5);ctx.closePath();ctx.fill();
+    }
+    ctx.fillStyle='#0f172a';ctx.font='12px IBM Plex Sans';ctx.textAlign='left';
+    ctx.fillText('θ = '+(th*180/Math.PI).toFixed(1)+'°',w*0.62,h*0.2);
+    ctx.fillText('t = '+state.t.toFixed(2)+' s',w*0.62,h*0.2+18);
+  }
+
+  // ---- Energy chart ----
+  function drawChart(sz){
+    var ctx=chartCtx,w=sz.w,h=sz.h;ctx.clearRect(0,0,w,h);
+    var padL=44,padR=12,padT=14,padB=26;
+    var pw=w-padL-padR, ph=h-padT-padB;
+    var s=state.samples;
+    if(s.length<2){
+      ctx.fillStyle='#94a3b8';ctx.font='12px IBM Plex Sans';ctx.textAlign='center';
+      ctx.fillText('Đang thu thập dữ liệu...',w/2,h/2);return;
+    }
+    var tMin=s[0].t, tMax=s[s.length-1].t, tSpan=Math.max(tMax-tMin,0.01);
+    var eMax=0;for(var i=0;i<s.length;i++){if(s[i].total>eMax)eMax=s[i].total;}
+    eMax=eMax*1.15||1;
+    // grid
+    ctx.strokeStyle='rgba(15,23,42,.07)';ctx.lineWidth=1;ctx.fillStyle='#64748b';ctx.font='10px IBM Plex Sans';ctx.textAlign='right';
+    for(var g=0;g<=4;g++){
+      var gy=padT+ph*(1-g/4);
+      ctx.beginPath();ctx.moveTo(padL,gy);ctx.lineTo(w-padR,gy);ctx.stroke();
+      ctx.fillText(((eMax*g/4)*1000).toFixed(0)+' mJ',padL-6,gy+3);
+    }
+    ctx.textAlign='center';
+    for(var gx=0;gx<=4;gx++){
+      var gxp=padL+pw*gx/4;
+      ctx.fillText((tMin+tSpan*gx/4).toFixed(1)+'s',gxp,h-8);
+    }
+    function px(t){return padL+pw*(t-tMin)/tSpan;}
+    function py(e){return padT+ph*(1-e/eMax);}
+    function line(key,color){
+      ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();
+      for(var i=0;i<s.length;i++){var X=px(s[i].t),Y=py(s[i][key]);if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);}
+      ctx.stroke();
+    }
+    line('pe','#2d7eb5');
+    line('ke','#c85a3a');
+    line('total','#059669');
+  }
+
+  // ---- Stats panel ----
+  function updateStats(){
+    var cur=current(), w=omega(), T=period();
+    var html='';
+    if(state.mode==='spring'){
+      html+='<div class="stat-row"><span style="color:var(--muted)">Tần số góc ω</span><span style="font-weight:600;font-variant-numeric:tabular-nums;">'+w.toFixed(2)+' rad/s</span></div>';
+      html+='<div class="stat-row"><span style="color:var(--muted)">Chu kỳ T</span><span style="font-weight:600;font-variant-numeric:tabular-nums;">'+T.toFixed(2)+' s</span></div>';
+      html+='<div class="stat-row"><span style="color:var(--muted)">Tần số f</span><span style="font-weight:600;font-variant-numeric:tabular-nums;">'+(1/T).toFixed(2)+' Hz</span></div>';
+      html+='<div class="stat-row"><span style="color:var(--muted)">Vận tốc v</span><span style="font-weight:600;font-variant-numeric:tabular-nums;">'+cur.v.toFixed(2)+' m/s</span></div>';
+    } else {
+      html+='<div class="stat-row"><span style="color:var(--muted)">Tần số góc ω</span><span style="font-weight:600;font-variant-numeric:tabular-nums;">'+w.toFixed(2)+' rad/s</span></div>';
+      html+='<div class="stat-row"><span style="color:var(--muted)">Chu kỳ T</span><span style="font-weight:600;font-variant-numeric:tabular-nums;">'+T.toFixed(2)+' s</span></div>';
+      html+='<div class="stat-row"><span style="color:var(--muted)">Tần số f</span><span style="font-weight:600;font-variant-numeric:tabular-nums;">'+(1/T).toFixed(2)+' Hz</span></div>';
+      html+='<div class="stat-row"><span style="color:var(--muted)">Vận tốc dài v</span><span style="font-weight:600;font-variant-numeric:tabular-nums;">'+cur.v.toFixed(2)+' m/s</span></div>';
+    }
+    html+='<div class="stat-row"><span style="color:var(--accent2)">Động năng ĐK</span><span style="font-weight:600;color:var(--accent2);font-variant-numeric:tabular-nums;">'+(cur.ke*1000).toFixed(1)+' mJ</span></div>';
+    html+='<div class="stat-row"><span style="color:var(--accent)">Thế năng TT</span><span style="font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;">'+(cur.pe*1000).toFixed(1)+' mJ</span></div>';
+    html+='<div class="stat-row"><span style="color:var(--green)">Cơ năng W</span><span style="font-weight:600;color:var(--green);font-variant-numeric:tabular-nums;">'+(cur.total*1000).toFixed(1)+' mJ</span></div>';
+    document.getElementById('statsPanel').innerHTML=html;
+  }
+
+  function updateFormula(){
+    var box=document.getElementById('formulaBox');
+    if(state.mode==='spring'){
+      box.innerHTML='ω = √(k/m) &nbsp;·&nbsp; T = 2π√(m/k) &nbsp;·&nbsp; x = A·cos(ωt)<br>'+
+        'Động năng: ĐK = ½mv² = ½kA²·sin²(ωt) &nbsp;·&nbsp; Thế năng: TT = ½kx² = ½kA²·cos²(ωt)<br>'+
+        'Cơ năng bảo toàn: W = ĐK + TT = ½kA² = không đổi';
+    } else {
+      box.innerHTML='ω = √(g/l) &nbsp;·&nbsp; T = 2π√(l/g) &nbsp;·&nbsp; θ = θ₀·cos(ωt) (góc nhỏ)<br>'+
+        'Động năng: ĐK = ½mv² &nbsp;·&nbsp; Thế năng: TT = mgl(1−cosθ) ≈ ½mgl·θ²<br>'+
+        'Cơ năng bảo toàn: W = ĐK + TT = ½mgl·θ₀² = không đổi';
+    }
+  }
+
+  // ---- Main loop ----
+  function loop(ts){
+    if(state.lastTs==null)state.lastTs=ts;
+    var dt=Math.min((ts-state.lastTs)/1000,0.05);state.lastTs=ts;
+    if(state.playing){
+      state.t+=dt*state.speed;
+      var cur=current();
+      state.samples.push({t:state.t,ke:cur.ke,pe:cur.pe,total:cur.total});
+      if(state.samples.length>600)state.samples.shift();
+    }
+    if(state.mode==='spring')drawSpring(simSize);else drawPendulum(simSize);
+    drawChart(chartSize);
+    updateStats();
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  // ---- Controls ----
+  function bindSlider(id,valId,fmt,key){
+    var el=document.getElementById(id), lab=document.getElementById(valId);
+    el.addEventListener('input',function(){state[key]=parseFloat(el.value);lab.textContent=fmt(state[key]);state.samples=[];state.t=0;});
+  }
+  bindSlider('mSlider','mVal',function(v){return v.toFixed(2)+' kg';},'m');
+  bindSlider('kSlider','kVal',function(v){return v.toFixed(0)+' N/m';},'k');
+  bindSlider('ASlider','AVal',function(v){return v.toFixed(2)+' m';},'A');
+  bindSlider('mSlider2','mVal2',function(v){return v.toFixed(2)+' kg';},'m');
+  bindSlider('lSlider','lVal',function(v){return v.toFixed(2)+' m';},'l');
+  bindSlider('thSlider','thVal',function(v){return v.toFixed(0)+'°';},'th0Deg');
+  // th0Deg special handling
+  document.getElementById('thSlider').addEventListener('input',function(){
+    state.th0=parseFloat(this.value)*Math.PI/180;
+    document.getElementById('thVal').textContent=this.value+'°';
+    state.samples=[];state.t=0;
+  });
+
+  document.getElementById('playBtn').addEventListener('click',function(){
+    state.playing=!state.playing;
+    this.textContent=state.playing?'Tạm dừng':'Tiếp tục';
+    this.classList.toggle('primary',state.playing);
+  });
+  document.getElementById('resetBtn').addEventListener('click',function(){
+    state.t=0;state.samples=[];
+  });
+  document.querySelectorAll('[data-speed]').forEach(function(b){
+    b.addEventListener('click',function(){
+      state.speed=parseFloat(this.dataset.speed);
+      document.querySelectorAll('[data-speed]').forEach(function(x){x.classList.remove('primary');});
+      this.classList.add('primary');
+    });
+  });
+  function setMode(m){
+    state.mode=m;state.t=0;state.samples=[];
+    document.getElementById('tab-spring').classList.toggle('active',m==='spring');
+    document.getElementById('tab-pendulum').classList.toggle('active',m==='pendulum');
+    document.getElementById('springParams').style.display=m==='spring'?'block':'none';
+    document.getElementById('pendulumParams').style.display=m==='pendulum'?'block':'none';
+    document.getElementById('modeLabel').textContent=m==='spring'?'Con lắc lò xo ngang':'Con lắc đơn (góc nhỏ)';
+    updateFormula();
+  }
+  document.getElementById('tab-spring').addEventListener('click',function(){setMode('spring');});
+  document.getElementById('tab-pendulum').addEventListener('click',function(){setMode('pendulum');});
+  setMode('spring');
+})();
+</script>
+</html>
