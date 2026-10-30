@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sơ Đồ Tư Duy Lượng Giác Toán 11</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    :root {
+      --brand: #3b82f6;
+      --brand-600: #2563eb;
+      --brand-dark: #1d4ed8;
+      --brand-deep: #1e3a8a;
+      --brand-300: #93c5fd;
+      --brand-200: #bfdbfe;
+      --brand-100: #dbeafe;
+      --brand-50: #eff6ff;
+      --pastel-lav: #e0e7ff;
+      --pastel-mint: #d1fae5;
+      --pastel-peach: #ffedd5;
+      --pastel-sky: #e0f2fe;
+      --pastel-rose: #ffe4e6;
+      --ink: #1e293b;
+      --muted: #64748b;
+      --bg: #f0f7ff;
+      --card: #ffffff;
+      --border: rgba(30, 41, 59, 0.08);
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(rgba(37, 99, 235, 0.12) 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+    }
+
+    .sec-num {
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      color: var(--brand-dark);
+      font-weight: 800;
+      letter-spacing: .05em;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fu .55s ease forwards;
+    }
+    .reveal:nth-child(2) { animation-delay: .08s; }
+    .reveal:nth-child(3) { animation-delay: .16s; }
+    .reveal:nth-child(4) { animation-delay: .24s; }
+    .reveal:nth-child(5) { animation-delay: .32s; }
+    @keyframes fu { to { opacity: 1; transform: translateY(0); } }
+
+    .node-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.06);
+      transition: all 0.25s ease;
+    }
+    .node-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.15);
+      border-color: var(--brand-300);
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(4px);
+    }
+  </style>
+</head>
+<body class="py-8 px-4 md:px-8 min-h-screen">
+
+  <div class="max-w-7xl mx-auto">
+    <!-- ===== HEADER / HERO BANNER ===== -->
+    <div class="reveal bg-gradient-to-r from-blue-700 via-blue-500 to-sky-300 rounded-2xl p-8 text-white mb-8 shadow-lg relative overflow-hidden">
+      <div class="absolute -right-12 -top-12 w-60 h-60 rounded-full bg-white/10"></div>
+      <div class="absolute right-16 -bottom-16 w-48 h-48 rounded-full bg-sky-100/30"></div>
+      
+      <div class="relative z-10 text-center md:text-left">
+        <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-bold tracking-wider uppercase mb-2">Toán Học Lớp 11</span>
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">CHƯƠNG I: HÀM SỐ LƯỢNG GIÁC &amp; PHƯƠNG TRÌNH LƯỢNG GIÁC</h1>
+        <p class="text-blue-50 text-base md:text-lg max-w-3xl opacity-95">
+          Sơ đồ tư duy hệ thống hóa toàn bộ kiến thức: Đơn vị đo, Giá trị lượng giác, Hệ thống công thức biến đổi và Phương trình lượng giác cơ bản.
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== SƠ ĐỒ TƯ DUY (MINDMAP) ===== -->
+    <div class="space-y-6">
+
+      <!-- NHÁNH 1: GÓC & CUNG LƯỢNG GIÁC -->
+      <div class="reveal node-card p-6 border-l-4 border-l-blue-500">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="sec-num bg-blue-100 text-blue-700 px-2.5 py-1 rounded-md">NHÁNH 01</span>
+          <h2 class="text-xl font-extrabold text-blue-900">Góc Lượng Giác &amp; Cung Lượng Giác</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-sky-50/60 p-4 rounded-xl border border-blue-100">
+            <h3 class="font-bold text-blue-800 text-base mb-2">1. Đơn vị đo góc &amp; Độ dài cung tròn</h3>
+            <ul class="space-y-2 text-sm text-slate-700">
+              <li>• Quan hệ độ và Radian: $180^\circ = \pi \text{ rad} \implies 1^\circ = \frac{\pi}{180} \text{ rad}, \quad 1 \text{ rad} = \left(\frac{180}{\pi}\right)^\circ$</li>
+              <li>• Độ dài cung tròn bán kính $R$ có số đo $\alpha \text{ rad}$: $l = \alpha \cdot R$</li>
+            </ul>
+          </div>
+
+          <div class="bg-indigo-50/60 p-4 rounded-xl border border-indigo-100">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-indigo-900 text-base">2. Dấu của các giá trị lượng giác</h3>
+              <span class="text-xs bg-indigo-200/60 text-indigo-800 px-2 py-0.5 rounded-full font-bold">Thần chú: Nhất cả - Nhị sin - Tam tan - Tứ cos</span>
+            </div>
+            <p class="text-sm text-slate-700 mb-2">Giá trị $\sin \alpha, \cos \alpha, \tan \alpha, \cot \alpha$ phụ thuộc vào góc phần tư (GĐT) của $\alpha$ trên đường tròn lượng giác:</p>
+            <div class="grid grid-cols-2 gap-2 text-xs font-mono text-center">
+              <div class="p-2 bg-white rounded-lg border border-indigo-100">GĐT I ($0 < \alpha < \frac{\pi}{2}$): Tất cả đều $(+)$</div>
+              <div class="p-2 bg-white rounded-lg border border-indigo-100">GĐT II ($\frac{\pi}{2} < \alpha < \pi$): $\sin(+)$, còn lại $(-)$</div>
+              <div class="p-2 bg-white rounded-lg border border-indigo-100">GĐT III ($\pi < \alpha < \frac{3\pi}{2}$): $\tan, \cot(+)$, $\sin, \cos(-)$</div>
+              <div class="p-2 bg-white rounded-lg border border-indigo-100">GĐT IV ($\frac{3\pi}{2} < \alpha < 2\pi$): $\cos(+)$, còn lại $(-)$</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NHÁNH 2: HỆ THỐNG CÔNG THỨC LƯỢNG GIÁC -->
+      <div class="reveal node-card p-6 border-l-4 border-l-blue-600">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+          <div class="flex items-center gap-3">
+            <span class="sec-num bg-blue-100 text-blue-700 px-2.5 py-1 rounded-md">NHÁNH 02</span>
+            <h2 class="text-xl font-extrabold text-blue-900">Hệ Thống Công Thức Lượng Giác (Trọng Tâm)</h2>
+          </div>
+          <button onclick="openModal('than-chu')" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-2">
+            <span>💡 Thơ &amp; Giải thích: "Cos đối, sin bù, phụ chéo..."</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <!-- KHỐI 1 -->
+          <div class="p-4 bg-sky-50/50 rounded-xl border border-sky-200 cursor-pointer hover:bg-sky-100/60 transition-all" onclick="openModal('co-ban')">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-blue-900 text-sm">1. Công thức cơ bản &amp; Bậc cao</h3>
+              <span class="text-xs text-blue-600 font-semibold">Chi tiết 🔍</span>
+            </div>
+            <div class="text-xs space-y-1 text-slate-700">
+              <p>• $\sin^2\alpha + \cos^2\alpha = 1$</p>
+              <p>• $1 + \tan^2\alpha = \frac{1}{\cos^2\alpha}, \quad 1 + \cot^2\alpha = \frac{1}{\sin^2\alpha}$</p>
+              <p>• $\tan\alpha \cdot \cot\alpha = 1$</p>
+              <p>• $\sin^4\alpha + \cos^4\alpha = 1 - 2\sin^2\alpha\cos^2\alpha$</p>
+            </div>
+          </div>
+
+          <!-- KHỐI 2 -->
+          <div class="p-4 bg-indigo-50/50 rounded-xl border border-indigo-200 cursor-pointer hover:bg-indigo-100/60 transition-all" onclick="openModal('cong')">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-indigo-900 text-sm">2. Công thức cộng (Có bài thơ)</h3>
+              <span class="text-xs text-indigo-600 font-semibold">Chi tiết 🔍</span>
+            </div>
+            <div class="text-xs space-y-1 text-slate-700">
+              <p>• $\sin(a \pm b) = \sin a \cos b \pm \cos a \sin b$</p>
+              <p>• $\cos(a \pm b) = \cos a \cos b \mp \sin a \sin b$</p>
+              <p>• $\tan(a \pm b) = \frac{\tan a \pm \tan b}{1 \mp \tan a \tan b}$</p>
+              <p class="text-indigo-600 italic font-semibold mt-1">📜 "Cos thì cos cos sin sin, Sin thì sin cos..."</p>
+            </div>
+          </div>
+
+          <!-- KHỐI 3 -->
+          <div class="p-4 bg-blue-50/50 rounded-xl border border-blue-200 cursor-pointer hover:bg-blue-100/60 transition-all" onclick="openModal('nhan-ha-bac')">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-blue-900 text-sm">3. Nhân đôi, Nhân ba &amp; Hạ bậc</h3>
+              <span class="text-xs text-blue-600 font-semibold">Chi tiết 🔍</span>
+            </div>
+            <div class="text-xs space-y-1 text-slate-700">
+              <p>• $\sin 2a = 2\sin a \cos a$</p>
+              <p>• $\cos 2a = \cos^2 a - \sin^2 a = 2\cos^2 a - 1 = 1 - 2\sin^2 a$</p>
+              <p>• $\sin 3a = 3\sin a - 4\sin^3 a$</p>
+              <p>• Hạ bậc: $\cos^2 a = \frac{1 + \cos 2a}{2}, \quad \sin^2 a = \frac{1 - \cos 2a}{2}$</p>
+            </div>
+          </div>
+
+          <!-- KHỐI 4 -->
+          <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-200 cursor-pointer hover:bg-emerald-100/60 transition-all" onclick="openModal('tich-tong')">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-emerald-900 text-sm">4. Biến đổi Tích $\to$ Tổng</h3>
+              <span class="text-xs text-emerald-600 font-semibold">Chi tiết 🔍</span>
+            </div>
+            <div class="text-xs space-y-1 text-slate-700">
+              <p>• $\cos a \cos b = \frac{1}{2}[\cos(a-b) + \cos(a+b)]$</p>
+              <p>• $\sin a \sin b = \frac{1}{2}[\cos(a-b) - \cos(a+b)]$</p>
+              <p>• $\sin a \cos b = \frac{1}{2}[\sin(a-b) + \sin(a+b)]$</p>
+            </div>
+          </div>
+
+          <!-- KHỐI 5 -->
+          <div class="p-4 bg-amber-50/50 rounded-xl border border-amber-200 cursor-pointer hover:bg-amber-100/60 transition-all" onclick="openModal('tong-tich')">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-amber-900 text-sm">5. Biến đổi Tổng $\to$ Tích (Có bài thơ)</h3>
+              <span class="text-xs text-amber-600 font-semibold">Chi tiết 🔍</span>
+            </div>
+            <div class="text-xs space-y-1 text-slate-700">
+              <p>• $\cos x + \cos y = 2\cos\frac{x+y}{2}\cos\frac{x-y}{2}$</p>
+              <p>• $\cos x - \cos y = -2\sin\frac{x+y}{2}\sin\frac{x-y}{2}$</p>
+              <p>• $\sin x + \sin y = 2\sin\frac{x+y}{2}\cos\frac{x-y}{2}$</p>
+              <p>• $\sin x - \sin y = 2\cos\frac{x+y}{2}\sin\frac{x-y}{2}$</p>
+              <p class="text-amber-700 italic font-semibold mt-1">📜 "Cos cộng cos bằng 2 cos cos..."</p>
+            </div>
+          </div>
+
+          <!-- KHỐI 6 -->
+          <div class="p-4 bg-rose-50/50 rounded-xl border border-rose-200 cursor-pointer hover:bg-rose-100/60 transition-all" onclick="openModal('dac-biet')">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-rose-900 text-sm">6. Dạng đặc biệt &amp; Bảng góc</h3>
+              <span class="text-xs text-rose-600 font-semibold">Chi tiết 🔍</span>
+            </div>
+            <div class="text-xs space-y-1 text-slate-700">
+              <p>• $\sin a + \cos a = \sqrt{2}\sin\left(a + \frac{\pi}{4}\right)$</p>
+              <p>• $\sin a - \cos a = \sqrt{2}\sin\left(a - \frac{\pi}{4}\right)$</p>
+              <p>• Tra cứu bảng giá trị góc đặc biệt $0^\circ \to 180^\circ$</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- NHÁNH 3: HÀM SỐ LƯỢNG GIÁC -->
+      <div class="reveal node-card p-6 border-l-4 border-l-sky-500">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="sec-num bg-sky-100 text-sky-700 px-2.5 py-1 rounded-md">NHÁNH 03</span>
+          <h2 class="text-xl font-extrabold text-blue-900">Hàm Số Lượng Giác</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm space-y-1.5">
+            <h3 class="font-extrabold text-blue-700 text-sm mb-2">$y = \sin x$</h3>
+            <p>• <strong>TXĐ:</strong> $D = \mathbb{R}$</p>
+            <p>• <strong>TGT:</strong> $[-1; 1]$</p>
+            <p>• <strong>Tính tuần hoàn:</strong> Hàm số tuần hoàn với chu kỳ $2\pi$</p>
+            <p>• <strong>Tính chẵn/lẻ:</strong> Hàm số lẻ (đồ thị đối xứng qua gốc tọa độ $O$)</p>
+          </div>
+
+          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm space-y-1.5">
+            <h3 class="font-extrabold text-blue-700 text-sm mb-2">$y = \cos x$</h3>
+            <p>• <strong>TXĐ:</strong> $D = \mathbb{R}$</p>
+            <p>• <strong>TGT:</strong> $[-1; 1]$</p>
+            <p>• <strong>Tính tuần hoàn:</strong> Hàm số tuần hoàn với chu kỳ $2\pi$</p>
+            <p>• <strong>Tính chẵn/lẻ:</strong> Hàm số chẵn (đồ thị đối xứng qua trục $Oy$)</p>
+          </div>
+
+          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm space-y-1.5">
+            <h3 class="font-extrabold text-blue-700 text-sm mb-2">$y = \tan x$</h3>
+            <p>• <strong>TXĐ:</strong> $D = \mathbb{R} \setminus \left\{\frac{\pi}{2} + k\pi \mid k \in \mathbb{Z}\right\}$</p>
+            <p>• <strong>TGT:</strong> $\mathbb{R}$</p>
+            <p>• <strong>Tính tuần hoàn:</strong> Hàm số tuần hoàn với chu kỳ $\pi$</p>
+            <p>• <strong>Tính chẵn/lẻ:</strong> Hàm số lẻ (đồ thị đối xứng qua gốc $O$)</p>
+          </div>
+
+          <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm space-y-1.5">
+            <h3 class="font-extrabold text-blue-700 text-sm mb-2">$y = \cot x$</h3>
+            <p>• <strong>TXĐ:</strong> $D = \mathbb{R} \setminus \left\{k\pi \mid k \in \mathbb{Z}\right\}$</p>
+            <p>• <strong>TGT:</strong> $\mathbb{R}$</p>
+            <p>• <strong>Tính tuần hoàn:</strong> Hàm số tuần hoàn với chu kỳ $\pi$</p>
+            <p>• <strong>Tính chẵn/lẻ:</strong> Hàm số lẻ (đồ thị đối xứng qua gốc $O$)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- NHÁNH 4: PHƯƠNG TRÌNH LƯỢNG GIÁC CƠ BẢN -->
+      <div class="reveal node-card p-6 border-l-4 border-l-indigo-600">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="sec-num bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-md">NHÁNH 04</span>
+          <h2 class="text-xl font-extrabold text-indigo-950">Phương Trình Lượng Giác Cơ Bản</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div class="p-4 bg-indigo-50/40 rounded-xl border border-indigo-100">
+            <h3 class="font-bold text-indigo-900 text-base mb-2">1. $\sin x = m$ &amp; $\cos x = m$ (ĐK: $|m| \le 1$)</h3>
+            <div class="space-y-2 text-xs text-slate-700">
+              <p>• $\sin x = \sin \alpha \iff \begin{cases} x = \alpha + k2\pi \\ x = \pi - \alpha + k2\pi \end{cases} \quad (k \in \mathbb{Z})$</p>
+              <p>• $\cos x = \cos \alpha \iff x = \pm \alpha + k2\pi \quad (k \in \mathbb{Z})$</p>
+            </div>
+          </div>
+
+          <div class="p-4 bg-sky-50/40 rounded-xl border border-sky-100">
+            <h3 class="font-bold text-sky-900 text-base mb-2">2. $\tan x = m$ &amp; $\cot x = m$</h3>
+            <div class="space-y-2 text-xs text-slate-700">
+              <p>• $\tan x = \tan \alpha \iff x = \alpha + k\pi \quad (k \in \mathbb{Z})$</p>
+              <p>• $\cot x = \cot \alpha \iff x = \alpha + k\pi \quad (k \in \mathbb{Z})$</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== MODAL / DRAWER HIỂN THỊ CHI TIẾT & GIẢI THÍCH ===== -->
+  <div id="modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="modal-backdrop absolute inset-0" onclick="closeModal()"></div>
+    <div class="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 z-10 border border-slate-100">
+      
+      <div class="flex justify-between items-start mb-6 pb-4 border-b border-slate-100">
+        <div>
+          <span id="modal-tag" class="sec-num bg-blue-100 text-blue-700 px-2.5 py-1 rounded-md">CHI TIẾT KIẾN THỨC</span>
+          <h2 id="modal-title" class="text-2xl font-extrabold text-slate-900 mt-2">Tiêu đề Modal</h2>
+        </div>
+        <button onclick="closeModal()" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold transition-all">
+          ✕
+        </button>
+      </div>
+
+      <div id="modal-body" class="space-y-6 text-sm md:text-base text-slate-700 leading-relaxed">
+        <!-- Nội dung sẽ được chèn bằng JS -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== JAVASCRIPT XỬ LÝ ===== -->
+  <script>
+    const modalData = {
+      'than-chu': {
+        tag: 'MẸO NHỚ DÂN GIAN & THẦN CHÚ LƯỢNG GIÁC',
+        title: 'Cung Có Liên Quan Đặc Biệt: "Cos đối, Sin bù, Phụ chéo, Hơn kém π"',
+        content: `
+          <div class="space-y-6">
+            <div class="p-4 bg-amber-50 rounded-xl border border-amber-200">
+              <h3 class="font-bold text-amber-900 text-base mb-1">📜 Mẹo Nhớ Dấu Góc Phần Tư (Đường Tròn Lượng Giác)</h3>
+              <p class="text-sm font-semibold text-amber-800 italic mb-2">"Nhất cả — Nhị sin — Tam tan — Tứ cos"</p>
+              <p class="text-xs text-slate-700">
+                • <strong>Góc phần tư I:</strong> <strong>Cả</strong> tất cả đều mang dấu dương (+).<br>
+                • <strong>Góc phần tư II:</strong> Chỉ có <strong>Sin</strong> mang dấu dương (+).<br>
+                • <strong>Góc phần tư III:</strong> Chỉ có <strong>Tan</strong> (và Cot) mang dấu dương (+).<br>
+                • <strong>Góc phần tư IV:</strong> Chỉ có <strong>Cos</strong> mang dấu dương (+).
+              </p>
+            </div>
+
+            <!-- 1. COS ĐỐI -->
+            <div class="p-4 bg-sky-50 rounded-xl border border-sky-100">
+              <h3 class="font-bold text-blue-900 text-lg mb-2">1. "Cos đối" — Cung đối nhau: $\\alpha$ và $-\\alpha$</h3>
+              <p class="text-sm mb-3">Hai điểm biểu diễn $\\alpha$ và $-\\alpha$ đối xứng nhau qua trục hoành $Ox$. Chúng có <strong>cùng hoành độ $\\cos$</strong>, nhưng tung độ $\\sin$ trái dấu nhau.</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                <div class="font-mono text-sm bg-white p-3 rounded-lg border border-sky-200 space-y-1">
+                  <p>$\\cos(-\\alpha) = \\cos\\alpha$</p>
+                  <p>$\\sin(-\\alpha) = -\\sin\\alpha$</p>
+                  <p>$\\tan(-\\alpha) = -\\tan\\alpha$</p>
+                  <p>$\\cot(-\\alpha) = -\\cot\\alpha$</p>
+                </div>
+                <div class="flex justify-center">
+                  <svg width="160" height="160" viewBox="-1.2 -1.2 2.4 2.4" class="bg-white rounded-lg p-2 border border-slate-200">
+                    <circle cx="0" cy="0" r="1" fill="none" stroke="#cbd5e1" stroke-width="0.03"/>
+            <div class="p-4 bg-indigo-50/60 p-4 rounded-xl border border-indigo-100">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold text-indigo-900 text-base">2. Dấu của các giá trị lượng giác</h3>
+                <span class="text-xs bg-indigo-200/60 text-indigo-800 px-2 py-0.5 rounded-full font-bold">Thần chú: Nhất cả - Nhị sin - Tam tan - Tứ cos</span>
+              </div>
+              <p class="text-sm text-slate-700 mb-2">Giá trị $\sin \alpha, \cos \alpha, \tan \alpha, \cot \alpha$ phụ thuộc vào góc phần tư (GĐT) của $\alpha$ trên đường tròn lượng giác:</p>
+              <div class="grid grid-cols-2 gap-2 text-xs font-bold text-center">
+                <div class="p-2 bg-white rounded-lg border border-indigo-100">GĐT I ($0 < \alpha < \frac{\pi}{2}$): Tất cả đều $(+)$</div>
+                <div class="p-2 bg-white rounded-lg border border-indigo-100">GĐT II ($\frac{\pi}{2} < \alpha < \pi$): $\sin(+)$, còn lại $(-)$</div>
+                <div class="p-2 bg-white rounded-lg border border-indigo-100">GĐT III ($\pi < \alpha < \frac{3\pi}{2}$): $\tan, \cot(+)$, $\sin, \cos(-)$</div>
+                <div class="p-2 bg-white rounded-lg border border-indigo-100">GĐT IV ($\frac{3\pi}{2} < \alpha < 2\pi$): $\cos(+)$, còn lại $(-)$</div>
+              </div>
+            </div>
+
+            <!-- 2. SIN BÙ -->
+            <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100">
+              <h3 class="font-bold text-indigo-900 text-lg mb-2">2. "Sin bù" — Cung bù nhau: $\\alpha$ và $\\pi - \\alpha$</h3>
+              <p class="text-sm mb-3">Hai điểm biểu diễn đối xứng nhau qua trục tung $Oy$. Chúng có <strong>cùng tung độ $\\sin$</strong>, hoành độ $\\cos$ đối nhau.</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                <div class="font-mono text-sm bg-white p-3 rounded-lg border border-indigo-200 space-y-1">
+                  <p>$\\sin(\\pi - \\alpha) = \\sin\\alpha$</p>
+                  <p>$\\cos(\\pi - \\alpha) = -\\cos\\alpha$</p>
+                  <p>$\\tan(\\pi - \\alpha) = -\\tan\\alpha$</p>
+                  <p>$\\cot(\\pi - \\alpha) = -\\cot\\alpha$</p>
+                </div>
+                <div class="flex justify-center">
+                  <svg width="160" height="160" viewBox="-1.2 -1.2 2.4 2.4" class="bg-white rounded-lg p-2 border border-slate-200">
+                    <circle cx="0" cy="0" r="1" fill="none" stroke="#cbd5e1" stroke-width="0.03"/>
+                    <line x1="-1.2" y1="0" x2="1.2" y2="0" stroke="#94a3b8" stroke-width="0.03"/>
+                    <line x1="0" y1="-1.2" x2="0" y2="1.2" stroke="#94a3b8" stroke-width="0.03"/>
+                    <line x1="0" y1="0" x2="0.7" y2="-0.7" stroke="#2563eb" stroke-width="0.04"/>
+                    <circle cx="0.7" cy="-0.7" r="0.06" fill="#2563eb"/>
+                    <line x1="0" y1="0" x2="-0.7" y2="-0.7" stroke="#059669" stroke-width="0.04"/>
+                    <circle cx="-0.7" cy="-0.7" r="0.06" fill="#059669"/>
+                    <line x1="-0.7" y1="-0.7" x2="0.7" y2="-0.7" stroke="#059669" stroke-dasharray="0.05" stroke-width="0.02"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. PHỤ CHÉO -->
+            <div class="p-4 bg-amber-50 rounded-xl border border-amber-100">
+              <h3 class="font-bold text-amber-900 text-lg mb-2">3. "Phụ chéo" — Cung phụ nhau: $\\alpha$ và $\\frac{\\pi}{2} - \\alpha$</h3>
+              <p class="text-sm mb-3">Hai điểm biểu diễn đối xứng nhau qua đường phân giác góc phần tư thứ nhất $y = x$. Hoành độ và tung độ hoán đổi cho nhau $\\implies \\sin$ góc này bằng $\\cos$ góc kia và ngược lại.</p>
+              <div class="font-mono text-sm bg-white p-3 rounded-lg border border-amber-200 space-y-1">
+                <p>$\\sin\\left(\\frac{\\pi}{2} - \\alpha\\right) = \\cos\\alpha, \\quad \\cos\\left(\\frac{\\pi}{2} - \\alpha\\right) = \\sin\\alpha$</p>
+                <p>$\\tan\\left(\\frac{\\pi}{2} - \\alpha\\right) = \\cot\\alpha, \\quad \\cot\\left(\\frac{\\pi}{2} - \\alpha\\right) = \\tan\\alpha$</p>
+              </div>
+            </div>
+
+            <!-- 4. HƠN KÉM PI -->
+            <div class="p-4 bg-rose-50 rounded-xl border border-rose-100">
+              <h3 class="font-bold text-rose-900 text-lg mb-2">4. Cung hơn kém $\\pi$: $\\alpha$ và $\\alpha + \\pi$ &amp; Hơn kém $\\frac{\\pi}{2}$</h3>
+              <p class="text-sm mb-3">Hai điểm đối xứng nhau qua gốc tọa độ $O \\implies \\sin, \\cos$ cùng đổi dấu, còn $\\tan, \\cot$ giữ nguyên dấu.</p>
+              <div class="font-mono text-sm bg-white p-3 rounded-lg border border-rose-200 space-y-1">
+                <p>$\\sin(\\alpha + \\pi) = -\\sin\\alpha, \\quad \\cos(\\alpha + \\pi) = -\\cos\\alpha$</p>
+                <p>$\\tan(\\alpha + \\pi) = \\tan\\alpha, \\quad \\cot(\\alpha + \\pi) = \\cot\\alpha$</p>
+                <p class="text-xs text-rose-600 mt-2">* Hơn kém $\\frac{\\pi}{2}$: $\\sin\\left(\\alpha + \\frac{\\pi}{2}\\right) = \\cos\\alpha, \\quad \\cos\\left(\\alpha + \\frac{\\pi}{2}\\right) = -\\sin\\alpha$</p>
+              </div>
+            </div>
+
+          </div>
+        `
+      },
+      'co-ban': {
+        tag: 'CÔNG THỨC CƠ BẢN',
+        title: 'Công Thức Lượng Giác Cơ Bản & Hằng Đẳng Thức Lượng Giác',
+        content: `
+          <div class="space-y-4">
+            <div class="p-4 bg-sky-50 rounded-xl border border-sky-200">
+              <h4 class="font-bold text-blue-900 mb-2">1. Các hệ thức cơ bản &amp; Giải thích</h4>
+              <p>• $\\sin^2\\alpha + \\cos^2\\alpha = 1$ (Giải thích: Áp dụng định lý Pitago $x^2 + y^2 = R^2 = 1$ cho điểm $M(x;y)$ trên đường tròn lượng giác)</p>
+              <p>• $\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha} \\quad (\\cos\\alpha \\neq 0)$</p>
+              <p>• $\\cot\\alpha = \\frac{\\cos\\alpha}{\\sin\\alpha} \\quad (\\sin\\alpha \\neq 0)$</p>
+              <p>• $\\tan\\alpha \\cdot \\cot\\alpha = 1$</p>
+              <p>• $1 + \\tan^2\\alpha = 1 + \\frac{\\sin^2\\alpha}{\\cos^2\\alpha} = \\frac{\\cos^2\\alpha + \\sin^2\\alpha}{\\cos^2\\alpha} = \\frac{1}{\\cos^2\\alpha}$</p>
+              <p>• $1 + \\cot^2\\alpha = 1 + \\frac{\\cos^2\\alpha}{\\sin^2\\alpha} = \\frac{\\sin^2\\alpha + \\cos^2\\alpha}{\\sin^2\\alpha} = \\frac{1}{\\sin^2\\alpha}$</p>
+            </div>
+
+            <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-200">
+              <h4 class="font-bold text-indigo-900 mb-2">2. Hằng đẳng thức biến đổi lượng giác bậc cao</h4>
+              <p>• $\\sin^3\\alpha + \\cos^3\\alpha = (\\sin\\alpha + \\cos\\alpha)(1 - \\sin\\alpha\\cos\\alpha)$</p>
+              <p>• $\\sin^3\\alpha - \\cos^3\\alpha = (\\sin\\alpha - \\cos\\alpha)(1 + \\sin\\alpha\\cos\\alpha)$</p>
+              <p>• $\\sin^4\\alpha + \\cos^4\\alpha = (\\sin^2\\alpha + \\cos^2\\alpha)^2 - 2\\sin^2\\alpha\\cos^2\\alpha = 1 - 2\\sin^2\\alpha\\cos^2\\alpha$</p>
+              <p>• $\\sin^4\\alpha - \\cos^4\\alpha = (\\sin^2\\alpha - \\cos^2\\alpha)(\\sin^2\\alpha + \\cos^2\\alpha) = \\sin^2\\alpha - \\cos^2\\alpha = -\\cos 2\\alpha$</p>
+              <p>• $\\sin^6\\alpha + \\cos^6\\alpha = (\\sin^2\\alpha + \\cos^2\\alpha)^3 - 3\\sin^2\\alpha\\cos^2\\alpha(\\sin^2\\alpha+\\cos^2\\alpha) = 1 - 3\\sin^2\\alpha\\cos^2\\alpha$</p>
+            </div>
+          </div>
+        `
+      },
+      'cong': {
+        tag: 'CÔNG THỨC CỘNG',
+        title: 'Công Thức Cộng Lượng Giác & Thần Chú Học Thuộc',
+        content: `
+          <div class="space-y-4">
+            <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-200">
+              <h4 class="font-bold text-indigo-900 text-base mb-2">📜 Bài Thơ Học Thuộc Công Thức Cộng</h4>
+              <div class="p-3 bg-white rounded-lg text-sm text-indigo-950 font-serif leading-relaxed italic border border-indigo-100">
+                "Cos thì cos cos sin sin<br>
+                Dấu trừ đảo ngược, dấu cộng giữ nguyên.<br>
+                Sin thì sin cos cos sin<br>
+                Dấu cùng giữ nguyên không đổi khác chi.<br>
+                Tan tổng thì lấy tổng tan<br>
+                Chia cho 1 trừ tích tan dễ dàng!"
+              </div>
+            </div>
+
+            <div class="p-4 bg-sky-50 rounded-xl border border-sky-200 font-mono text-sm space-y-2">
+              <h4 class="font-bold text-blue-900 font-sans mb-1">Bộ công thức chuẩn:</h4>
+              <p>• $\\cos(a - b) = \\cos a \\cos b + \\sin a \\sin b$</p>
+              <p>• $\\cos(a + b) = \\cos a \\cos b - \\sin a \\sin b$</p>
+              <p>• $\\sin(a - b) = \\sin a \\cos b - \\cos a \\sin b$</p>
+              <p>• $\\sin(a + b) = \\sin a \\cos b + \\cos a \\sin b$</p>
+              <p>• $\\tan(a - b) = \\frac{\\tan a - \\tan b}{1 + \\tan a \\tan b}$</p>
+              <p>• $\\tan(a + b) = \\frac{\\tan a + \\tan b}{1 - \\tan a \\tan b}$</p>
+            </div>
+          </div>
+        `
+      },
+      'nhan-ha-bac': {
+        tag: 'NHÂN ĐÔI, NHÂN BA & HẠ BẬC',
+        title: 'Công Thức Nhân Đôi, Nhân Ba, Hạ Bậc & Giải Thích Biến Đổi',
+        content: `
+          <div class="space-y-4">
+            <div class="p-4 bg-blue-50 rounded-xl border border-blue-200">
+              <h4 class="font-bold text-blue-900 mb-2">1. Công thức Nhân đôi &amp; Giải thích</h4>
+              <p class="text-xs text-slate-600 mb-2">Giải thích: Suy ra trực tiếp từ công thức cộng khi cho $b = a$.</p>
+              <p>• $\\sin 2a = 2\\sin a \\cos a$</p>
+              <p>• $\\cos 2a = \\cos^2 a - \\sin^2 a = 2\\cos^2 a - 1 = 1 - 2\\sin^2 a$</p>
+              <p>• $\\tan 2a = \\frac{2\\tan a}{1 - \\tan^2 a}$</p>
+            </div>
+
+            <div class="p-4 bg-sky-50 rounded-xl border border-sky-200">
+              <h4 class="font-bold text-sky-900 mb-2">2. Công thức Hạ bậc</h4>
+              <p class="text-xs text-slate-600 mb-2">Giải thích: Rút trực tiếp từ công thức $\\cos 2a$.</p>
+              <p>• Tu $\\cos 2a = 2\\cos^2 a - 1 \\implies \\cos^2 a = \\frac{1 + \\cos 2a}{2}$</p>
+              <p>• Tu $\\cos 2a = 1 - 2\\sin^2 a \\implies \\sin^2 a = \\frac{1 - \\cos 2a}{2}$</p>
+              <p>• $\\tan^2 a = \\frac{1 - \\cos 2a}{1 + \\cos 2a}$</p>
+            </div>
+
+            <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-200">
+              <h4 class="font-bold text-indigo-900 mb-2">3. Công thức Nhân ba, Hạ bậc 3 &amp; Bài thơ</h4>
+              <div class="p-3 bg-white rounded-lg text-xs italic text-indigo-900 mb-3 border border-indigo-100">
+                "Sin ba thì ba sin bốn xỉn (3sin a - 4sin³ a)<br>
+                Cos ba thì bốn cổ ba cô (4cos³ a - 3cos a)"
+              </div>
+              <p>• $\\sin 3a = 3\\sin a - 4\\sin^3 a \\implies \\sin^3 a = \\frac{3\\sin a - \\sin 3a}{4}$</p>
+              <p>• $\\cos 3a = 4\\cos^3 a - 3\\cos a \\implies \\cos^3 a = \\frac{3\\cos a + \\cos 3a}{4}$</p>
+            </div>
+          </div>
+        `
+      },
+      'tich-tong': {
+        tag: 'TÍCH THÀNH TỔNG',
+        title: 'Công Thức Biến Đổi Tích Thành Tổng',
+        content: `
+          <div class="space-y-4">
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+              <h4 class="font-bold text-slate-900 mb-1">🔍 Giải thích nguồn gốc chứng minh</h4>
+              <p class="text-xs text-slate-700">
+                • Cộng vế với vế $\\cos(a-b) = \\cos a\\cos b + \\sin a\\sin b$ và $\\cos(a+b) = \\cos a\\cos b - \\sin a\\sin b$ ta được $2\\cos a\\cos b = \\cos(a-b) + \\cos(a+b)$.<br>
+                • Trừ vế với vế hai công thức trên ta thu được $2\\sin a\\sin b = \\cos(a-b) - \\cos(a+b)$.
+              </p>
+            </div>
+
+            <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 font-mono text-sm space-y-2">
+              <p>• $\\cos a \\cos b = \\frac{1}{2}\\left[\\cos(a - b) + \\cos(a + b)\\right]$</p>
+              <p>• $\\sin a \\sin b = \\frac{1}{2}\\left[\\cos(a - b) - \\cos(a + b)\\right]$</p>
+              <p>• $\\sin a \\cos b = \\frac{1}{2}\\left[\\sin(a - b) + \\sin(a + b)\\right]$</p>
+            </div>
+          </div>
+        `
+      },
+      'tong-tich': {
+        tag: 'TỔNG THÀNH TÍCH',
+        title: 'Công Thức Biến Đổi Tổng Thành Tích & Bài Thơ Thuộc Lòng',
+        content: `
+          <div class="space-y-4">
+            <div class="p-4 bg-amber-50 rounded-xl border border-amber-200">
+              <h4 class="font-bold text-amber-900 text-base mb-2">📜 Bài Thơ "Tổng Thành Tích" Dân Gian</h4>
+              <div class="p-3 bg-white rounded-lg text-sm text-amber-950 font-serif leading-relaxed italic border border-amber-100">
+                "Cos cộng cos bằng 2 cos cos<br>
+                Cos trừ cos bằng trừ 2 sin sin<br>
+                Sin cộng sin bằng 2 sin cos<br>
+                Sin trừ sin bằng 2 cos sin!"
+              </div>
+            </div>
+
+            <div class="p-4 bg-amber-50/60 rounded-xl border border-amber-200 font-mono text-sm space-y-2">
+              <h4 class="font-bold text-amber-900 font-sans mb-1">Công thức chuẩn (Đã sửa chính xác):</h4>
+              <p>• $\\cos x + \\cos y = 2\\cos\\frac{x+y}{2}\\cos\\frac{x-y}{2}$</p>
+              <p>• $\\cos x - \\cos y = -2\\sin\\frac{x+y}{2}\\sin\\frac{x-y}{2}$</p>
+              <p>• $\\sin x + \\sin y = 2\\sin\\frac{x+y}{2}\\cos\\frac{x-y}{2}$</p>
+              <p>• $\\sin x - \\sin y = 2\\cos\\frac{x+y}{2}\\sin\\frac{x-y}{2}$</p>
+            </div>
+          </div>
+        `
+      },
+      'dac-biet': {
+        tag: 'BẢNG GIÁ TRỊ GÓC ĐẶC BIỆT',
+        title: 'Bảng Giá Trị Lượng Giác & Dạng Biến Đổi Đặc Biệt',
+        content: `
+          <div class="space-y-6">
+            <div class="p-4 bg-rose-50 rounded-xl border border-rose-200">
+              <h4 class="font-bold text-rose-900 mb-2">Dạng biến đổi $a\\sin x + b\\cos x$</h4>
+              <p>• $\\sin a + \\cos a = \\sqrt{2}\\sin\\left(a + \\frac{\\pi}{4}\\right) = \\sqrt{2}\\cos\\left(a - \\frac{\\pi}{4}\\right)$</p>
+              <p>• $\\sin a - \\cos a = \\sqrt{2}\\sin\\left(a - \\frac{\\pi}{4}\\right) = -\\sqrt{2}\\cos\\left(a + \\frac{\\pi}{4}\\right)$</p>
+            </div>
+
+            <div>
+              <h4 class="font-bold text-slate-800 mb-3">Bảng giá trị lượng giác các góc đặc biệt ($0^\circ \to 180^\circ$)</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-center text-xs border-collapse border border-slate-200">
+                  <thead>
+                    <tr class="bg-slate-100">
+                      <th class="border p-2">Góc $\\alpha$</th>
+                      <th class="border p-2">0</th>
+                      <th class="border p-2">$\\frac{\\pi}{6}$ ($30^\circ$)</th>
+                      <th class="border p-2">$\\frac{\\pi}{4}$ ($45^\circ$)</th>
+                      <th class="border p-2">$\\frac{\\pi}{3}$ ($60^\circ$)</th>
+                      <th class="border p-2">$\\frac{\\pi}{2}$ ($90^\circ$)</th>
+                      <th class="border p-2">$\\pi$ ($180^\circ$)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="border p-2 font-bold bg-slate-50">$\\sin\\alpha$</td>
+                      <td class="border p-2">0</td>
+                      <td class="border p-2">$\\frac{1}{2}$</td>
+                      <td class="border p-2">$\\frac{\\sqrt{2}}{2}$</td>
+                      <td class="border p-2">$\\frac{\\sqrt{3}}{2}$</td>
+                      <td class="border p-2">1</td>
+                      <td class="border p-2">0</td>
+                    </tr>
+                    <tr>
+                      <td class="border p-2 font-bold bg-slate-50">$\\cos\\alpha$</td>
+                      <td class="border p-2">1</td>
+                      <td class="border p-2">$\\frac{\\sqrt{3}}{2}$</td>
+                      <td class="border p-2">$\\frac{\\sqrt{2}}{2}$</td>
+                      <td class="border p-2">$\\frac{1}{2}$</td>
+                      <td class="border p-2">0</td>
+                      <td class="border p-2">-1</td>
+                    </tr>
+                    <tr>
+                      <td class="border p-2 font-bold bg-slate-50">$\\tan\\alpha$</td>
+                      <td class="border p-2">0</td>
+                      <td class="border p-2">$\\frac{\\sqrt{3}}{3}$</td>
+                      <td class="border p-2">1</td>
+                      <td class="border p-2">$\\sqrt{3}$</td>
+                      <td class="border p-2">||</td>
+                      <td class="border p-2">0</td>
+                    </tr>
+                    <tr>
+                      <td class="border p-2 font-bold bg-slate-50">$\\cot\\alpha$</td>
+                      <td class="border p-2">||</td>
+                      <td class="border p-2">$\\sqrt{3}$</td>
+                      <td class="border p-2">1</td>
+                      <td class="border p-2">$\\frac{\\sqrt{3}}{3}$</td>
+                      <td class="border p-2">0</td>
+                      <td class="border p-2">||</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        `
+      }
+    };
+
+    function openModal(key) {
+      const modal = document.getElementById('modal');
+      const data = modalData[key];
+      if (!data) return;
+
+      document.getElementById('modal-tag').innerText = data.tag;
+      document.getElementById('modal-title').innerText = data.title;
+      document.getElementById('modal-body').innerHTML = data.content;
+
+      modal.classList.remove('hidden');
+
+      // Tự động kích hoạt MathJax biên dịch công thức trong Modal
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([document.getElementById('modal-body')]);
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    // Đóng modal khi nhấn phím Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
