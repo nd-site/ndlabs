@@ -233,8 +233,8 @@ const ndLinks = [
     
     {
         title: "Công thức lượng giác môn toán lớp 11 - ND Labs",
-        description: "Tổng hợp tất cả các công thức lượng giác môn toán lớp 11 (Bản 1) | ND Labs",
-        url: "/ndlabs/edu/toan/11/cong-thuc-luong-giac/v1",
+        description: "Tổng hợp tất cả các công thức lượng giác môn toán lớp 11 (Bản 2) | ND Labs",
+        url: "/ndlabs/edu/toan/11/cong-thuc-luong-giac/v2",
         image: "https://ndsite.web.app/assets/images/logo.png",
 
         color: "#EAF5FF",
