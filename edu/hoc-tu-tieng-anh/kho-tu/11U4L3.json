@@ -1,0 +1,58 @@
+[
+  {
+    "word": "awareness",
+    "ipa": "/əˈweə.nəs/",
+    "pos": "n",
+    "meaning": "Sự nhận thức, sự hiểu biết",
+    "usage": "Dùng để chỉ kiến thức hoặc sự quan tâm về một chủ đề, tình trạng hoặc vấn đề xã hội.",
+    "example": "The campaign aims to raise environmental awareness among teenagers."
+  },
+  {
+    "word": "leadership skills",
+    "ipa": "/ˈliː.də.ʃɪp skɪlz/",
+    "pos": "np",
+    "meaning": "Kỹ năng lãnh đạo",
+    "usage": "Chỉ khả năng tổ chức, định hướng, truyền cảm hứng và quản lý người khác để đạt được mục tiêu chung.",
+    "example": "Group projects help students develop essential leadership skills."
+  },
+  {
+    "word": "problem-solving",
+    "ipa": "/ˈprɒb.ləm ˌsɒl.vɪŋ/",
+    "pos": "n",
+    "meaning": "Giải quyết vấn đề",
+    "usage": "Chỉ quá trình tìm ra giải pháp cho những khó khăn, thách thức hoặc tình huống phức tạp.",
+    "example": "Problem-solving is a crucial skill in the modern workplace."
+  },
+  {
+    "word": "eye-opening",
+    "ipa": "/ˈaɪ ˌəʊ.pən.ɪŋ/",
+    "pos": "adj",
+    "meaning": "Mở mang tầm mắt, làm sáng tỏ",
+    "usage": "Miêu tả một trải nghiệm hoặc thông tin rất thú vị, bất ngờ, giúp người học hiểu biết thêm nhiều điều mới lạ.",
+    "example": "The trip to the rural village was an eye-opening experience for me."
+  },
+  {
+    "word": "gender equality",
+    "ipa": "/ˈdʒen.dər iˈkwɒl.ə.ti/",
+    "pos": "np",
+    "meaning": "Bình đẳng giới",
+    "usage": "Chỉ việc nam giới, nữ giới và các giới khác được đối xử công bằng, có quyền lợi và cơ hội ngang nhau.",
+    "example": "Promoting gender equality is essential for sustainable development."
+  },
+  {
+    "word": "representative",
+    "ipa": "/ˌrep.rɪˈzen.tə.tɪv/",
+    "pos": "n",
+    "meaning": "Người đại diện",
+    "usage": "Chỉ người được chọn hoặc ủy quyền để nói chuyện, hành động thay mặt cho một nhóm người hoặc tổ chức.",
+    "example": "She was chosen as a student representative for the conference."
+  },
+  {
+    "word": "live-streamed",
+    "ipa": "/ˈlaɪv.striːmd/",
+    "pos": "v",
+    "meaning": "Được phát trực tiếp trên mạng Internet",
+    "usage": "Chỉ sự kiện hoặc chương trình được truyền tải hình ảnh và âm thanh trực tiếp qua internet theo thời gian thực.",
+    "example": "The workshop was live-streamed so that international students could join."
+  }
+]
