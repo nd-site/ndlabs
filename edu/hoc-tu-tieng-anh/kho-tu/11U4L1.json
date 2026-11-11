@@ -1,90 +1,314 @@
 [
   {
-    "word": "experience",
-    "ipa": "/ɪkˈspɪəriəns/",
+    "word": "goal",
+    "ipa": "/ɡəʊl/",
     "pos": "n",
-    "meaning": "Trải nghiệm, kinh nghiệm",
-    "usage": "Chỉ sự kiện, cảm giác đã trải qua trong đời hoặc kiến thức tích lũy được qua thời gian làm việc.",
-    "example": "Traveling gives young people valuable life experience."
+    "meaning": "mục tiêu, mục đích",
+    "usage": "Dùng để chỉ mục đích hoặc kết quả mà một cá nhân hay tổ chức cố gắng đạt được.",
+    "example": "Our main goal is to promote cultural exchange among ASEAN youth."
   },
   {
-    "word": "goals",
-    "ipa": "/ɡəʊlz/",
+    "word": "aim",
+    "ipa": "/eɪm/",
     "pos": "n",
-    "meaning": "Mục tiêu, mục đích",
-    "usage": "Những điều mà một cá nhân hoặc tổ chức hướng tới để đạt được trong tương lai.",
-    "example": "The main goals of AYVP are promoting youth volunteering."
+    "meaning": "mục tiêu, ý định",
+    "usage": "Thường dùng để nói về kết quả mong muốn của một kế hoạch hoặc hành động.",
+    "example": "The program's aim is to build leadership skills."
   },
   {
-    "word": "promoting",
-    "ipa": "/prəˈməʊtɪŋ/",
+    "word": "target",
+    "ipa": "/ˈtɑːɡɪt/",
+    "pos": "n",
+    "meaning": "mục tiêu (cần đạt tới)",
+    "usage": "Chỉ chỉ tiêu hoặc mục tiêu cụ thể bằng con số, mốc thời gian hoặc kết quả đo lường được.",
+    "example": "We set a target to recruit fifty volunteers this month."
+  },
+  {
+    "word": "purpose",
+    "ipa": "/ˈpɜːpəs/",
+    "pos": "n",
+    "meaning": "mục đích, lý do",
+    "usage": "Chỉ lý do tồn tại hoặc mục đích thực hiện một công việc nào đó.",
+    "example": "The purpose of the meeting is to discuss environmental issues."
+  },
+  {
+    "word": "objective",
+    "ipa": "/əbˈdʒek.tɪv/",
+    "pos": "n",
+    "meaning": "mục tiêu học thuật/công việc",
+    "usage": "Dùng trong văn phong trang trọng hoặc báo cáo để chỉ mục tiêu đề ra.",
+    "example": "The key objective is to improve infrastructure in rural areas."
+  },
+  {
+    "word": "theme",
+    "ipa": "/θiːm/",
+    "pos": "n",
+    "meaning": "chủ đề chính",
+    "usage": "Dùng để chỉ ý tưởng hoặc đề tài xuyên suốt một sự kiện, bài phát biểu hay tác phẩm.",
+    "example": "The theme of the conference is sustainable development."
+  },
+  {
+    "word": "topic",
+    "ipa": "/ˈtɒp.ɪk/",
+    "pos": "n",
+    "meaning": "chủ đề, đề tài",
+    "usage": "Từ phổ thông dùng để chỉ chủ đề thảo luận, học tập hoặc viết lách.",
+    "example": "We discussed the topic of gender equality in class."
+  },
+  {
+    "word": "select",
+    "ipa": "/sɪˈlekt/",
     "pos": "v",
-    "meaning": "Thúc đẩy, quảng bá",
-    "usage": "Hành động hỗ trợ, khuyến khích sự phát triển của một hoạt động, sản phẩm hoặc phong trào.",
-    "example": "They are promoting environmental awareness among students."
+    "meaning": "lựa chọn, tuyển chọn",
+    "usage": "Thường dùng khi chọn lựa kỹ lưỡng từ một nhóm người hoặc vật.",
+    "example": "Judges will select the best candidate for the scholarship."
+  },
+  {
+    "word": "choose",
+    "ipa": "/tʃuːz/",
+    "pos": "v",
+    "meaning": "chọn",
+    "usage": "Động từ thông dụng chỉ việc quyết định lấy hoặc chọn một trong nhiều phương án.",
+    "example": "You can choose any topic you are interested in."
+  },
+  {
+    "word": "opt",
+    "ipa": "/ɒpt/",
+    "pos": "v",
+    "meaning": "lựa chọn, chọn lựa",
+    "usage": "Thường đi với giới từ 'for' hoặc động từ nguyên mẫu 'to', mang ý nghĩa đưa ra sự lựa chọn.",
+    "example": "Many students opt to study abroad after graduation."
+  },
+  {
+    "word": "volunteer",
+    "ipa": "/ˌvɒl.ənˈtɪər/",
+    "pos": "v",
+    "meaning": "tình nguyện, tự nguyện làm",
+    "usage": "Dùng khi ai đó tự nguyện đóng góp thời gian hoặc công sức mà không yêu cầu thù lao.",
+    "example": "She decided to volunteer at the local community center."
+  },
+  {
+    "word": "volunteer",
+    "ipa": "/ˌvɒl.ənˈtɪər/",
+    "pos": "n",
+    "meaning": "tình nguyện viên",
+    "usage": "Danh từ chỉ người tham gia các hoạt động tình nguyện.",
+    "example": "More than one hundred volunteers joined the beach clean-up."
+  },
+  {
+    "word": "voluntary",
+    "ipa": "/ˈvɒl.ən.tər.i/",
+    "pos": "adj",
+    "meaning": "tự nguyện, mang tính tình nguyện",
+    "usage": "Miêu tả hành động hoặc công việc được thực hiện do tự nguyện, không bị bắt buộc.",
+    "example": "Participation in this project is completely voluntary."
+  },
+  {
+    "word": "qualification",
+    "ipa": "/ˌkwɒl.ɪ.fɪˈkeɪ.ʃən/",
+    "pos": "n",
+    "meaning": "trình độ chuyên môn, bằng cấp",
+    "usage": "Chỉ phẩm chất, kỹ năng hoặc bằng cấp đạt được để đáp ứng điều kiện công việc.",
+    "example": "Do you have the necessary qualifications for this job?"
   },
   {
     "word": "qualified",
-    "ipa": "/ˈkwɒlɪfaɪd/",
+    "ipa": "/ˈkwɒl.ɪ.faɪd/",
     "pos": "adj",
-    "meaning": "Đủ điều kiện, có chuyên môn",
-    "usage": "Có đầy đủ bằng cấp, kinh nghiệm hoặc kỹ năng cần thiết để làm một công việc cụ thể.",
-    "example": "You must be qualified for the programme to participate."
+    "meaning": "đủ trình độ, đủ tiêu chuẩn",
+    "usage": "Đi với 'for' hoặc 'to do something', thể hiện một người có đủ năng lực/bằng cấp.",
+    "example": "She is fully qualified for the position of team leader."
   },
   {
-    "word": "depends",
-    "ipa": "/dɪˈpendz/",
+    "word": "be qualified for",
+    "ipa": "/biː ˈkwɒl.ɪ.faɪd fɔːr/",
     "pos": "v",
-    "meaning": "Phụ thuộc vào",
-    "usage": "Diễn tả việc một sự việc chịu sự chi phối hoặc quyết định bởi một yếu tố khác (thường đi với giới từ on).",
-    "example": "Success depends on your hard work and dedication."
+    "meaning": "đủ trình độ / tiêu chuẩn cho",
+    "usage": "Cụm động từ diễn tả việc đạt đủ các yêu cầu chuyên môn hoặc bằng cấp.",
+    "example": "Applicants must be qualified for the youth exchange program."
+  },
+  {
+    "word": "relate to",
+    "ipa": "/rɪˈleɪt tuː/",
+    "pos": "v",
+    "meaning": "liên quan đến",
+    "usage": "Cụm động từ dùng để kết nối mối liên hệ giữa các sự vật, hiện tượng hoặc chủ đề.",
+    "example": "The questions relate to current social issues in ASEAN."
+  },
+  {
+    "word": "keen on",
+    "ipa": "/kiːn ɒn/",
+    "pos": "adj",
+    "meaning": "thích, hăng hái, đam mê",
+    "usage": "Thường đi sau động từ 'be', thể hiện sự yêu thích hoặc hứng thú lớn đối với cái gì.",
+    "example": "He is very keen on learning about traditional cultures."
+  },
+  {
+    "word": "be keen on",
+    "ipa": "/biː kiːn ɒn/",
+    "pos": "adj",
+    "meaning": "thích / say mê",
+    "usage": "Cụm tính từ thể hiện niềm say mê hoặc sự thích thú đối với một hoạt động.",
+    "example": "Many young people are keen on volunteering nowadays."
+  },
+  {
+    "word": "interested in",
+    "ipa": "/ˈɪn.trəs.tɪd ɪn/",
+    "pos": "adj",
+    "meaning": "quan tâm, có hứng thú với",
+    "usage": "Dùng để diễn tả sự quan tâm hoặc muốn tìm hiểu về điều gì đó.",
+    "example": "She is interested in joining the ASEAN Youth Volunteer Programme."
+  },
+  {
+    "word": "participate in",
+    "ipa": "/pɑːˈtɪs.ɪ.peɪt ɪn/",
+    "pos": "v",
+    "meaning": "tham gia vào",
+    "usage": "Động từ trang trọng dùng trong giao tiếp học thuật và công việc để chỉ việc đóng góp/tham gia.",
+    "example": "Students are encouraged to participate in community activities."
+  },
+  {
+    "word": "take part in",
+    "ipa": "/teɪk pɑːt ɪn/",
+    "pos": "v",
+    "meaning": "tham gia",
+    "usage": "Cụm động từ phổ biến tương đương với 'participate in'.",
+    "example": "They took part in a workshop on leadership skills."
+  },
+  {
+    "word": "participation",
+    "ipa": "/pɑːˌtɪs.ɪˈpeɪ.ʃən/",
+    "pos": "n",
+    "meaning": "sự tham gia",
+    "usage": "Danh từ chỉ hành động hoặc mức độ đóng góp, có mặt trong một sự kiện.",
+    "example": "Active participation is essential for the success of the workshop."
+  },
+  {
+    "word": "participant",
+    "ipa": "/pɑːˈtɪs.ɪ.pənt/",
+    "pos": "n",
+    "meaning": "người tham gia",
+    "usage": "Danh từ chỉ cá nhân tham gia vào một hội thảo, cuộc thi hoặc chương trình.",
+    "example": "Each participant will receive a certificate after the course."
+  },
+  {
+    "word": "apply",
+    "ipa": "/əˈplaɪ/",
+    "pos": "v",
+    "meaning": "nộp đơn xin, ứng tuyển",
+    "usage": "Dùng khi gửi hồ sơ/đơn để xin việc, xin học bổng hoặc tham gia chương trình.",
+    "example": "You can apply online for the volunteer program."
+  },
+  {
+    "word": "apply for",
+    "ipa": "/əˈplaɪ fɔːr/",
+    "pos": "v",
+    "meaning": "nộp đơn xin cái gì (công việc, học bổng)",
+    "usage": "Cụm động từ chỉ đối tượng mà bạn đang nộp đơn hướng tới (job, scholarship, etc.).",
+    "example": "She decided to apply for a scholarship to study abroad."
+  },
+  {
+    "word": "apply to",
+    "ipa": "/əˈplaɪ tuː/",
+    "pos": "v",
+    "meaning": "nộp đơn cho ai / ở đâu",
+    "usage": "Cụm động từ chỉ nơi chốn hoặc tổ chức mà bạn nộp đơn đến.",
+    "example": "He applied to three top universities in the country."
+  },
+  {
+    "word": "application",
+    "ipa": "/ˌæp.lɪˈkeɪ.ʃən/",
+    "pos": "n",
+    "meaning": "đơn xin, sự ứng dụng",
+    "usage": "Danh từ chỉ tờ đơn nộp ứng tuyển hoặc sự ứng dụng lý thuyết/công nghệ vào thực tế.",
+    "example": "Please submit your job application before the deadline."
+  },
+  {
+    "word": "reply to",
+    "ipa": "/rɪˈplaɪ tuː/",
+    "pos": "v",
+    "meaning": "trả lời, phản hồi",
+    "usage": "Cụm động từ chỉ việc phản hồi lại thư từ, tin nhắn hoặc câu hỏi.",
+    "example": "They will reply to your email within two working days."
+  },
+  {
+    "word": "cover",
+    "ipa": "/ˈkʌv.ər/",
+    "pos": "v",
+    "meaning": "bao phủ, trang trải, đề cập đến",
+    "usage": "Dùng để chỉ việc che phủ, bao gồm các chủ đề hoặc chi trả chi phí.",
+    "example": "The course will cover essential communication skills."
+  },
+  {
+    "word": "promote",
+    "ipa": "/prəˈməʊt/",
+    "pos": "v",
+    "meaning": "thúc đẩy, quảng bá, thăng tiến",
+    "usage": "Dùng để diễn tả việc khuyến khích phát triển, quảng cáo sản phẩm hoặc nâng ngạch công việc.",
+    "example": "The event aims to promote regional cooperation."
   },
   {
     "word": "propose",
     "ipa": "/prəˈpəʊz/",
     "pos": "v",
-    "meaning": "Đề xuất",
-    "usage": "Trình bày một kế hoạch, dự án hoặc ý tưởng để người khác xem xét và phê duyệt.",
-    "example": "You may need to propose a community project related to the theme."
+    "meaning": "đề xuất, kiến nghị",
+    "usage": "Dùng khi đưa ra kế hoạch hoặc ý tưởng để người khác xem xét và chấp thuận.",
+    "example": "We propose building a new green park in the urban area."
   },
   {
-    "word": "interview",
-    "ipa": "/ˈɪntəvjuː/",
+    "word": "suggest",
+    "ipa": "/səˈdʒest/",
+    "pos": "v",
+    "meaning": "gợi ý, đề nghị",
+    "usage": "Động từ dùng để nêu ý kiến hoặc giải pháp cho ai đó tham khảo.",
+    "example": "I suggest starting the meeting ten minutes earlier."
+  },
+  {
+    "word": "proposal",
+    "ipa": "/prəˈpəʊ.zəl/",
     "pos": "n",
-    "meaning": "Cuộc phỏng vấn",
-    "usage": "Buổi gặp mặt chính thức để hỏi đáp, đánh giá năng lực hoặc sự phù hợp của ứng viên.",
-    "example": "We will interview you to make sure you speak English well."
+    "meaning": "sự đề xuất, bản đề án",
+    "usage": "Danh từ chỉ văn bản hoặc ý tưởng đề xuất chính thức.",
+    "example": "The manager accepted our proposal for environmental protection."
   },
   {
-    "word": "keen",
-    "ipa": "/kiːn/",
-    "pos": "adj",
-    "meaning": "Hứng thú, thiết tha",
-    "usage": "Thể hiện sự nhiệt huyết, quan tâm sâu sắc hoặc mong muốn làm điều gì đó (thường dùng trong cấu trúc keen on).",
-    "example": "He is very keen on participating in environmental activities."
+    "word": "make sure",
+    "ipa": "/meɪk ʃɔːr/",
+    "pos": "v",
+    "meaning": "đảm bảo, kiểm tra chắc chắn",
+    "usage": "Cụm động từ dùng trong giao tiếp hàng ngày để nhấn mạnh việc xác minh sự thật.",
+    "example": "Make sure you double-check all information before submitting."
   },
   {
-    "word": "unforgettable",
-    "ipa": "/ˌʌnfəˈɡetəbl/",
-    "pos": "adj",
-    "meaning": "Khó quên",
-    "usage": "Miêu tả một trải nghiệm, kỷ niệm hoặc sự việc quá ấn tượng nên không thể phai mờ trong trí nhớ.",
-    "example": "Our trip to Southeast Asia was an unforgettable experience."
+    "word": "depend on",
+    "ipa": "/dɪˈpend ɒn/",
+    "pos": "v",
+    "meaning": "phụ thuộc vào, dựa vào",
+    "usage": "Cụm động từ chỉ sự phụ thuộc yếu tố này vào yếu tố khác.",
+    "example": "Our decision will depend on the survey results."
   },
   {
-    "word": "aid",
-    "ipa": "/eɪd/",
+    "word": "find out",
+    "ipa": "/faɪnd aʊt/",
+    "pos": "v",
+    "meaning": "tìm ra, khám phá ra",
+    "usage": "Cụm động từ chỉ việc phát hiện ra thông tin mới sau khi tìm hiểu.",
+    "example": "We need to find out the main cause of traffic jams."
+  },
+  {
+    "word": "contribution",
+    "ipa": "/ˌkɒn.trɪˈbjuː.ʃən/",
     "pos": "n",
-    "meaning": "Sự viện trợ, hỗ trợ",
-    "usage": "Hành động hoặc nguồn lực cung cấp nhằm trợ giúp những người gặp khó khăn.",
-    "example": "The government sent financial aid to the flood-affected region."
+    "meaning": "sự đóng góp, sự cống hiến",
+    "usage": "Danh từ chỉ tiền bạc, công sức hoặc ý tưởng đóng góp cho mục tiêu chung.",
+    "example": "Thank you for your valuable contribution to the project."
   },
   {
-    "word": "aims",
-    "ipa": "/eɪmz/",
-    "pos": "n",
-    "meaning": "Mục đích, ý định",
-    "usage": "Những kết quả cụ thể mà một người hướng tới hoặc đặt ra để phấn đấu đạt được.",
-    "example": "One of the main aims of the project is cultural exchange."
+    "word": "contribute to",
+    "ipa": "/kənˈtrɪb.juːt tuː/",
+    "pos": "v",
+    "meaning": "đóng góp vào, góp phần",
+    "usage": "Cụm động từ chỉ việc góp phần tạo nên kết quả hoặc sự thay đổi.",
+    "example": "Everyone can contribute to protecting the environment."
   }
 ]
